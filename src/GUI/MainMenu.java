@@ -9,11 +9,13 @@ public class MainMenu extends JFrame {
     private String gameDesc;
     private String newGame;
     private String loadGame;
+    private String settings;
     private JFrame frame = new JFrame("UntitledRPG™ Main Menu");
 
     public MainMenu() {
         newGame = "New Game";
         loadGame = "Load Game";
+        settings = "Settings";
         buildWindow(frame);
     }
     private JFrame buildWindow(JFrame frame)
@@ -42,7 +44,7 @@ public class MainMenu extends JFrame {
         JLabel gameDescLabel = new JLabel();
         JButton newGameBtn = selectGameTypeBtn(newGame);
         JButton loadGameBtn = selectGameTypeBtn(loadGame);
-        JButton settingsBtn = new JButton();
+        JButton settingsBtn = selectGameTypeBtn(settings);
 
         // Set values. Can be integrated to the instantiation for cleaner look
         String welcomeText = "Welcome to the Untitled RPG!";
@@ -77,6 +79,9 @@ public class MainMenu extends JFrame {
             }
             if (source.getText().equalsIgnoreCase(loadGame)) {
                 MainMenu.popUpWindow("You have no saves to load!", "Error!");
+            }
+            if (source.getText().equalsIgnoreCase(settings)) {
+                MainMenu.popUpWindow("We haven'made any settings yet!", "Error!");
             }
         });
         return returned;
