@@ -7,9 +7,14 @@ import java.awt.*;
 
 public class GameWindow {
 
-    private JTextArea inputArea;
+    private JPanel inputArea;
+    private JTextArea inputAreaTextArea;
+    private JTextField inputAreaTextField;
     private JTextArea gameArea;
     private JTextArea sideBarArea;
+
+    // for the gridbagLayout
+    static boolean shouldFill = true;
 
     public GameWindow() {
 
@@ -31,25 +36,59 @@ public class GameWindow {
         gameArea.setEditable(false);
         sideBarArea = new JTextArea(5, 10);
         sideBarArea.setEditable(false);
-        inputArea = new JTextArea(5, 10);
+
+        // Set inputArea.
+        // Contains an textArea for displaying recent player input,
+        // and a textField for player input
+        inputArea = new JPanel(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        if(shouldFill) {
+            c.fill = GridBagConstraints.HORIZONTAL;
+        }
+
+        inputAreaTextArea = new JTextArea();
+        inputAreaTextArea.setEditable(false);
+
+        // Set scrollPane
+        inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
+        JScrollPane textAreaScrollPane = new JScrollPane(inputAreaTextArea);
+        c.weightx = 0.5;
+        c.gridx = 0;
+        c.gridy = 0;
+        inputArea.add(textAreaScrollPane,c);
+
+        inputAreaTextField = new JTextField();
+        c.gridx = 0;
+        c.gridy = 1;
+        // Add textArea and textField to inputArea
+        inputArea.add(inputAreaTextField, c);
+
+        inputAreaTextField.addActionListener((e -> {
+            if(inputAreaTextField.getText().length() > 0) {
+                sendPlayerInput(inputAreaTextField.getText());
+                inputAreaTextField.setText("");
+            }
+        }));
 
         // Set vertical splitpane. Second layer
-        JSplitPane vertSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, gameArea, sideBarArea);
-
-        vertSplitPane.setDividerLocation(400);
+        JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameArea, sideBarArea);
+        vertSplitPane.setDividerLocation(500);
         vertSplitPane.setDividerSize(10);
         vertSplitPane.setEnabled(false);
 
         // Set horizontal split. Top layer
-        JSplitPane horiSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, vertSplitPane, inputArea);
+        JSplitPane horiSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, vertSplitPane, inputArea);
         vertSplitPane.setOneTouchExpandable(false);
-        horiSplitPane.setDividerLocation(500);
-        horiSplitPane.setDividerSize(10);
+        horiSplitPane.setDividerLocation(400);
+        horiSplitPane.setDividerSize(5);
         horiSplitPane.setEnabled(false);
-
 
         frame.add(horiSplitPane);
 
         return frame;
+    }
+
+    public void sendPlayerInput(String playerInput) {
+
     }
 }
