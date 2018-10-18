@@ -12,15 +12,19 @@ public class GameWindow {
     private JTextField inputAreaTextField;
     private JTextArea gameArea;
     private JTextArea sideBarArea;
-
-    // for the gridbagLayout
-    static boolean shouldFill = true;
+    private GridBagConstraints c;
+    private final int hGap = 5;
+    private final int vGap = 5;
 
     public GameWindow() {
 
+        c = new GridBagConstraints ();
+        c.anchor = GridBagConstraints.FIRST_LINE_START;
+        c.insets = new Insets( hGap, vGap, hGap, vGap );
         JFrame frame = new JFrame("UntitledRPG™");
         buildGameWindow(frame);
     }
+
 
     private JFrame buildGameWindow(JFrame frame) {
 
@@ -42,26 +46,17 @@ public class GameWindow {
         // and a textField for player input
         inputArea = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
-        if(shouldFill) {
-            c.fill = GridBagConstraints.HORIZONTAL;
-        }
 
-        inputAreaTextArea = new JTextArea();
+        inputAreaTextArea = new JTextArea(10,20);
         inputAreaTextArea.setEditable(false);
 
         // Set scrollPane
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
         JScrollPane textAreaScrollPane = new JScrollPane(inputAreaTextArea);
-        c.weightx = 0.5;
-        c.gridx = 0;
-        c.gridy = 0;
-        inputArea.add(textAreaScrollPane,c);
+        addComp(inputArea, textAreaScrollPane, 0, 0, 1, 1, GridBagConstraints.BOTH, 1, 1);
 
         inputAreaTextField = new JTextField();
-        c.gridx = 0;
-        c.gridy = 1;
-        // Add textArea and textField to inputArea
-        inputArea.add(inputAreaTextField, c);
+        addComp(inputArea, inputAreaTextField, 0, 3, 1, 1, GridBagConstraints.BOTH, 1, 1);
 
         inputAreaTextField.addActionListener((e -> {
             if(inputAreaTextField.getText().length() > 0) {
@@ -88,7 +83,22 @@ public class GameWindow {
         return frame;
     }
 
-    public void sendPlayerInput(String playerInput) {
+    private void addComp(JPanel panel, JComponent comp
+                            , int x, int y, int gWidth
+                                , int gHeight, int fill
+                                    , double weightx, double weighty) {
+        c.gridx = x;
+        c.gridy = y;
+        c.gridwidth = gWidth;
+        c.gridheight = gHeight;
+        c.fill = fill;
+        c.weightx = weightx;
+        c.weighty = weighty;
 
+        panel.add(comp, c);
+    }
+
+    public void sendPlayerInput(String playerInput) {
+        // TODO
     }
 }
