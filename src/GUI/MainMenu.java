@@ -1,5 +1,7 @@
 package GUI;
 
+import Helpers.popUp;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
@@ -66,6 +68,8 @@ public class MainMenu extends JFrame {
         frame.add(field3);
 
         frame.setVisible(true);
+
+        // Return the built frame back to MainMenu()
         return frame;
     }
 
@@ -78,10 +82,13 @@ public class MainMenu extends JFrame {
                 frame.dispose();
             }
             if (source.getText().equalsIgnoreCase(loadGame)) {
-                MainMenu.popUpWindow("You have no saves to load!", "Error!");
+                popUp popUp = new popUp();
+                popUp.popUpWindow("You have no saves to load!", "Error!");
+
             }
             if (source.getText().equalsIgnoreCase(settings)) {
-                MainMenu.popUpWindow("We haven'made any settings yet!", "Error!");
+                popUp popUp = new popUp();
+                popUp.popUpWindow("We haven'made any settings yet!", "Error!");
             }
         });
         return returned;
