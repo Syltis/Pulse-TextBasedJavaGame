@@ -53,14 +53,16 @@ public class GameWindow {
         // Set scrollPane
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
         JScrollPane textAreaScrollPane = new JScrollPane(inputAreaTextArea);
-        addComp(inputArea, textAreaScrollPane, 0, 0, 1, 1, GridBagConstraints.BOTH, 1, 1);
+        addComp(inputArea, textAreaScrollPane, 0, 1, 1, 1, GridBagConstraints.BOTH, 2, 2);
 
         inputAreaTextField = new JTextField();
-        addComp(inputArea, inputAreaTextField, 0, 3, 1, 1, GridBagConstraints.BOTH, 1, 1);
+        addComp(inputArea, inputAreaTextField, 0, 2, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
+        // Listener for enter-click
         inputAreaTextField.addActionListener((e -> {
             if(inputAreaTextField.getText().length() > 0) {
                 sendPlayerInput(inputAreaTextField.getText());
+                printToLog(inputAreaTextField.getText());
                 inputAreaTextField.setText("");
             }
         }));
@@ -100,5 +102,10 @@ public class GameWindow {
 
     public void sendPlayerInput(String playerInput) {
         // TODO
+    }
+
+    public void printToLog(String message) {
+        inputAreaTextArea.append(message + "\n");
+        inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 }
