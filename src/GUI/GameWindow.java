@@ -4,11 +4,14 @@ import javafx.scene.control.SplitPane;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 
 public class GameWindow {
 
     private JPanel inputArea;
     private JTextArea inputAreaTextArea;
+    private JLabel inputAreaLabel;
     private JTextField inputAreaTextField;
     private JTextArea gameArea;
     private JTextArea sideBarArea;
@@ -43,20 +46,24 @@ public class GameWindow {
 
         // Set inputArea.
         // Contains an textArea for displaying recent player input,
-        // and a textField for player input
+        // a JLabel for a short text above the textField below for player input
         inputArea = new JPanel(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
+        // Set textArea and add it to scrollpane, which is then added to the layout
         inputAreaTextArea = new JTextArea(10,20);
         inputAreaTextArea.setEditable(false);
-
-        // Set scrollPane
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
         JScrollPane textAreaScrollPane = new JScrollPane(inputAreaTextArea);
         addComp(inputArea, textAreaScrollPane, 0, 1, 1, 1, GridBagConstraints.BOTH, 2, 2);
 
+        inputAreaLabel = new JLabel("Enter commands below.");
+        addComp(inputArea, inputAreaLabel, 0,2, 1, 1, GridBagConstraints.BOTH, 0.2,0.2);
+
+        // Set jTextfield and add it to layout
         inputAreaTextField = new JTextField();
-        addComp(inputArea, inputAreaTextField, 0, 2, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
+        inputAreaTextField.setText("Start your adventure!"); // Placeholder, see method below
+        addComp(inputArea, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
         // Listener for enter-click
         inputAreaTextField.addActionListener((e -> {
@@ -66,6 +73,15 @@ public class GameWindow {
                 inputAreaTextField.setText("");
             }
         }));
+
+        // Method for the placeholder text. Show up one time before textField is in focus
+        inputAreaTextField.addFocusListener(new FocusAdapter() {
+            public void focusGained(FocusEvent e) {
+                JTextField source = (JTextField)e.getComponent();
+                source.setText("");
+                source.removeFocusListener(this);
+            }
+        });
 
         // Set vertical splitpane. Second layer
         JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameArea, sideBarArea);
@@ -104,8 +120,9 @@ public class GameWindow {
         // TODO
     }
 
+    // Prints  player command to inputAreaTextField (log)
     public void printToLog(String message) {
-        inputAreaTextArea.append(message + "\n");
+        inputAreaTextArea.append(">" + message + "\n");
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 }
