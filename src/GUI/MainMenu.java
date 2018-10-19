@@ -1,14 +1,11 @@
 package GUI;
 
 import Helpers.popUp;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowEvent;
 
 public class MainMenu extends JFrame {
 
-    private String gameDesc;
     private String newGame;
     private String loadGame;
     private String settings;
@@ -20,7 +17,7 @@ public class MainMenu extends JFrame {
         settings = "Settings";
         buildWindow(frame);
     }
-    private JFrame buildWindow(JFrame frame)
+    private void buildWindow(JFrame frame)
     {
         // Main build
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -50,7 +47,7 @@ public class MainMenu extends JFrame {
 
         // Set values. Can be integrated to the instantiation for cleaner look
         String welcomeText = "Welcome to the Untitled RPG!";
-        gameDesc = "<html>Press 'New Game' to start your adventure,<br /> or 'Load Game' to continue an existing one!</html> ";
+        String gameDesc = "<html>Press 'New Game' to start your adventure,<br /> or 'Load Game' to continue an existing one!</html> ";
         settingsBtn.setText("Settings");
         welcomeTextLabel.setText(welcomeText);
         gameDescLabel.setText(gameDesc);
@@ -68,9 +65,6 @@ public class MainMenu extends JFrame {
         frame.add(field3);
 
         frame.setVisible(true);
-
-        // Return the built frame back to MainMenu()
-        return frame;
     }
 
     private JButton selectGameTypeBtn(String btnName) {
@@ -92,10 +86,5 @@ public class MainMenu extends JFrame {
             }
         });
         return returned;
-    }
-
-    private static void popUpWindow(String infoMessage, String titleBar) {
-
-        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
 }
