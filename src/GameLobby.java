@@ -1,6 +1,12 @@
+import GUI.GameWindow;
 import GUI.MainMenu;
+import Gameplay.Intro;
+import sun.applet.Main;
 
 class GameLobby {
 
-    GameLobby() { new MainMenu(); }
+    private final MainMenu mainMenu;
+    {
+        mainMenu = new MainMenu();
+    }
 }

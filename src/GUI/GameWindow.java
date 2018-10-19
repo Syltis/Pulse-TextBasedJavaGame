@@ -1,5 +1,7 @@
 package GUI;
 
+import Gameplay.Intro;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
@@ -14,8 +16,7 @@ public class GameWindow {
     private GridBagConstraints c;
 
      public GameWindow() {
-
-        c = new GridBagConstraints ();
+        c = new GridBagConstraints();
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         int hGap = 5;
         int vGap = 5;
@@ -132,8 +133,13 @@ public class GameWindow {
     }
 
     // Prints  player command to inputAreaTextField (log)
-    public void printToLog(String message) {
-        inputAreaTextArea.append(">" + message + "\n");
+    public void printToLog(String text) {
+        inputAreaTextArea.append(">" + text + "\n");
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
+    }
+
+    public void printToGameArea(String text) {
+         gameArea.append(">" + text + "\n");
+         gameArea.setCaretPosition(gameArea.getDocument().getLength());
     }
 }

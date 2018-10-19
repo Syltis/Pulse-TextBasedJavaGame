@@ -1,5 +1,6 @@
 package GUI;
 
+import Gameplay.Intro;
 import Helpers.popUp;
 import javax.swing.*;
 import java.awt.*;
@@ -9,6 +10,7 @@ public class MainMenu extends JFrame {
     private String newGame;
     private String loadGame;
     private String settings;
+    private String chosenGameMode;
     private JFrame frame = new JFrame("UntitledRPG™ Main Menu");
 
     public MainMenu() {
@@ -17,6 +19,15 @@ public class MainMenu extends JFrame {
         settings = "Settings";
         buildWindow(frame);
     }
+
+    public void setChosenGameMode(String chosenGameMode) {
+        this.chosenGameMode = chosenGameMode;
+    }
+
+    public String getChosenGameMode() {
+        return chosenGameMode;
+    }
+
     private void buildWindow(JFrame frame)
     {
         // Main build
