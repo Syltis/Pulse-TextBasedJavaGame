@@ -1,5 +1,7 @@
 package GUI;
 
+import Gameplay.Intro;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
@@ -7,22 +9,34 @@ import java.awt.event.FocusEvent;
 
 public class GameWindow {
 
+    private JTextArea sideBarArea;
+    private JTextArea gameArea;
     private JTextArea inputAreaTextArea;
     private JTextField inputAreaTextField;
     private GridBagConstraints c;
 
-    GameWindow() {
-
-        c = new GridBagConstraints ();
+     public GameWindow() {
+        c = new GridBagConstraints();
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         int hGap = 5;
         int vGap = 5;
         c.insets = new Insets(hGap, vGap, hGap, vGap);
+    }
+
+    public void openGameWindow() {
         JFrame frame = new JFrame("UntitledRPG™");
         buildGameWindow(frame);
+        new Intro();
     }
 
     private void buildGameWindow(JFrame frame) {
+
+        /* GameWindow build info
+        GameWindow consists of:
+        - gameArea, a JTextField where the output from the game will be printed.
+        - sideBarArea, TODO
+        - inputArea, a JPanel where the player enters commands and views them in a log
+         */
 
         // Main build
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -32,16 +46,19 @@ public class GameWindow {
         frame.setVisible(true);
 
         // Set areas
-        JTextArea gameArea = new JTextArea(5, 10);
-        gameArea.setEditable(false);
-        JTextArea sideBarArea = new JTextArea(5, 10);
-        sideBarArea.setEditable(false);
-
-        // Set inputArea.
-        // Contains an textArea for displaying recent player input,
-        // a JLabel for a short text above the textField below for player input
+        gameArea = new JTextArea(5, 10);
+        sideBarArea = new JTextArea(5, 10);
         JPanel inputArea = new JPanel(new GridBagLayout());
 
+        // GAME AREA
+        gameArea.setEditable(false);
+        gameArea.setCaretPosition(gameArea.getDocument().getLength());
+        JScrollPane gameAreaScrollPane = new JScrollPane(gameArea);
+
+        //SIDEBAR AREA
+        sideBarArea.setEditable(false);
+
+        // INPUT AREA.
         // Set textArea and add it to scrollpane, which is then added to the layout
         inputAreaTextArea = new JTextArea(10,20);
         inputAreaTextArea.setEditable(false);
@@ -67,7 +84,6 @@ public class GameWindow {
         // Listener for enter-click
         inputAreaTextField.addActionListener((e -> {
             if(inputAreaTextField.getText().length() > 0) {
-                sendPlayerInput(inputAreaTextField.getText());
                 printToLog(inputAreaTextField.getText());
                 inputAreaTextField.setText("");
             }
@@ -82,6 +98,7 @@ public class GameWindow {
             }
         });
 
+        // ASSEMBLY
         // Set vertical splitpane. Second layer
         JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameArea, sideBarArea);
         vertSplitPane.setDividerLocation(500);
@@ -98,6 +115,7 @@ public class GameWindow {
         frame.add(horiSplitPane);
     }
 
+    // Easier implementation of constraints for gridBagLayout
     private void addComp(JPanel panel, JComponent comp
                             , int x, int y, int gWidth
                                 , int gHeight, int fill
@@ -113,13 +131,14 @@ public class GameWindow {
         panel.add(comp, c);
     }
 
-    public void sendPlayerInput(String playerInput) {
-        // TODO
+    // Prints  player command to inputAreaTextField (log)
+    public void printToLog(String text) {
+        inputAreaTextArea.append(">" + text + "\n");
+        inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
-    // Prints  player command to inputAreaTextField (log)
-    public void printToLog(String message) {
-        inputAreaTextArea.append(">" + message + "\n");
-        inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
+    public void printToGameArea(String text) {
+         gameArea.append(">" + text + "\n");
+         gameArea.setCaretPosition(gameArea.getDocument().getLength());
     }
 }

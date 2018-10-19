@@ -1,10 +1,11 @@
 package GUI;
 
+import Gameplay.Intro;
 import Helpers.popUp;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainMenu extends JFrame {
+public class MainMenu {
 
     private String newGame;
     private String loadGame;
@@ -17,6 +18,7 @@ public class MainMenu extends JFrame {
         settings = "Settings";
         buildWindow(frame);
     }
+
     private void buildWindow(JFrame frame)
     {
         // Main build
@@ -72,7 +74,8 @@ public class MainMenu extends JFrame {
         returned.addActionListener(e -> {
             JButton source = (JButton)e.getSource();
             if (source.getText().equalsIgnoreCase(newGame)) {
-                new GameWindow();
+                new GameWindow().openGameWindow();
+                new Intro();
                 frame.dispose();
             }
             if (source.getText().equalsIgnoreCase(loadGame)) {
@@ -86,5 +89,10 @@ public class MainMenu extends JFrame {
             }
         });
         return returned;
+    }
+
+    public void startNewGame() {
+        new GameWindow().openGameWindow();
+        new Intro();
     }
 }
