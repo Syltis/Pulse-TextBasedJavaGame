@@ -54,9 +54,16 @@ public class GameWindow {
         inputAreaTextArea = new JTextArea(10,20);
         inputAreaTextArea.setEditable(false);
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
+
+        // Message in the inputAreaTextArea to user.
+        String welcomeMsg= "This is your command log. Your commands will be printed here.";
+        printToLog(welcomeMsg);
         JScrollPane textAreaScrollPane = new JScrollPane(inputAreaTextArea);
+
+        // (addComp) method for placing elements in gridBagLayout.
         addComp(inputArea, textAreaScrollPane, 0, 1, 1, 1, GridBagConstraints.BOTH, 2, 2);
 
+        // Label with user instruction on using the inputAreaTextField
         inputAreaLabel = new JLabel("Enter commands below.");
         addComp(inputArea, inputAreaLabel, 0,2, 1, 1, GridBagConstraints.BOTH, 0.2,0.2);
 
@@ -123,6 +130,12 @@ public class GameWindow {
     // Prints  player command to inputAreaTextField (log)
     public void printToLog(String message) {
         inputAreaTextArea.append(">" + message + "\n");
+        inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
+    }
+
+    // Prints  player command to inputAreaTextField (log) with no linebreak
+    public void printToLogNoLinebreak(String message) {
+        inputAreaTextArea.append(">" + message);
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 }
