@@ -1,6 +1,6 @@
 import GUI.MainMenu;
 
-public class GameLobby {
+class GameLobby {
 
-    public GameLobby() { new MainMenu(); }
+    GameLobby() { new MainMenu(); }
 }

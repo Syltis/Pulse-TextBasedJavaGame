@@ -1,7 +1,5 @@
 package GUI;
 
-import javafx.scene.control.SplitPane;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
@@ -9,27 +7,22 @@ import java.awt.event.FocusEvent;
 
 public class GameWindow {
 
-    private JPanel inputArea;
     private JTextArea inputAreaTextArea;
-    private JLabel inputAreaLabel;
     private JTextField inputAreaTextField;
-    private JTextArea gameArea;
-    private JTextArea sideBarArea;
     private GridBagConstraints c;
-    private final int hGap = 5;
-    private final int vGap = 5;
 
-    public GameWindow() {
+    GameWindow() {
 
         c = new GridBagConstraints ();
         c.anchor = GridBagConstraints.FIRST_LINE_START;
-        c.insets = new Insets( hGap, vGap, hGap, vGap );
+        int hGap = 5;
+        int vGap = 5;
+        c.insets = new Insets(hGap, vGap, hGap, vGap);
         JFrame frame = new JFrame("UntitledRPG™");
         buildGameWindow(frame);
     }
 
-
-    private JFrame buildGameWindow(JFrame frame) {
+    private void buildGameWindow(JFrame frame) {
 
         // Main build
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -39,16 +32,15 @@ public class GameWindow {
         frame.setVisible(true);
 
         // Set areas
-        gameArea = new JTextArea(5, 10);
+        JTextArea gameArea = new JTextArea(5, 10);
         gameArea.setEditable(false);
-        sideBarArea = new JTextArea(5, 10);
+        JTextArea sideBarArea = new JTextArea(5, 10);
         sideBarArea.setEditable(false);
 
         // Set inputArea.
         // Contains an textArea for displaying recent player input,
         // a JLabel for a short text above the textField below for player input
-        inputArea = new JPanel(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
+        JPanel inputArea = new JPanel(new GridBagLayout());
 
         // Set textArea and add it to scrollpane, which is then added to the layout
         inputAreaTextArea = new JTextArea(10,20);
@@ -64,7 +56,7 @@ public class GameWindow {
         addComp(inputArea, textAreaScrollPane, 0, 1, 1, 1, GridBagConstraints.BOTH, 2, 2);
 
         // Label with user instruction on using the inputAreaTextField
-        inputAreaLabel = new JLabel("Enter commands below.");
+        JLabel inputAreaLabel = new JLabel("Enter commands below.");
         addComp(inputArea, inputAreaLabel, 0,2, 1, 1, GridBagConstraints.BOTH, 0.2,0.2);
 
         // Set jTextfield and add it to layout
@@ -104,8 +96,6 @@ public class GameWindow {
         horiSplitPane.setEnabled(false);
 
         frame.add(horiSplitPane);
-
-        return frame;
     }
 
     private void addComp(JPanel panel, JComponent comp
@@ -130,12 +120,6 @@ public class GameWindow {
     // Prints  player command to inputAreaTextField (log)
     public void printToLog(String message) {
         inputAreaTextArea.append(">" + message + "\n");
-        inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
-    }
-
-    // Prints  player command to inputAreaTextField (log) with no linebreak
-    public void printToLogNoLinebreak(String message) {
-        inputAreaTextArea.append(">" + message);
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 }
