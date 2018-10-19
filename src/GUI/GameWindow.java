@@ -21,8 +21,12 @@ public class GameWindow {
         int hGap = 5;
         int vGap = 5;
         c.insets = new Insets(hGap, vGap, hGap, vGap);
+    }
+
+    public void openGameWindow() {
         JFrame frame = new JFrame("UntitledRPG™");
         buildGameWindow(frame);
+        new Intro();
     }
 
     private void buildGameWindow(JFrame frame) {
@@ -80,7 +84,6 @@ public class GameWindow {
         // Listener for enter-click
         inputAreaTextField.addActionListener((e -> {
             if(inputAreaTextField.getText().length() > 0) {
-                sendPlayerInput(inputAreaTextField.getText());
                 printToLog(inputAreaTextField.getText());
                 inputAreaTextField.setText("");
             }
@@ -126,10 +129,6 @@ public class GameWindow {
         c.weighty = weighty;
 
         panel.add(comp, c);
-    }
-
-    public void sendPlayerInput(String playerInput) {
-        // TODO
     }
 
     // Prints  player command to inputAreaTextField (log)

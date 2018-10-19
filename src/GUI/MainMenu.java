@@ -5,12 +5,11 @@ import Helpers.popUp;
 import javax.swing.*;
 import java.awt.*;
 
-public class MainMenu extends JFrame {
+public class MainMenu {
 
     private String newGame;
     private String loadGame;
     private String settings;
-    private String chosenGameMode;
     private JFrame frame = new JFrame("UntitledRPG™ Main Menu");
 
     public MainMenu() {
@@ -18,14 +17,6 @@ public class MainMenu extends JFrame {
         loadGame = "Load Game";
         settings = "Settings";
         buildWindow(frame);
-    }
-
-    public void setChosenGameMode(String chosenGameMode) {
-        this.chosenGameMode = chosenGameMode;
-    }
-
-    public String getChosenGameMode() {
-        return chosenGameMode;
     }
 
     private void buildWindow(JFrame frame)
@@ -83,7 +74,8 @@ public class MainMenu extends JFrame {
         returned.addActionListener(e -> {
             JButton source = (JButton)e.getSource();
             if (source.getText().equalsIgnoreCase(newGame)) {
-                new GameWindow();
+                new GameWindow().openGameWindow();
+                new Intro();
                 frame.dispose();
             }
             if (source.getText().equalsIgnoreCase(loadGame)) {
@@ -97,5 +89,10 @@ public class MainMenu extends JFrame {
             }
         });
         return returned;
+    }
+
+    public void startNewGame() {
+        new GameWindow().openGameWindow();
+        new Intro();
     }
 }

@@ -1,7 +1,5 @@
 package Helpers;
 
-import GUI.GameWindow;
-
 public class Print {
 
     public void print(String text) {
@@ -16,5 +14,4 @@ public class Print {
             }
         }
     }
-
 }
