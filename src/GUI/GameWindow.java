@@ -10,7 +10,7 @@ import java.awt.event.FocusEvent;
 public class GameWindow {
 
     private JTextArea sideBarArea;
-    private JTextArea gameArea; // Am I sure about this?- kris
+    private JTextArea gameArea; // Am I sure about this? - kris
     private JTextArea inputAreaTextArea;
     private JTextField inputAreaTextField;
     private int commandCount;
@@ -31,10 +31,9 @@ public class GameWindow {
 
     private void buildGameWindow(JFrame frame) {
 
-        /* GameWindow build info
-        GameWindow consists of:
+        /* GameWindow consists of:
         - gameArea, a JTextField where the output from the game will be printed.
-        - sideBarArea, TODO
+        - sideBarArea, TODO: Sidebar with info about available commands
         - inputArea, a JPanel where the player enters commands and views them in a log
          */
 
@@ -105,7 +104,7 @@ public class GameWindow {
 
         // ASSEMBLY
         // Set vertical splitpane. Second layer
-        JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameArea, sideBarArea);
+        JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameAreaScrollPane, sideBarArea);
         vertSplitPane.setDividerLocation(500);
         vertSplitPane.setDividerSize(10);
         vertSplitPane.setEnabled(false);
@@ -120,13 +119,8 @@ public class GameWindow {
         frame.add(horiSplitPane);
     }
 
-    // Sets the text in the gameArea()
-    public void setGameArea(String text) {
-         this.gameArea.setText(text);
-    }
-
-
     // Easier implementation of constraints for gridBagLayout
+    // Found on Stack Overflow somewhere, but I can't fink the link.
     private void addComp(JPanel panel, JComponent comp
                             , int x, int y, int gWidth
                                 , int gHeight, int fill

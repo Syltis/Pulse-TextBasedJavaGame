@@ -2,6 +2,7 @@ package Helpers;
 
 public class Print {
 
+    //For tests. Coould build a test class? - kris
     public void print(String text) {
         System.out.println(text);
     }
