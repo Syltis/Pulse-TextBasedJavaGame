@@ -10,7 +10,7 @@ import java.awt.event.FocusEvent;
 public class GameWindow {
 
     private JTextArea sideBarArea;
-    private JTextArea gameArea;
+    private JTextArea gameArea; // Am I sure about this?- kris
     private JTextArea inputAreaTextArea;
     private JTextField inputAreaTextField;
     private GridBagConstraints c;
@@ -83,6 +83,8 @@ public class GameWindow {
         // Listener for sending of a command
         inputAreaTextField.addActionListener((e -> {
             if(inputAreaTextField.getText().length() > 0) {
+
+                // Print in the inputAreaTextField
                 printToLog(inputAreaTextField.getText());
                 PlayerInput playerInput = new PlayerInput();
                 playerInput.setPlayerInput(inputAreaTextField.getText());
@@ -116,13 +118,11 @@ public class GameWindow {
         frame.add(horiSplitPane);
     }
 
+    // Sets the text in the gameArea()
     public void setGameArea(String text) {
          this.gameArea.setText(text);
     }
 
-    public void getGameArea() {
-          // TODO Read from the game area
-    }
 
     // Easier implementation of constraints for gridBagLayout
     private void addComp(JPanel panel, JComponent comp
@@ -146,6 +146,7 @@ public class GameWindow {
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
+    // Prints strings to the gameArea.
     public void printToGameArea(String text) {
          gameArea.append(">" + text + "\n");
          gameArea.setCaretPosition(gameArea.getDocument().getLength());
