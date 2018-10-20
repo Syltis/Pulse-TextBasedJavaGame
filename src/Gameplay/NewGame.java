@@ -21,7 +21,7 @@ public class NewGame {
         runTestSegment();
     }
 
-    // TODO: How can we pass the game segments as objects?
+    // TODO: How can we pass the game segments as objects? -kris
     public void runTestSegment() {
         gameWindow.printToGameArea("Wake up");
         // TODO: Delay, sleep?
