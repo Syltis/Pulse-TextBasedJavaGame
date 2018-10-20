@@ -13,7 +13,6 @@ public class GameWindow {
     private JTextArea gameArea; // Am I sure about this? - kris
     private JTextArea inputAreaTextArea;
     private JTextField inputAreaTextField;
-    private int commandCount;
     private GridBagConstraints c;
 
      public GameWindow() {
@@ -88,7 +87,7 @@ public class GameWindow {
                 printToLog(inputAreaTextField.getText());
 
                 PlayerInput playerInput = new PlayerInput();
-                playerInput.setPlayerInput(inputAreaTextField.getText());
+                playerInput.receiveCommand(inputAreaTextField.getText());
                 inputAreaTextField.setText("");
             }
         }));

@@ -13,7 +13,7 @@ public class PlayerInput {
 
     // Validates input. Makes an arrayList, either with one word or two.
     public ArrayList<String> receiveCommand(String command) {
-        commandList = new ArrayList<String>();
+        commandList = new ArrayList<>();
         cleanString(command);
         //Check if the resulting string is split by a space, thereby being two words.
         if(command.matches("\\s+")) {
@@ -31,9 +31,9 @@ public class PlayerInput {
     // Trim string, turn double+ whitespace into single, lowercase and remove all other than letters.
     public String cleanString(String string) {
         string = string.trim();
-        string.replaceAll("[!@#$%^&*(),.?\":{}|<>0-9+/']+", "");
-        string.replaceAll("/\\s{2,}/", " ");
-        string.toLowerCase();
+        string = string.replaceAll("[!@#$%^&*(),.?\":{}|<>0-9+/']+", "");
+        string = string.replaceAll("/\\s{2,}/", " ");
+        string = string.toLowerCase();
         return string;
     }
 
