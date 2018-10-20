@@ -3,10 +3,6 @@ package Gameplay;
 import GUI.GameWindow;
 import Helpers.PlayerInput;
 import Helpers.Print;
-import javax.swing.Timer;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;
 
 public class NewGame {
 
@@ -28,7 +24,7 @@ public class NewGame {
         gameWindow.printToGameArea("Whats your name?");
     }
 
-    /* Attempt at timer and sleep. - kris
+    /* Not finished timers/sleep
 
     private Timer tmr = new Timer(2000, new ActionListener() {
         @Override

@@ -92,9 +92,4 @@ public class MainMenu {
         });
         return returned;
     }
-
-    public void startNewGame() {
-        new GameWindow().openGameWindow();
-        new NewGame();
-    }
 }
