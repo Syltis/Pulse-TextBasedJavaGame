@@ -3,13 +3,13 @@ package Gameplay;
 import GUI.GameWindow;
 import Helpers.Print;
 
-public class Intro {
+public class NewGame {
 
     Print print;
     Player player;
     GameWindow gameWindow;
 
-    public Intro()
+    public NewGame()
     {
         player = new Player();
         print = new Print();

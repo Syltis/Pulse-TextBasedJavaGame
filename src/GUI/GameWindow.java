@@ -1,6 +1,6 @@
 package GUI;
 
-import Gameplay.Intro;
+import Helpers.PlayerInput;
 
 import javax.swing.*;
 import java.awt.*;
@@ -80,10 +80,12 @@ public class GameWindow {
         inputAreaTextField.setText("Start your adventure!"); // Placeholder, see method below
         addComp(inputArea, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
-        // Listener for enter-click
+        // Listener for sending of a command
         inputAreaTextField.addActionListener((e -> {
             if(inputAreaTextField.getText().length() > 0) {
                 printToLog(inputAreaTextField.getText());
+                PlayerInput playerInput = new PlayerInput();
+                playerInput.setPlayerInput(inputAreaTextField.getText());
                 inputAreaTextField.setText("");
             }
         }));
@@ -112,6 +114,14 @@ public class GameWindow {
         horiSplitPane.setEnabled(false);
 
         frame.add(horiSplitPane);
+    }
+
+    public void setGameArea(String text) {
+         this.gameArea.setText(text);
+    }
+
+    public void getGameArea() {
+          // TODO Read from the game area
     }
 
     // Easier implementation of constraints for gridBagLayout
