@@ -1,6 +1,6 @@
 package GUI;
 
-import Gameplay.Intro;
+import Helpers.PlayerInput;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,9 +10,10 @@ import java.awt.event.FocusEvent;
 public class GameWindow {
 
     private JTextArea sideBarArea;
-    private JTextArea gameArea;
+    private JTextArea gameArea; // Am I sure about this?- kris
     private JTextArea inputAreaTextArea;
     private JTextField inputAreaTextField;
+    private int commandCount;
     private GridBagConstraints c;
 
      public GameWindow() {
@@ -80,10 +81,15 @@ public class GameWindow {
         inputAreaTextField.setText("Start your adventure!"); // Placeholder, see method below
         addComp(inputArea, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
-        // Listener for enter-click
+        // Listener for sending of a command
         inputAreaTextField.addActionListener((e -> {
             if(inputAreaTextField.getText().length() > 0) {
+
+                // Print in the inputAreaTextField
                 printToLog(inputAreaTextField.getText());
+
+                PlayerInput playerInput = new PlayerInput();
+                playerInput.setPlayerInput(inputAreaTextField.getText());
                 inputAreaTextField.setText("");
             }
         }));
@@ -114,6 +120,12 @@ public class GameWindow {
         frame.add(horiSplitPane);
     }
 
+    // Sets the text in the gameArea()
+    public void setGameArea(String text) {
+         this.gameArea.setText(text);
+    }
+
+
     // Easier implementation of constraints for gridBagLayout
     private void addComp(JPanel panel, JComponent comp
                             , int x, int y, int gWidth
@@ -136,6 +148,7 @@ public class GameWindow {
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
+    // Prints strings to the gameArea.
     public void printToGameArea(String text) {
          gameArea.append(">" + text + "\n");
          gameArea.setCaretPosition(gameArea.getDocument().getLength());

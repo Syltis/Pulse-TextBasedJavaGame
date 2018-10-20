@@ -3,26 +3,28 @@ package Gameplay;
 import GUI.GameWindow;
 import Helpers.Print;
 
-public class Intro {
+public class NewGame {
 
     Print print;
     Player player;
     GameWindow gameWindow;
 
-    public Intro()
+    public NewGame()
     {
         player = new Player();
         print = new Print();
-        player = charCreation();
     }
 
-    private Player charCreation() {
+    public void runNewGame() {
         gameWindow = new GameWindow();
         gameWindow.openGameWindow();
         gameWindow.printToGameArea("Wake up");
-        player.setAge(21);
-        player.setName("Kris");
-        player.setGender("m");
-        return player;
+        // TODO: Delay, sleep?
+        runTestSegment();
+    }
+
+    // TODO: How can we pass the game segments as objects?
+    public void runTestSegment() {
+        gameWindow.printToGameArea("Whats your name?");
     }
 }
