@@ -10,7 +10,7 @@ import java.awt.event.FocusEvent;
 public class GameWindow {
 
     private JTextArea sideBarArea;
-    private JTextArea gameArea; // Am I sure about this?- kris
+    private JTextArea gameArea; // Am I sure about this? - kris
     private JTextArea inputAreaTextArea;
     private JTextField inputAreaTextField;
     private int commandCount;
@@ -125,8 +125,8 @@ public class GameWindow {
          this.gameArea.setText(text);
     }
 
-
     // Easier implementation of constraints for gridBagLayout
+    // Found on Stack Overflow somewhere, but I can't fink the link.
     private void addComp(JPanel panel, JComponent comp
                             , int x, int y, int gWidth
                                 , int gHeight, int fill

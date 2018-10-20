@@ -13,7 +13,7 @@ public class PlayerInput {
         this.playerInput = playerInput;
     }
 
-    // TODO: Optional, We'll need to get the game output [strings/text object] from the gameplay.
+    // TODO: We'll need to get the game output [strings/text object] from the gameplay.
     //       Then we check them with the player commands. Either here og in it's own class(es). -kris
 
 }

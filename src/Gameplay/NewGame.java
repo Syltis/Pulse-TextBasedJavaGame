@@ -18,13 +18,13 @@ public class NewGame {
     public void runNewGame() {
         gameWindow = new GameWindow();
         gameWindow.openGameWindow();
-        gameWindow.printToGameArea("Wake up");
-        // TODO: Delay, sleep?
         runTestSegment();
     }
 
     // TODO: How can we pass the game segments as objects?
     public void runTestSegment() {
+        gameWindow.printToGameArea("Wake up");
+        // TODO: Delay, sleep?
         gameWindow.printToGameArea("Whats your name?");
     }
 }
