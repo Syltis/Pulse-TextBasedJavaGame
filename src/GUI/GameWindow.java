@@ -26,7 +26,6 @@ public class GameWindow {
     public void openGameWindow() {
         JFrame frame = new JFrame("UntitledRPG™");
         buildGameWindow(frame);
-        new Intro();
     }
 
     private void buildGameWindow(JFrame frame) {
