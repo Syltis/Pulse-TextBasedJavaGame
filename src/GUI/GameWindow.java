@@ -14,6 +14,7 @@ public class GameWindow {
     private JTextArea inputAreaTextArea;
     private JTextField inputAreaTextField;
     private GridBagConstraints c;
+    private PlayerInput playerInput;
 
      public GameWindow() {
         c = new GridBagConstraints();
@@ -81,14 +82,18 @@ public class GameWindow {
 
         // Listener for sending of a command
         inputAreaTextField.addActionListener((e -> {
-            if(inputAreaTextField.getText().length() > 0) {
-
+            String command = inputAreaTextField.getText();
+            if(command.length() > 0) {
+                playerInput = new PlayerInput();
                 // Print in the inputAreaTextField
-                printToLog(inputAreaTextField.getText());
-
-                PlayerInput playerInput = new PlayerInput();
-                playerInput.receiveCommand(inputAreaTextField.getText());
+                printToLog(command);
+                command = playerInput.cleanString(command);
+                // Send to playerInput. TODO: Send a command object?
+                playerInput.receiveCommand(command);
                 inputAreaTextField.setText("");
+            }
+            else {
+                printToLog("You should make a choice.");
             }
         }));
 
