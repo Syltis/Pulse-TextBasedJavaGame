@@ -88,7 +88,7 @@ public class GameWindow {
                 // Print in the inputAreaTextField
                 printToLog(command);
                 command = playerInput.cleanString(command);
-                // Send to playerInput. TODO: Send a command object?
+                // Send to playerInput.
                 playerInput.receiveCommand(command);
                 inputAreaTextField.setText("");
             }

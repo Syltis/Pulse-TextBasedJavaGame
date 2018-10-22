@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public class PlayerInput {
 
     // TODO: Method: We'll need to get the game output [strings/text object] from the gameplay.
+    // TODO: Should this class be static?
     //       Then we check them with the player commands. Preferably in its own class. -kris
     ArrayList<String> commandList;
     GameWindow gameWindow;
