@@ -22,8 +22,7 @@ public class NewGame {
     public void runTestSegment() {
         gameWindow.printToGameArea("Wake up");
         gameWindow.printToGameArea("Whats your name?");
-        //Choice choice1 = new Choice();
-        //choice1.setChoice("A voice in the dark asks your name.",);
+
     }
 
     /* Not finished timers/sleep - kris

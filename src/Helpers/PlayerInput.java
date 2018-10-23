@@ -8,6 +8,7 @@ public class PlayerInput {
     // TODO: Method: We'll need to get the game output [strings/text object] from the gameplay.
     //       Then we check them with the player commands. Preferably in its own class. -kris
     ArrayList<String> commandList;
+    ArrayList<String> availableCommandList;
     GameWindow gameWindow;
 
     // Called in gameWindow when given user input.
