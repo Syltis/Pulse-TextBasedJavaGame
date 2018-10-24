@@ -1,4 +1,4 @@
-package Gameplay;
+package DataTransferObjects;
 
 public class Situation {
 

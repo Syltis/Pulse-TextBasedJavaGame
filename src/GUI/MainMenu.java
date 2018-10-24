@@ -1,7 +1,6 @@
 package GUI;
 
 import Gameplay.NewGame;
-import Helpers.popUp;
 import javax.swing.*;
 import java.awt.*;
 
@@ -84,7 +83,7 @@ public class MainMenu {
                 popUp.popUpWindow("You have no saves to load!", "Error!");
             }
 
-            // TODO Pass settings as an object to be used by gameWindow. Here we could add game dimensions
+            // TODO: Pass settings as an object to be used by gameWindow. Here we could add game dimensions
             if (source.getText().equalsIgnoreCase(settings)) {
                 popUp popUp = new popUp();
                 popUp.popUpWindow("We haven'made any settings yet!", "Error!");

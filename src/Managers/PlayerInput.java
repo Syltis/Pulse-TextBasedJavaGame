@@ -1,12 +1,11 @@
-package Helpers;
+package Managers;
 
+import DataTransferObjects.Command;
 import GUI.GameWindow;
 import java.util.ArrayList;
 
 public class PlayerInput {
 
-    // TODO: Method: We'll need to get the game output [strings/text object] from the gameplay.
-    //       Then we check them with the player commands. Preferably in its own class. -kris
     ArrayList<String> commandList;
     ArrayList<String> availableCommandList;
     GameWindow gameWindow;
@@ -43,5 +42,9 @@ public class PlayerInput {
         string = string.replaceAll("[ ]{2,}", " ");
         string = string.toLowerCase();
         return string;
+    }
+
+    public void checkIfPlayerInput() {
+        // TODO: Confirm player input and report to NewGame.
     }
 }
