@@ -1,7 +1,7 @@
 package Gameplay;
 
 import GUI.GameWindow;
-import Helpers.JSONParsing;
+import Managers.JSONParsing;
 
 public class NewGame {
 

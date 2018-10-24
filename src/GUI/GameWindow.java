@@ -1,6 +1,6 @@
 package GUI;
 
-import Helpers.PlayerInput;
+import Managers.PlayerInput;
 
 import javax.swing.*;
 import java.awt.*;
@@ -125,7 +125,7 @@ public class GameWindow {
     }
 
     // Easier implementation of constraints for gridBagLayout
-    // Found on Stack Overflow somewhere, but I can't fink the link.
+    // Found on Stack Overflow somewhere, but I can't find the link. - kris
     private void addComp(JPanel panel, JComponent comp
                             , int x, int y, int gWidth
                                 , int gHeight, int fill

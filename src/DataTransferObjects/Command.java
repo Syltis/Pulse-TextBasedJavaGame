@@ -1,4 +1,4 @@
-package Helpers;
+package DataTransferObjects;
 
 import java.util.ArrayList;
 
