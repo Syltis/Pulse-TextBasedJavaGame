@@ -1,35 +1,15 @@
 package Gameplay;
 
-import GUI.GameWindow;
-
-/*
-- This could be used as a way of making the story segments into objects. Depends on how we write our story.
- */
 public class Situation {
 
-
-    private String location;
+    private int id;
     private String description;
-    GameWindow gameWindow;
-    Choice choice;
 
-    {
+    public int getId() { return id; }
 
-    }
+    public void setId(int id) { this.id = id; }
 
-    public String getLocation() {
-        return location;
-    }
+    public String getDescription() { return description; }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public void setDescription(String description) { this.description = description; }
 }

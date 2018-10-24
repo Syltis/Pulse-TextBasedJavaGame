@@ -52,6 +52,8 @@ public class GameWindow {
         // GAME AREA
         gameArea.setEditable(false);
         gameArea.setCaretPosition(gameArea.getDocument().getLength());
+        gameArea.setWrapStyleWord(true);
+        gameArea.setLineWrap(true);
         JScrollPane gameAreaScrollPane = new JScrollPane(gameArea);
 
         //SIDEBAR AREA
