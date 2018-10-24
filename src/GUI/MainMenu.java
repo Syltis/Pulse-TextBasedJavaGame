@@ -77,12 +77,10 @@ public class MainMenu {
                 newGame.runNewGame();
                 frame.dispose();
             }
-
             if (source.getText().equalsIgnoreCase(loadGame)) {
                 popUp popUp = new popUp();
                 popUp.popUpWindow("You have no saves to load!", "Error!");
             }
-
             // TODO: Pass settings as an object to be used by gameWindow. Here we could add game dimensions
             if (source.getText().equalsIgnoreCase(settings)) {
                 popUp popUp = new popUp();
