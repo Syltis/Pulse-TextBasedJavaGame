@@ -9,6 +9,7 @@ import org.json.simple.parser.ParseException;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class JSONParsing {
 
@@ -20,11 +21,20 @@ public class JSONParsing {
             long idLong = (long) jsonSituation.get("id");
             int idInt = (int) idLong;
             String description = (String) jsonSituation.get("description");
+            JSONArray actionCommands = (JSONArray) jsonSituation.get("availableActionCommands");
+            ArrayList<String> actionCommandList = new ArrayList<String>();
+            // TODO et specific jsonObjects from actionCommands and then set arrayList
+            int len = actionCommands.size();
+            for (int i=0;i<len;i++){
+                actionCommandList.add(actionCommands.get(i).toString());
+            }
+            System.out.println(actionCommandList);
             Situation situation = new Situation();
             situation.setId(idInt);
             situation.setDescription(description);
             return situation;
-        } catch (FileNotFoundException e) {
+        }
+        catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
