@@ -52,6 +52,8 @@ public class GameWindow {
         // GAME AREA
         gameArea.setEditable(false);
         gameArea.setCaretPosition(gameArea.getDocument().getLength());
+        gameArea.setWrapStyleWord(true);
+        gameArea.setLineWrap(true);
         JScrollPane gameAreaScrollPane = new JScrollPane(gameArea);
 
         //SIDEBAR AREA
@@ -85,9 +87,8 @@ public class GameWindow {
             String command = inputAreaTextField.getText();
             if(command.length() > 0) {
                 playerInput = new PlayerInput();
-                // Print in the inputAreaTextField
+                // Print in the inputAreaTextField (log)
                 printToLog(command);
-                command = playerInput.cleanString(command);
                 // Send to playerInput.
                 playerInput.receiveCommand(command);
                 inputAreaTextField.setText("");
