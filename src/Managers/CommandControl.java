@@ -21,12 +21,25 @@ public class CommandControl {
         TODO: Instantiate JSONParsing here!
             - Kris
     */
-    public void controlPlayerCommand(PlayerCommand command, Situation situation) {
+    public void controlPlayerCommand(PlayerCommand playerCommand, Situation situation) {
 
         ArrayList<String> actionCommandList = situation.getAvailableActionCommands();
-        ArrayList<String> commandtargets = situation.getAvailableCommandTargets();
-        ArrayList<String>playerCommandList = command.getCommandList();
+        ArrayList<String> commandTargets = situation.getAvailableCommandTargets();
+        //ArrayList<String>playerCommandList = command.getCommandList();
 
+        for (String actionCommand:actionCommandList) {
+            if (actionCommand.equals(playerCommand.getActionCommand())) {
+                this.actionCommand = actionCommand;
+            }
+        }
+        for (String commandTarget: commandTargets) {
+            if (commandTarget.equals(playerCommand.getCommandTarget())) {
+                this.commandTarget = commandTarget;
+            }
+        }
+
+        // Earlier version where command gave the player's commands through an ArrayList.
+        /*
         for (String playerCommand:playerCommandList) {
             for (String actionCommand: actionCommandList) {
                 if (playerCommand.equals(actionCommand)) {
@@ -42,6 +55,6 @@ public class CommandControl {
 
             }
 
-        }
+        }*/
     }
 }
