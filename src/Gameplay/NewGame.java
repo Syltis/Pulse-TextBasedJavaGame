@@ -1,11 +1,12 @@
 package Gameplay;
 
+import DataTransferObjects.Situation;
 import GUI.GameWindow;
 import Managers.JSONParsing;
 
 public class NewGame {
 
-    GameWindow gameWindow;
+    private GameWindow gameWindow;
 
     public void runNewGame() {
         gameWindow = new GameWindow();
@@ -16,8 +17,14 @@ public class NewGame {
     private void runTestSegment() {
         gameWindow.printToGameArea("Wake up");
         gameWindow.printToGameArea("Whats your name?");
+
+        //Situation: 0
+        //Yellow House
         JSONParsing jsonParser = new JSONParsing();
-        gameWindow.printToGameArea(jsonParser.getSituationFromJson(0).getDescription());
+        Situation situation0;
+        situation0 = jsonParser.getSituationFromJson(0);
+        gameWindow.printToGameArea(situation0.getDescription());
+
 
     }
 }

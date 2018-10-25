@@ -1,37 +1,36 @@
 package Managers;
 
-import DataTransferObjects.Command;
-import GUI.GameWindow;
+import DataTransferObjects.PlayerCommand;
 import java.util.ArrayList;
 
 public class PlayerInput {
 
     ArrayList<String> commandList;
-    ArrayList<String> availableCommandList;
-    GameWindow gameWindow;
+    PlayerCommand playerCommand;
+    String shortcutCommand; // TODO: Functionality for shortcuts.
 
     // Called in gameWindow when given user input.
-    public void receiveCommand(String command) {
-        command = cleanString(command);
-        Command commandList = new Command();
-        commandList.setCommandList(splitCommand(command));
-    }
-
-    // Makes an arrayList, either with one word or two.
-    // Clean the String before using this!
-    // TODO Should this just set the commandList and not return it
-    public ArrayList<String> splitCommand(String command) {
-        commandList = new ArrayList<>();
-        //Check if the resulting string is split by a space, thereby being two words.
-        if(command.matches("\\s+")) {
-            String actionCommand = command.substring(0, command.indexOf(" "));
-            String commandTarget = command.substring(command.indexOf(" "), command.length());
-            commandList.add(actionCommand);
-            commandList.add(commandTarget);
+    public void receiveCommand(String input) {
+        input = cleanString(input);
+        // Check if it contains two words. Should not be any whitespace left after cleaning if it's one word.
+        if(input.matches("\\s+")) {
+            commandList = splitCommand(input);
+            playerCommand = new PlayerCommand(commandList.get(0), commandList.get(1));
         }
         else {
-            commandList.add(command);
+            shortcutCommand = commandList.get(0); // Has no functionality yet.
         }
+    }
+
+    // Clean the String before using this!
+    // TODO Should this just set the commandList and not return it
+    public ArrayList<String> splitCommand(String input) {
+        // TODO: Test this
+        String actionCommand = input.substring(0, input.indexOf(" "));
+        String commandTarget = input.substring(input.indexOf(" "), input.length());
+        commandList = new ArrayList<>();
+        commandList.add(actionCommand);
+        commandList.add(commandTarget);
         return commandList;
     }
 
@@ -42,9 +41,5 @@ public class PlayerInput {
         string = string.replaceAll("[ ]{2,}", " ");
         string = string.toLowerCase();
         return string;
-    }
-
-    public void checkIfPlayerInput() {
-        // TODO: Confirm player input and report to NewGame.
     }
 }
