@@ -2,40 +2,8 @@
     {
       "id": 0,
       "description": "1. You are at a yellow house. The door is planked shut but there are trails both ways around the house. There is also a window on the second floor, which might be reachable if you take a chance and climb. There is a sword on the ground. ",
-      "availableActionCommands": [
-        {
-          "actionCommand": "go"
-        },
-        {
-          "actionCommand": "walk"
-        },
-        {
-          "actionCommand": "move"
-        },
-        {
-          "actionCommand": "climb"
-        }
-      ],
-      "availableCommandTargets": [
-        {
-          "commandTarget": "west"
-        },
-        {
-          "commandTarget": "left"
-        },
-        {
-          "commandTarget": "east"
-        },
-        {
-          "commandTarget": "right"
-        },
-        {
-          "commandTarget": "window"
-        },
-        {
-          "commandTarget": "back"
-        }
-      ]
+      "availableActionCommands": ["go","walk","move","climb"],
+      "availableCommandTargets": ["west", "left", "east", "right", "window", "back"]
     },
     {
       "id": 1,
