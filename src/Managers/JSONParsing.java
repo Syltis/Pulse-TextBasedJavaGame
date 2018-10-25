@@ -17,6 +17,7 @@ Receives an array of objects and puts them in JSONArrays
  */
 public class JSONParsing {
 
+    // TODO, change it so that this is called in commandcontrol.
     public Situation getSituationFromJson(int situationId) {
         JSONParser parser = new JSONParser();
         try {

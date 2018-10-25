@@ -17,8 +17,10 @@ public class CommandControl {
 
     public  void setSituation(Situation situation) { this.situation = situation; }
 
-    // public CommandControl() { }
-    // TODO: How to access this class?
+    /* TODO: UNTESTED CLASS. How to access this class from playerinput with situation
+        TODO: Instantiate JSONParsing here!
+            - Kris
+    */
     public void controlPlayerCommand(PlayerCommand command, Situation situation) {
 
         ArrayList<String> actionCommandList = situation.getAvailableActionCommands();
