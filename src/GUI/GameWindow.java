@@ -1,7 +1,6 @@
 package GUI;
 
 import Managers.PlayerInput;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
@@ -98,7 +97,7 @@ public class GameWindow {
             }
         }));
 
-        // Method for the placeholder text. Show up one time before textField is in focus
+        // Method for the placeholder text.
         inputAreaTextField.addFocusListener(new FocusAdapter() {
             public void focusGained(FocusEvent e) {
                 JTextField source = (JTextField)e.getComponent();

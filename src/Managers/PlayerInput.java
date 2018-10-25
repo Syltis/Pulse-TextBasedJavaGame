@@ -1,6 +1,6 @@
 package Managers;
 
-import DataTransferObjects.Command;
+import DataTransferObjects.PlayerCommand;
 import GUI.GameWindow;
 import java.util.ArrayList;
 
@@ -11,26 +11,26 @@ public class PlayerInput {
     GameWindow gameWindow;
 
     // Called in gameWindow when given user input.
-    public void receiveCommand(String command) {
-        command = cleanString(command);
-        Command commandList = new Command();
-        commandList.setCommandList(splitCommand(command));
+    public void receiveCommand(String playerCommand) {
+        playerCommand = cleanString(playerCommand);
+        PlayerCommand commandList = new PlayerCommand();
+        commandList.setCommandList(splitCommand(playerCommand));
     }
 
     // Makes an arrayList, either with one word or two.
     // Clean the String before using this!
     // TODO Should this just set the commandList and not return it
-    public ArrayList<String> splitCommand(String command) {
+    public ArrayList<String> splitCommand(String playerCommand) {
         commandList = new ArrayList<>();
         //Check if the resulting string is split by a space, thereby being two words.
-        if(command.matches("\\s+")) {
-            String actionCommand = command.substring(0, command.indexOf(" "));
-            String commandTarget = command.substring(command.indexOf(" "), command.length());
+        if(playerCommand.matches("\\s+")) {
+            String actionCommand = playerCommand.substring(0, playerCommand.indexOf(" "));
+            String commandTarget = playerCommand.substring(playerCommand.indexOf(" "), playerCommand.length());
             commandList.add(actionCommand);
             commandList.add(commandTarget);
         }
         else {
-            commandList.add(command);
+            commandList.add(playerCommand);
         }
         return commandList;
     }

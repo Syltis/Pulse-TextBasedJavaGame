@@ -1,6 +1,6 @@
 package Managers;
 
-public class Print {
+public class Testing {
 
     //For testing
     public static void print(String text) {

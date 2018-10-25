@@ -10,6 +10,11 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/*
+Parses JSON to a Situation-object.
+Receives an array of objects and puts them in JSONArrays
+    and converts that to an array and sends it to the situation-object. -kris
+ */
 public class JSONParsing {
 
     public Situation getSituationFromJson(int situationId) {
