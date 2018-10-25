@@ -1,12 +1,11 @@
 package GUI;
 
+import Gameplay.NewGame;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.WindowEvent;
 
-public class MainMenu extends JFrame {
+public class MainMenu {
 
-    private String gameDesc;
     private String newGame;
     private String loadGame;
     private String settings;
@@ -18,7 +17,8 @@ public class MainMenu extends JFrame {
         settings = "Settings";
         buildWindow(frame);
     }
-    private JFrame buildWindow(JFrame frame)
+
+    private void buildWindow(JFrame frame)
     {
         // Main build
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -48,7 +48,7 @@ public class MainMenu extends JFrame {
 
         // Set values. Can be integrated to the instantiation for cleaner look
         String welcomeText = "Welcome to the Untitled RPG!";
-        gameDesc = "<html>Press 'New Game' to start your adventure,<br /> or 'Load Game' to continue an existing one!</html> ";
+        String gameDesc = "<html>Press 'New Game' to start your adventure,<br /> or 'Load Game' to continue an existing one!</html> ";
         settingsBtn.setText("Settings");
         welcomeTextLabel.setText(welcomeText);
         gameDescLabel.setText(gameDesc);
@@ -66,7 +66,6 @@ public class MainMenu extends JFrame {
         frame.add(field3);
 
         frame.setVisible(true);
-        return frame;
     }
 
     private JButton selectGameTypeBtn(String btnName) {
@@ -74,21 +73,20 @@ public class MainMenu extends JFrame {
         returned.addActionListener(e -> {
             JButton source = (JButton)e.getSource();
             if (source.getText().equalsIgnoreCase(newGame)) {
-                new GameWindow();
+                NewGame newGame = new NewGame();
+                newGame.runNewGame();
                 frame.dispose();
             }
             if (source.getText().equalsIgnoreCase(loadGame)) {
-                MainMenu.popUpWindow("You have no saves to load!", "Error!");
+                popUp popUp = new popUp();
+                popUp.popUpWindow("You have no saves to load!", "Error!");
             }
+            // TODO: Pass settings as an object to be used by gameWindow. Here we could add game dimensions
             if (source.getText().equalsIgnoreCase(settings)) {
-                MainMenu.popUpWindow("We haven'made any settings yet!", "Error!");
+                popUp popUp = new popUp();
+                popUp.popUpWindow("We haven'made any settings yet!", "Error!");
             }
         });
         return returned;
-    }
-
-    private static void popUpWindow(String infoMessage, String titleBar) {
-
-        JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
 }

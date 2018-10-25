@@ -1,0 +1,16 @@
+[
+    {
+      "id": 0,
+      "description": "1. You are at a yellow house. The door is planked shut but there are trails both ways around the house. There is also a window on the second floor, which might be reachable if you take a chance and climb. There is a sword on the ground. ",
+      "availableActionCommands": ["go","walk","move","climb"],
+      "availableCommandTargets": ["west", "left", "east", "right", "window", "back"]
+    },
+    {
+      "id": 1,
+      "description": "1.1 You are on the East side og the house"
+    },
+    {
+      "id": 2,
+      "description": "1.2 You are on the West side of the house"
+    }
+  ]
