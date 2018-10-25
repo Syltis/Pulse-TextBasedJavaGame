@@ -2,7 +2,6 @@ package Managers;
 
 import DataTransferObjects.Situation;
 import org.json.simple.parser.JSONParser;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -22,16 +21,19 @@ public class JSONParsing {
             int idInt = (int) idLong;
             String description = (String) jsonSituation.get("description");
             JSONArray actionCommands = (JSONArray) jsonSituation.get("availableActionCommands");
-            ArrayList<String> actionCommandList = new ArrayList<String>();
-            // TODO et specific jsonObjects from actionCommands and then set arrayList
-            int len = actionCommands.size();
-            for (int i=0;i<len;i++){
-                actionCommandList.add(actionCommands.get(i).toString());
+            JSONArray commandTargets = (JSONArray) jsonSituation.get("availableCommandTargets");
+            ArrayList<String> actionCommandList = new ArrayList<>();
+            ArrayList<String> commandTargetList = new ArrayList<>();
+            for (Object command:actionCommands) {
+                actionCommandList.add(command.toString());
             }
-            System.out.println(actionCommandList);
+            for (Object command:commandTargets) {
+                commandTargetList.add(command.toString());
+            }
             Situation situation = new Situation();
             situation.setId(idInt);
             situation.setDescription(description);
+            situation.setAvailableActionCommands(actionCommandList);
             return situation;
         }
         catch (FileNotFoundException e) {

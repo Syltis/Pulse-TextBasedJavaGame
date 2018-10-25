@@ -17,7 +17,6 @@ public class NewGame {
         gameWindow.printToGameArea("Wake up");
         gameWindow.printToGameArea("Whats your name?");
         JSONParsing jsonParser = new JSONParsing();
-        jsonParser.getSituationFromJson(0);
         gameWindow.printToGameArea(jsonParser.getSituationFromJson(0).getDescription());
 
     }
