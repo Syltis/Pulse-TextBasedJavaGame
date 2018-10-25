@@ -34,6 +34,7 @@ public class JSONParsing {
             situation.setId(idInt);
             situation.setDescription(description);
             situation.setAvailableActionCommands(actionCommandList);
+            situation.setAvailableCommandTargets(commandTargetList);
             return situation;
         }
         catch (FileNotFoundException e) {
