@@ -8,8 +8,6 @@ public class PlayerCommand {
 
     private String commandTarget;
 
-    private ArrayList<String> command;
-
     public PlayerCommand() {
 
     }
@@ -35,7 +33,4 @@ public class PlayerCommand {
         this.commandTarget = commandTarget;
     }
 
-    public ArrayList<String> getCommandList() { return command; }
-
-    public void setCommandList(ArrayList<String> commandList) { this.command = commandList;}
 }
