@@ -10,6 +10,12 @@ public class CommandControl {
 
     String actionCommand;
     String commandTarget;
+    PlayerCommand command;
+    Situation situation;
+
+    public void setCommand(PlayerCommand command) { this.command = command; }
+
+    public  void setSituation(Situation situation) { this.situation = situation; }
 
     // public CommandControl() { }
     // TODO: How to access this class?

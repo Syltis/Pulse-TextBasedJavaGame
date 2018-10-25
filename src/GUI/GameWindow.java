@@ -83,13 +83,13 @@ public class GameWindow {
 
         // Listener for sending of a command
         inputAreaTextField.addActionListener((e -> {
-            String command = inputAreaTextField.getText();
-            if(command.length() > 0) {
-                playerInput = new PlayerInput();
+            String input = inputAreaTextField.getText();
+            if(input.length() > 0) {
                 // Print in the inputAreaTextField (log)
-                printToLog(command);
+                printToLog(input);
                 // Send to playerInput.
-                playerInput.receiveCommand(command);
+                playerInput = new PlayerInput();
+                playerInput.receiveCommand(input);
                 inputAreaTextField.setText("");
             }
             else {
