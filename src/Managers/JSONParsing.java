@@ -11,6 +11,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /*
+Has edited this:
+- Kristoffer
+*/
+/*
 Parses JSON to a Situation-object.
 Receives an array of objects and puts them in JSONArrays
     and converts that to an array and sends it to the situation-object. -kris

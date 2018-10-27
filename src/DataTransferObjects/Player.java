@@ -1,5 +1,10 @@
 package DataTransferObjects;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 public class Player {
     private String name;
     private String gender;

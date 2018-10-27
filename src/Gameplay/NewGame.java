@@ -4,6 +4,11 @@ import DataTransferObjects.Situation;
 import GUI.GameWindow;
 import Managers.JSONParsing;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 public class NewGame {
 
     private GameWindow gameWindow;
@@ -19,6 +24,7 @@ public class NewGame {
         //Dark room
         JSONParsing jsonParser = new JSONParsing();
         Situation situation0;
+        // Get the situation
         situation0 = jsonParser.getSituationFromJson(0);
         gameWindow.printToGameArea(situation0.getDescription());
 
