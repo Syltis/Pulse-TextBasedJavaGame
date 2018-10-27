@@ -15,11 +15,8 @@ public class NewGame {
     }
 
     private void runTestSegment() {
-        gameWindow.printToGameArea("Wake up");
-        gameWindow.printToGameArea("Whats your name?");
-
         //Situation: 0
-        //Yellow House
+        //Dark room
         JSONParsing jsonParser = new JSONParsing();
         Situation situation0;
         situation0 = jsonParser.getSituationFromJson(0);

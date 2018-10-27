@@ -17,6 +17,9 @@ public class PlayerInput {
             commandList = splitCommand(input);
             playerCommand = new PlayerCommand(commandList.get(0), commandList.get(1));
         }
+        else
+            playerCommand = new PlayerCommand(input, " ");
+
     }
 
     // Clean the String before using this!

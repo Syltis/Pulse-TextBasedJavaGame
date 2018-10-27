@@ -76,7 +76,7 @@ public class GameWindow {
         JLabel inputAreaLabel = new JLabel("Enter commands below.");
         addComp(inputArea, inputAreaLabel, 0,2, 1, 1, GridBagConstraints.BOTH, 0.2,0.2);
 
-        // Set jTextfield and add it to layout
+        // Set jTextField and add it to layout
         inputAreaTextField = new JTextField();
         inputAreaTextField.setText("Start your adventure!"); // Placeholder, see method below
         addComp(inputArea, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);

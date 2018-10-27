@@ -14,10 +14,11 @@ import java.util.ArrayList;
 Parses JSON to a Situation-object.
 Receives an array of objects and puts them in JSONArrays
     and converts that to an array and sends it to the situation-object. -kris
+    TODO: Make this return JSONArray and create commandObject in commandControl?
  */
 public class JSONParsing {
 
-    // TODO, change it so that this is called in commandcontrol.
+    // TODO, change it so that this is called in commandControl.
     public Situation getSituationFromJson(int situationId) {
         JSONParser parser = new JSONParser();
         try {

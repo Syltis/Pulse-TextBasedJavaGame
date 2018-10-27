@@ -1,11 +1,8 @@
 package DataTransferObjects;
 
-import java.util.ArrayList;
-
 public class PlayerCommand {
 
     private String actionCommand;
-
     private String commandTarget;
 
     public PlayerCommand() {
@@ -21,9 +18,7 @@ public class PlayerCommand {
         return actionCommand;
     }
 
-    public void setActionCommand(String actionCommand) {
-        this.actionCommand = actionCommand;
-    }
+    public void setActionCommand(String actionCommand) { this.actionCommand = actionCommand; }
 
     public String getCommandTarget() {
         return commandTarget;
