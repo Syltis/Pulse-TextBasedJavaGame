@@ -47,8 +47,8 @@ public class JSONParsing {
             situation.setAvailableActionCommands(actionCommandList);
             situation.setAvailableCommandTargets(commandTargetList);
             return situation;
-        }
-        catch (FileNotFoundException e) {
+
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
