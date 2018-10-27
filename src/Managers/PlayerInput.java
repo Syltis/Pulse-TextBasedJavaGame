@@ -1,7 +1,11 @@
 package Managers;
-
 import DataTransferObjects.PlayerCommand;
 import java.util.ArrayList;
+
+/*
+Has edited this:
+- Kristoffer
+*/
 
 public class PlayerInput {
 
@@ -34,7 +38,7 @@ public class PlayerInput {
         return commandList;
     }
 
-    // Trim string, turn double+ whitespace into single, lowercase and remove all other than letters.
+    // Trim string, turn double+ whitespace into single, lowercase and remove everything but letters.
     public String cleanString(String string) {
         string = string.trim();
         string = string.replaceAll("[-!@#$%^&*(),.?\":{}|<>0-9+/']+", "");

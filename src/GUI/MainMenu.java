@@ -4,6 +4,11 @@ import Gameplay.NewGame;
 import javax.swing.*;
 import java.awt.*;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 public class MainMenu {
 
     private String newGame;

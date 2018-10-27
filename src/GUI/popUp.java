@@ -2,6 +2,11 @@ package GUI;
 
 import javax.swing.*;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 public class popUp {
 
     public popUp() {

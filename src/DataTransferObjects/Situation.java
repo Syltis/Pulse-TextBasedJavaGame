@@ -2,6 +2,11 @@ package DataTransferObjects;
 
 import java.util.ArrayList;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 public class Situation {
 
     private int id;

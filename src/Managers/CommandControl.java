@@ -4,7 +4,11 @@ import DataTransferObjects.PlayerCommand;
 import DataTransferObjects.Situation;
 import java.util.ArrayList;
 
-//Give this class override constructor-method?
+/*
+Has edited this:
+- Kristoffer
+*/
+
 public class CommandControl {
 
     String actionCommand;

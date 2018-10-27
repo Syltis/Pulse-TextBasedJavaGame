@@ -1,5 +1,10 @@
 package Managers;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 public class Testing {
 
     //For testing
