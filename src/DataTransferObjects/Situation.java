@@ -1,5 +1,7 @@
 package DataTransferObjects;
 
+import Managers.JSONParsing;
+
 import java.util.ArrayList;
 
 /*
@@ -13,6 +15,7 @@ public class Situation {
     private String description;
     private ArrayList<String> availableActionCommands;
     private ArrayList<String> availableCommandTargets;
+    JSONParsing JSONParser;
 
     public int getId() { return id; }
 
@@ -32,5 +35,10 @@ public class Situation {
 
     public void setAvailableCommandTargets(ArrayList<String> availableCommandTargets) {
         this.availableCommandTargets = availableCommandTargets;
+    }
+
+    public Situation getSituationJSON(int id) {
+        JSONParser = new JSONParsing();
+        return JSONParser.getSituationFromJson(id);
     }
 }

@@ -14,6 +14,7 @@ import java.util.ArrayList;
 Has edited this:
 - Kristoffer
 */
+
 /*
 Parses JSON to a Situation-object.
 Receives an array of objects and puts them in JSONArrays
@@ -47,8 +48,8 @@ public class JSONParsing {
             situation.setAvailableActionCommands(actionCommandList);
             situation.setAvailableCommandTargets(commandTargetList);
             return situation;
-        }
-        catch (FileNotFoundException e) {
+
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
