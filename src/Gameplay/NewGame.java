@@ -13,6 +13,10 @@ public class NewGame {
 
     private GameWindow gameWindow;
 
+    public NewGame() {
+
+    }
+
     public void runNewGame() {
         gameWindow = new GameWindow();
         gameWindow.openGameWindow();
@@ -27,7 +31,5 @@ public class NewGame {
         // Get the situation
         situation0 = jsonParser.getSituationFromJson(0);
         gameWindow.printToGameArea(situation0.getDescription());
-
-
     }
 }
