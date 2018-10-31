@@ -18,8 +18,7 @@ Has edited this:
 /*
 Parses JSON to a Situation-object.
 Receives an array of objects and puts them in JSONArrays
-    and converts that to an array and sends it to the situation-object. -kris
-    TODO: Make this return JSONArray and create commandObject in commandControl?
+  and converts that to an array and sends it to the situation-object. -kris
  */
 public class JSONParsing {
 

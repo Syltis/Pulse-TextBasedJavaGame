@@ -112,13 +112,13 @@ public class GameWindow {
         });
 
         // ASSEMBLY
-        // Set vertical splitpane. Second layer
+        // Set vertical splitpane.
         JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameAreaScrollPane, sideBarArea);
         vertSplitPane.setDividerLocation(500);
         vertSplitPane.setDividerSize(10);
         vertSplitPane.setEnabled(false);
 
-        // Set horizontal split. Top layer
+        // Set horizontal split.
         JSplitPane horiSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, vertSplitPane, inputArea);
         vertSplitPane.setOneTouchExpandable(false);
         horiSplitPane.setDividerLocation(400);
