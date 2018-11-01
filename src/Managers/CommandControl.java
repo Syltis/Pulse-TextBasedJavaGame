@@ -24,22 +24,29 @@ public class CommandControl {
         TODO: Instantiate JSONParsing here!
             - Kris
     */
-    public void controlPlayerCommand(PlayerCommand playerCommand, Situation situation) {
 
+    // Earlier this set the objects actionCommand and commandTarget and returned void
+    // Currently return a String[1]. This is better if this method will be called in another class. -Kris
+    // Returns empty if no match
+    public String[] controlPlayerCommand(PlayerCommand playerCommand, Situation situation) {
+        String[] output = new String[1];
         ArrayList<String> actionCommandList = situation.getAvailableActionCommands();
         ArrayList<String> commandTargets = situation.getAvailableCommandTargets();
         //ArrayList<String>playerCommandList = command.getCommandList();
 
         for (String actionCommand:actionCommandList) {
             if (actionCommand.equals(playerCommand.getActionCommand())) {
-                this.actionCommand = actionCommand;
+                // this.actionCommand = actionCommand;
+                output[0] = actionCommand;
             }
         }
         for (String commandTarget: commandTargets) {
             if (commandTarget.equals(playerCommand.getCommandTarget())) {
-                this.commandTarget = commandTarget;
+                // this.commandTarget = commandTarget;
+                output[1] = commandTarget;
             }
         }
+        return output;
 
         // Earlier version where command gave the player's commands through an ArrayList.
         /*
