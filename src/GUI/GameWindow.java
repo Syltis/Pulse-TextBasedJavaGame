@@ -13,7 +13,7 @@ Has edited this:
 
 public class GameWindow {
 
-    private JTextArea sideBarArea;
+    private JTextArea sidebarTextArea;
     private JTextArea gameArea; // Am I sure about this? - kris
     private JTextArea inputAreaTextArea;
     private JTextField inputAreaTextField;
@@ -37,7 +37,7 @@ public class GameWindow {
 
         /* GameWindow consists of:
         - gameArea, a JTextField where the output from the game will be printed.
-        - sideBarArea, TODO: Sidebar with info about available commands
+        - sidebarTextArea, TODO: Sidebar with info about available commands
         - inputArea, a JPanel where the player enters commands and views them in a log
          */
 
@@ -50,7 +50,7 @@ public class GameWindow {
 
         // Set areas
         gameArea = new JTextArea(5, 10);
-        sideBarArea = new JTextArea(5, 10);
+        sidebarTextArea = new JTextArea(5, 10);
         JPanel inputArea = new JPanel(new GridBagLayout());
 
         // GAME AREA
@@ -61,7 +61,7 @@ public class GameWindow {
         JScrollPane gameAreaScrollPane = new JScrollPane(gameArea);
 
         //SIDEBAR AREA
-        sideBarArea.setEditable(false);
+        sidebarTextArea.setEditable(false);
 
         // INPUT AREA.
         // Set textArea and add it to scrollpane, which is then added to the layout
@@ -113,7 +113,7 @@ public class GameWindow {
 
         // ASSEMBLY
         // Set vertical splitpane.
-        JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameAreaScrollPane, sideBarArea);
+        JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameAreaScrollPane, sidebarTextArea);
         vertSplitPane.setDividerLocation(500);
         vertSplitPane.setDividerSize(10);
         vertSplitPane.setEnabled(false);
@@ -151,9 +151,14 @@ public class GameWindow {
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
-    // Prints strings to the gameArea.
+    // Prints to the gameArea.
     public void printToGameArea(String text) {
          gameArea.append(">" + text + "\n");
          gameArea.setCaretPosition(gameArea.getDocument().getLength());
+    }
+
+    // TODO Call this in a for loop to print them as a list
+    public void printToSidebarArea(String text) {
+         sidebarTextArea.append(">" + text + "\n");
     }
 }
