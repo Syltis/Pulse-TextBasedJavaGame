@@ -23,8 +23,8 @@ public class PlayerInput {
             playerCommand = new PlayerCommand(splitCommandList.get(0), splitCommandList.get(1));
         }
         else
+            // This is for the shortcut functionality
             playerCommand = new PlayerCommand(input, " ");
-
     }
 
     // Clean the String before using this!
