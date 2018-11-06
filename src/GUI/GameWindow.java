@@ -87,6 +87,7 @@ public class GameWindow {
         addComp(inputArea, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
         // Listener for sending of a command
+        // TODO Listener in separate 'controller' class
         inputAreaTextField.addActionListener((e -> {
             String input = inputAreaTextField.getText();
             if(input.length() > 0) {

@@ -1,6 +1,6 @@
 package Managers;
 
-import DataTransferObjects.Situation;
+import DataTransferObjects.Choice;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -16,37 +16,41 @@ Has edited this:
 */
 
 /*
-Parses JSON to a Situation-object.
+Parses JSON to a Choice-object.
 Receives an array of objects and puts them in JSONArrays
-  and converts that to an array and sends it to the situation-object. -kris
+  and converts that to an array and sends it to the choice-object. -kris
  */
 public class JSONParsing {
 
-    // TODO, change it so that this is called in commandControl.
-    public Situation getSituationFromJson(int situationId) {
+    public Choice getChoiceFromJson(int choiceId) {
         JSONParser parser = new JSONParser();
         try {
-            JSONArray jsonArr = (JSONArray) parser.parse(new FileReader("src/JSON/Situations.json"));
-            JSONObject jsonSituation = (JSONObject) jsonArr.get(situationId);
-            long idLong = (long) jsonSituation.get("id");
+            //Fetch data into array, narrow down Choice-object, get correct filetype of Id and Choice.
+            JSONArray jsonArr = (JSONArray) parser.parse(new FileReader("src/JSON/Choices.json"));
+            JSONObject jsonChoice = (JSONObject) jsonArr.get(choiceId);
+            long idLong = (long) jsonChoice.get("id");
             int idInt = (int) idLong;
-            String description = (String) jsonSituation.get("description");
-            JSONArray actionCommands = (JSONArray) jsonSituation.get("availableActionCommands");
-            JSONArray commandTargets = (JSONArray) jsonSituation.get("availableCommandTargets");
+            String description = (String) jsonChoice.get("description");
+
+            // Fetch available commands for the choice
+            JSONArray actionCommands = (JSONArray) jsonChoice.get("availableActionCommands");
+            JSONArray commandTargets = (JSONArray) jsonChoice.get("availableCommandTargets");
             ArrayList<String> actionCommandList = new ArrayList<>();
             ArrayList<String> commandTargetList = new ArrayList<>();
+
+            // Fetch the command in the Choice
             for (Object command:actionCommands) {
                 actionCommandList.add(command.toString());
             }
             for (Object command:commandTargets) {
                 commandTargetList.add(command.toString());
             }
-            Situation situation = new Situation();
-            situation.setId(idInt);
-            situation.setDescription(description);
-            situation.setAvailableActionCommands(actionCommandList);
-            situation.setAvailableCommandTargets(commandTargetList);
-            return situation;
+            Choice choice = new Choice();
+            choice.setId(idInt);
+            choice.setDescription(description);
+            choice.setAvailableActionCommands(actionCommandList);
+            choice.setAvailableCommandTargets(commandTargetList);
+            return choice;
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

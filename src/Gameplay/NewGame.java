@@ -1,6 +1,6 @@
 package Gameplay;
 
-import DataTransferObjects.Situation;
+import DataTransferObjects.Choice;
 import GUI.GameWindow;
 import Managers.JSONParsing;
 
@@ -23,13 +23,17 @@ public class NewGame {
         runTestSegment();
     }
 
+    /*
+    TODO: Have the game set off by the first player input, then call new Sit when player input matches.
+     */
+
     private void runTestSegment() {
-        //Situation: 0
+        //Choice: 0
         //Dark room
         JSONParsing jsonParser = new JSONParsing();
-        Situation situation0;
+        Choice choice0;
         // Get the situation
-        situation0 = jsonParser.getSituationFromJson(0);
-        gameWindow.printToGameArea(situation0.getDescription());
+        choice0 = jsonParser.getChoiceFromJson(0);
+        gameWindow.printToGameArea(choice0.getDescription());
     }
 }

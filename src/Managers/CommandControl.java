@@ -1,7 +1,8 @@
 package Managers;
 
+import DataTransferObjects.Choice;
 import DataTransferObjects.PlayerCommand;
-import DataTransferObjects.Situation;
+
 import java.util.ArrayList;
 
 /*
@@ -14,24 +15,24 @@ public class CommandControl {
     String actionCommand;
     String commandTarget;
     PlayerCommand command;
-    Situation situation;
+    Choice choice;
 
     public void setCommand(PlayerCommand command) { this.command = command; }
 
-    public  void setSituation(Situation situation) { this.situation = situation; }
+    public  void setChoice(Choice choice) { this.choice = choice; }
 
-    /* TODO: UNTESTED CLASS. How to access this class from playerinput with situation
-        TODO: Instantiate JSONParsing here!
+    /* TODO: UNTESTED CLASS. How to access this class from playerinput with choice
+       TODO: PLAYERINPUT AND COMMANDCONTROL SAME CLASS
             - Kris
     */
 
     // Earlier this set the objects actionCommand and commandTarget and returned void
     // Currently return a String[1]. This is better if this method will be called in another class. -Kris
     // Returns empty if no match
-    public String[] controlPlayerCommand(PlayerCommand playerCommand, Situation situation) {
+    public String[] controlPlayerCommand(PlayerCommand playerCommand, Choice choice) {
         String[] output = new String[1];
-        ArrayList<String> actionCommandList = situation.getAvailableActionCommands();
-        ArrayList<String> commandTargets = situation.getAvailableCommandTargets();
+        ArrayList<String> actionCommandList = choice.getAvailableActionCommands();
+        ArrayList<String> commandTargets = choice.getAvailableCommandTargets();
         //ArrayList<String>playerCommandList = command.getCommandList();
 
         for (String actionCommand:actionCommandList) {
