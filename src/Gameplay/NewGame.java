@@ -28,12 +28,8 @@ public class NewGame {
      */
 
     private void runTestSegment() {
-        //Choice: 0
-        //Dark room
         JSONParsing jsonParser = new JSONParsing();
-        Choice choice0;
-        // Get the situation
-        choice0 = jsonParser.getChoiceFromJson(0);
+        Choice choice0 = jsonParser.getChoiceFromJson(0);
         gameWindow.printToGameArea(choice0.getDescription());
     }
 }
