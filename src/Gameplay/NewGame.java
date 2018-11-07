@@ -12,12 +12,13 @@ Has edited this:
 public class NewGame {
 
     private GameWindow gameWindow;
+
     public NewGame() {
 
     }
 
     public void runNewGame() {
-        gameWindow = new GameWindow();
+        this.gameWindow = new GameWindow();
         gameWindow.openGameWindow();
         runTestSegment();
     }
@@ -30,5 +31,6 @@ public class NewGame {
         JSONParsing jsonParser = new JSONParsing();
         Choice choice0 = jsonParser.getChoiceFromJson(0);
         gameWindow.printToGameArea(choice0.getDescription());
+        GameSettings.setCurrentChoiceId(0);
     }
 }
