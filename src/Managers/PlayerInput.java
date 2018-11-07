@@ -2,7 +2,6 @@ package Managers;
 
 import DataTransferObjects.PlayerCommand;
 import Gameplay.GameSettings;
-
 import java.util.ArrayList;
 
 /*
@@ -31,9 +30,9 @@ public class PlayerInput {
             playerCommand = new PlayerCommand(input, " ");
     }
 
+    // Separates string by whitespace
     // Clean the String before using this!
     public ArrayList<String> splitCommand(String input) {
-        // TODO: Test this
         String actionCommand = input.substring(0, input.indexOf(" "));
         String commandTarget = input.substring(input.indexOf(" "), input.length());
         splitCommandList = new ArrayList<>();

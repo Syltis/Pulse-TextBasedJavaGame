@@ -7,10 +7,13 @@ Has edited this:
 Singleton class for storing data. Currently here to store the the choice-id of the active choice.
 */
 
+import DataTransferObjects.Choice;
+
 public class GameSettings {
 
     private static GameSettings instance = null;
     private static int currentChoiceId;
+    private static Choice currentChoice;
 
     private GameSettings() {}
 
@@ -25,7 +28,15 @@ public class GameSettings {
         return currentChoiceId;
     }
 
-    public static void setCurrentChoiceId(int currentChoiceId) {
-        currentChoiceId = currentChoiceId;
+    public static void setCurrentChoiceId(int choiceId) {
+        currentChoiceId = choiceId;
+    }
+
+    public static int getCurrentChoice() {
+        return currentChoiceId;
+    }
+
+    public static void setCurrentChoice(Choice choice) {
+        currentChoice = choice;
     }
 }

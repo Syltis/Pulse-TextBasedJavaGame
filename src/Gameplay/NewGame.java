@@ -31,6 +31,5 @@ public class NewGame {
         JSONParsing jsonParser = new JSONParsing();
         Choice choice0 = jsonParser.getChoiceFromJson(0);
         gameWindow.printToGameArea(choice0.getDescription());
-        GameSettings.setCurrentChoiceId(0);
-    }
+        GameSettings.setCurrentChoice(choice0);    }
 }
