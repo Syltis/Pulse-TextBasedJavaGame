@@ -12,15 +12,6 @@ Has edited this:
 
 public class CommandControl {
 
-    String actionCommand;
-    String commandTarget;
-    PlayerCommand command;
-    Choice choice;
-
-    public void setCommand(PlayerCommand command) { this.command = command; }
-
-    public  void setChoice(Choice choice) { this.choice = choice; }
-
     /* TODO: UNTESTED CLASS. How to access this class from playerinput with choice
        TODO: PLAYERINPUT AND COMMANDCONTROL SAME CLASS
             - Kris

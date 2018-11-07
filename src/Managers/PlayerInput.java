@@ -1,5 +1,7 @@
 package Managers;
+
 import DataTransferObjects.PlayerCommand;
+import Gameplay.GameSettings;
 import java.util.ArrayList;
 
 /*
@@ -9,6 +11,7 @@ Has edited this:
 
 public class PlayerInput {
 
+    GameSettings gameSettings;
     ArrayList<String> splitCommandList;
     PlayerCommand playerCommand;
     String shortcutCommand; // TODO: Functionality for shortcuts.
@@ -23,14 +26,13 @@ public class PlayerInput {
             playerCommand = new PlayerCommand(splitCommandList.get(0), splitCommandList.get(1));
         }
         else
-            // This is for the shortcut functionality
+            // This is for the optional shortcut functionality
             playerCommand = new PlayerCommand(input, " ");
     }
 
+    // Separates string by whitespace
     // Clean the String before using this!
-    // TODO Should this just set the splitCommandList and not return it
     public ArrayList<String> splitCommand(String input) {
-        // TODO: Test this
         String actionCommand = input.substring(0, input.indexOf(" "));
         String commandTarget = input.substring(input.indexOf(" "), input.length());
         splitCommandList = new ArrayList<>();

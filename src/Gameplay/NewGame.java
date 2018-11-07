@@ -18,7 +18,7 @@ public class NewGame {
     }
 
     public void runNewGame() {
-        gameWindow = new GameWindow();
+        this.gameWindow = new GameWindow();
         gameWindow.openGameWindow();
         runTestSegment();
     }
@@ -31,5 +31,5 @@ public class NewGame {
         JSONParsing jsonParser = new JSONParsing();
         Choice choice0 = jsonParser.getChoiceFromJson(0);
         gameWindow.printToGameArea(choice0.getDescription());
-    }
+        GameSettings.setCurrentChoice(choice0);    }
 }
