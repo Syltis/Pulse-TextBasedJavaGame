@@ -12,7 +12,6 @@ Has edited this:
 public class NewGame {
 
     private GameWindow gameWindow;
-
     public NewGame() {
 
     }
