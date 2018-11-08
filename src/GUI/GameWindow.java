@@ -100,23 +100,23 @@ public class GameWindow {
                 inputAreaTextField.setText("");
                 blankCounter = 0;
             }
-            else if (input.length() < 1 && blankCounter < 1) {
+            else if (blankCounter < 1) {
                 printAIToLog("You should make a choice.");
                 blankCounter = blankCounter +1;
             }
-            else if (input.length() < 1 && blankCounter == 1) {
+            else if (blankCounter == 1) {
                 printAIToLog("Choice ut up my dude.");
                 blankCounter = blankCounter +1;
             }
-            else if (input.length() < 1 && blankCounter == 2) {
+            else if (blankCounter == 2) {
                 printAIToLog("Come on, do something.");
                 blankCounter = blankCounter +1;
             }
-            else if (input.length() < 1 && blankCounter == 3) {
+            else if (blankCounter == 3) {
                 printAIToLog(":(");
                 blankCounter = blankCounter +1;
             }
-            else if (input.length() < 1 && blankCounter == 4) {
+            else if (blankCounter == 4) {
                 printAIToLog(">:(");
                 blankCounter = blankCounter +1;
             }
