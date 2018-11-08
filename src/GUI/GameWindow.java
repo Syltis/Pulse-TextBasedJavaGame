@@ -14,7 +14,7 @@ Has edited this:
 public class GameWindow {
 
     private JTextArea sidebarTextArea;
-    private JTextArea gameArea; // Am I sure about this? - kris
+    private JTextArea gameArea;
     private JTextArea inputAreaTextArea;
     private JTextField inputAreaTextField;
     private GridBagConstraints c;
@@ -61,7 +61,7 @@ public class GameWindow {
         gameArea.setLineWrap(true);
         JScrollPane gameAreaScrollPane = new JScrollPane(gameArea);
 
-        //SIDEBAR AREA
+        // SIDEBAR AREA
         sidebarTextArea.setEditable(false);
 
         // INPUT AREA.
@@ -100,32 +100,32 @@ public class GameWindow {
                 inputAreaTextField.setText("");
                 blankCounter = 0;
             }
-            else if (input.length() < 1 && blankCounter < 1) {
-                printAIToLog("You should make a choice.");
+            else if (blankCounter < 1) {
+                printResponseToLog("You should make a choice.");
                 blankCounter = blankCounter +1;
             }
-            else if (input.length() < 1 && blankCounter == 1) {
-                printAIToLog("Choice ut up my dude.");
+            else if (blankCounter == 1) {
+                printResponseToLog("Choice it up my dude.");
                 blankCounter = blankCounter +1;
             }
-            else if (input.length() < 1 && blankCounter == 2) {
-                printAIToLog("Come on, do something.");
+            else if (blankCounter == 2) {
+                printResponseToLog("Come on, do something.");
                 blankCounter = blankCounter +1;
             }
-            else if (input.length() < 1 && blankCounter == 3) {
-                printAIToLog(":(");
+            else if (blankCounter == 3) {
+                printResponseToLog(":(");
                 blankCounter = blankCounter +1;
             }
-            else if (input.length() < 1 && blankCounter == 4) {
-                printAIToLog(">:(");
+            else if (blankCounter == 4) {
+                printResponseToLog(">:(");
                 blankCounter = blankCounter +1;
             }
             else if (input.length() < 1 && blankCounter == 5) {
-                popUp pop = new popUp("You're an idiot!", "Seriously");
+                popUp pop = new popUp("You're an idiot", "Seriously");
                 blankCounter = blankCounter +1;
             }
             else if (input.length() < 1 && blankCounter > 5) {
-                printAIToLog("...");
+                printResponseToLog("...");
                 blankCounter = blankCounter +1;
             }
         }));
@@ -157,7 +157,7 @@ public class GameWindow {
     }
 
     // Easier implementation of constraints for gridBagLayout
-    // Found on Stack Overflow somewhere, but I can't find the link. - kris
+    // Found on Stack Overflow somewhere.
     private void addComp(JPanel panel, JComponent comp
                             , int x, int y, int gWidth
                                 , int gHeight, int fill
@@ -179,7 +179,7 @@ public class GameWindow {
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
-    public void printAIToLog(String text) {
+    public void printResponseToLog(String text) {
         inputAreaTextArea.append("-" + text + "\n");
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
@@ -190,7 +190,7 @@ public class GameWindow {
          gameArea.setCaretPosition(gameArea.getDocument().getLength());
     }
 
-    // TODO Call this in a for loop to print them as a list
+    // TODO Call this in a for loop to printResponseToLog them as a list
     public void printToSidebarArea(String text) {
          sidebarTextArea.append(">" + text + "\n");
     }

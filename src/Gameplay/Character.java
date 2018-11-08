@@ -1,10 +1,9 @@
-package untitledRPG;
+package Gameplay;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
-import java.util.List;
 
 public class Character {
 
@@ -14,7 +13,6 @@ public class Character {
     private int[] skills;
     private int money;
     private String location;
-    
 
     Character(String name, String description, int health, int[] skills, int money, String location) {
         this.name = name;
@@ -39,15 +37,16 @@ public class Character {
     }
     
     public int getStat(String stat) {
-        if(stat == "STR") return this.skills[0];
-        if(stat == "LCK") return this.skills[1];
-        if(stat == "CHR") return this.skills[2];
-        if(stat == "CON") return this.skills[3];
-        if(stat == "FTH") return this.skills[4];
-        if(stat == "INT") return this.skills[5];
-        if(stat == "SPD") return this.skills[6];
+        if(stat.equals("STR")) return this.skills[0];
+        if(stat.equals("LCK")) return this.skills[1];
+        if(stat.equals("CHR")) return this.skills[2];
+        if(stat.equals("CON")) return this.skills[3];
+        if(stat.equals("FTH")) return this.skills[4];
+        if(stat.equals("INT")) return this.skills[5];
+        if(stat.equals("SPD")) return this.skills[6];
         return -1;
     }
+
     public void setStat(String stat, int value) {
         if(stat == "STR") {
             this.skills[0] = value;
@@ -75,6 +74,7 @@ public class Character {
     public String getLocation() {
         return location;
     }
+
     public void setMoney(int value) {
         this.money = value;
     }
@@ -90,6 +90,7 @@ public class Character {
     public String setLocation() {
         return location;
     }
+
     public int choose(String prompt, String[] choices) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.println(prompt);
@@ -100,6 +101,7 @@ public class Character {
         return choice;
         
     }
+
     public void attack(Character Enemy) {
         int damage = (int)((this.getStat("STR") - (int)Enemy.getStat("CON")/2) * Math.random());
         if(Math.signum(damage)!=-1.0) { 
@@ -109,6 +111,7 @@ public class Character {
             }
             else {System.out.println(this.name + " missed.");}
     }
+
     public void rest(Character Enemy) {
         int recovery = (int)((this.getStat("CON")) * Math.random());
         if(Math.signum(recovery)!=-1.0) { 
@@ -117,6 +120,7 @@ public class Character {
         }
         else {System.out.println(this.name + " was blocked from resting.");}
     }
+
     public void startBattle(Character Enemy) throws IOException {
         //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         while(this.isAlive() && Enemy.isAlive()) {
