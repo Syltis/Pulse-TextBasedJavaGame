@@ -25,7 +25,7 @@ public class JSONParsing {
     public Choice getChoiceFromJson(int choiceId) {
         JSONParser parser = new JSONParser();
         try {
-            //Fetch data into array, narrow down Choice-object, get correct filetype of Id and Choice.
+            // Fetch data into array, narrow down Choice-object, get correct filetype of Id and Choice.
             JSONArray jsonArr = (JSONArray) parser.parse(new FileReader("src/JSON/Choices.json"));
             JSONObject jsonChoice = (JSONObject) jsonArr.get(choiceId);
             long idLong = (long) jsonChoice.get("id");
@@ -52,7 +52,7 @@ public class JSONParsing {
             choice.setAvailableCommandTargets(commandTargetList);
             return choice;
 
-            // Exceptions stacked from most spesific to the least specific
+            // Exceptions stacked from most specific to the least specific
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

@@ -1,10 +1,10 @@
-package untitledRPG;
+package Gameplay;
 
 //import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.IOException;
-
 import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
 
 class CharacterTest {
 
@@ -16,10 +16,10 @@ class CharacterTest {
         System.out.println(Player.getName() + ": " + Player.getStat("STR") + " STR");
         
         Character TestEnemy = new Character();
-        DumbLoser.setName("Test Enemy:");
-        DumbLoser.setStat("STR", 20);
+        //DumbLoser.setName("Test Enemy:");
+        //DumbLoser.setStat("STR", 20);
 
-        Player.startBattle(DumbLoser);
+        //Player.startBattle(DumbLoser);
         
     }
 

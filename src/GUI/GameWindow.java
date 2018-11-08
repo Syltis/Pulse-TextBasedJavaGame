@@ -61,7 +61,7 @@ public class GameWindow {
         gameArea.setLineWrap(true);
         JScrollPane gameAreaScrollPane = new JScrollPane(gameArea);
 
-        //SIDEBAR AREA
+        // SIDEBAR AREA
         sidebarTextArea.setEditable(false);
 
         // INPUT AREA.
