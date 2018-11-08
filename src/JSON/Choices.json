@@ -1,7 +1,7 @@
 [
   {
     "id": 0,
-    "description": "0. You wake up in a dark room. The sound of machinery can be heard around you, but the room is empty. In frot of you is a door, and there is a small key on the floor.",
+    "description": "0. You wake up in a dark room. The sound of machinery can be heard around you, but the room is empty. In front of you is a door, and there is a small key on the floor.",
     "availableActionCommands": ["try", "open", "take", "look"],
     "availableCommandTargets": ["door", "key", "around"]
   },
