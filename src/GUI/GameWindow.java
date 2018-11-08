@@ -19,6 +19,7 @@ public class GameWindow {
     private JTextField inputAreaTextField;
     private GridBagConstraints c;
     private PlayerInput playerInput;
+    private int blankCounter = 0;
 
      public GameWindow() {
         c = new GridBagConstraints();
@@ -71,7 +72,7 @@ public class GameWindow {
 
         // Message in the inputAreaTextArea to user.
         String welcomeMsg= "This is your command log. Your commands will be printed here.";
-        printToLog(welcomeMsg);
+        printCommandToLog(welcomeMsg);
         JScrollPane textAreaScrollPane = new JScrollPane(inputAreaTextArea);
 
         // (addComp) method for placing elements in gridBagLayout.
@@ -92,14 +93,40 @@ public class GameWindow {
             String input = inputAreaTextField.getText();
             if(input.length() > 0) {
                 // Print in the inputAreaTextField (log)
-                printToLog(input);
+                printCommandToLog(input);
                 // Send to playerInput.
                 playerInput = new PlayerInput();
                 playerInput.receiveCommand(input);
                 inputAreaTextField.setText("");
+                blankCounter = 0;
             }
-            else {
-                printToLog("You should make a choice.");
+            else if (input.length() < 1 && blankCounter < 1) {
+                printAIToLog("You should make a choice.");
+                blankCounter = blankCounter +1;
+            }
+            else if (input.length() < 1 && blankCounter == 1) {
+                printAIToLog("Choice ut up my dude.");
+                blankCounter = blankCounter +1;
+            }
+            else if (input.length() < 1 && blankCounter == 2) {
+                printAIToLog("Come on, do something.");
+                blankCounter = blankCounter +1;
+            }
+            else if (input.length() < 1 && blankCounter == 3) {
+                printAIToLog(":(");
+                blankCounter = blankCounter +1;
+            }
+            else if (input.length() < 1 && blankCounter == 4) {
+                printAIToLog(">:(");
+                blankCounter = blankCounter +1;
+            }
+            else if (input.length() < 1 && blankCounter == 5) {
+                popUp pop = new popUp("You're an idiot!", "Seriously");
+                blankCounter = blankCounter +1;
+            }
+            else if (input.length() < 1 && blankCounter > 5) {
+                printAIToLog("...");
+                blankCounter = blankCounter +1;
             }
         }));
 
@@ -147,8 +174,13 @@ public class GameWindow {
     }
 
     // Prints  player command to inputAreaTextField (log)
-    public void printToLog(String text) {
+    public void printCommandToLog(String text) {
         inputAreaTextArea.append(">" + text + "\n");
+        inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
+    }
+
+    public void printAIToLog(String text) {
+        inputAreaTextArea.append("-" + text + "\n");
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
