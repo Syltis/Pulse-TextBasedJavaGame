@@ -116,8 +116,17 @@ public class GameWindow {
                 printAIToLog(":(");
                 blankCounter = blankCounter +1;
             }
-            else if (input.length() < 1 && blankCounter > 3) {
+            else if (input.length() < 1 && blankCounter == 4) {
                 printAIToLog(">:(");
+                blankCounter = blankCounter +1;
+            }
+            else if (input.length() < 1 && blankCounter == 5) {
+                popUp pop = new popUp("You're an idiot!", "Seriously");
+                blankCounter = blankCounter +1;
+            }
+            else if (input.length() < 1 && blankCounter > 5) {
+                printAIToLog("...");
+                blankCounter = blankCounter +1;
             }
         }));
 
