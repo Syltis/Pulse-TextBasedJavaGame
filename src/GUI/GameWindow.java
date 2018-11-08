@@ -19,6 +19,7 @@ public class GameWindow {
     private JTextField inputAreaTextField;
     private GridBagConstraints c;
     private PlayerInput playerInput;
+    private int blankCounter = 0;
 
      public GameWindow() {
         c = new GridBagConstraints();
@@ -97,9 +98,18 @@ public class GameWindow {
                 playerInput = new PlayerInput();
                 playerInput.receiveCommand(input);
                 inputAreaTextField.setText("");
+                blankCounter = 0;
             }
-            else {
+            else if (input.length() < 1 && blankCounter < 1) {
                 printToLog("You should make a choice.");
+                blankCounter = blankCounter +1;
+            }
+            else if (input.length() < 1 && blankCounter == 1) {
+                printToLog("Seriously. Make a choice.");
+                blankCounter = blankCounter +1;
+            }
+            else if (input.length() < 1 && blankCounter > 1) {
+                printToLog("Dude, stop.");
             }
         }));
 

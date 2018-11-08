@@ -38,7 +38,7 @@ public class JSONParsing {
             ArrayList<String> actionCommandList = new ArrayList<>();
             ArrayList<String> commandTargetList = new ArrayList<>();
 
-            // Fetch the command in the Choice
+            // Fetch the command and instantiate a Choice
             for (Object command:actionCommands) {
                 actionCommandList.add(command.toString());
             }
@@ -52,6 +52,7 @@ public class JSONParsing {
             choice.setAvailableCommandTargets(commandTargetList);
             return choice;
 
+            // Exceptions stacked from most spesific to the least specific
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
