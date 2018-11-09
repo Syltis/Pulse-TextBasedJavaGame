@@ -1,5 +1,11 @@
 package Gameplay;
 
+/*
+Has edited this:
+- Matt
+- Kristoffer
+*/
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
