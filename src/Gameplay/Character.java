@@ -1,5 +1,11 @@
 package Gameplay;
 
+/*
+Has edited this:
+- Matt
+- Kristoffer
+*/
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -48,15 +54,15 @@ public class Character {
     }
 
     public void setStat(String stat, int value) {
-        if(stat == "STR") {
+        if(stat.equals("STR")) {
             this.skills[0] = value;
         }
-        if(stat == "LCK") this.skills[1] = value;
-        if(stat == "CHR") this.skills[2] = value;
-        if(stat == "CON") this.skills[3] = value;
-        if(stat == "FTH") this.skills[4] = value;
-        if(stat == "INT") this.skills[5] = value;
-        if(stat == "SPD") this.skills[6] = value;
+        if(stat.equals("LCK")) this.skills[1] = value;
+        if(stat.equals("CHR")) this.skills[2] = value;
+        if(stat.equals("CON")) this.skills[3] = value;
+        if(stat.equals("FTH")) this.skills[4] = value;
+        if(stat.equals("INT")) this.skills[5] = value;
+        if(stat.equals("SPD")) this.skills[6] = value;
     }
     
     public int getMoney() {
@@ -103,7 +109,7 @@ public class Character {
     }
 
     public void attack(Character Enemy) {
-        int damage = (int)((this.getStat("STR") - (int)Enemy.getStat("CON")/2) * Math.random());
+        int damage = (int)((this.getStat("STR") - Enemy.getStat("CON") /2) * Math.random());
         if(Math.signum(damage)!=-1.0) { 
             System.out.println("\n"+this.name + " dealt " + damage + " HP to " + Enemy.getName() + ".");
             Enemy.health-=damage;
