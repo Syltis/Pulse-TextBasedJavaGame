@@ -1,6 +1,6 @@
 package Managers;
 
-import DataTransferObjects.PlayerCommand;
+import Models.PlayerCommand;
 import GUI.GameWindow;
 import Interfaces.Printable;
 

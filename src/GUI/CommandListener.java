@@ -1,5 +1,10 @@
 package GUI;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 import Interfaces.Printable;
 import Managers.PlayerInput;
 import java.awt.event.ActionEvent;
@@ -14,6 +19,7 @@ public class CommandListener implements ActionListener {
         this.printable = printable;
     }
 
+    // This is called then the player enters a command
     public void  actionPerformed(ActionEvent e) {
         String input = printable.getInputAreaTextField();
         if (input.length() > 0) {

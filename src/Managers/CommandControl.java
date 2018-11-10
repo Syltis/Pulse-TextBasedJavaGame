@@ -1,7 +1,7 @@
 package Managers;
 
-import DataTransferObjects.Choice;
-import DataTransferObjects.PlayerCommand;
+import Models.Choice;
+import Models.PlayerCommand;
 
 import java.util.ArrayList;
 

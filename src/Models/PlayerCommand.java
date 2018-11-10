@@ -1,4 +1,4 @@
-package DataTransferObjects;
+package Models;
 
 /*
 Has edited this:

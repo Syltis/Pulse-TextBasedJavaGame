@@ -1,6 +1,6 @@
 package Gameplay;
 
-import DataTransferObjects.Choice;
+import Models.Choice;
 import GUI.GameWindow;
 import Managers.JSONParsing;
 
