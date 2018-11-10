@@ -28,8 +28,8 @@ public class GameWindow implements Printable {
         int hGap = 5;
         int vGap = 5;
         c.insets = new Insets(hGap, vGap, hGap, vGap);
-         JFrame gameFrame = new JFrame("UntitledRPG™");
-         buildGameWindow(gameFrame);
+        JFrame gameFrame = new JFrame("UntitledRPG™");
+        buildGameWindow(gameFrame);
     }
 
     private void buildGameWindow(JFrame frame) {

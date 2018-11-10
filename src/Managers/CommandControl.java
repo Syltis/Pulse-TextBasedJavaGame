@@ -12,16 +12,9 @@ Has edited this:
 
 public class CommandControl {
 
-    /* TODO: UNTESTED CLASS. How to access this class from playerinput with choice
-       TODO: PLAYERINPUT AND COMMANDCONTROL SAME CLASS
-            - Kris
-    */
-
-    // Earlier this set the objects actionCommand and commandTarget and returned void
-    // Currently return a String[1]. This is better if this method will be called in another class. -Kris
     // Returns empty if no match
     public String[] controlPlayerCommand(PlayerCommand playerCommand, Choice choice) {
-        String[] output = new String[1];
+        String[] output = new String[2];
         ArrayList<String> actionCommandList = choice.getAvailableActionCommands();
         ArrayList<String> commandTargets = choice.getAvailableCommandTargets();
         //ArrayList<String>playerCommandList = command.getCommandList();
