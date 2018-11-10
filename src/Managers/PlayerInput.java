@@ -1,6 +1,7 @@
 package Managers;
 
 import DataTransferObjects.PlayerCommand;
+import GUI.GameWindow;
 import Gameplay.GameSettings;
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ public class PlayerInput {
     GameSettings gameSettings;
     ArrayList<String> splitCommandList;
     PlayerCommand playerCommand;
+    GameWindow gameWindow;
     String shortcutCommand; // TODO: Functionality for shortcuts.
 
     // Called in gameWindow when given user input.
@@ -28,6 +30,7 @@ public class PlayerInput {
         else
             // This is for the optional shortcut functionality
             playerCommand = new PlayerCommand(input, " ");
+
     }
 
     // Separates string by whitespace
