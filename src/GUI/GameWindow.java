@@ -21,7 +21,6 @@ public class GameWindow implements Printable {
     private JTextField inputAreaTextField;
     private GridBagConstraints c;
     private PlayerInput playerInput;
-    private int blankCounter = 0;
 
      public GameWindow() {
         c = new GridBagConstraints();

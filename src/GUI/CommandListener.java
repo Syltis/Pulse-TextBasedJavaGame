@@ -2,7 +2,6 @@ package GUI;
 
 import Interfaces.Printable;
 import Managers.PlayerInput;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,7 +20,7 @@ public class CommandListener implements ActionListener {
             // Print in the inputAreaTextField (log)
             printable.printCommandToLog(input);
             // Send to playerInput.
-            PlayerInput playerInput = new PlayerInput();
+            PlayerInput playerInput = new PlayerInput(printable);
             playerInput.receiveCommand(input);
             printable.setInputAreaTextField("");
             blankCounter = 0;
