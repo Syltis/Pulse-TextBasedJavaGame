@@ -1,6 +1,6 @@
 package Managers;
 
-import DataTransferObjects.Choice;
+import Models.Choice;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -18,7 +18,7 @@ Has edited this:
 /*
 Parses JSON to a Choice-object.
 Receives an array of objects and puts them in JSONArrays
-  and converts that to an array and sends it to the choice-object. -kris
+  and converts that to an array and sends it to the choice-object.
  */
 public class JSONParsing {
 

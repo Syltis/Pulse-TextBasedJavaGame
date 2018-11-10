@@ -7,7 +7,7 @@ Has edited this:
 Singleton class for storing data. Currently here to store the the choice-id of the active choice.
 */
 
-import DataTransferObjects.Choice;
+import Models.Choice;
 
 public class GameSettings {
 

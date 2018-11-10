@@ -1,4 +1,4 @@
-package DataTransferObjects;
+package Models;
 
 import Managers.JSONParsing;
 

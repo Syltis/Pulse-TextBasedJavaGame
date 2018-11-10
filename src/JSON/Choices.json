@@ -14,13 +14,13 @@
   {
     "id": 2,
     "description": "1.1 You are on the East side og the house",
-    "availableActionCommands": ["go","walk","move", "look"],
+    "availableActionCommands": ["go", "walk", "move", "look"],
     "availableCommandTargets": ["left", "east", "right", "window", "back", "around"]
   },
   {
     "id": 3,
     "description": "1.2 You are on the West side of the house",
-    "availableActionCommands": ["go","walk","move", "look"],
+    "availableActionCommands": ["go", "walk", "move", "look"],
     "availableCommandTargets": ["west", "left", "east", "right", "window", "back", "around"]
   }
 ]

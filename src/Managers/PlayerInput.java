@@ -1,8 +1,9 @@
 package Managers;
 
-import DataTransferObjects.PlayerCommand;
+import Models.PlayerCommand;
 import GUI.GameWindow;
-import Gameplay.GameSettings;
+import Interfaces.Printable;
+
 import java.util.ArrayList;
 
 /*
@@ -12,11 +13,17 @@ Has edited this:
 
 public class PlayerInput {
 
-    GameSettings gameSettings;
+    private Printable printable;
     ArrayList<String> splitCommandList;
     PlayerCommand playerCommand;
     GameWindow gameWindow;
     String shortcutCommand; // TODO: Functionality for shortcuts.
+
+    public PlayerInput() {};
+
+    public PlayerInput(Printable printable) {
+        this.printable = printable;
+    }
 
     // Called in gameWindow when given user input.
     public void receiveCommand(String input) {
@@ -30,7 +37,6 @@ public class PlayerInput {
         else
             // This is for the optional shortcut functionality
             playerCommand = new PlayerCommand(input, " ");
-
     }
 
     // Separates string by whitespace

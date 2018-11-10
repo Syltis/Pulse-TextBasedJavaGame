@@ -7,7 +7,6 @@ Has edited this:
 */
 
 class untitledRPG {
-
     public static void main(String[] args) {
         SwingUtilities.invokeLater(MainMenu::new);
     }

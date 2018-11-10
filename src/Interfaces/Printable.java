@@ -1,5 +1,10 @@
 package Interfaces;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 public interface Printable {
 
     void printCommandToLog(String text);
