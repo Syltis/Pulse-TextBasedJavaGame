@@ -24,6 +24,7 @@ public class JSONParsing {
 
     public Choice getChoiceFromJson(int choiceId) {
         JSONParser parser = new JSONParser();
+        //noinspection TryWithIdenticalCatches,TryWithIdenticalCatches,TryWithIdenticalCatches
         try {
             // Fetch data into array, narrow down Choice-object, get correct filetype of Id and Choice.
             JSONArray jsonArr = (JSONArray) parser.parse(new FileReader("src/JSON/Choices.json"));

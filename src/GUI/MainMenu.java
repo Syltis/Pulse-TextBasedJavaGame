@@ -78,8 +78,7 @@ public class MainMenu {
         returned.addActionListener(e -> {
             JButton source = (JButton)e.getSource();
             if (source.getText().equalsIgnoreCase(newGame)) {
-                NewGame newGame = new NewGame();
-                newGame.runNewGame();
+                new NewGame();
                 frame.dispose();
             }
             if (source.getText().equalsIgnoreCase(loadGame)) {

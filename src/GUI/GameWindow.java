@@ -1,6 +1,8 @@
 package GUI;
 
+import Interfaces.Printable;
 import Managers.PlayerInput;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
@@ -11,7 +13,7 @@ Has edited this:
 - Kristoffer
 */
 
-public class GameWindow {
+public class GameWindow implements Printable {
 
     private JTextArea sidebarTextArea;
     private JTextArea gameArea;
@@ -27,11 +29,8 @@ public class GameWindow {
         int hGap = 5;
         int vGap = 5;
         c.insets = new Insets(hGap, vGap, hGap, vGap);
-    }
-
-    public void openGameWindow() {
-        JFrame frame = new JFrame("UntitledRPG™");
-        buildGameWindow(frame);
+         JFrame gameFrame = new JFrame("UntitledRPG™");
+         buildGameWindow(gameFrame);
     }
 
     private void buildGameWindow(JFrame frame) {
@@ -88,47 +87,7 @@ public class GameWindow {
         addComp(inputArea, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
         // Listener for sending of a command
-        // TODO Listener in separate 'controller' class
-        inputAreaTextField.addActionListener((e -> {
-            String input = inputAreaTextField.getText();
-            if(input.length() > 0) {
-                // Print in the inputAreaTextField (log)
-                printCommandToLog(input);
-                // Send to playerInput.
-                playerInput = new PlayerInput();
-                playerInput.receiveCommand(input);
-                inputAreaTextField.setText("");
-                blankCounter = 0;
-            }
-            else if (blankCounter < 1) {
-                printResponseToLog("You should make a choice.");
-                blankCounter = blankCounter +1;
-            }
-            else if (blankCounter == 1) {
-                printResponseToLog("Choice it up my dude.");
-                blankCounter = blankCounter +1;
-            }
-            else if (blankCounter == 2) {
-                printResponseToLog("Come on, do something.");
-                blankCounter = blankCounter +1;
-            }
-            else if (blankCounter == 3) {
-                printResponseToLog(":(");
-                blankCounter = blankCounter +1;
-            }
-            else if (blankCounter == 4) {
-                printResponseToLog(">:(");
-                blankCounter = blankCounter +1;
-            }
-            else if (input.length() < 1 && blankCounter == 5) {
-                popUp pop = new popUp("You're an idiot", "Seriously");
-                blankCounter = blankCounter +1;
-            }
-            else if (input.length() < 1 && blankCounter > 5) {
-                printResponseToLog("...");
-                blankCounter = blankCounter +1;
-            }
-        }));
+        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this) {});
 
         // Method for the placeholder text.
         inputAreaTextField.addFocusListener(new FocusAdapter() {
@@ -192,6 +151,15 @@ public class GameWindow {
 
     // TODO Call this in a for loop to printResponseToLog them as a list
     public void printToSidebarArea(String text) {
+
          sidebarTextArea.append(">" + text + "\n");
+    }
+
+    public String getInputAreaTextField() {
+         return inputAreaTextField.getText();
+    }
+
+    public void setInputAreaTextField(String text) {
+         inputAreaTextField.setText(text);
     }
 }

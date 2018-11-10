@@ -14,18 +14,9 @@ public class NewGame {
     private GameWindow gameWindow;
 
     public NewGame() {
-
-    }
-
-    public void runNewGame() {
         this.gameWindow = new GameWindow();
-        gameWindow.openGameWindow();
         runTestSegment();
     }
-
-    /*
-    TODO: Have the game set off by the first player input, then call new Sit when player input matches.
-     */
 
     private void runTestSegment() {
         JSONParsing jsonParser = new JSONParsing();

@@ -1,4 +1,5 @@
 import GUI.MainMenu;
+import javax.swing.*;
 
 /*
 Has edited this:
@@ -7,5 +8,7 @@ Has edited this:
 
 class untitledRPG {
 
-    public static void main(String[] args) { new MainMenu(); }
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(MainMenu::new);
+    }
 }
