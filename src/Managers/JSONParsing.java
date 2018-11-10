@@ -15,11 +15,7 @@ Has edited this:
 - Kristoffer
 */
 
-/*
-Parses JSON to a Choice-object.
-Receives an array of objects and puts them in JSONArrays
-  and converts that to an array and sends it to the choice-object.
- */
+//Parses JSON to a Choice-object.
 public class JSONParsing {
 
     public Choice getChoiceFromJson(int choiceId) {
@@ -53,7 +49,7 @@ public class JSONParsing {
             choice.setAvailableCommandTargets(commandTargetList);
             return choice;
 
-            // Exceptions stacked from most specific to the least specific
+            // Exceptions stacked from most specific to least specific
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
