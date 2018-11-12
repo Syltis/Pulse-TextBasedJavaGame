@@ -15,7 +15,8 @@ public class CommandListener implements ActionListener {
     private Printable printable;
     private int blankCounter;
 
-    public CommandListener(Printable printable) {
+    CommandListener(Printable printable) {
+
         this.printable = printable;
     }
 
