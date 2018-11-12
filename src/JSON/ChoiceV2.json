@@ -1,0 +1,35 @@
+[
+  {
+    "id": 0,
+    "description": "0. You wake up in a dark room. The sound of machinery can be heard around you, but the room is empty. In front of you is a door, and there is a small key on the floor.",
+    "availableMovementCommands": [
+      {
+        "command": "open door",
+        "nextChoiceId": 1
+      },
+      {
+        "command": "go back",
+        "nextChoiceId": 0
+      }
+    ],
+    "availableActionCommands": ["take key", "inventory"],
+    "availableCombatCommands": [{}]
+  },
+  {
+    "id": 1,
+    "description": "1. You are in a room with two doors, one to the left and one to the right.",
+    "availableMovementCommands": [
+      {
+        "command": "open door",
+        "nextChoiceId": 1
+      },
+      {
+        "command": "go back",
+        "nextChoiceId": 0
+      }
+    ],
+    "availableActionCommands": ["inventory"],
+    "availableCombatCommands": [{}]
+  }
+]
+

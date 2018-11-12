@@ -1,8 +1,8 @@
 package Gameplay;
 
-import Models.Choice;
 import GUI.GameWindow;
 import Managers.JSONParsing;
+import Models.ChoiceV2;
 
 /*
 Has edited this:
@@ -12,6 +12,7 @@ Has edited this:
 public class NewGame {
 
     private GameWindow gameWindow;
+    private ChoiceV2 activeChoice;
 
     public NewGame() {
         this.gameWindow = new GameWindow();
@@ -20,7 +21,7 @@ public class NewGame {
 
     private void runTestSegment() {
         JSONParsing jsonParser = new JSONParsing();
-        Choice choice0 = jsonParser.getChoiceFromJson(0);
-        gameWindow.printToGameArea(choice0.getDescription());
-        GameSettings.setCurrentChoice(choice0);    }
+        activeChoice = jsonParser.getChoiceFromJsonV2(0);
+        gameWindow.printToGameArea(activeChoice.getDescription());
+    }
 }
