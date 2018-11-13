@@ -88,6 +88,7 @@ public class GameWindow implements Printable {
 
         // Listener for sending of a command
         inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable) {});
+        inputAreaTextField.requestFocusInWindow();
 
         // Method for the placeholder text.
         inputAreaTextField.addFocusListener(new FocusAdapter() {

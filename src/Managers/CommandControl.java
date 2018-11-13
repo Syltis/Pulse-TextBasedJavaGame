@@ -1,6 +1,7 @@
 package Managers;
 
 import Gameplay.GameSettings;
+import Interfaces.Printable;
 import Models.ChoiceV2;
 import Models.PlayerCommand;
 
@@ -13,6 +14,7 @@ public class CommandControl {
 
     GameSettings gameSettings = GameSettings.getInstance();
     int nextChoiceId;
+    Printable printable;
 
     enum CommandTypes {
         MOVEMENTCOMMAND,
@@ -25,7 +27,7 @@ public class CommandControl {
 
     }
 
-    public CommandControl(PlayerCommand playerCommand, ChoiceV2 activeChoice) {
+    public CommandControl(PlayerCommand playerCommand, ChoiceV2 activeChoice, Printable printable) {
         CommandTypes commandType = controlPlayerCommandType(playerCommand, activeChoice);
 
         switch (commandType) {
@@ -44,6 +46,7 @@ public class CommandControl {
 
             case NOMATCH:
                 System.out.print("No match: " + playerCommand.getCommand() + "\n");
+                printable.printResponseToLog("This is not a viable command");
                 break;
         }
     }
