@@ -16,10 +16,10 @@ public class NewGame implements Choosable {
     private GameWindow gameWindow;
     private ChoiceV2 activeChoice;
     private PlayerCommand activePlayerCommand;
-    GameSettings gameSettings = GameSettings.getInstance();
 
     public NewGame() {
         this.gameWindow = new GameWindow(NewGame.this);
+        GameSettings gameSettings = GameSettings.getInstance();
         runTestSegment();
     }
 

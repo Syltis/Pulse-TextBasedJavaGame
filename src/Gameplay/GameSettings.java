@@ -18,15 +18,10 @@ public class GameSettings {
 
     private static GameSettings instance = null;
     private static int currentChoiceId;
+    private static HashMap<String, Integer> movementCommandArchive = null;
 
     // The map from json sys.outs: {"go back"=0, "open door"=1}
     // The map from this hashmap is {go back=1, open door=1}
-    private static final HashMap<String, Integer> movementCommandArchive = new HashMap<String, Integer>() {
-        {
-            put("open door", 1);
-            put("go back", 1);
-        }
-    };
 
     private static final List<String> actionCommandArchive = Stream.of(
             "take key",
@@ -47,6 +42,9 @@ public class GameSettings {
         if (instance == null) {
             instance = new GameSettings();
         }
+        movementCommandArchive = new HashMap<>();
+                movementCommandArchive.put("open door", 1);
+                movementCommandArchive.put("go back", 0);
         return instance;
     }
 
