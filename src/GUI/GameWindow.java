@@ -1,5 +1,10 @@
 package GUI;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 import Interfaces.Choosable;
 import Interfaces.Printable;
 
@@ -7,11 +12,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-
-/*
-Has edited this:
-- Kristoffer
-*/
 
 public class GameWindow implements Printable {
 

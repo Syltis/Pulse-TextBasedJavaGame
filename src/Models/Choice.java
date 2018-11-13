@@ -1,13 +1,13 @@
 package Models;
 
-import Managers.JSONParsing;
-
-import java.util.ArrayList;
-
 /*
 Has edited this:
 - Kristoffer
 */
+
+import Managers.JSONParsing;
+
+import java.util.ArrayList;
 
 public class Choice {
 

@@ -1,5 +1,10 @@
 package Interfaces;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 import Models.ChoiceV2;
 import Models.PlayerCommand;
 

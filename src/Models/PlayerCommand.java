@@ -10,9 +10,7 @@ public class PlayerCommand {
     private String actionCommand;
     private String commandTarget;
 
-    public PlayerCommand() {
-
-    }
+    public PlayerCommand() {}
 
     public PlayerCommand(String actionCommand, String commandTarget) {
         this.actionCommand = actionCommand;

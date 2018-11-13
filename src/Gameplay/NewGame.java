@@ -1,15 +1,15 @@
 package Gameplay;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 import GUI.GameWindow;
 import Interfaces.Choosable;
 import Managers.JSONParsing;
 import Models.ChoiceV2;
 import Models.PlayerCommand;
-
-/*
-Has edited this:
-- Kristoffer
-*/
 
 public class NewGame implements Choosable {
 
@@ -30,24 +30,18 @@ public class NewGame implements Choosable {
     }
 
     @Override
-    public ChoiceV2 getActiveChoice() {
-
-        return activeChoice;
+    public ChoiceV2 getActiveChoice() { return activeChoice;
     }
 
     @Override
-    public void setActiveChoice(ChoiceV2 choice)  {
-
-        this.activeChoice = choice;
+    public void setActiveChoice(ChoiceV2 choice)  { this.activeChoice = choice;
     }
 
     @Override
-    public PlayerCommand getActivePlayerCommand() {
-        return this.activePlayerCommand;
+    public PlayerCommand getActivePlayerCommand() { return this.activePlayerCommand;
     }
 
     @Override
-    public void setActivePlayerCommand(PlayerCommand command) {
-        this.activePlayerCommand = command;
+    public void setActivePlayerCommand(PlayerCommand command) { this.activePlayerCommand = command;
     }
 }

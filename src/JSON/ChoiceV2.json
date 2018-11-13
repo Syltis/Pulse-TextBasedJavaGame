@@ -13,7 +13,7 @@
       }
     ],
     "availableActionCommands": ["take key", "inventory"],
-    "availableCombatCommands": [{}]
+    "availableCombatCommands": []
   },
   {
     "id": 1,
@@ -29,7 +29,7 @@
       }
     ],
     "availableActionCommands": ["inventory"],
-    "availableCombatCommands": [{}]
+    "availableCombatCommands": ["kill rat"]
   }
 ]
 

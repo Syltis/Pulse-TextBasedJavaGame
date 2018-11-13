@@ -1,25 +1,23 @@
 package Managers;
 
-import Interfaces.Choosable;
-import Models.PlayerCommand;
-import GUI.GameWindow;
-import Interfaces.Printable;
-
-import java.util.ArrayList;
-
 /*
 Has edited this:
 - Kristoffer
 */
 
+import Interfaces.Choosable;
+import Interfaces.Printable;
+import Models.PlayerCommand;
+
+import java.util.ArrayList;
+
 public class PlayerInput {
 
     private Printable printable;
     private Choosable choosable;
-    ArrayList<String> splitCommandList;
-    PlayerCommand playerCommand;
-    GameWindow gameWindow;
-    String shortcutCommand; // TODO: Functionality for shortcuts.
+    private ArrayList<String> splitCommandList;
+    private PlayerCommand playerCommand;
+
 
     public PlayerInput() {};
 
