@@ -9,8 +9,6 @@ Has edited this:
 Singleton class for storing data. Currently here to store the the choice-id of the active choice.
 */
 
-import Models.Choice;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,20 +20,21 @@ public class GameSettings {
     private static int currentChoiceId;
 
     // The map from json sys.outs: {"go back"=0, "open door"=1}
-    HashMap<String, Integer> movementCommandArchive = new HashMap<String, Integer>() {
+    // The map from this hashmap is {go back=1, open door=1}
+    private static final HashMap<String, Integer> movementCommandArchive = new HashMap<String, Integer>() {
         {
             put("open door", 1);
             put("go back", 1);
         }
     };
 
-    List<String> actionCommandArchive = Stream.of(
+    private static final List<String> actionCommandArchive = Stream.of(
             "take key",
             "inventory"
 
     ).collect(Collectors.toList());
 
-    List<String> combatCommandArchive = Stream.of(
+    private static final List<String> combatCommandArchive = Stream.of(
             "kill rat"
 
     ).collect(Collectors.toList());
@@ -51,19 +50,15 @@ public class GameSettings {
         return instance;
     }
 
-    public static int getCurrentChoiceId() {
-        return currentChoiceId;
+    public HashMap<String, Integer> getMovementCommandArchive() {
+        return movementCommandArchive;
     }
 
-    public static void setCurrentChoiceId(int choiceId) {
-        currentChoiceId = choiceId;
+    public List<String> getActionCommandArchive() {
+        return actionCommandArchive;
     }
 
-    public static int getCurrentChoice() {
-        return currentChoiceId;
-    }
-
-    public static void setCurrentChoice(Choice choice) {
-        Choice currentChoice = choice;
+    public List<String> getCombatCommandArchive() {
+        return combatCommandArchive;
     }
 }
