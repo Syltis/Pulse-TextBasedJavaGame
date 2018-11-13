@@ -1,5 +1,6 @@
 package GUI;
 
+import Interfaces.Choosable;
 import Interfaces.Printable;
 import Managers.PlayerInput;
 
@@ -15,6 +16,7 @@ Has edited this:
 
 public class GameWindow implements Printable {
 
+    private Choosable choosable;
     private JTextArea sidebarTextArea;
     private JTextArea gameArea;
     private JTextArea inputAreaTextArea;
@@ -22,13 +24,14 @@ public class GameWindow implements Printable {
     private GridBagConstraints c;
     private PlayerInput playerInput;
 
-     public GameWindow() {
+     public GameWindow(Choosable choosable) {
         c = new GridBagConstraints();
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         int hGap = 5;
         int vGap = 5;
         c.insets = new Insets(hGap, vGap, hGap, vGap);
         JFrame gameFrame = new JFrame("UntitledRPG™");
+        this.choosable = choosable;
         buildGameWindow(gameFrame);
     }
 
@@ -86,7 +89,7 @@ public class GameWindow implements Printable {
         addComp(inputArea, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
         // Listener for sending of a command
-        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this) {});
+        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable) {});
 
         // Method for the placeholder text.
         inputAreaTextField.addFocusListener(new FocusAdapter() {

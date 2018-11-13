@@ -5,6 +5,7 @@ Has edited this:
 - Kristoffer
 */
 
+import Interfaces.Choosable;
 import Interfaces.Printable;
 import Managers.PlayerInput;
 import java.awt.event.ActionEvent;
@@ -13,11 +14,13 @@ import java.awt.event.ActionListener;
 public class CommandListener implements ActionListener {
 
     private Printable printable;
+    private Choosable choosable;
     private int blankCounter;
 
-    CommandListener(Printable printable) {
+    CommandListener(Printable printable, Choosable choosable) {
 
         this.printable = printable;
+        this.choosable = choosable;
     }
 
     // This is called then the player enters a command
@@ -27,7 +30,7 @@ public class CommandListener implements ActionListener {
             // Print in the inputAreaTextField (log)
             printable.printCommandToLog(input);
             // Send to playerInput.
-            PlayerInput playerInput = new PlayerInput(printable);
+            PlayerInput playerInput = new PlayerInput(printable, choosable);
             playerInput.receiveCommand(input);
             printable.setInputAreaTextField("");
             blankCounter = 0;
