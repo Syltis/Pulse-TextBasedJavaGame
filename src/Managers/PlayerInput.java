@@ -31,8 +31,7 @@ public class PlayerInput {
     public void receiveCommand(String input) {
         playerCommand = new PlayerCommand(cleanString(input));
         choosable.setActivePlayerCommand(playerCommand);
-        CommandControl cmdControl = new CommandControl();
-        cmdControl.controlPlayerCommandType(playerCommand, choosable.getActiveChoice());
+        new CommandControl(playerCommand, choosable.getActiveChoice());
     }
 
     // Separates string by whitespace
