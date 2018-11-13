@@ -1,5 +1,10 @@
 package Models;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 import Managers.JSONParsing;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +13,7 @@ public class ChoiceV2 {
 
     private int id;
     private String description;
-    private HashMap<String, String> availableMovementCommands;
+    private HashMap<String, Integer> availableMovementCommands;
     private ArrayList<String> availableActionCommands;
     private ArrayList<String> availableCombatCommands;
 
@@ -22,11 +27,11 @@ public class ChoiceV2 {
 
     public void setDescription(String description) { this.description = description; }
 
-    public HashMap<String, String> getAvailableMovementCommands() {
+    public HashMap<String, Integer> getAvailableMovementCommands() {
         return availableMovementCommands;
     }
 
-    public void setAvailableMovementCommands(HashMap<String, String> hashMap) {
+    public void setAvailableMovementCommands(HashMap<String, Integer> hashMap) {
         this.availableMovementCommands = hashMap;
     }
 

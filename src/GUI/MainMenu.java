@@ -1,13 +1,13 @@
 package GUI;
 
-import Gameplay.NewGame;
-import javax.swing.*;
-import java.awt.*;
-
 /*
 Has edited this:
 - Kristoffer
 */
+
+import Gameplay.NewGame;
+import javax.swing.*;
+import java.awt.*;
 
 public class MainMenu {
 

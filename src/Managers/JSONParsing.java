@@ -1,5 +1,10 @@
 package Managers;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 import Models.Choice;
 import Models.ChoiceV2;
 import com.google.gson.JsonArray;
@@ -15,12 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/*
-Has edited this:
-- Kristoffer
-*/
-
-//Parses JSON to a Choice-object.
+// Here the json.simple library is used
 public class JSONParsing {
 
     public Choice getChoiceFromJson(int choiceId) {
@@ -66,11 +66,11 @@ public class JSONParsing {
         return null;
     }
 
-    // Gson
+    // Here the google.Gson library is used
     public ChoiceV2 getChoiceFromJsonV2(int id) {
 
         JsonParser parser = new JsonParser();
-        HashMap<String, String> map = new HashMap<>();
+        HashMap<String, Integer> map = new HashMap<>();
         ChoiceV2 choice = null;
 
         try {
@@ -89,7 +89,7 @@ public class JSONParsing {
 
             for (Object aObject:movementCommands) {
                 JsonObject jObject = (JsonObject) aObject;
-                map.put(jObject.get("command").toString(), jObject.get("nextChoiceId").toString());
+                map.put(jObject.get("command").toString(), jObject.get("nextChoiceId").getAsInt());
             }
 
             for (Object command:actionCommands) {
@@ -99,7 +99,7 @@ public class JSONParsing {
             for (Object command:combatCommands) {
                 combatCommandList.add(command.toString());
             }
-
+            System.out.println(map);
             choice = new ChoiceV2(idInt, description, map, actionCommandList, combatCommandList);
         }
         catch (FileNotFoundException e) {
@@ -110,15 +110,4 @@ public class JSONParsing {
 
         return choice;
     }
-
-    /*
-    public int getObjectIndexJson(JSONArray jsonArr, String id) {
-        for (Object aObject : jsonArr) {
-            JSONObject object = (JSONObject) aObject;
-            movement = (String) object.get(id);
-            System.out.println(id);
-            return id;
-    }
-
-    */
 }

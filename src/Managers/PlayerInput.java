@@ -1,25 +1,23 @@
 package Managers;
 
-import Interfaces.Choosable;
-import Models.PlayerCommand;
-import GUI.GameWindow;
-import Interfaces.Printable;
-
-import java.util.ArrayList;
-
 /*
 Has edited this:
 - Kristoffer
 */
 
+import Interfaces.Choosable;
+import Interfaces.Printable;
+import Models.PlayerCommand;
+
+import java.util.ArrayList;
+
 public class PlayerInput {
 
     private Printable printable;
     private Choosable choosable;
-    ArrayList<String> splitCommandList;
-    PlayerCommand playerCommand;
-    GameWindow gameWindow;
-    String shortcutCommand; // TODO: Functionality for shortcuts.
+    private ArrayList<String> splitCommandList;
+    private PlayerCommand playerCommand;
+
 
     public PlayerInput() {};
 
@@ -31,15 +29,18 @@ public class PlayerInput {
 
     public void receiveCommand(String input) {
         input = cleanString(input);
+        playerCommand = new PlayerCommand();
 
         // Check if it contains two words. Should not be any whitespace left after cleaning if it's one word.
         if(input.matches("\\s+")) {
             splitCommandList = splitCommand(input);
             playerCommand = new PlayerCommand(splitCommandList.get(0), splitCommandList.get(1));
         }
-        else
+        else {
             // This is for the optional shortcut functionality
             playerCommand = new PlayerCommand(input, " ");
+        }
+        choosable.setActivePlayerCommand(playerCommand);
     }
 
     // Separates string by whitespace
