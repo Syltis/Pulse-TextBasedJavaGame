@@ -16,18 +16,31 @@ public class NewGame implements Choosable {
     private GameWindow gameWindow;
     private ChoiceV2 activeChoice;
     private PlayerCommand activePlayerCommand;
+    private JSONParsing jsonParser;
 
     public NewGame() {
         this.gameWindow = new GameWindow(NewGame.this);
+        jsonParser = new JSONParsing();
         GameSettings gameSettings = GameSettings.getInstance();
         runTestSegment();
     }
 
     private void runTestSegment() {
-        JSONParsing jsonParser = new JSONParsing();
         activeChoice = jsonParser.getChoiceFromJsonV2(0);
         gameWindow.printToGameArea(activeChoice.getDescription());
+        feedSideBar(this.activeChoice);
+
+    }
+
+    public void outputNextChoice(int id) {
+        activeChoice = jsonParser.getChoiceFromJsonV2(id);
+        gameWindow.printToGameArea(activeChoice.getDescription());
+    }
+
+    public void feedSideBar(ChoiceV2 activeChoice) {
+        gameWindow.printToSidebarArea(activeChoice.getAvailableMovementCommands().toString());
         gameWindow.printToSidebarArea(activeChoice.getAvailableActionCommands().toString());
+        gameWindow.printToSidebarArea(activeChoice.getAvailableCombatCommands().toString());
     }
 
     @Override

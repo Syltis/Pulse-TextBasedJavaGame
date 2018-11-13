@@ -34,9 +34,10 @@ public class GameWindow implements Printable {
 
     private void buildGameWindow(JFrame frame) {
 
-        /* GameWindow consists of:
-        - gameArea, a JTextField where the output from the game will be printed.
-        - sidebarTextArea, TODO: Sidebar with info about available commands
+        /*
+        GameWindow consists of:
+        - gameArea, a JTextAreawhere the output from the game will be printed.
+        - sidebarTextArea,a JTextArea info about available commands
         - inputArea, a JPanel where the player enters commands and views them in a log
          */
 
