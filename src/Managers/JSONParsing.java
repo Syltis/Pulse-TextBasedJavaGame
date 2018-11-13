@@ -99,7 +99,6 @@ public class JSONParsing {
             for (Object command:combatCommands) {
                 combatCommandList.add(command.toString());
             }
-            System.out.println(map);
             choice = new ChoiceV2(idInt, description, map, actionCommandList, combatCommandList);
         }
         catch (FileNotFoundException e) {

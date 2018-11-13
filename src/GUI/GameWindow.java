@@ -22,8 +22,7 @@ public class GameWindow implements Printable {
     private JTextField inputAreaTextField;
     private GridBagConstraints c;
 
-     public GameWindow(Choosable choosable) {
-         this.choosable = choosable;
+     public GameWindow(Choosable choosable) { this.choosable = choosable;
         c = new GridBagConstraints();
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         int hGap = 5;

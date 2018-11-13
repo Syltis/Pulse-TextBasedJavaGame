@@ -5,6 +5,7 @@ Has edited this:
 - Kristoffer
 */
 
+import Gameplay.GameSettings;
 import Interfaces.Choosable;
 import Interfaces.Printable;
 import Models.PlayerCommand;
@@ -17,9 +18,9 @@ public class PlayerInput {
     private Choosable choosable;
     private ArrayList<String> splitCommandList;
     private PlayerCommand playerCommand;
+    private GameSettings gameSettings;
 
-
-    public PlayerInput() {};
+    public PlayerInput() {}
 
     public PlayerInput(Printable printable, Choosable choosable) {
 
@@ -28,19 +29,9 @@ public class PlayerInput {
     }
 
     public void receiveCommand(String input) {
-        input = cleanString(input);
-        playerCommand = new PlayerCommand();
-
-        // Check if it contains two words. Should not be any whitespace left after cleaning if it's one word.
-        if(input.matches("\\s+")) {
-            splitCommandList = splitCommand(input);
-            playerCommand = new PlayerCommand(splitCommandList.get(0), splitCommandList.get(1));
-        }
-        else {
-            // This is for the optional shortcut functionality
-            playerCommand = new PlayerCommand(input, " ");
-        }
+        playerCommand = new PlayerCommand(cleanString(input));
         choosable.setActivePlayerCommand(playerCommand);
+        new CommandControl(playerCommand, choosable.getActiveChoice());
     }
 
     // Separates string by whitespace
