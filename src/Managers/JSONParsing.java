@@ -68,6 +68,7 @@ public class JSONParsing {
 
     // Gson
     public ChoiceV2 getChoiceFromJsonV2(int id) {
+
         JsonParser parser = new JsonParser();
         HashMap<String, String> map = new HashMap<>();
         ChoiceV2 choice = null;
@@ -78,6 +79,7 @@ public class JSONParsing {
             long idLong = jsonChoice.get("id").getAsInt();
             int idInt = (int) idLong;
             String description = jsonChoice.get("description").getAsString();
+
             JsonArray movementCommands = (JsonArray) jsonChoice.get("availableMovementCommands");
             JsonArray actionCommands = (JsonArray) jsonChoice.get("availableActionCommands");
             JsonArray combatCommands = (JsonArray) jsonChoice.get("availableCombatCommands");

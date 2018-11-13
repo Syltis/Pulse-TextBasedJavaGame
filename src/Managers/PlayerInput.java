@@ -1,5 +1,6 @@
 package Managers;
 
+import Interfaces.Choosable;
 import Models.PlayerCommand;
 import GUI.GameWindow;
 import Interfaces.Printable;
@@ -14,6 +15,7 @@ Has edited this:
 public class PlayerInput {
 
     private Printable printable;
+    private Choosable choosable;
     ArrayList<String> splitCommandList;
     PlayerCommand playerCommand;
     GameWindow gameWindow;
@@ -21,11 +23,12 @@ public class PlayerInput {
 
     public PlayerInput() {};
 
-    public PlayerInput(Printable printable) {
+    public PlayerInput(Printable printable, Choosable choosable) {
+
         this.printable = printable;
+        this.choosable = choosable;
     }
 
-    // Called in gameWindow when given user input.
     public void receiveCommand(String input) {
         input = cleanString(input);
 
