@@ -12,6 +12,7 @@ Has edited this:
 
 public class CommandControl {
 
+    // Check for command type
     // Returns empty if no match
     public String[] controlPlayerCommand(PlayerCommand playerCommand, Choice choice) {
         String[] output = new String[2];

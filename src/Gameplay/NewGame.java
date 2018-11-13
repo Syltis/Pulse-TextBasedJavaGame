@@ -26,6 +26,7 @@ public class NewGame implements Choosable {
         JSONParsing jsonParser = new JSONParsing();
         activeChoice = jsonParser.getChoiceFromJsonV2(0);
         gameWindow.printToGameArea(activeChoice.getDescription());
+        gameWindow.printToSidebarArea(activeChoice.getAvailableActionCommands().toString());
     }
 
     @Override

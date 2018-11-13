@@ -31,15 +31,18 @@ public class PlayerInput {
 
     public void receiveCommand(String input) {
         input = cleanString(input);
+        playerCommand = new PlayerCommand();
 
         // Check if it contains two words. Should not be any whitespace left after cleaning if it's one word.
         if(input.matches("\\s+")) {
             splitCommandList = splitCommand(input);
             playerCommand = new PlayerCommand(splitCommandList.get(0), splitCommandList.get(1));
         }
-        else
+        else {
             // This is for the optional shortcut functionality
             playerCommand = new PlayerCommand(input, " ");
+        }
+        choosable.setActivePlayerCommand(playerCommand);
     }
 
     // Separates string by whitespace

@@ -2,7 +2,6 @@ package GUI;
 
 import Interfaces.Choosable;
 import Interfaces.Printable;
-import Managers.PlayerInput;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,16 +21,15 @@ public class GameWindow implements Printable {
     private JTextArea inputAreaTextArea;
     private JTextField inputAreaTextField;
     private GridBagConstraints c;
-    private PlayerInput playerInput;
 
      public GameWindow(Choosable choosable) {
+         this.choosable = choosable;
         c = new GridBagConstraints();
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         int hGap = 5;
         int vGap = 5;
         c.insets = new Insets(hGap, vGap, hGap, vGap);
         JFrame gameFrame = new JFrame("UntitledRPG™");
-        this.choosable = choosable;
         buildGameWindow(gameFrame);
     }
 
@@ -158,10 +156,12 @@ public class GameWindow implements Printable {
     }
 
     public String getInputAreaTextField() {
+
          return inputAreaTextField.getText();
     }
 
     public void setInputAreaTextField(String text) {
+
          inputAreaTextField.setText(text);
     }
 }
