@@ -42,6 +42,7 @@ public class GameSettings {
         if (instance == null) {
             instance = new GameSettings();
         }
+        // These are put when the singleton is instatiated
         movementCommandArchive = new HashMap<>();
                 movementCommandArchive.put("open door", 1);
                 movementCommandArchive.put("go back", 0);

@@ -62,6 +62,8 @@ public class GameWindow implements Printable {
 
         // SIDEBAR AREA
         sidebarTextArea.setEditable(false);
+        sidebarTextArea.setWrapStyleWord(true);
+        sidebarTextArea.setLineWrap(true);
 
         // INPUT AREA.
         // Set textArea and add it to scrollpane, which is then added to the layout
@@ -88,7 +90,6 @@ public class GameWindow implements Printable {
 
         // Listener for sending of a command
         inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable) {});
-        inputAreaTextField.requestFocusInWindow();
 
         // Method for the placeholder text.
         inputAreaTextField.addFocusListener(new FocusAdapter() {
@@ -153,7 +154,7 @@ public class GameWindow implements Printable {
     // TODO Call this in a for loop to printResponseToLog them as a list
     public void printToSidebarArea(String text) {
 
-         sidebarTextArea.append(">" + text + "\n");
+        sidebarTextArea.append(">" + text + "\n");
     }
 
     public String getInputAreaTextField() {
