@@ -6,10 +6,10 @@ Has edited this:
 */
 
 import Models.Choice;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import Models.ChoiceV2;
+import com.google.gson.*;
 
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
@@ -61,5 +61,28 @@ public class JSONParsing {
         }
 
         return choice;
+    }
+
+    public ChoiceV2 getChoiceFromJsonV2(int id) {
+
+        JsonParser parser = new JsonParser();
+        HashMap<String, Integer> map = new HashMap<>();
+        Choice choice = null;
+        BufferedReader reader = null;
+        ChoiceV2 newChoice = new ChoiceV2();
+
+        try {
+            reader = new BufferedReader(new FileReader("src/JSON/ChoiceV2.json"));
+            Gson gson = new GsonBuilder().create();
+            newChoice = gson.fromJson(reader, ChoiceV2.class);
+            System.out.println(newChoice.toString());
+
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newChoice;
     }
 }

@@ -1,11 +1,11 @@
-package Gameplay;
+package Models;
 
-public class movementCommand {
+public class MovementCommand {
 
     private String command;
     private String nextChoiceId;
 
-    public movementCommand(String command, String nextChoiceId) {
+    public MovementCommand(String command, String nextChoiceId) {
         this.command = command;
         this.nextChoiceId = nextChoiceId;
     }
