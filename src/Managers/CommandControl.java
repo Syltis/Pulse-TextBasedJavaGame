@@ -60,7 +60,9 @@ public class CommandControl {
 
     public CommandTypes controlPlayerCommandType(PlayerCommand playerCommand, Choice activeChoice) {
         // Check if the command exists in gameSettings and in the activechoice
-        if (gameSettings.getMovementCommandArchive().get(playerCommand.getPlayerCommand()).equals(activeChoice.getAvailableMovementCommands().get(playerCommand.getPlayerCommand()))) {
+        System.out.println(gameSettings.getMovementCommandArchive().containsKey(playerCommand.getPlayerCommand()));
+        System.out.println(activeChoice.getAvailableMovementCommands().containsKey(playerCommand.getPlayerCommand()));
+        if (gameSettings.getMovementCommandArchive().containsKey(playerCommand.getPlayerCommand()) && activeChoice.getAvailableMovementCommands().containsKey(playerCommand.getPlayerCommand())) {
             return CommandTypes.MOVEMENTCOMMAND;
         } else if (activeChoice.getAvailableActionCommands().contains(playerCommand.getPlayerCommand() + "\n")) {
             return CommandTypes.ACTIONCOMMAND;
