@@ -30,7 +30,6 @@ public class PlayerInput {
 
     public void receiveCommand(String input) {
         playerCommand = new PlayerCommand(cleanString(input));
-        choosable.setActivePlayerCommand(playerCommand);
         new CommandControl(playerCommand, choosable.getActiveChoice(), printable, choosable);
     }
 
@@ -46,7 +45,7 @@ public class PlayerInput {
     }
 
     // Trim string, turn double+ whitespace into single, lowercase and remove everything but letters.
-    public String cleanString(String string) {
+    public static String cleanString(String string) {
         string = string.trim();
         string = string.replaceAll("[-!@#$%^&*(),.?\":{}|<>0-9+/']+", "");
         string = string.replaceAll("[ ]{2,}", " ");

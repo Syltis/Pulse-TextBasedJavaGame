@@ -31,6 +31,9 @@
     "id": 2,
     "description": "3. You are in a dark room. There is a man lying on his stomach on the floor. A gun is lying besides him. There is a door to the north",
     "availableMovementCommands": [
+      {"command": "go north",
+        "nextChoiceId": 4
+      },
       {"command": "go back",
         "nextChoiceId": 1
       }
@@ -40,7 +43,18 @@
   },
   {
     "id": 3,
-    "description": "4. You are in a room that appeasr to be empty.",
+    "description": "4. You are in a room that appears to be empty.",
+    "availableMovementCommands": [
+      {"command": "go back",
+        "nextChoiceId": 1
+      }
+    ],
+    "availableActionCommands": ["inventory"],
+    "availableCombatCommands": ["kill rat"]
+  },
+  {
+    "id": 4,
+    "description": "4. You are in a dim lit room. There are bunk bed by the walls. One of the bunk beds has a ball of blankets on it, and one can hear a wheezing-noice coming from it.",
     "availableMovementCommands": [
       {"command": "go back",
         "nextChoiceId": 1

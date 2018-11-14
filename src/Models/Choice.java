@@ -28,7 +28,7 @@ public class Choice {
     public void setDescription(String description) { this.description = description; }
 
     public HashMap<String, Integer> getAvailableMovementCommands() {
-        return availableMovementCommands;
+        return this.availableMovementCommands;
     }
 
     public void setAvailableMovementCommands(HashMap<String, Integer> hashMap) {
@@ -36,7 +36,7 @@ public class Choice {
     }
 
     public ArrayList<String> getAvailableActionCommands() {
-        return availableActionCommands;
+        return this.availableActionCommands;
     }
 
     public void setAvailableActionCommands(ArrayList<String> availableActionCommands) {

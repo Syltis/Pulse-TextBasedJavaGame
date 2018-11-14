@@ -15,10 +15,7 @@ public class CommandControl {
 
     private Printable printable;
     private Choosable choosable;
-    private PlayerCommand playerCommand;
     private GameSettings gameSettings = GameSettings.getInstance();
-    private int nextChoiceId;
-    private Choice activeChoice;
 
     enum CommandTypes {
         MOVEMENTCOMMAND,
@@ -27,26 +24,22 @@ public class CommandControl {
         NOMATCH
     }
 
-    public CommandControl() {
-
-    }
-
     public CommandControl(PlayerCommand playerCommand, Choice activeChoice, Printable printable, Choosable choosable) {
         this.printable = printable;
         this.choosable = choosable;
-        this.activeChoice = activeChoice;
-        this.playerCommand = playerCommand;
 
+        // Get right commandType-enum
         CommandTypes commandType = controlPlayerCommandType(playerCommand, activeChoice);
-        commandController(commandType);
+        commandController(commandType, activeChoice, playerCommand);
     }
 
-    public void commandController(CommandTypes commandType) {
+    public void commandController(CommandTypes commandType, Choice activeChoice, PlayerCommand playerCommand) {
         switch (commandType) {
             case MOVEMENTCOMMAND:
                 // Build a method to update the NewGame choiceId, and run that as the next method in newgame
-                this.nextChoiceId = controlMovementCommand(playerCommand, activeChoice);
-                choosable.nextChoice(this.nextChoiceId);
+
+                int nextChoiceId = activeChoice.getAvailableMovementCommands().get(playerCommand.getPlayerCommand());
+                choosable.nextChoice(nextChoiceId);
                 break;
 
             case ACTIONCOMMAND:
@@ -73,14 +66,5 @@ public class CommandControl {
             return CommandTypes.COMBATCOMMAND;
         } else
             return CommandTypes.NOMATCH;
-    }
-
-    // TODO this doesnt work right
-    public int controlMovementCommand(PlayerCommand playerCommand, Choice activeChoice) {
-        int nextChoiceId = gameSettings.getMovementCommandArchive().get(playerCommand.getPlayerCommand());
-        System.out.println(nextChoiceId);
-        System.out.println(activeChoice.getId());
-
-        return nextChoiceId;
     }
 }

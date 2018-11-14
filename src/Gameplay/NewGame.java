@@ -9,13 +9,11 @@ import GUI.GameWindow;
 import Interfaces.Choosable;
 import Managers.JSONParsing;
 import Models.Choice;
-import Models.PlayerCommand;
 
 public class NewGame implements Choosable {
 
     private GameWindow gameWindow;
     private Choice activeChoice;
-    private PlayerCommand activePlayerCommand;
     private JSONParsing jsonParser;
 
     public NewGame() {
@@ -26,8 +24,8 @@ public class NewGame implements Choosable {
     }
 
     private void runTestSegment() {
-        activeChoice = jsonParser.getChoiceFromJson(0);
-        gameWindow.printToGameArea(activeChoice.getDescription());
+        this.activeChoice = jsonParser.getChoiceFromJson(0);
+        gameWindow.printToGameArea(this.activeChoice.getDescription());
         feedSideBar(this.activeChoice);
 
     }
@@ -46,20 +44,7 @@ public class NewGame implements Choosable {
         gameWindow.printToSidebarArea(activeChoice.getAvailableCombatCommands().toString());
     }
 
-    public Choice getChoiceFromParser(int id) { return jsonParser.getChoiceFromJson(id);
-    }
-
     @Override
     public Choice getActiveChoice() { return activeChoice;
-    }
-
-    public void setActiveChoice(Choice choice)  { this.activeChoice = choice;
-    }
-
-    public PlayerCommand getActivePlayerCommand() { return this.activePlayerCommand;
-    }
-
-    @Override
-    public void setActivePlayerCommand(PlayerCommand command) { this.activePlayerCommand = command;
     }
 }
