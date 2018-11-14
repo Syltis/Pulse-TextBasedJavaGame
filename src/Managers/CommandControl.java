@@ -13,11 +13,12 @@ Has edited this:
 
 public class CommandControl {
 
+    private Printable printable;
+    private Choosable choosable;
+    PlayerCommand playerCommand;
     GameSettings gameSettings = GameSettings.getInstance();
     private int nextChoiceId;
     private Choice activeChoice;
-    private Printable printable;
-    private Choosable choosable;
 
     enum CommandTypes {
         MOVEMENTCOMMAND,
@@ -34,9 +35,13 @@ public class CommandControl {
         this.printable = printable;
         this.choosable = choosable;
         this.activeChoice = activeChoice;
+        this.playerCommand = playerCommand;
 
         CommandTypes commandType = controlPlayerCommandType(playerCommand, activeChoice);
+        commandController(commandType);
+    }
 
+    public void commandController(CommandTypes commandType) {
         switch (commandType) {
             case MOVEMENTCOMMAND:
                 // Build a method to update the NewGame choiceId, and run that as the next method in newgame
@@ -57,10 +62,6 @@ public class CommandControl {
                 printable.printResponseToLog("What do you mean?");
                 break;
         }
-    }
-
-    public void commandController(CommandTypes commandType) {
-
     }
 
     public CommandTypes controlPlayerCommandType(PlayerCommand playerCommand, Choice activeChoice) {
