@@ -15,8 +15,8 @@ public class CommandControl {
 
     private Printable printable;
     private Choosable choosable;
-    PlayerCommand playerCommand;
-    GameSettings gameSettings = GameSettings.getInstance();
+    private PlayerCommand playerCommand;
+    private GameSettings gameSettings = GameSettings.getInstance();
     private int nextChoiceId;
     private Choice activeChoice;
 
@@ -76,10 +76,12 @@ public class CommandControl {
             return CommandTypes.NOMATCH;
     }
 
+    // TODO this doesnt work right
     public int controlMovementCommand(PlayerCommand playerCommand, Choice activeChoice) {
-        int nextChoiceId = gameSettings.getMovementCommandArchive().get(playerCommand.getPlayerCommand());
-        activeChoice.getAvailableMovementCommands().containsKey(playerCommand.getPlayerCommand());
-        System.out.println(nextChoiceId);
-        return nextChoiceId;
+    int nextChoiceId = gameSettings.getMovementCommandArchive().get(playerCommand.getPlayerCommand());
+    System.out.println(nextChoiceId);
+    System.out.println(activeChoice.getId());
+
+    return nextChoiceId;
     }
 }

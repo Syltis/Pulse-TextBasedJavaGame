@@ -151,7 +151,6 @@ public class GameWindow implements Printable {
          gameArea.setCaretPosition(gameArea.getDocument().getLength());
     }
 
-    // TODO Call this in a for loop to printResponseToLog them as a list
     public void printToSidebarArea(String text) {
 
         sidebarTextArea.append(">" + text + "\n");

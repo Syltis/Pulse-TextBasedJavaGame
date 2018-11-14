@@ -7,9 +7,9 @@ Has edited this:
 
 import javax.swing.*;
 
-class popUp {
+class PopUp {
 
-    popUp(String infoMessage, String titleBar) {
+    PopUp(String infoMessage, String titleBar) {
 
         JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
     }

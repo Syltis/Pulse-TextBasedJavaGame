@@ -51,7 +51,7 @@ public class CommandListener implements ActionListener {
             printable.printResponseToLog(">:(");
             blankCounter = blankCounter + 1;
         } else if (blankCounter == 5) {
-            new popUp("You're an idiot", "Seriously");
+            new PopUp("You're an idiot", "Seriously");
             blankCounter = blankCounter + 1;
         } else {
             printable.printResponseToLog("...");
