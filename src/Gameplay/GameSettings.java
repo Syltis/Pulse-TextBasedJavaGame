@@ -17,7 +17,6 @@ import java.util.stream.Stream;
 public class GameSettings {
 
     private static GameSettings instance = null;
-    private static int currentChoiceId;
     private static HashMap<String, Integer> movementCommandArchive = null;
 
     // The map from json sys.outs: {"go back"=0, "open door"=1}

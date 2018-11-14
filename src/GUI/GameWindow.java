@@ -151,27 +151,31 @@ public class GameWindow implements Printable {
     // Prints  player command to inputAreaTextField (log)
     public void printCommandToLog(String text) {
 
-        inputAreaTextArea.append(">" + text + "\n");
+        inputAreaTextArea.append("> " + text + "\n");
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
     public void printResponseToLog(String text) {
 
-        inputAreaTextArea.append("-" + text + "\n");
+        inputAreaTextArea.append("- " + text + "\n");
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
     // Prints to the gameTextArea.
-    public void printToGameArea(String text) {
+    public void printResponseToGameArea(String title, String descrption) {
+         gameTextArea.append(" " + title + "\n");
+         gameTextArea.append("> " + descrption + "\n");
+         gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
+    }
 
-         gameTextArea.append(">" + text + "\n");
+    public void printCommandToGameArea(String text) {
+         gameTextArea.append("- " + text + "\n" + "\n");
          gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
     }
 
     public void printToSidebarArea(String text) {
-
-
-         sidebarTextArea.append(">" + text + "\n");
+         sidebarTextArea.append("> " + text + "\n");
+         sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
     }
 
     public void clearSideBarArea() {
@@ -179,12 +183,10 @@ public class GameWindow implements Printable {
     }
 
     public String getInputAreaTextField() {
-
          return inputAreaTextField.getText();
     }
 
     public void setInputAreaTextField(String text) {
-
          inputAreaTextField.setText(text);
     }
 }

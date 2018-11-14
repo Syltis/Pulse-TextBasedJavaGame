@@ -5,23 +5,41 @@ Has edited this:
 - Kristoffer
 */
 
-import Managers.JSONParsing;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Choice {
 
     private int id;
+    private String title;
     private String description;
     private HashMap<String, Integer> availableMovementCommands;
     private ArrayList<String> availableActionCommands;
     private ArrayList<String> availableCombatCommands;
 
-    JSONParsing JSONParser;
+    public Choice() {
+
+    }
+
+    public Choice(int id, String title, String description,
+                  HashMap availableMovementCommands,
+                  ArrayList availableActionCommands,
+                  ArrayList availableCombatCommands) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.availableMovementCommands = availableMovementCommands;
+        this.availableActionCommands = availableActionCommands;
+        this.availableCombatCommands = availableCombatCommands;
+    }
 
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
+
+    public String getTitle() { return title; }
+
+    public void setTitle(String title)  { this.title = title; }
 
     public String getDescription() { return description; }
 
@@ -49,21 +67,5 @@ public class Choice {
 
     public void setAvailableCombatCommands(ArrayList<String> availableCombatCommands) {
         this.availableCombatCommands = availableCombatCommands;
-    }
-
-    public Choice() {
-
-    }
-
-    public Choice(int id, String description,
-                  HashMap availableMovementCommands,
-                  ArrayList availableActionCommands,
-                  ArrayList availableCombatCommands) {
-        this.id = id;
-        this.description = description;
-        this.availableMovementCommands = availableMovementCommands;
-        this.availableActionCommands = availableActionCommands;
-        this.availableCombatCommands = availableCombatCommands;
-
     }
 }
