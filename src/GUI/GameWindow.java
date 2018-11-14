@@ -34,9 +34,10 @@ public class GameWindow implements Printable {
 
     private void buildGameWindow(JFrame frame) {
 
-        /* GameWindow consists of:
-        - gameArea, a JTextField where the output from the game will be printed.
-        - sidebarTextArea, TODO: Sidebar with info about available commands
+        /*
+        GameWindow consists of:
+        - gameArea, a JTextAreawhere the output from the game will be printed.
+        - sidebarTextArea,a JTextArea info about available commands
         - inputArea, a JPanel where the player enters commands and views them in a log
          */
 
@@ -61,6 +62,8 @@ public class GameWindow implements Printable {
 
         // SIDEBAR AREA
         sidebarTextArea.setEditable(false);
+        sidebarTextArea.setWrapStyleWord(true);
+        sidebarTextArea.setLineWrap(true);
 
         // INPUT AREA.
         // Set textArea and add it to scrollpane, which is then added to the layout
@@ -151,7 +154,7 @@ public class GameWindow implements Printable {
     // TODO Call this in a for loop to printResponseToLog them as a list
     public void printToSidebarArea(String text) {
 
-         sidebarTextArea.append(">" + text + "\n");
+        sidebarTextArea.append(">" + text + "\n");
     }
 
     public String getInputAreaTextField() {

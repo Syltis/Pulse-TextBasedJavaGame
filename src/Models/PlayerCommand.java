@@ -15,7 +15,7 @@ public class PlayerCommand {
         this.command = command;
     }
 
-    public String getCommand() {
+    public String getPlayerCommand() {
         return command;
     }
 }

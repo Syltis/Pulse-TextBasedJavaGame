@@ -8,34 +8,54 @@ Has edited this:
 import GUI.GameWindow;
 import Interfaces.Choosable;
 import Managers.JSONParsing;
-import Models.ChoiceV2;
+import Models.Choice;
 import Models.PlayerCommand;
 
 public class NewGame implements Choosable {
 
     private GameWindow gameWindow;
-    private ChoiceV2 activeChoice;
+    private Choice activeChoice;
     private PlayerCommand activePlayerCommand;
+    private JSONParsing jsonParser;
 
     public NewGame() {
         this.gameWindow = new GameWindow(NewGame.this);
+        this.jsonParser = new JSONParsing();
         GameSettings gameSettings = GameSettings.getInstance();
         runTestSegment();
     }
 
     private void runTestSegment() {
-        JSONParsing jsonParser = new JSONParsing();
-        activeChoice = jsonParser.getChoiceFromJsonV2(0);
+        activeChoice = jsonParser.getChoiceFromJson(0);
         gameWindow.printToGameArea(activeChoice.getDescription());
+        feedSideBar(this.activeChoice);
+
+    }
+
+    // Give this the id of the movementCommand
+    public void nextChoice(int id) {
+        Choice newActiveChoice = jsonParser.getChoiceFromJson(id);
+        gameWindow.printToGameArea(newActiveChoice.getDescription());
+        this.activeChoice = newActiveChoice;
+        feedSideBar(newActiveChoice);
+    }
+
+    public void feedSideBar(Choice activeChoice) {
+        gameWindow.printToSidebarArea(activeChoice.getAvailableMovementCommands().toString());
         gameWindow.printToSidebarArea(activeChoice.getAvailableActionCommands().toString());
+        gameWindow.printToSidebarArea(activeChoice.getAvailableCombatCommands().toString());
+    }
+
+    public Choice getChoiceFromParser(int id) {
+        return jsonParser.getChoiceFromJson(id);
     }
 
     @Override
-    public ChoiceV2 getActiveChoice() { return activeChoice;
+    public Choice getActiveChoice() { return activeChoice;
     }
 
     @Override
-    public void setActiveChoice(ChoiceV2 choice)  { this.activeChoice = choice;
+    public void setActiveChoice(Choice choice)  { this.activeChoice = choice;
     }
 
     @Override
