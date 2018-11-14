@@ -11,15 +11,12 @@ import java.awt.*;
 
 public class MainMenu {
 
-    private String newGame;
-    private String loadGame;
-    private String settings;
+    private final String newGame = "New Game";
+    private final String loadGame = "Load Game";
+    private final String settings = "Settings";
     private JFrame frame = new JFrame("UntitledRPG™ Main Menu");
 
     public MainMenu() {
-        newGame = "New Game";
-        loadGame = "Load Game";
-        settings = "Settings";
         buildWindow(frame);
     }
 

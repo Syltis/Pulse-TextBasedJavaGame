@@ -11,7 +11,7 @@ import Managers.PlayerInput;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CommandListener implements ActionListener {
+class CommandListener implements ActionListener {
 
     private Printable printable;
     private Choosable choosable;

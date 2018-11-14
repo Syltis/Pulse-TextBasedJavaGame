@@ -11,10 +11,12 @@ public interface Printable {
 
     void printResponseToLog(String text);
 
-    void printToGameArea(String text);
+    void printCommandToGameArea(String text);
 
     void setInputAreaTextField(String text);
 
     String getInputAreaTextField();
+
+    void clearSideBarArea();
 
 }

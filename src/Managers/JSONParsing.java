@@ -30,6 +30,7 @@ public class JSONParsing {
             JsonObject jsonChoice = (JsonObject) jsonArr.get(id);
             long idLong = jsonChoice.get("id").getAsInt();
             int idInt = (int) idLong;
+            String title = jsonChoice.get("title").getAsString();
             String description = jsonChoice.get("description").getAsString();
 
             JsonArray movementCommands = (JsonArray) jsonChoice.get("availableMovementCommands");
@@ -51,7 +52,7 @@ public class JSONParsing {
             for (Object command:combatCommands) {
                 combatCommandList.add(command.toString());
             }
-            choice = new Choice(idInt, description, map, actionCommandList, combatCommandList);
+            choice = new Choice(idInt, title, description, map, actionCommandList, combatCommandList);
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();

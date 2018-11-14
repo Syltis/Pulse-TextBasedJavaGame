@@ -1,7 +1,8 @@
 [
   {
     "id": 0,
-    "description": "1. You wake up in a dark room. The sound of machinery can be heard around you, but the room is empty. To the north is a door, and there is a small key on the floor.",
+    "title": "Start",
+    "description": "0. You wake up in a dark room. The sound of machinery can be heard around you, but the room is empty. To the north is a door, and there is a small key on the floor.",
     "availableMovementCommands": [
       {"command": "open door",
         "nextChoiceId": 1
@@ -12,12 +13,13 @@
   },
   {
     "id": 1,
-    "description": "2. You are in a room with two doors, one to the west and one to the east.",
+    "title": "Double doored room",
+    "description": "You are in a room with two doors, one to the west and one to the east.",
     "availableMovementCommands": [
-      {"command": "open left",
+      {"command": "open west",
         "nextChoiceId": 2
       },
-      {"command": "open right",
+      {"command": "open east",
         "nextChoiceId": 3
       },
       {"command": "go back",
@@ -29,9 +31,10 @@
   },
   {
     "id": 2,
-    "description": "3. You are in a dark room. There is a man lying on his stomach on the floor. A gun is lying besides him. There is a door to the north",
+    "title": "Dark room",
+    "description": "You are in a dark room. There is a man lying on his stomach on the floor. A gun is lying besides him. There is a door to the north",
     "availableMovementCommands": [
-      {"command": "go north",
+      {"command": "open north",
         "nextChoiceId": 4
       },
       {"command": "go back",
@@ -43,7 +46,8 @@
   },
   {
     "id": 3,
-    "description": "4. You are in a room that appears to be empty.",
+    "title": "Empty room",
+    "description": "You are in a room that appears to be empty.",
     "availableMovementCommands": [
       {"command": "go back",
         "nextChoiceId": 1
@@ -54,7 +58,8 @@
   },
   {
     "id": 4,
-    "description": "4. You are in a dim lit room. There are bunk bed by the walls. One of the bunk beds has a ball of blankets on it, and one can hear a wheezing-noice coming from it.",
+    "title": "Dim lit room",
+    "description": "You are in a dim lit room. There are bunk bed by the walls. One of the bunk beds has a ball of blankets on it, and one can hear a wheezing-noice coming from it.",
     "availableMovementCommands": [
       {"command": "go back",
         "nextChoiceId": 1

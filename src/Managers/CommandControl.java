@@ -17,7 +17,7 @@ public class CommandControl {
     private Choosable choosable;
     private GameSettings gameSettings = GameSettings.getInstance();
 
-    enum CommandTypes {
+    private enum CommandTypeEnum {
         MOVEMENTCOMMAND,
         ACTIONCOMMAND,
         COMBATCOMMAND,
@@ -29,16 +29,17 @@ public class CommandControl {
         this.choosable = choosable;
 
         // Get right commandType-enum
-        CommandTypes commandType = controlPlayerCommandType(playerCommand, activeChoice);
+        CommandTypeEnum commandType = controlPlayerCommandType(playerCommand, activeChoice);
         commandController(commandType, activeChoice, playerCommand);
     }
 
-    public void commandController(CommandTypes commandType, Choice activeChoice, PlayerCommand playerCommand) {
+    private void commandController(CommandTypeEnum commandType, Choice activeChoice, PlayerCommand playerCommand) {
         switch (commandType) {
             case MOVEMENTCOMMAND:
                 // Build a method to update the NewGame choiceId, and run that as the next method in newgame
-
                 int nextChoiceId = activeChoice.getAvailableMovementCommands().get(playerCommand.getPlayerCommand());
+                printable.printCommandToGameArea(playerCommand.getPlayerCommand());
+                printable.clearSideBarArea();
                 choosable.nextChoice(nextChoiceId);
                 break;
 
@@ -57,14 +58,21 @@ public class CommandControl {
         }
     }
 
-    public CommandTypes controlPlayerCommandType(PlayerCommand playerCommand, Choice activeChoice) {
-        if (gameSettings.getMovementCommandArchive().containsKey(playerCommand.getPlayerCommand())) {
-            return CommandTypes.MOVEMENTCOMMAND;
-        } else if (activeChoice.getAvailableActionCommands().contains(playerCommand.getPlayerCommand() + "\n")) {
-            return CommandTypes.ACTIONCOMMAND;
-        } else if (activeChoice.getAvailableCombatCommands().contains(playerCommand.getPlayerCommand() + "\n")) {
-            return CommandTypes.COMBATCOMMAND;
-        } else
-            return CommandTypes.NOMATCH;
+    private CommandTypeEnum controlPlayerCommandType(PlayerCommand playerCommand, Choice activeChoice) {
+        // Check if the command exists in gameSettings and in the activechoice
+        if (gameSettings.getMovementCommandArchive().containsKey(playerCommand.getPlayerCommand())
+                && activeChoice.getAvailableMovementCommands().containsKey(playerCommand.getPlayerCommand())) {
+            return CommandTypeEnum.MOVEMENTCOMMAND;
+        }
+        else if (gameSettings.getActionCommandArchive().contains(playerCommand.getPlayerCommand())
+                && activeChoice.getAvailableActionCommands().contains(playerCommand.getPlayerCommand())) {
+            return CommandTypeEnum.ACTIONCOMMAND;
+        }
+        else if (gameSettings.getActionCommandArchive().contains(playerCommand.getPlayerCommand())
+                && activeChoice.getAvailableCombatCommands().contains(playerCommand.getPlayerCommand())) {
+            return CommandTypeEnum.COMBATCOMMAND;
+        }
+        else
+            return CommandTypeEnum.NOMATCH;
     }
 }
