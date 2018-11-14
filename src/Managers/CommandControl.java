@@ -13,11 +13,12 @@ Has edited this:
 
 public class CommandControl {
 
-    GameSettings gameSettings = GameSettings.getInstance();
-    private int nextChoiceId;
-    private Choice activeChoice;
     private Printable printable;
     private Choosable choosable;
+    private PlayerCommand playerCommand;
+    private GameSettings gameSettings = GameSettings.getInstance();
+    private int nextChoiceId;
+    private Choice activeChoice;
 
     enum CommandTypes {
         MOVEMENTCOMMAND,
@@ -34,9 +35,13 @@ public class CommandControl {
         this.printable = printable;
         this.choosable = choosable;
         this.activeChoice = activeChoice;
+        this.playerCommand = playerCommand;
 
         CommandTypes commandType = controlPlayerCommandType(playerCommand, activeChoice);
+        commandController(commandType);
+    }
 
+    public void commandController(CommandTypes commandType) {
         switch (commandType) {
             case MOVEMENTCOMMAND:
                 // Build a method to update the NewGame choiceId, and run that as the next method in newgame
@@ -59,10 +64,6 @@ public class CommandControl {
         }
     }
 
-    public void commandController(CommandTypes commandType) {
-
-    }
-
     public CommandTypes controlPlayerCommandType(PlayerCommand playerCommand, Choice activeChoice) {
 
         if (gameSettings.getMovementCommandArchive().containsKey(playerCommand.getPlayerCommand())) {
@@ -75,10 +76,12 @@ public class CommandControl {
             return CommandTypes.NOMATCH;
     }
 
+    // TODO this doesnt work right
     public int controlMovementCommand(PlayerCommand playerCommand, Choice activeChoice) {
-        int nextChoiceId = gameSettings.getMovementCommandArchive().get(playerCommand.getPlayerCommand());
-        activeChoice.getAvailableMovementCommands().containsKey(playerCommand.getPlayerCommand());
-        System.out.println(nextChoiceId);
-        return nextChoiceId;
+    int nextChoiceId = gameSettings.getMovementCommandArchive().get(playerCommand.getPlayerCommand());
+    System.out.println(nextChoiceId);
+    System.out.println(activeChoice.getId());
+
+    return nextChoiceId;
     }
 }

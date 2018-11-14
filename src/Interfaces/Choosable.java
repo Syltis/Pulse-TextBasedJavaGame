@@ -9,15 +9,13 @@ import Models.Choice;
 import Models.PlayerCommand;
 
 public interface Choosable {
-    public Choice getActiveChoice();
+    Choice getActiveChoice();
 
-    public void setActiveChoice(Choice choice);
+    void setActiveChoice(Choice choice);
 
-    public PlayerCommand getActivePlayerCommand();
+    PlayerCommand getActivePlayerCommand();
 
-    public void setActivePlayerCommand(PlayerCommand command);
+    void setActivePlayerCommand(PlayerCommand command);
 
-    public void nextChoice(int id);
-
-    public Choice getChoiceFromParser(int id);
+    void nextChoice(int id);
 }

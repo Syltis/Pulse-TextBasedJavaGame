@@ -28,16 +28,16 @@
     "availableCombatCommands": ["kill rat"]
   },
   {
-  "id": 2,
-  "description": "3. You are in a dark room. There is a man lying on his stomach on the floor. A gun is lying besides him. There is a door to the north",
-  "availableMovementCommands": [
-    {"command": "go back",
-      "nextChoiceId": 1
-    }
-  ],
-  "availableActionCommands": ["inventory"],
-  "availableCombatCommands": ["kill rat"]
-},
+    "id": 2,
+    "description": "3. You are in a dark room. There is a man lying on his stomach on the floor. A gun is lying besides him. There is a door to the north",
+    "availableMovementCommands": [
+      {"command": "go back",
+        "nextChoiceId": 1
+      }
+    ],
+    "availableActionCommands": ["inventory"],
+    "availableCombatCommands": ["kill rat"]
+  },
   {
     "id": 3,
     "description": "4. You are in a room that appeasr to be empty.",
