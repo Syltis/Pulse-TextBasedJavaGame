@@ -65,7 +65,6 @@ public class CommandControl {
     }
 
     public CommandTypes controlPlayerCommandType(PlayerCommand playerCommand, Choice activeChoice) {
-
         if (gameSettings.getMovementCommandArchive().containsKey(playerCommand.getPlayerCommand())) {
             return CommandTypes.MOVEMENTCOMMAND;
         } else if (activeChoice.getAvailableActionCommands().contains(playerCommand.getPlayerCommand() + "\n")) {
@@ -78,10 +77,10 @@ public class CommandControl {
 
     // TODO this doesnt work right
     public int controlMovementCommand(PlayerCommand playerCommand, Choice activeChoice) {
-    int nextChoiceId = gameSettings.getMovementCommandArchive().get(playerCommand.getPlayerCommand());
-    System.out.println(nextChoiceId);
-    System.out.println(activeChoice.getId());
+        int nextChoiceId = gameSettings.getMovementCommandArchive().get(playerCommand.getPlayerCommand());
+        System.out.println(nextChoiceId);
+        System.out.println(activeChoice.getId());
 
-    return nextChoiceId;
+        return nextChoiceId;
     }
 }

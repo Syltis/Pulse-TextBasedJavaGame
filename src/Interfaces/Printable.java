@@ -13,7 +13,8 @@ public interface Printable {
 
     void printToGameArea(String text);
 
+    void setInputAreaTextField(String text);
+
     String getInputAreaTextField();
 
-    void setInputAreaTextField(String text);
 }
