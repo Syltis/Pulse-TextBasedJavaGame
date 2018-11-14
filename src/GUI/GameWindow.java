@@ -7,6 +7,7 @@ Has edited this:
 
 import Interfaces.Choosable;
 import Interfaces.Printable;
+import Models.Choice;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -176,6 +177,15 @@ public class GameWindow implements Printable {
     public void printToSidebarArea(String text) {
          sidebarTextArea.append("> " + text + "\n");
          sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
+    }
+
+    public void feedSideBar(Choice activeChoice) {
+        printToSidebarArea("MOVEMENT:");
+        printToSidebarArea(activeChoice.getAvailableMovementCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=]+", ""));
+        printToSidebarArea("ACTIONS:");
+        printToSidebarArea(activeChoice.getAvailableActionCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        printToSidebarArea("COMBAT:");
+        printToSidebarArea(activeChoice.getAvailableCombatCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
     }
 
     public void clearSideBarArea() {

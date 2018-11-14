@@ -6,6 +6,10 @@
     "availableMovementCommands": [
       {"command": "open door",
         "nextChoiceId": 1
+      },
+      {
+        "command": "north",
+        "nextChoiceId": 1
       }
     ],
     "availableActionCommands": ["take key", "inventory"],

@@ -25,7 +25,7 @@ public class NewGame implements Choosable {
     private void runStartChoice() {
         this.activeChoice = jsonParser.getChoiceFromJson(0);
         gameWindow.printResponseToGameArea(this.activeChoice.getTitle(), this.activeChoice.getDescription());
-        feedSideBar(this.activeChoice);
+        gameWindow.feedSideBar(this.activeChoice);
     }
 
     // Give this the id of the movementCommand
@@ -33,16 +33,7 @@ public class NewGame implements Choosable {
         Choice newActiveChoice = jsonParser.getChoiceFromJson(id);
         gameWindow.printResponseToGameArea(newActiveChoice.getTitle(), newActiveChoice.getDescription());
         this.activeChoice = newActiveChoice;
-        feedSideBar(newActiveChoice);
-    }
-
-    private void feedSideBar(Choice activeChoice) {
-        gameWindow.printToSidebarArea("MOVEMENT:");
-        gameWindow.printToSidebarArea(activeChoice.getAvailableMovementCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=]+", ""));
-        gameWindow.printToSidebarArea("ACTIONS:");
-        gameWindow.printToSidebarArea(activeChoice.getAvailableActionCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
-        gameWindow.printToSidebarArea("COMBAT:");
-        gameWindow.printToSidebarArea(activeChoice.getAvailableCombatCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        gameWindow.feedSideBar(newActiveChoice);
     }
 
     @Override
