@@ -41,7 +41,7 @@ public class JSONParsing {
 
             for (Object aObject:movementCommands) {
                 JsonObject jObject = (JsonObject) aObject;
-                map.put(jObject.get("command").toString(), jObject.get("nextChoiceId").getAsInt());
+                map.put(jObject.get("command").toString().replaceAll("\"*\"", ""), jObject.get("nextChoiceId").getAsInt());
             }
 
             for (Object command:actionCommands) {

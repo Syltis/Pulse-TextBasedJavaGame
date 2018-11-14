@@ -38,6 +38,7 @@ public class GameSettings {
 
     }
 
+    // TODO Make the movementCommandArchive a running list of the json commands, and use strings, the titles of the choices, and the JSON id.
     public synchronized static GameSettings getInstance() {
         if (instance == null) {
             instance = new GameSettings();
@@ -45,6 +46,9 @@ public class GameSettings {
         // These are put when the singleton is instatiated
         movementCommandArchive = new HashMap<>();
                 movementCommandArchive.put("open door", 1);
+                movementCommandArchive.put("open left", 2);
+                movementCommandArchive.put("open right", 3);
+                movementCommandArchive.put("open north", 3);
                 movementCommandArchive.put("go back", 0);
         return instance;
     }
