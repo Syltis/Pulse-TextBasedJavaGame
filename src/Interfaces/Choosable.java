@@ -1,9 +1,15 @@
 package Interfaces;
 
-import Models.ChoiceV2;
+/*
+Has edited this:
+- Kristoffer
+*/
+
+import Models.Choice;
 
 public interface Choosable {
-    public ChoiceV2 getActiveChoice();
 
-    public void setActiveChoice(ChoiceV2 choice);
+    Choice getActiveChoice();
+
+    void nextChoice(int id);
 }

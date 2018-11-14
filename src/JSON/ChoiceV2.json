@@ -1,35 +1,26 @@
 [
   {
-    "id": 0,
-    "description": "0. You wake up in a dark room. The sound of machinery can be heard around you, but the room is empty. In front of you is a door, and there is a small key on the floor.",
+    "id": "StartRoom",
+    "title": "Start",
+    "description": "0. You wake up in a dark room. The sound of machinery can be heard around you, but the room is empty. To the north is a door, and there is a small key on the floor.",
     "availableMovementCommands": [
-      {
-        "command": "open door",
-        "nextChoiceId": 1
-      },
-      {
-        "command": "go back",
-        "nextChoiceId": 0
+      {"command": "open door",
+        "nextChoiceId": "StartRoom2"
       }
     ],
     "availableActionCommands": ["take key", "inventory"],
-    "availableCombatCommands": [{}]
+    "availableCombatCommands": []
   },
   {
-    "id": 1,
-    "description": "1. You are in a room with two doors, one to the left and one to the right.",
+    "id": "StartRoom2",
+    "title": "Double doored room",
+    "description": "You are in a room with two doors, one to the west and one to the east.",
     "availableMovementCommands": [
-      {
-        "command": "open door",
-        "nextChoiceId": 1
-      },
-      {
-        "command": "go back",
-        "nextChoiceId": 0
+      {"command": "go back",
+        "nextChoiceId": "StartRoom"
       }
     ],
     "availableActionCommands": ["inventory"],
-    "availableCombatCommands": [{}]
+    "availableCombatCommands": ["kill rat"]
   }
 ]
-

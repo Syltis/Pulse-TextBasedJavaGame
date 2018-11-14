@@ -1,25 +1,22 @@
 package GUI;
 
-import Gameplay.NewGame;
-import javax.swing.*;
-import java.awt.*;
-
 /*
 Has edited this:
 - Kristoffer
 */
 
+import Gameplay.NewGame;
+import javax.swing.*;
+import java.awt.*;
+
 public class MainMenu {
 
-    private String newGame;
-    private String loadGame;
-    private String settings;
+    private final String newGame = "New Game";
+    private final String loadGame = "Load Game";
+    private final String settings = "Settings";
     private JFrame frame = new JFrame("UntitledRPG™ Main Menu");
 
     public MainMenu() {
-        newGame = "New Game";
-        loadGame = "Load Game";
-        settings = "Settings";
         buildWindow(frame);
     }
 
@@ -82,12 +79,12 @@ public class MainMenu {
                 frame.dispose();
             }
             if (source.getText().equalsIgnoreCase(loadGame)) {
-                new popUp("You have no saves to load!", "Error!");
+                new PopUp("You have no saves to load!", "Error!");
 
             }
             // TODO: Pass settings as an object to be used by gameWindow. Here we could add game dimensions
             if (source.getText().equalsIgnoreCase(settings)) {
-                new popUp("We haven'made any settings yet!", "Error!");
+                new PopUp("We haven'made any settings yet!", "Error!");
             }
         });
         return returned;

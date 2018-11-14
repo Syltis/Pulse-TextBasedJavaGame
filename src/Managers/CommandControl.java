@@ -1,9 +1,10 @@
 package Managers;
 
+import Gameplay.GameSettings;
+import Interfaces.Choosable;
+import Interfaces.Printable;
 import Models.Choice;
 import Models.PlayerCommand;
-
-import java.util.ArrayList;
 
 /*
 Has edited this:
@@ -12,44 +13,66 @@ Has edited this:
 
 public class CommandControl {
 
-    // Returns empty if no match
-    public String[] controlPlayerCommand(PlayerCommand playerCommand, Choice choice) {
-        String[] output = new String[2];
-        ArrayList<String> actionCommandList = choice.getAvailableActionCommands();
-        ArrayList<String> commandTargets = choice.getAvailableCommandTargets();
-        //ArrayList<String>playerCommandList = command.getCommandList();
+    private Printable printable;
+    private Choosable choosable;
+    private GameSettings gameSettings = GameSettings.getInstance();
 
-        for (String actionCommand:actionCommandList) {
-            if (actionCommand.equals(playerCommand.getActionCommand())) {
-                // this.actionCommand = actionCommand;
-                output[0] = actionCommand;
-            }
+    private enum CommandTypeEnum {
+        MOVEMENTCOMMAND,
+        ACTIONCOMMAND,
+        COMBATCOMMAND,
+        NOMATCH
+    }
+
+    public CommandControl(PlayerCommand playerCommand, Choice activeChoice, Printable printable, Choosable choosable) {
+        this.printable = printable;
+        this.choosable = choosable;
+
+        // Get right commandType-enum
+        CommandTypeEnum commandType = controlPlayerCommandType(playerCommand, activeChoice);
+        commandController(commandType, activeChoice, playerCommand);
+    }
+
+    private void commandController(CommandTypeEnum commandType, Choice activeChoice, PlayerCommand playerCommand) {
+        switch (commandType) {
+            case MOVEMENTCOMMAND:
+                // Build a method to update the NewGame choiceId, and run that as the next method in newgame
+                int nextChoiceId = activeChoice.getAvailableMovementCommands().get(playerCommand.getPlayerCommand());
+                printable.printCommandToGameArea(playerCommand.getPlayerCommand());
+                printable.clearSideBarArea();
+                choosable.nextChoice(nextChoiceId);
+                break;
+
+            case ACTIONCOMMAND:
+                System.out.println("Action-match " + playerCommand.getPlayerCommand());
+                break;
+
+            case COMBATCOMMAND:
+                System.out.println("Combat-match " + playerCommand.getPlayerCommand());
+                break;
+
+            case NOMATCH:
+                System.out.print("No match: " + playerCommand.getPlayerCommand() + "\n");
+                printable.printResponseToLog("What do you mean?");
+                break;
         }
-        for (String commandTarget: commandTargets) {
-            if (commandTarget.equals(playerCommand.getCommandTarget())) {
-                // this.commandTarget = commandTarget;
-                output[1] = commandTarget;
-            }
+    }
+
+    private CommandTypeEnum controlPlayerCommandType(PlayerCommand playerCommand, Choice activeChoice) {
+        // Check if the command exists in gameSettings and in the activechoice
+        if (gameSettings.getMovementCommandArchive().containsKey(playerCommand.getPlayerCommand())
+                && activeChoice.getAvailableMovementCommands().containsKey(playerCommand.getPlayerCommand())) {
+            return CommandTypeEnum.MOVEMENTCOMMAND;
         }
-        return output;
-
-        // Earlier version where command gave the player's commands through an ArrayList.
-        /*
-        for (String playerCommand:playerCommandList) {
-            for (String actionCommand: actionCommandList) {
-                if (playerCommand.equals(actionCommand)) {
-                    this.actionCommand = actionCommand;
-                }
-            }
+        else if (gameSettings.getActionCommandArchive().contains(playerCommand.getPlayerCommand())
+                && activeChoice.getAvailableActionCommands().contains(playerCommand.getPlayerCommand())) {
+            return CommandTypeEnum.ACTIONCOMMAND;
         }
-        for (String playerCommand:playerCommandList) {
-            for (String commandTarget: commandtargets) {
-                if (playerCommand.equals(commandTarget)) {
-                    this.commandTarget = commandTarget;
-                }
-
-            }
-
-        }*/
+        else if (gameSettings.getActionCommandArchive().contains(playerCommand.getPlayerCommand())
+                && activeChoice.getAvailableCombatCommands().contains(playerCommand.getPlayerCommand())) {
+            return CommandTypeEnum.COMBATCOMMAND;
+        }
+        else
+            return CommandTypeEnum.NOMATCH;
     }
 }

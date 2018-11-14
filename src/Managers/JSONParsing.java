@@ -1,83 +1,36 @@
 package Managers;
 
-import Models.Choice;
-import Models.ChoiceV2;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-
 /*
 Has edited this:
 - Kristoffer
 */
 
-//Parses JSON to a Choice-object.
+import Models.Choice;
+import Models.ChoiceV2;
+import com.google.gson.*;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+// Here the json.simple library is used
 public class JSONParsing {
 
-    public Choice getChoiceFromJson(int choiceId) {
-        JSONParser parser = new JSONParser();
-        try {
-            // Fetch data into array, narrow down Choice-object, get correct filetype of Id and Choice.
-            JSONArray jsonArr = (JSONArray) parser.parse(new FileReader("src/JSON/Choices.json"));
-            JSONObject jsonChoice = (JSONObject) jsonArr.get(choiceId);
-            long idLong = (long) jsonChoice.get("id");
-            int idInt = (int) idLong;
-            String description = (String) jsonChoice.get("description");
-
-            // Fetch available commands for the choice
-            JSONArray actionCommands = (JSONArray) jsonChoice.get("availableActionCommands");
-            JSONArray commandTargets = (JSONArray) jsonChoice.get("availableCommandTargets");
-            ArrayList<String> actionCommandList = new ArrayList<>();
-            ArrayList<String> commandTargetList = new ArrayList<>();
-
-            // Fetch the command and instantiate a Choice
-            for (Object command:actionCommands) {
-                actionCommandList.add(command.toString());
-            }
-            for (Object command:commandTargets) {
-                commandTargetList.add(command.toString());
-            }
-            Choice choice = new Choice();
-            choice.setId(idInt);
-            choice.setDescription(description);
-            choice.setAvailableActionCommands(actionCommandList);
-            choice.setAvailableCommandTargets(commandTargetList);
-            return choice;
-
-            // Exceptions stacked from most specific to least specific
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    // Gson
-    public ChoiceV2 getChoiceFromJsonV2(int id) {
+    // Here the google.Gson library is used
+    public Choice getChoiceFromJson(int id) {
 
         JsonParser parser = new JsonParser();
-        HashMap<String, String> map = new HashMap<>();
-        ChoiceV2 choice = null;
+        HashMap<String, Integer> map = new HashMap<>();
+        Choice choice = null;
 
         try {
-            JsonArray jsonArr = (JsonArray) parser.parse(new FileReader("src/JSON/ChoiceV2.json"));
+            JsonArray jsonArr = (JsonArray) parser.parse(new FileReader("src/JSON/Choice.json"));
             JsonObject jsonChoice = (JsonObject) jsonArr.get(id);
             long idLong = jsonChoice.get("id").getAsInt();
             int idInt = (int) idLong;
+            String title = jsonChoice.get("title").getAsString();
             String description = jsonChoice.get("description").getAsString();
 
             JsonArray movementCommands = (JsonArray) jsonChoice.get("availableMovementCommands");
@@ -89,7 +42,7 @@ public class JSONParsing {
 
             for (Object aObject:movementCommands) {
                 JsonObject jObject = (JsonObject) aObject;
-                map.put(jObject.get("command").toString(), jObject.get("nextChoiceId").toString());
+                map.put(jObject.get("command").toString().replaceAll("\"*\"", ""), jObject.get("nextChoiceId").getAsInt());
             }
 
             for (Object command:actionCommands) {
@@ -99,8 +52,7 @@ public class JSONParsing {
             for (Object command:combatCommands) {
                 combatCommandList.add(command.toString());
             }
-
-            choice = new ChoiceV2(idInt, description, map, actionCommandList, combatCommandList);
+            choice = new Choice(idInt, title, description, map, actionCommandList, combatCommandList);
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -111,14 +63,26 @@ public class JSONParsing {
         return choice;
     }
 
-    /*
-    public int getObjectIndexJson(JSONArray jsonArr, String id) {
-        for (Object aObject : jsonArr) {
-            JSONObject object = (JSONObject) aObject;
-            movement = (String) object.get(id);
-            System.out.println(id);
-            return id;
-    }
+    public ChoiceV2 getChoiceFromJsonV2(int id) {
 
-    */
+        JsonParser parser = new JsonParser();
+        HashMap<String, Integer> map = new HashMap<>();
+        Choice choice = null;
+        BufferedReader reader = null;
+        ChoiceV2 newChoice = new ChoiceV2();
+
+        try {
+            reader = new BufferedReader(new FileReader("src/JSON/ChoiceV2.json"));
+            Gson gson = new GsonBuilder().create();
+            newChoice = gson.fromJson(reader, ChoiceV2.class);
+            System.out.println(newChoice.toString());
+
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return newChoice;
+    }
 }

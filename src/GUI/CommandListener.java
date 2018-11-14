@@ -11,7 +11,7 @@ import Managers.PlayerInput;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CommandListener implements ActionListener {
+class CommandListener implements ActionListener {
 
     private Printable printable;
     private Choosable choosable;
@@ -51,7 +51,7 @@ public class CommandListener implements ActionListener {
             printable.printResponseToLog(">:(");
             blankCounter = blankCounter + 1;
         } else if (blankCounter == 5) {
-            new popUp("You're an idiot", "Seriously");
+            new PopUp("You're an idiot", "Seriously");
             blankCounter = blankCounter + 1;
         } else {
             printable.printResponseToLog("...");
