@@ -46,8 +46,8 @@ public class GameSettings {
         // These are put when the singleton is instatiated
         movementCommandArchive = new HashMap<>();
                 movementCommandArchive.put("open door", 1);
-                movementCommandArchive.put("open left", 2);
-                movementCommandArchive.put("open right", 3);
+                movementCommandArchive.put("open west", 2);
+                movementCommandArchive.put("open east", 3);
                 movementCommandArchive.put("open north", 3);
                 movementCommandArchive.put("go back", 0);
         return instance;

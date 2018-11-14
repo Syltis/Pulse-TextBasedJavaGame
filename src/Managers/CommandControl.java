@@ -37,8 +37,9 @@ public class CommandControl {
         switch (commandType) {
             case MOVEMENTCOMMAND:
                 // Build a method to update the NewGame choiceId, and run that as the next method in newgame
-
                 int nextChoiceId = activeChoice.getAvailableMovementCommands().get(playerCommand.getPlayerCommand());
+                printable.printToGameArea(playerCommand.getPlayerCommand());
+                printable.clearSideBarArea();
                 choosable.nextChoice(nextChoiceId);
                 break;
 
@@ -58,7 +59,8 @@ public class CommandControl {
     }
 
     public CommandTypes controlPlayerCommandType(PlayerCommand playerCommand, Choice activeChoice) {
-        if (gameSettings.getMovementCommandArchive().containsKey(playerCommand.getPlayerCommand())) {
+        // Check if the command exists in gameSettings and in the activechoice
+        if (gameSettings.getMovementCommandArchive().get(playerCommand.getPlayerCommand()).equals(activeChoice.getAvailableMovementCommands().get(playerCommand.getPlayerCommand()))) {
             return CommandTypes.MOVEMENTCOMMAND;
         } else if (activeChoice.getAvailableActionCommands().contains(playerCommand.getPlayerCommand() + "\n")) {
             return CommandTypes.ACTIONCOMMAND;

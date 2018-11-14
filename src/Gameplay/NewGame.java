@@ -39,9 +39,12 @@ public class NewGame implements Choosable {
     }
 
     public void feedSideBar(Choice activeChoice) {
-        gameWindow.printToSidebarArea(activeChoice.getAvailableMovementCommands().toString());
-        gameWindow.printToSidebarArea(activeChoice.getAvailableActionCommands().toString());
-        gameWindow.printToSidebarArea(activeChoice.getAvailableCombatCommands().toString());
+        gameWindow.printToSidebarArea("MOVEMENT:");
+        gameWindow.printToSidebarArea(activeChoice.getAvailableMovementCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=]+", ""));
+        gameWindow.printToSidebarArea("ACTIONS:");
+        gameWindow.printToSidebarArea(activeChoice.getAvailableActionCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        gameWindow.printToSidebarArea("COMBAT:");
+        gameWindow.printToSidebarArea(activeChoice.getAvailableCombatCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
     }
 
     @Override
