@@ -46,19 +46,16 @@ public class NewGame implements Choosable {
         gameWindow.printToSidebarArea(activeChoice.getAvailableCombatCommands().toString());
     }
 
-    public Choice getChoiceFromParser(int id) {
-        return jsonParser.getChoiceFromJson(id);
+    public Choice getChoiceFromParser(int id) { return jsonParser.getChoiceFromJson(id);
     }
 
     @Override
     public Choice getActiveChoice() { return activeChoice;
     }
 
-    @Override
     public void setActiveChoice(Choice choice)  { this.activeChoice = choice;
     }
 
-    @Override
     public PlayerCommand getActivePlayerCommand() { return this.activePlayerCommand;
     }
 

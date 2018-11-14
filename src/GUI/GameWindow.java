@@ -22,18 +22,19 @@ public class GameWindow implements Printable {
     private JTextField inputAreaTextField;
     private GridBagConstraints c;
 
-     public GameWindow(Choosable choosable) { this.choosable = choosable;
+     public GameWindow(Choosable choosable) {
+
+         this.choosable = choosable;
+         JFrame gameFrame = new JFrame("UntitledRPG™");
+         buildGameWindow(gameFrame);
+    }
+
+    private void buildGameWindow(JFrame frame) {
         c = new GridBagConstraints();
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         int hGap = 5;
         int vGap = 5;
         c.insets = new Insets(hGap, vGap, hGap, vGap);
-        JFrame gameFrame = new JFrame("UntitledRPG™");
-        buildGameWindow(gameFrame);
-    }
-
-    private void buildGameWindow(JFrame frame) {
-
         /*
         GameWindow consists of:
         - gameArea, a JTextAreawhere the output from the game will be printed.
@@ -136,17 +137,20 @@ public class GameWindow implements Printable {
 
     // Prints  player command to inputAreaTextField (log)
     public void printCommandToLog(String text) {
+
         inputAreaTextArea.append(">" + text + "\n");
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
     public void printResponseToLog(String text) {
+
         inputAreaTextArea.append("-" + text + "\n");
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
     // Prints to the gameArea.
     public void printToGameArea(String text) {
+
          gameArea.append(">" + text + "\n");
          gameArea.setCaretPosition(gameArea.getDocument().getLength());
     }
