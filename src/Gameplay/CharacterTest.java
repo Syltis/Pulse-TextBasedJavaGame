@@ -12,7 +12,7 @@ import java.io.IOException;
 class CharacterTest {
 
     @Test
-    void test() throws IOException {    
+    void test() {
         Character Player = new Character();
         Player.setName("Test Player:");
         Player.setStat("STR",20);

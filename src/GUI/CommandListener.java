@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 
 class CommandListener implements ActionListener {
 
-    private Printable printable;
+    private final Printable printable;
     private Choosable choosable;
     private int blankCounter;
 
@@ -25,16 +25,19 @@ class CommandListener implements ActionListener {
 
     // This is called then the player enters a command
     public void  actionPerformed(ActionEvent e) {
+        PlayerInput playerInput;
         String input = printable.getInputAreaTextField();
+
         if (input.length() > 0) {
             // Print in the inputAreaTextField (log)
             printable.printCommandToLog(input);
             // Send to playerInput.
-            PlayerInput playerInput = new PlayerInput(printable, choosable);
+            playerInput = new PlayerInput(printable, choosable);
             playerInput.receiveCommand(input);
             printable.setInputAreaTextField("");
             blankCounter = 0;
         }
+        // These activate when the input is empty
         else if (blankCounter < 1) {
             printable.printResponseToLog("You should make a choice.");
             blankCounter = blankCounter + 1;

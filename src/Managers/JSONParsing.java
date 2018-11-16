@@ -8,11 +8,14 @@ Has edited this:
 import Models.Choice;
 import Models.ChoiceV2;
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 // Here the json.simple library is used
@@ -56,33 +59,34 @@ public class JSONParsing {
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
         return choice;
     }
 
-    public ChoiceV2 getChoiceFromJsonV2(int id) {
-
-        JsonParser parser = new JsonParser();
-        HashMap<String, Integer> map = new HashMap<>();
-        Choice choice = null;
-        BufferedReader reader = null;
+    public ChoiceV2 getChoiceFromJsonV2(String id) {
+        BufferedReader reader;
         ChoiceV2 newChoice = new ChoiceV2();
+        Type choiceType = new TypeToken<Collection<ChoiceV2>>(){}.getType();
+
 
         try {
             reader = new BufferedReader(new FileReader("src/JSON/ChoiceV2.json"));
             Gson gson = new GsonBuilder().create();
-            newChoice = gson.fromJson(reader, ChoiceV2.class);
-            System.out.println(newChoice.toString());
-
+            Collection<ChoiceV2> choices = gson.fromJson(reader, choiceType);
+            if (!choices.isEmpty()) {
+                for (ChoiceV2 choice1:choices) {
+                    if (choice1.getId().equals(id)) {
+                        newChoice = choice1;
+                    }
+                }
+            } else {
+                System.out.println("HELLA LITTY YO ");
+            }
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return newChoice;
-    }
-}
+
+}}

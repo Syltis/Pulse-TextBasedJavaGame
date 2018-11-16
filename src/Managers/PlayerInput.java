@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class PlayerInput {
 
-    private Printable printable;
-    private Choosable choosable;
+    private final Printable printable;
+    private final Choosable choosable;
 
     public PlayerInput(Printable printable, Choosable choosable) {
 
@@ -24,7 +24,7 @@ public class PlayerInput {
 
     public void receiveCommand(String input) {
         PlayerCommand playerCommand = new PlayerCommand(cleanString(input));
-        new CommandControl(playerCommand, choosable.getActiveChoice(), printable, choosable);
+        new CommandControl(playerCommand,choosable.getActiveChoice(), printable, choosable);
     }
 
     // Separates string by whitespace

@@ -7,7 +7,8 @@ Has edited this:
 
 import Interfaces.Choosable;
 import Interfaces.Printable;
-import Models.Choice;
+import Models.ChoiceV2;
+import Models.MovementCommand;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -17,7 +18,7 @@ import java.awt.event.FocusEvent;
 
 public class GameWindow implements Printable {
 
-    private Choosable choosable;
+    private final Choosable choosable;
     private JTextArea sidebarTextArea;
     private JPanel sideBarPanel;
     private JTextArea gameTextArea;
@@ -179,13 +180,22 @@ public class GameWindow implements Printable {
          sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
     }
 
-    public void feedSideBar(Choice activeChoice) {
+    public void feedSideBar(ChoiceV2 activeChoice) {
         printToSidebarArea("MOVEMENT:");
-        printToSidebarArea(activeChoice.getAvailableMovementCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=]+", ""));
+        if (activeChoice.getAvailableMovementCommands() != null && activeChoice.getAvailableMovementCommands().length > 0) {
+            for (MovementCommand aMovementCommand : activeChoice.getAvailableMovementCommands()) {
+                printToSidebarArea(aMovementCommand.getMovementCommand());
+            }
+        }
+        //printToSidebarArea(activeChoice.getAvailableMovementCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=]+", ""));
         printToSidebarArea("ACTIONS:");
-        printToSidebarArea(activeChoice.getAvailableActionCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        if (activeChoice.getAvailableActionCommands() != null && !activeChoice.getAvailableActionCommands().isEmpty()){
+            printToSidebarArea(activeChoice.getAvailableActionCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        }
         printToSidebarArea("COMBAT:");
-        printToSidebarArea(activeChoice.getAvailableCombatCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        if (activeChoice.getAvailableCombatCommands() != null && !activeChoice.getAvailableCombatCommands().isEmpty()) {
+            printToSidebarArea(activeChoice.getAvailableCombatCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        }
     }
 
     public void clearSideBarArea() {
