@@ -6,6 +6,10 @@
     "availableMovementCommands": [
       {"command": "open door",
         "nextChoiceId": "StartRoom2"
+      },
+      {
+        "command": "look around",
+        "nextChoiceId": "StartRoom"
       }
     ],
     "availableActionCommands": ["take key", "inventory"],
@@ -18,6 +22,18 @@
     "availableMovementCommands": [
       {"command": "go back",
         "nextChoiceId": "StartRoom"
+      }
+    ],
+    "availableActionCommands": ["inventory"],
+    "availableCombatCommands": ["kill rat"]
+  },
+  {
+    "id": "StartRoom3",
+    "title": "Double doored room",
+    "description": "You are in a room with two doors, one to the west and one to the east.",
+    "availableMovementCommands": [
+      {"command": "go back",
+        "nextChoiceId": "StartRoom2"
       }
     ],
     "availableActionCommands": ["inventory"],

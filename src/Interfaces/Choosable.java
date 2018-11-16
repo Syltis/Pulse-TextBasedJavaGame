@@ -5,11 +5,11 @@ Has edited this:
 - Kristoffer
 */
 
-import Models.Choice;
+import Models.ChoiceV2;
 
 public interface Choosable {
 
-    Choice getActiveChoice();
+    ChoiceV2 getActiveChoice();
 
-    void nextChoice(int id);
+    void nextChoice(String id);
 }

@@ -7,7 +7,8 @@ Has edited this:
 
 import Interfaces.Choosable;
 import Interfaces.Printable;
-import Models.Choice;
+import Models.ChoiceV2;
+import Models.MovementCommand;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -179,9 +180,12 @@ public class GameWindow implements Printable {
          sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
     }
 
-    public void feedSideBar(Choice activeChoice) {
+    public void feedSideBar(ChoiceV2 activeChoice) {
         printToSidebarArea("MOVEMENT:");
-        printToSidebarArea(activeChoice.getAvailableMovementCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=]+", ""));
+        for (MovementCommand aMovementCommand: activeChoice.getAvailableMovementCommands()) {
+            printToSidebarArea(aMovementCommand.getMovementCommand());
+        }
+        //printToSidebarArea(activeChoice.getAvailableMovementCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=]+", ""));
         printToSidebarArea("ACTIONS:");
         printToSidebarArea(activeChoice.getAvailableActionCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
         printToSidebarArea("COMBAT:");
