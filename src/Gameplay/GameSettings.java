@@ -47,7 +47,6 @@ public class GameSettings {
         // TODO: These could be retrieved from JSON automatically
         movementCommandArchive = new ArrayList<>();
         // IntroRooms 0-4
-        movementCommandArchive.add(new MovementCommand("open door","introRoom1"));
         movementCommandArchive.add(new MovementCommand("door north","introRoom1"));
         movementCommandArchive.add(new MovementCommand("north","introRoom1"));
         movementCommandArchive.add(new MovementCommand("open west","introRoom2"));
