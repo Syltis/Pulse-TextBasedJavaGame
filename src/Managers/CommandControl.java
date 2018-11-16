@@ -3,7 +3,8 @@ package Managers;
 import Gameplay.GameSettings;
 import Interfaces.Choosable;
 import Interfaces.Printable;
-import Models.Choice;
+import Models.ChoiceV2;
+import Models.MovementCommand;
 import Models.PlayerCommand;
 
 /*
@@ -13,10 +14,9 @@ Has edited this:
 
 public class CommandControl {
 
-    private Printable printable;
-    private Choosable choosable;
-    private GameSettings gameSettings = GameSettings.getInstance();
-
+    private final Printable printable;
+    private final Choosable choosable;
+    private final GameSettings gameSettings = GameSettings.getInstance();
     private enum CommandTypeEnum {
         MOVEMENTCOMMAND,
         ACTIONCOMMAND,
@@ -24,20 +24,26 @@ public class CommandControl {
         NOMATCH
     }
 
-    public CommandControl(PlayerCommand playerCommand, Choice activeChoice, Printable printable, Choosable choosable) {
+    public CommandControl(PlayerCommand playerCommand, ChoiceV2 activeChoice, Printable printable, Choosable choosable) {
         this.printable = printable;
         this.choosable = choosable;
 
         // Get right commandType-enum
         CommandTypeEnum commandType = controlPlayerCommandType(playerCommand, activeChoice);
+        // Send to the right'controller' for processing
         commandController(commandType, activeChoice, playerCommand);
     }
 
-    private void commandController(CommandTypeEnum commandType, Choice activeChoice, PlayerCommand playerCommand) {
+    private void commandController(CommandTypeEnum commandType, ChoiceV2 activeChoice, PlayerCommand playerCommand) {
+        String nextChoiceId = null;
+
         switch (commandType) {
             case MOVEMENTCOMMAND:
-                // Build a method to update the NewGame choiceId, and run that as the next method in newgame
-                int nextChoiceId = activeChoice.getAvailableMovementCommands().get(playerCommand.getPlayerCommand());
+                for (MovementCommand aMovementCommand: activeChoice.getAvailableMovementCommands()) {
+                    if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand())) {
+                        nextChoiceId = aMovementCommand.getNextChoiceId();
+                    }
+                }
                 printable.printCommandToGameArea(playerCommand.getPlayerCommand());
                 printable.clearSideBarArea();
                 choosable.nextChoice(nextChoiceId);
@@ -58,13 +64,13 @@ public class CommandControl {
         }
     }
 
-    private CommandTypeEnum controlPlayerCommandType(PlayerCommand playerCommand, Choice activeChoice) {
+    private CommandTypeEnum controlPlayerCommandType(PlayerCommand playerCommand, ChoiceV2 activeChoice) {
         // Check if the command exists in gameSettings and in the activechoice
-        if (gameSettings.getMovementCommandArchive().containsKey(playerCommand.getPlayerCommand())
-                && activeChoice.getAvailableMovementCommands().containsKey(playerCommand.getPlayerCommand())) {
-            return CommandTypeEnum.MOVEMENTCOMMAND;
+        for (MovementCommand aMovementCommand: gameSettings.getMovementCommandArchive()) {
+            if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand()))
+                return CommandTypeEnum.MOVEMENTCOMMAND;
         }
-        else if (gameSettings.getActionCommandArchive().contains(playerCommand.getPlayerCommand())
+        if (gameSettings.getActionCommandArchive().contains(playerCommand.getPlayerCommand())
                 && activeChoice.getAvailableActionCommands().contains(playerCommand.getPlayerCommand())) {
             return CommandTypeEnum.ACTIONCOMMAND;
         }

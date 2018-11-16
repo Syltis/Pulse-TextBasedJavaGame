@@ -6,10 +6,12 @@ Has edited this:
 */
 
 /*
-Singleton class for storing data. Currently here to store the the choice-id of the active choice.
+Singleton class for storing game sava data and for saving a game.
 */
 
-import java.util.HashMap;
+import Models.MovementCommand;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,7 +19,7 @@ import java.util.stream.Stream;
 public class GameSettings {
 
     private static GameSettings instance = null;
-    private static HashMap<String, Integer> movementCommandArchive = null;
+    private static List<MovementCommand> movementCommandArchive = null;
 
     // The map from json sys.outs: {"go back"=0, "open door"=1}
     // The map from this hashmap is {go back=1, open door=1}
@@ -37,22 +39,26 @@ public class GameSettings {
 
     }
 
-    // TODO Make the movementCommandArchive a running list of the json commands, and use strings, the titles of the choices, and the JSON id.
+    // PASS GAMESETTINGS FROM OUTER CLASS
     public synchronized static GameSettings getInstance() {
         if (instance == null) {
             instance = new GameSettings();
         }
-        // These are put when the singleton is instatiated
-        movementCommandArchive = new HashMap<>();
-                movementCommandArchive.put("open door", 1);
-                movementCommandArchive.put("open west", 2);
-                movementCommandArchive.put("open east", 3);
-                movementCommandArchive.put("open north", 3);
-                movementCommandArchive.put("go back", 0);
+        // Set archive of movements when instantiated
+        movementCommandArchive = new ArrayList<>();
+        movementCommandArchive.add(new MovementCommand("open door","introRoom1"));
+        movementCommandArchive.add(new MovementCommand("door north","introRoom1"));
+        movementCommandArchive.add(new MovementCommand("north","introRoom1"));
+        movementCommandArchive.add(new MovementCommand("open west","introRoom1"));
+        movementCommandArchive.add(new MovementCommand("open east","introRoom1"));
+        movementCommandArchive.add(new MovementCommand("go back","introRoom0"));
+        movementCommandArchive.add(new MovementCommand("go back","introRoom2"));
+
+
         return instance;
     }
-
-    public HashMap<String, Integer> getMovementCommandArchive() {
+    // TODO automatically get all movementcommands from JSON
+    public List<MovementCommand> getMovementCommandArchive() {
         return movementCommandArchive;
     }
 

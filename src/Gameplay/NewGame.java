@@ -6,46 +6,42 @@ Has edited this:
 */
 
 import GUI.GameWindow;
+import GUI.Printer;
 import Interfaces.Choosable;
+import Interfaces.Printable;
 import Managers.JSONParsing;
-import Models.Choice;
+import Models.ChoiceV2;
 
 public class NewGame implements Choosable {
 
-    private GameWindow gameWindow;
-    private Choice activeChoice;
+    Printable printable;
+    private final GameWindow gameWindow;
+    private ChoiceV2 activeChoice;
     private JSONParsing jsonParser;
+    Printer printer;
 
     public NewGame() {
-        this.gameWindow = new GameWindow(NewGame.this);
+        this.gameWindow = new GameWindow(NewGame.this, printable);
         this.jsonParser = new JSONParsing();
+        this.printer = new Printer(gameWindow);
+        this.printable = printer.getPrintable();
         runStartChoice();
     }
 
     private void runStartChoice() {
-        this.activeChoice = jsonParser.getChoiceFromJson(0);
+        this.activeChoice = jsonParser.getChoiceFromJsonV2("introRoom0");
         gameWindow.printResponseToGameArea(this.activeChoice.getTitle(), this.activeChoice.getDescription());
-        feedSideBar(this.activeChoice);
+        gameWindow.feedSideBar(this.activeChoice);
     }
 
     // Give this the id of the movementCommand
-    public void nextChoice(int id) {
-        Choice newActiveChoice = jsonParser.getChoiceFromJson(id);
+    public void nextChoice(String id) {
+        ChoiceV2 newActiveChoice = jsonParser.getChoiceFromJsonV2(id);
         gameWindow.printResponseToGameArea(newActiveChoice.getTitle(), newActiveChoice.getDescription());
         this.activeChoice = newActiveChoice;
-        feedSideBar(newActiveChoice);
-    }
-
-    private void feedSideBar(Choice activeChoice) {
-        gameWindow.printToSidebarArea("MOVEMENT:");
-        gameWindow.printToSidebarArea(activeChoice.getAvailableMovementCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=]+", ""));
-        gameWindow.printToSidebarArea("ACTIONS:");
-        gameWindow.printToSidebarArea(activeChoice.getAvailableActionCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
-        gameWindow.printToSidebarArea("COMBAT:");
-        gameWindow.printToSidebarArea(activeChoice.getAvailableCombatCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        gameWindow.feedSideBar(newActiveChoice);
     }
 
     @Override
-    public Choice getActiveChoice() { return activeChoice;
-    }
+    public ChoiceV2 getActiveChoice() { return activeChoice; }
 }

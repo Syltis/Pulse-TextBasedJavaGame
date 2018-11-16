@@ -7,6 +7,8 @@ Has edited this:
 
 import Interfaces.Choosable;
 import Interfaces.Printable;
+import Models.ChoiceV2;
+import Models.MovementCommand;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
@@ -16,19 +18,21 @@ import java.awt.event.FocusEvent;
 
 public class GameWindow implements Printable {
 
-    private Choosable choosable;
-    private JTextArea sidebarTextArea;
+    private final Choosable choosable;
+    private final Printable printable;
+    Printer printer;
+    JTextArea sidebarTextArea;
     private JPanel sideBarPanel;
-    private JTextArea gameTextArea;
+    JTextArea gameTextArea;
     private JPanel gameAreaPanel;
-
-    private JTextArea inputAreaTextArea;
-    private JTextField inputAreaTextField;
+    JTextArea inputAreaTextArea;
+    JTextField inputAreaTextField;
     private GridBagConstraints c;
 
-     public GameWindow(Choosable choosable) {
-
+     public GameWindow(Choosable choosable, Printable printable) {
          this.choosable = choosable;
+         this.printable = printable;
+
          JFrame gameFrame = new JFrame("UntitledRPG™");
          buildGameWindow(gameFrame);
     }
@@ -48,7 +52,7 @@ public class GameWindow implements Printable {
 
         // Main build
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(800, 600);
+        frame.setSize(850, 650);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setVisible(true);
@@ -176,6 +180,24 @@ public class GameWindow implements Printable {
     public void printToSidebarArea(String text) {
          sidebarTextArea.append("> " + text + "\n");
          sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
+    }
+
+    public void feedSideBar(ChoiceV2 activeChoice) {
+        printToSidebarArea("MOVEMENT:");
+        if (activeChoice.getAvailableMovementCommands() != null && activeChoice.getAvailableMovementCommands().length > 0) {
+            for (MovementCommand aMovementCommand : activeChoice.getAvailableMovementCommands()) {
+                printToSidebarArea(aMovementCommand.getMovementCommand());
+            }
+        }
+        //printToSidebarArea(activeChoice.getAvailableMovementCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=]+", ""));
+        printToSidebarArea("ACTIONS:");
+        if (activeChoice.getAvailableActionCommands() != null && !activeChoice.getAvailableActionCommands().isEmpty()){
+            printToSidebarArea(activeChoice.getAvailableActionCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        }
+        printToSidebarArea("COMBAT:");
+        if (activeChoice.getAvailableCombatCommands() != null && !activeChoice.getAvailableCombatCommands().isEmpty()) {
+            printToSidebarArea(activeChoice.getAvailableCombatCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        }
     }
 
     public void clearSideBarArea() {

@@ -6,25 +6,25 @@ Has edited this:
 */
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class Choice {
+public class ChoiceV2 {
 
-    private int id;
+    private String id;
     private String title;
     private String description;
-    private HashMap<String, Integer> availableMovementCommands;
+
+    private MovementCommand[] availableMovementCommands;
     private ArrayList<String> availableActionCommands;
     private ArrayList<String> availableCombatCommands;
 
-    public Choice() {
+    public ChoiceV2() {
 
     }
 
-    public Choice(int id, String title, String description,
-                  HashMap availableMovementCommands,
-                  ArrayList availableActionCommands,
-                  ArrayList availableCombatCommands) {
+    public ChoiceV2(String id, String title, String description,
+                    MovementCommand[] availableMovementCommands,
+                    ArrayList availableActionCommands,
+                    ArrayList availableCombatCommands) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -33,9 +33,9 @@ public class Choice {
         this.availableCombatCommands = availableCombatCommands;
     }
 
-    public int getId() { return id; }
+    public String getId() { return id; }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(String id) { this.id = id; }
 
     public String getTitle() { return title; }
 
@@ -45,12 +45,12 @@ public class Choice {
 
     public void setDescription(String description) { this.description = description; }
 
-    public HashMap<String, Integer> getAvailableMovementCommands() {
-        return this.availableMovementCommands;
+    public MovementCommand[] getAvailableMovementCommands() {
+        return availableMovementCommands;
     }
 
-    public void setAvailableMovementCommands(HashMap<String, Integer> hashMap) {
-        this.availableMovementCommands = hashMap;
+    public void setAvailableMovementCommands(MovementCommand[] availableMovementCommands) {
+        this.availableMovementCommands = availableMovementCommands;
     }
 
     public ArrayList<String> getAvailableActionCommands() {
