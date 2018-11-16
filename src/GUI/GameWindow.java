@@ -50,14 +50,14 @@ public class GameWindow implements Printable {
         - inputArea, a JPanel where the player enters commands and views them in a log
          */
 
-        // Main build
+// Main build
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(850, 650);
         frame.setLocationRelativeTo(null);
         frame.setResizable(true);
         frame.setVisible(true);
 
-        // GAME AREA
+// GAME AREA
         gameTextArea = new JTextArea(5, 10);
         gameTextArea.setEditable(false);
         gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
@@ -75,7 +75,7 @@ public class GameWindow implements Printable {
         );
         gameAreaPanel.add(gameAreaScrollPane);
 
-        // SIDEBAR AREA
+// SIDEBAR AREA
         sidebarTextArea = new JTextArea(5, 10);
         sidebarTextArea.setEditable(false);
         sidebarTextArea.setWrapStyleWord(true);
@@ -90,7 +90,7 @@ public class GameWindow implements Printable {
         sideBarPanel.add(sideBarAreaScrollPane);
 
 
-        // INPUT AREA.
+// INPUT AREA.
         // Set textArea and add it to scrollpane, which is then added to the layout
         JPanel inputArea = new JPanel(new GridBagLayout());
         inputAreaTextArea = new JTextArea(10,20);
@@ -125,6 +125,8 @@ public class GameWindow implements Printable {
         inputAreaTextField.setText("Start your adventure!"); // Placeholder, see method below
 
         addComp(inputArea, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
+
+// LISTENERS
         // Listener for sending of a command
         inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable) {});
 
@@ -137,7 +139,14 @@ public class GameWindow implements Printable {
             }
         });
 
-        // ASSEMBLY
+        emptyLogButton.addActionListener(e -> emptyLog());
+
+        menuButton.addActionListener(e -> {
+            new MainMenu();
+            frame.dispose();
+        });
+
+// ASSEMBLY
         // Set vertical splitpane.
         JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameAreaPanel, sideBarPanel);
         vertSplitPane.setDividerLocation(670);
@@ -157,6 +166,7 @@ public class GameWindow implements Printable {
         frame.add(horiSplitPane);
     }
 
+// MUTATORS AND HELPERS
     // Easier implementation of constraints for gridBagLayout
     // Found on Stack Overflow somewhere.
     private void addComp(JPanel panel, JComponent comp
@@ -185,6 +195,10 @@ public class GameWindow implements Printable {
 
         inputAreaTextArea.append("- " + text + "\n");
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
+    }
+
+    public void emptyLog(){
+         inputAreaTextArea.setText("");
     }
 
     // Prints to the gameTextArea.
