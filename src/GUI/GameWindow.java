@@ -71,7 +71,10 @@ public class GameWindow implements Printable {
         gameAreaPanel.setLayout(new BorderLayout());
         gameAreaPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         gameAreaPanel.add(gameTextArea);
-        JScrollPane gameAreaScrollPane = new JScrollPane(gameAreaPanel);
+        JScrollPane gameAreaScrollPane = new JScrollPane(gameAreaPanel,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
+        );
 
         // SIDEBAR AREA
         sidebarTextArea.setEditable(false);
@@ -189,14 +192,17 @@ public class GameWindow implements Printable {
                 printToSidebarArea(aMovementCommand.getMovementCommand());
             }
         }
-        //printToSidebarArea(activeChoice.getAvailableMovementCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=]+", ""));
         printToSidebarArea("ACTIONS:");
         if (activeChoice.getAvailableActionCommands() != null && !activeChoice.getAvailableActionCommands().isEmpty()){
-            printToSidebarArea(activeChoice.getAvailableActionCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+            for (String aCommand:activeChoice.getAvailableActionCommands()) {
+                printToSidebarArea(aCommand.replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+",""));
+            }
         }
         printToSidebarArea("COMBAT:");
         if (activeChoice.getAvailableCombatCommands() != null && !activeChoice.getAvailableCombatCommands().isEmpty()) {
-            printToSidebarArea(activeChoice.getAvailableCombatCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+            for (String aCombatCommand:activeChoice.getAvailableActionCommands()) {
+                printToSidebarArea(aCombatCommand.replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+            }
         }
     }
 

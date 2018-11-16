@@ -51,14 +51,14 @@ public class GameSettings {
         movementCommandArchive.add(new MovementCommand("door north","introRoom1"));
         movementCommandArchive.add(new MovementCommand("north","introRoom1"));
         movementCommandArchive.add(new MovementCommand("open west","introRoom2"));
+        movementCommandArchive.add(new MovementCommand("west","introRoom2"));
         movementCommandArchive.add(new MovementCommand("open east","introRoom3"));
+        movementCommandArchive.add(new MovementCommand("east","introRoom3"));
         movementCommandArchive.add(new MovementCommand("go back","introRoom0"));
         movementCommandArchive.add(new MovementCommand("open north","introRoom4"));
         movementCommandArchive.add(new MovementCommand("go back","introRoom1"));
         movementCommandArchive.add(new MovementCommand("go back","introRoom1"));
         movementCommandArchive.add(new MovementCommand("go back","introRoom2"));
-
-
 
         return instance;
     }

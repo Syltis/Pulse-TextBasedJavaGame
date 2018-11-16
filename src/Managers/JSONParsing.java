@@ -68,7 +68,6 @@ public class JSONParsing {
         Choice newChoice = new Choice();
         Type choiceType = new TypeToken<Collection<Choice>>(){}.getType();
 
-
         try {
             reader = new BufferedReader(new FileReader("src/JSON/Choice.json"));
             Gson gson = new GsonBuilder().create();
@@ -79,8 +78,6 @@ public class JSONParsing {
                         newChoice = choice1;
                     }
                 }
-            } else {
-                System.out.println("HELLA LITTY YO ");
             }
         }
         catch (FileNotFoundException e) {
