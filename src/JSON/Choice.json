@@ -27,7 +27,13 @@
       {"command": "open west",
         "nextChoiceId": "introRoom2"
       },
+      {"command": "west",
+        "nextChoiceId": "introRoom2"
+      },
       {"command": "open east",
+        "nextChoiceId": "introRoom3"
+      },
+      {"command": "east",
         "nextChoiceId": "introRoom3"
       },
       {"command": "go back",

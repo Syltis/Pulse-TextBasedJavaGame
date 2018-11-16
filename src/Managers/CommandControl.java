@@ -37,21 +37,23 @@ public class CommandControl {
         String nextChoiceId = null;
 
         switch (commandType) {
-            // Check the playercommand with the activeChoice, and compare the nextChoiceId's to get the exact match
+            // Check the playercommand with the activeChoice, and compare the nextChoiceId's to get the mtching object
             case MOVEMENTCOMMAND:
+
                 for (MovementCommand aMovementCommand: activeChoice.getAvailableMovementCommands()) {
                     if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand())) {
                         for (MovementCommand anotherMovementCommand:gameSettings.getMovementCommandArchive()) {
                             if (aMovementCommand.getNextChoiceId().equals(anotherMovementCommand.getNextChoiceId())) {
-                                System.out.println("Action-match " + aMovementCommand.getNextChoiceId());
                                 nextChoiceId = aMovementCommand.getNextChoiceId();
                             }
                         }
                     }
                 }
-                printable.printCommandToGameArea(playerCommand.getPlayerCommand());
-                printable.clearSideBarArea();
-                choosable.nextChoice(nextChoiceId);
+                if (nextChoiceId != null) {
+                    printable.printCommandToGameArea(playerCommand.getPlayerCommand());
+                    printable.clearSideBarArea();
+                    choosable.nextChoice(nextChoiceId);
+                } else printable.printResponseToLog("x What do you mean?");
                 break;
 
             case ACTIONCOMMAND:
