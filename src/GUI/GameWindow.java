@@ -54,29 +54,29 @@ public class GameWindow implements Printable {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(850, 650);
         frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setVisible(true);
 
-        // Set areas
-        gameTextArea = new JTextArea(5, 10);
-        sidebarTextArea = new JTextArea(5, 10);
-        JPanel inputArea = new JPanel(new GridBagLayout());
-
         // GAME AREA
+        gameTextArea = new JTextArea(5, 10);
         gameTextArea.setEditable(false);
         gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
-        gameTextArea.setWrapStyleWord(true);
         gameTextArea.setLineWrap(true);
+        gameTextArea.setWrapStyleWord(true);
+
         gameAreaPanel = new JPanel();
         gameAreaPanel.setLayout(new BorderLayout());
         gameAreaPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         gameAreaPanel.add(gameTextArea);
-        JScrollPane gameAreaScrollPane = new JScrollPane(gameAreaPanel,
+
+        JScrollPane gameAreaScrollPane = new JScrollPane(gameTextArea,
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
         );
+        gameAreaPanel.add(gameAreaScrollPane);
 
         // SIDEBAR AREA
+        sidebarTextArea = new JTextArea(5, 10);
         sidebarTextArea.setEditable(false);
         sidebarTextArea.setWrapStyleWord(true);
         sidebarTextArea.setLineWrap(true);
@@ -88,27 +88,39 @@ public class GameWindow implements Printable {
 
         // INPUT AREA.
         // Set textArea and add it to scrollpane, which is then added to the layout
+        JPanel inputArea = new JPanel(new GridBagLayout());
         inputAreaTextArea = new JTextArea(10,20);
         inputAreaTextArea.setEditable(false);
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
 
-        // Message in the inputAreaTextArea to user.
-        String welcomeMsg= "This is your command log. Your commands will be printed here.";
-        printCommandToLog(welcomeMsg);
+        printCommandToLog("This is your command log. Your commands will be logged here.");
         JScrollPane textAreaScrollPane = new JScrollPane(inputAreaTextArea);
 
         // (addComp) method for placing elements in gridBagLayout.
         addComp(inputArea, textAreaScrollPane, 0, 1, 1, 1, GridBagConstraints.BOTH, 2, 2);
 
+        JButton emptyLogButton = new JButton("Empty Log");
+        JButton menuButton = new JButton("Main Menu");
+        JPanel inputAreaButtonPanel = new JPanel();
+
+        inputAreaButtonPanel.setLayout(new BoxLayout(inputAreaButtonPanel, BoxLayout.Y_AXIS));
+        inputAreaButtonPanel.add(emptyLogButton);
+        inputAreaButtonPanel.add(Box.createRigidArea(new Dimension(0,8)));
+        inputAreaButtonPanel.add(menuButton);
+
+        addComp(inputArea, inputAreaButtonPanel, 1, 0, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
+
+
         // Label with user instruction on using the inputAreaTextField
         JLabel inputAreaLabel = new JLabel("Enter commands below.");
         addComp(inputArea, inputAreaLabel, 0,2, 1, 1, GridBagConstraints.BOTH, 0.2,0.2);
 
+
         // Set jTextField and add it to layout
         inputAreaTextField = new JTextField();
         inputAreaTextField.setText("Start your adventure!"); // Placeholder, see method below
-        addComp(inputArea, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
+        addComp(inputArea, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
         // Listener for sending of a command
         inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable) {});
 
@@ -123,16 +135,19 @@ public class GameWindow implements Printable {
 
         // ASSEMBLY
         // Set vertical splitpane.
-        JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameAreaScrollPane, sideBarPanel);
-        vertSplitPane.setDividerLocation(620);
-        vertSplitPane.setDividerSize(10);
+        JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameAreaPanel, sideBarPanel);
+        vertSplitPane.setDividerLocation(680);
+        vertSplitPane.setDividerSize(5);
+        vertSplitPane.setOneTouchExpandable(false);
+        vertSplitPane.setResizeWeight(1.0);
         vertSplitPane.setEnabled(false);
 
         // Set horizontal split.
         JSplitPane horiSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, vertSplitPane, inputArea);
-        vertSplitPane.setOneTouchExpandable(false);
         horiSplitPane.setDividerLocation(400);
         horiSplitPane.setDividerSize(5);
+        vertSplitPane.setOneTouchExpandable(false);
+        vertSplitPane.setResizeWeight(1.0);
         horiSplitPane.setEnabled(false);
 
         frame.add(horiSplitPane);
@@ -180,28 +195,37 @@ public class GameWindow implements Printable {
          gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
     }
 
-    public void printToSidebarArea(String text) {
-         sidebarTextArea.append("> " + text + "\n");
-         sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
+    // Has alternative for dash ('-') in front of printed string
+    public void printToSidebarArea(String text,String dash) {
+        if (dash.equals("dash")) {
+            sidebarTextArea.append("- " + text + "\n");
+            sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
+        }
+        else {
+            sidebarTextArea.append(text + "\n");
+            sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
+        }
     }
 
     public void feedSideBar(Choice activeChoice) {
-        printToSidebarArea("MOVEMENT:");
         if (activeChoice.getAvailableMovementCommands() != null && activeChoice.getAvailableMovementCommands().length > 0) {
+            printToSidebarArea("MOVEMENT:", "dash");
             for (MovementCommand aMovementCommand : activeChoice.getAvailableMovementCommands()) {
-                printToSidebarArea(aMovementCommand.getMovementCommand());
+                printToSidebarArea(aMovementCommand.getMovementCommand(), "dash");
             }
         }
-        printToSidebarArea("ACTIONS:");
         if (activeChoice.getAvailableActionCommands() != null && !activeChoice.getAvailableActionCommands().isEmpty()){
+            printToSidebarArea("", "nodash");
+            printToSidebarArea("ACTIONS:", "dash");
             for (String aCommand:activeChoice.getAvailableActionCommands()) {
-                printToSidebarArea(aCommand.replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+",""));
+                printToSidebarArea(aCommand.replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+",""), "dash");
             }
         }
-        printToSidebarArea("COMBAT:");
         if (activeChoice.getAvailableCombatCommands() != null && !activeChoice.getAvailableCombatCommands().isEmpty()) {
-            for (String aCombatCommand:activeChoice.getAvailableActionCommands()) {
-                printToSidebarArea(aCombatCommand.replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+            printToSidebarArea("", "nodash");
+            printToSidebarArea("COMBAT:", "dash");
+            for (String aCombatCommand:activeChoice.getAvailableCombatCommands()) {
+                printToSidebarArea(aCombatCommand.replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""),"dash");
             }
         }
     }

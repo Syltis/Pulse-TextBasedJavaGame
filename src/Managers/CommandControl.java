@@ -35,11 +35,9 @@ public class CommandControl {
 
     private void commandController(CommandTypeEnum commandType, Choice activeChoice, PlayerCommand playerCommand) {
         String nextChoiceId = null;
-
         switch (commandType) {
             // Check the playercommand with the activeChoice, and compare the nextChoiceId's to get the mtching object
             case MOVEMENTCOMMAND:
-
                 for (MovementCommand aMovementCommand: activeChoice.getAvailableMovementCommands()) {
                     if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand())) {
                         for (MovementCommand anotherMovementCommand:gameSettings.getMovementCommandArchive()) {
@@ -49,11 +47,13 @@ public class CommandControl {
                         }
                     }
                 }
+                // Gives error if its is a viable command, but not for that Choice.
                 if (nextChoiceId != null) {
                     printable.printCommandToGameArea(playerCommand.getPlayerCommand());
                     printable.clearSideBarArea();
                     choosable.nextChoice(nextChoiceId);
-                } else printable.printResponseToLog("x What do you mean?");
+                } else
+                    printable.printResponseToLog("What do you mean?");
                 break;
 
             case ACTIONCOMMAND:
