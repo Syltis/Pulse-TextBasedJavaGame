@@ -46,9 +46,14 @@ public class GameSettings {
         }
         // Set archive of movements when instantiated
         movementCommandArchive = new ArrayList<>();
-        movementCommandArchive.add(new MovementCommand("open door","StartRoom2"));
-        movementCommandArchive.add(new MovementCommand("go back","StartRoom"));
-        movementCommandArchive.add(new MovementCommand("go back","StartRoom2"));
+        movementCommandArchive.add(new MovementCommand("open door","introRoom1"));
+        movementCommandArchive.add(new MovementCommand("door north","introRoom1"));
+        movementCommandArchive.add(new MovementCommand("north","introRoom1"));
+        movementCommandArchive.add(new MovementCommand("open west","introRoom1"));
+        movementCommandArchive.add(new MovementCommand("open east","introRoom1"));
+        movementCommandArchive.add(new MovementCommand("go back","introRoom0"));
+        movementCommandArchive.add(new MovementCommand("go back","introRoom2"));
+
 
         return instance;
     }

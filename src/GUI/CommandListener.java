@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
 
 class CommandListener implements ActionListener {
 
-    private Printable printable;
+    private final Printable printable;
     private Choosable choosable;
     private int blankCounter;
 

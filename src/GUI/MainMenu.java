@@ -14,7 +14,7 @@ public class MainMenu {
     private final String newGame = "New Game";
     private final String loadGame = "Load Game";
     private final String settings = "Settings";
-    private JFrame frame = new JFrame("UntitledRPG™ Main Menu");
+    private final JFrame frame = new JFrame("UntitledRPG™ Main Menu");
 
     public MainMenu() {
         buildWindow(frame);

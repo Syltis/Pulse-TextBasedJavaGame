@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class PlayerInput {
 
-    private Printable printable;
-    private Choosable choosable;
+    private final Printable printable;
+    private final Choosable choosable;
 
     public PlayerInput(Printable printable, Choosable choosable) {
 

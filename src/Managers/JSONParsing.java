@@ -59,8 +59,6 @@ public class JSONParsing {
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
         return choice;

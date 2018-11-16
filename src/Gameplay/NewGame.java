@@ -12,7 +12,7 @@ import Models.ChoiceV2;
 
 public class NewGame implements Choosable {
 
-    private GameWindow gameWindow;
+    private final GameWindow gameWindow;
     private ChoiceV2 activeChoice;
     private JSONParsing jsonParser;
 

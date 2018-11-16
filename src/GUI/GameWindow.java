@@ -18,7 +18,7 @@ import java.awt.event.FocusEvent;
 
 public class GameWindow implements Printable {
 
-    private Choosable choosable;
+    private final Choosable choosable;
     private JTextArea sidebarTextArea;
     private JPanel sideBarPanel;
     private JTextArea gameTextArea;

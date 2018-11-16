@@ -14,9 +14,9 @@ Has edited this:
 
 public class CommandControl {
 
-    private Printable printable;
-    private Choosable choosable;
-    private GameSettings gameSettings = GameSettings.getInstance();
+    private final Printable printable;
+    private final Choosable choosable;
+    private final GameSettings gameSettings = GameSettings.getInstance();
 
     private enum CommandTypeEnum {
         MOVEMENTCOMMAND,
@@ -35,13 +35,24 @@ public class CommandControl {
     }
 
     private void commandController(CommandTypeEnum commandType, ChoiceV2 activeChoice, PlayerCommand playerCommand) {
+        String nextChoiceId = null;
+
         switch (commandType) {
             case MOVEMENTCOMMAND:
                 // Build a method to update the NewGame choiceId, and run that as the next method in newgame
+
+                // Get the ncId from the active choice that mathes the playercommand
                 //String nextChoiceId = activeChoice.getAvailableMovementCommands().get(playerCommand.getPlayerCommand());
+
+                for (MovementCommand aMovementCommand: activeChoice.getAvailableMovementCommands()) {
+                    if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand())) {
+                        nextChoiceId = aMovementCommand.getNextChoiceId();
+                    }
+                }
+
                 printable.printCommandToGameArea(playerCommand.getPlayerCommand());
                 printable.clearSideBarArea();
-                //choosable.nextChoice(nextChoiceId);
+                choosable.nextChoice(nextChoiceId);
                 break;
 
             case ACTIONCOMMAND:
