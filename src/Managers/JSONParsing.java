@@ -19,7 +19,33 @@ import java.util.Collection;
 // Here the json.simple library is used
 public class JSONParsing {
 
-    /* Here the google.Gson library is used
+    public Choice getChoiceFromJsonV2(String id) {
+        BufferedReader reader;
+        Choice newChoice = new Choice();
+        Type choiceType = new TypeToken<Collection<Choice>>(){}.getType();
+
+        try {
+            reader = new BufferedReader(new FileReader("src/JSON/Choice.json"));
+            Gson gson = new GsonBuilder().create();
+            Collection<Choice> choices = gson.fromJson(reader, choiceType);
+            if (!choices.isEmpty()) {
+                for (Choice choice1:choices) {
+                    if (choice1.getId().equals(id)) {
+                        newChoice = choice1;
+                    }
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return newChoice;
+
+    }
+
+    /*
+    - Old parser, could still be of use later.
+
     public Choice getChoiceFromJson(int id) {
 
         JsonParser parser = new JsonParser();
@@ -62,27 +88,4 @@ public class JSONParsing {
         return choice;
     }
     */
-
-    public Choice getChoiceFromJsonV2(String id) {
-        BufferedReader reader;
-        Choice newChoice = new Choice();
-        Type choiceType = new TypeToken<Collection<Choice>>(){}.getType();
-
-        try {
-            reader = new BufferedReader(new FileReader("src/JSON/Choice.json"));
-            Gson gson = new GsonBuilder().create();
-            Collection<Choice> choices = gson.fromJson(reader, choiceType);
-            if (!choices.isEmpty()) {
-                for (Choice choice1:choices) {
-                    if (choice1.getId().equals(id)) {
-                        newChoice = choice1;
-                    }
-                }
-            }
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return newChoice;
-
-}}
+}

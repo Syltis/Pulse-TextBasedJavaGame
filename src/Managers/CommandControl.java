@@ -57,16 +57,15 @@ public class CommandControl {
                 break;
 
             case ACTIONCOMMAND:
-                System.out.println("Action-match " + playerCommand.getPlayerCommand());
+                // TODO action logic
                 break;
 
             case COMBATCOMMAND:
-                System.out.println("Combat-match " + playerCommand.getPlayerCommand());
+                // TODO combat logic
                 break;
 
             case NOMATCH:
-                System.out.print("No match: " + playerCommand.getPlayerCommand() + "\n");
-                printable.printResponseToLog("What do you mean?");
+                printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' mean?");
                 break;
         }
     }

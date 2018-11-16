@@ -83,7 +83,11 @@ public class GameWindow implements Printable {
         sideBarPanel = new JPanel();
         sideBarPanel.setLayout(new BorderLayout());
         sideBarPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
-        sideBarPanel.add(sidebarTextArea);
+        JScrollPane sideBarAreaScrollPane = new JScrollPane(sidebarTextArea,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
+        );
+        sideBarPanel.add(sideBarAreaScrollPane);
 
 
         // INPUT AREA.
@@ -136,7 +140,7 @@ public class GameWindow implements Printable {
         // ASSEMBLY
         // Set vertical splitpane.
         JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameAreaPanel, sideBarPanel);
-        vertSplitPane.setDividerLocation(680);
+        vertSplitPane.setDividerLocation(670);
         vertSplitPane.setDividerSize(5);
         vertSplitPane.setOneTouchExpandable(false);
         vertSplitPane.setResizeWeight(1.0);
@@ -146,8 +150,8 @@ public class GameWindow implements Printable {
         JSplitPane horiSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, vertSplitPane, inputArea);
         horiSplitPane.setDividerLocation(400);
         horiSplitPane.setDividerSize(5);
-        vertSplitPane.setOneTouchExpandable(false);
-        vertSplitPane.setResizeWeight(1.0);
+        horiSplitPane.setOneTouchExpandable(false);
+        horiSplitPane.setResizeWeight(1.0);
         horiSplitPane.setEnabled(false);
 
         frame.add(horiSplitPane);
