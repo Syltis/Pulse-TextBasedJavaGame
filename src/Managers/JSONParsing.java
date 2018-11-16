@@ -73,17 +73,16 @@ public class JSONParsing {
         try {
             reader = new BufferedReader(new FileReader("src/JSON/ChoiceV2.json"));
             Gson gson = new GsonBuilder().create();
-            // Size of choices is two
             Collection<ChoiceV2> choices = gson.fromJson(reader, choiceType);
-            System.out.println(choices.size());
             if (!choices.isEmpty()) {
-                for (ChoiceV2 choice1 : choices) {
+                for (ChoiceV2 choice1:choices) {
                     if (choice1.getId().equals(id)) {
                         newChoice = choice1;
                     }
                 }
+            } else {
+                System.out.println("HELLA LITTY YO ");
             }
-            else System.out.println("HELLA LITTY YO ");
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();

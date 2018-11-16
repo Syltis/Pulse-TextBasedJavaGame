@@ -182,14 +182,20 @@ public class GameWindow implements Printable {
 
     public void feedSideBar(ChoiceV2 activeChoice) {
         printToSidebarArea("MOVEMENT:");
-        for (MovementCommand aMovementCommand: activeChoice.getAvailableMovementCommands()) {
-            printToSidebarArea(aMovementCommand.getMovementCommand());
+        if (activeChoice.getAvailableMovementCommands() != null && activeChoice.getAvailableMovementCommands().length > 0) {
+            for (MovementCommand aMovementCommand : activeChoice.getAvailableMovementCommands()) {
+                printToSidebarArea(aMovementCommand.getMovementCommand());
+            }
         }
         //printToSidebarArea(activeChoice.getAvailableMovementCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=]+", ""));
         printToSidebarArea("ACTIONS:");
-        printToSidebarArea(activeChoice.getAvailableActionCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        if (activeChoice.getAvailableActionCommands() != null && !activeChoice.getAvailableActionCommands().isEmpty()){
+            printToSidebarArea(activeChoice.getAvailableActionCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        }
         printToSidebarArea("COMBAT:");
-        printToSidebarArea(activeChoice.getAvailableCombatCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        if (activeChoice.getAvailableCombatCommands() != null && !activeChoice.getAvailableCombatCommands().isEmpty()) {
+            printToSidebarArea(activeChoice.getAvailableCombatCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        }
     }
 
     public void clearSideBarArea() {

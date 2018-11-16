@@ -23,7 +23,7 @@ public class NewGame implements Choosable {
     }
 
     private void runStartChoice() {
-        this.activeChoice = jsonParser.getChoiceFromJsonV2("StartRoom");
+        this.activeChoice = jsonParser.getChoiceFromJsonV2("introRoom0");
         gameWindow.printResponseToGameArea(this.activeChoice.getTitle(), this.activeChoice.getDescription());
         gameWindow.feedSideBar(this.activeChoice);
     }
