@@ -5,23 +5,21 @@ Has edited this:
 - Kristoffer
 */
 
-import Models.Choice;
 import Models.ChoiceV2;
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 
 // Here the json.simple library is used
 public class JSONParsing {
 
-    // Here the google.Gson library is used
+    /* Here the google.Gson library is used
     public Choice getChoiceFromJson(int id) {
 
         JsonParser parser = new JsonParser();
@@ -63,6 +61,7 @@ public class JSONParsing {
 
         return choice;
     }
+    */
 
     public ChoiceV2 getChoiceFromJsonV2(String id) {
         BufferedReader reader;
@@ -71,7 +70,7 @@ public class JSONParsing {
 
 
         try {
-            reader = new BufferedReader(new FileReader("src/JSON/ChoiceV2.json"));
+            reader = new BufferedReader(new FileReader("src/JSON/Choice.json"));
             Gson gson = new GsonBuilder().create();
             Collection<ChoiceV2> choices = gson.fromJson(reader, choiceType);
             if (!choices.isEmpty()) {

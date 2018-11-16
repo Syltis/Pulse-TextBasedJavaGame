@@ -16,31 +16,34 @@ class CommandListener implements ActionListener {
     private final Printable printable;
     private Choosable choosable;
     private int blankCounter;
+    GameWindow gameWindow;
 
+    // TODO Why doesnt printable work?
     CommandListener(Printable printable, Choosable choosable) {
 
         this.printable = printable;
         this.choosable = choosable;
+        this.gameWindow = gameWindow;
     }
 
     // This is called then the player enters a command
     public void  actionPerformed(ActionEvent e) {
         PlayerInput playerInput;
-        String input = printable.getInputAreaTextField();
+            String input = printable.getInputAreaTextField();
+            if (input.length() > 0) {
+                // Print in the inputAreaTextField (log)
+                printable.printCommandToLog(input);
+                // Send to playerInput.
+                playerInput = new PlayerInput(printable, choosable);
+                playerInput.receiveCommand(input);
+                printable.setInputAreaTextField("");
+                blankCounter = 0;
+            }
 
-        if (input.length() > 0) {
-            // Print in the inputAreaTextField (log)
-            printable.printCommandToLog(input);
-            // Send to playerInput.
-            playerInput = new PlayerInput(printable, choosable);
-            playerInput.receiveCommand(input);
-            printable.setInputAreaTextField("");
-            blankCounter = 0;
-        }
         // These activate when the input is empty
         else if (blankCounter < 1) {
             printable.printResponseToLog("You should make a choice.");
-            blankCounter = blankCounter + 1;
+            blankCounter++;
         } else if (blankCounter == 1) {
             printable.printResponseToLog("Choice it up my dude.");
             blankCounter = blankCounter + 1;

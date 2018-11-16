@@ -6,19 +6,25 @@ Has edited this:
 */
 
 import GUI.GameWindow;
+import GUI.Printer;
 import Interfaces.Choosable;
+import Interfaces.Printable;
 import Managers.JSONParsing;
 import Models.ChoiceV2;
 
 public class NewGame implements Choosable {
 
+    Printable printable;
     private final GameWindow gameWindow;
     private ChoiceV2 activeChoice;
     private JSONParsing jsonParser;
+    Printer printer;
 
     public NewGame() {
-        this.gameWindow = new GameWindow(NewGame.this);
+        this.gameWindow = new GameWindow(NewGame.this, printable);
         this.jsonParser = new JSONParsing();
+        this.printer = new Printer(gameWindow);
+        this.printable = printer.getPrintable();
         runStartChoice();
     }
 
