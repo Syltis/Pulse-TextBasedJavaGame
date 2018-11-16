@@ -39,20 +39,25 @@ public class GameSettings {
 
     }
 
-    // PASS GAMESETTINGS FROM OUTER CLASS
     public synchronized static GameSettings getInstance() {
         if (instance == null) {
             instance = new GameSettings();
         }
         // Set archive of movements when instantiated
+        // TODO: These could be retrieved from JSON automatically
         movementCommandArchive = new ArrayList<>();
+        // IntroRooms 0-4
         movementCommandArchive.add(new MovementCommand("open door","introRoom1"));
         movementCommandArchive.add(new MovementCommand("door north","introRoom1"));
         movementCommandArchive.add(new MovementCommand("north","introRoom1"));
-        movementCommandArchive.add(new MovementCommand("open west","introRoom1"));
-        movementCommandArchive.add(new MovementCommand("open east","introRoom1"));
+        movementCommandArchive.add(new MovementCommand("open west","introRoom2"));
+        movementCommandArchive.add(new MovementCommand("open east","introRoom3"));
         movementCommandArchive.add(new MovementCommand("go back","introRoom0"));
+        movementCommandArchive.add(new MovementCommand("open north","introRoom4"));
+        movementCommandArchive.add(new MovementCommand("go back","introRoom1"));
+        movementCommandArchive.add(new MovementCommand("go back","introRoom1"));
         movementCommandArchive.add(new MovementCommand("go back","introRoom2"));
+
 
 
         return instance;

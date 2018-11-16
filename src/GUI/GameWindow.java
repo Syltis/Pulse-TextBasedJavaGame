@@ -7,7 +7,7 @@ Has edited this:
 
 import Interfaces.Choosable;
 import Interfaces.Printable;
-import Models.ChoiceV2;
+import Models.Choice;
 import Models.MovementCommand;
 
 import javax.swing.*;
@@ -182,7 +182,7 @@ public class GameWindow implements Printable {
          sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
     }
 
-    public void feedSideBar(ChoiceV2 activeChoice) {
+    public void feedSideBar(Choice activeChoice) {
         printToSidebarArea("MOVEMENT:");
         if (activeChoice.getAvailableMovementCommands() != null && activeChoice.getAvailableMovementCommands().length > 0) {
             for (MovementCommand aMovementCommand : activeChoice.getAvailableMovementCommands()) {

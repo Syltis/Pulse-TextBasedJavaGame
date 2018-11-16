@@ -1,7 +1,7 @@
 package GUI;
 
 import Interfaces.Printable;
-import Models.ChoiceV2;
+import Models.Choice;
 import Models.MovementCommand;
 
 // METHOD NOT FINISHED AND NOT IN USE
@@ -46,7 +46,7 @@ public class Printer implements Printable {
         gameWindow.sidebarTextArea.setCaretPosition(gameWindow.sidebarTextArea.getDocument().getLength());
     }
 
-    public void feedSideBar(ChoiceV2 activeChoice) {
+    public void feedSideBar(Choice activeChoice) {
         printToSidebarArea("MOVEMENT:");
         if (activeChoice.getAvailableMovementCommands() != null && activeChoice.getAvailableMovementCommands().length > 0) {
             for (MovementCommand aMovementCommand : activeChoice.getAvailableMovementCommands()) {

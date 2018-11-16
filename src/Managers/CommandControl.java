@@ -3,7 +3,7 @@ package Managers;
 import Gameplay.GameSettings;
 import Interfaces.Choosable;
 import Interfaces.Printable;
-import Models.ChoiceV2;
+import Models.Choice;
 import Models.MovementCommand;
 import Models.PlayerCommand;
 
@@ -24,24 +24,29 @@ public class CommandControl {
         NOMATCH
     }
 
-    public CommandControl(PlayerCommand playerCommand, ChoiceV2 activeChoice, Printable printable, Choosable choosable) {
+    public CommandControl(PlayerCommand playerCommand, Choice activeChoice, Printable printable, Choosable choosable) {
         this.printable = printable;
         this.choosable = choosable;
 
         // Get right commandType-enum
-        CommandTypeEnum commandType = controlPlayerCommandType(playerCommand, activeChoice);
-        // Send to the right'controller' for processing
-        commandController(commandType, activeChoice, playerCommand);
+        // Send to the right 'controller' for processing
+        commandController(controlPlayerCommandType(playerCommand, activeChoice), activeChoice, playerCommand);
     }
 
-    private void commandController(CommandTypeEnum commandType, ChoiceV2 activeChoice, PlayerCommand playerCommand) {
+    private void commandController(CommandTypeEnum commandType, Choice activeChoice, PlayerCommand playerCommand) {
         String nextChoiceId = null;
 
         switch (commandType) {
+            // Check the playercommand with the activeChoice, and compare the nextChoiceId's to get the exact match
             case MOVEMENTCOMMAND:
                 for (MovementCommand aMovementCommand: activeChoice.getAvailableMovementCommands()) {
                     if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand())) {
-                        nextChoiceId = aMovementCommand.getNextChoiceId();
+                        for (MovementCommand anotherMovementCommand:gameSettings.getMovementCommandArchive()) {
+                            if (aMovementCommand.getNextChoiceId().equals(anotherMovementCommand.getNextChoiceId())) {
+                                System.out.println("Action-match " + aMovementCommand.getNextChoiceId());
+                                nextChoiceId = aMovementCommand.getNextChoiceId();
+                            }
+                        }
                     }
                 }
                 printable.printCommandToGameArea(playerCommand.getPlayerCommand());
@@ -64,7 +69,7 @@ public class CommandControl {
         }
     }
 
-    private CommandTypeEnum controlPlayerCommandType(PlayerCommand playerCommand, ChoiceV2 activeChoice) {
+    private CommandTypeEnum controlPlayerCommandType(PlayerCommand playerCommand, Choice activeChoice) {
         // Check if the command exists in gameSettings and in the activechoice
         for (MovementCommand aMovementCommand: gameSettings.getMovementCommandArchive()) {
             if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand()))
