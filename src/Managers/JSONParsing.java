@@ -5,7 +5,7 @@ Has edited this:
 - Kristoffer
 */
 
-import Models.ChoiceV2;
+import Models.Choice;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -63,18 +63,18 @@ public class JSONParsing {
     }
     */
 
-    public ChoiceV2 getChoiceFromJsonV2(String id) {
+    public Choice getChoiceFromJsonV2(String id) {
         BufferedReader reader;
-        ChoiceV2 newChoice = new ChoiceV2();
-        Type choiceType = new TypeToken<Collection<ChoiceV2>>(){}.getType();
+        Choice newChoice = new Choice();
+        Type choiceType = new TypeToken<Collection<Choice>>(){}.getType();
 
 
         try {
             reader = new BufferedReader(new FileReader("src/JSON/Choice.json"));
             Gson gson = new GsonBuilder().create();
-            Collection<ChoiceV2> choices = gson.fromJson(reader, choiceType);
+            Collection<Choice> choices = gson.fromJson(reader, choiceType);
             if (!choices.isEmpty()) {
-                for (ChoiceV2 choice1:choices) {
+                for (Choice choice1:choices) {
                     if (choice1.getId().equals(id)) {
                         newChoice = choice1;
                     }

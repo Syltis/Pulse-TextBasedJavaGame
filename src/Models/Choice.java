@@ -7,7 +7,7 @@ Has edited this:
 
 import java.util.ArrayList;
 
-public class ChoiceV2 {
+public class Choice {
 
     private String id;
     private String title;
@@ -17,14 +17,14 @@ public class ChoiceV2 {
     private ArrayList<String> availableActionCommands;
     private ArrayList<String> availableCombatCommands;
 
-    public ChoiceV2() {
+    public Choice() {
 
     }
 
-    public ChoiceV2(String id, String title, String description,
-                    MovementCommand[] availableMovementCommands,
-                    ArrayList availableActionCommands,
-                    ArrayList availableCombatCommands) {
+    public Choice(String id, String title, String description,
+                  MovementCommand[] availableMovementCommands,
+                  ArrayList availableActionCommands,
+                  ArrayList availableCombatCommands) {
         this.id = id;
         this.title = title;
         this.description = description;
