@@ -5,6 +5,7 @@ Has edited this:
 - Kristoffer
 */
 
+import Gameplay.GameSettings;
 import Interfaces.Choosable;
 import Interfaces.Printable;
 import Models.Choice;
@@ -21,6 +22,7 @@ public class GameWindow implements Printable {
     private final Choosable choosable;
     private final Printable printable;
     Printer printer;
+    GameSettings gameSettings = GameSettings.getInstance();
     JTextArea sidebarTextArea;
     private JPanel sideBarPanel;
     JTextArea gameTextArea;
@@ -46,7 +48,7 @@ public class GameWindow implements Printable {
         /*
         GameWindow consists of:
         - gameTextArea, a JTextAreawhere the output from the game will be printed.
-        - sidebarTextArea,a JTextArea info about available commands
+        - sideBarPanel,a JTextArea info about available commands
         - inputArea, a JPanel where the player enters commands and views them in a log
          */
 
@@ -92,7 +94,7 @@ public class GameWindow implements Printable {
 
 // INPUT AREA.
         // Set textArea and add it to scrollpane, which is then added to the layout
-        JPanel inputArea = new JPanel(new GridBagLayout());
+        JPanel inputAreaPanel = new JPanel(new GridBagLayout());
         inputAreaTextArea = new JTextArea(10,20);
         inputAreaTextArea.setEditable(false);
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
@@ -101,30 +103,30 @@ public class GameWindow implements Printable {
         JScrollPane textAreaScrollPane = new JScrollPane(inputAreaTextArea);
 
         // (addComp) method for placing elements in gridBagLayout.
-        addComp(inputArea, textAreaScrollPane, 0, 1, 1, 1, GridBagConstraints.BOTH, 2, 2);
+        addComp(inputAreaPanel, textAreaScrollPane, 0, 1, 1, 1, GridBagConstraints.BOTH, 2, 2);
 
         JButton emptyLogButton = new JButton("Empty Log");
-        JButton menuButton = new JButton("Main Menu");
+        JButton mainMenuButton = new JButton("Main Menu");
         JPanel inputAreaButtonPanel = new JPanel();
 
         inputAreaButtonPanel.setLayout(new BoxLayout(inputAreaButtonPanel, BoxLayout.Y_AXIS));
         inputAreaButtonPanel.add(emptyLogButton);
         inputAreaButtonPanel.add(Box.createRigidArea(new Dimension(0,8)));
-        inputAreaButtonPanel.add(menuButton);
+        inputAreaButtonPanel.add(mainMenuButton);
 
-        addComp(inputArea, inputAreaButtonPanel, 1, 0, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
+        addComp(inputAreaPanel, inputAreaButtonPanel, 1, 0, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
 
         // Label with user instruction on using the inputAreaTextField
         JLabel inputAreaLabel = new JLabel("Enter commands below.");
-        addComp(inputArea, inputAreaLabel, 0,2, 1, 1, GridBagConstraints.BOTH, 0.2,0.2);
+        addComp(inputAreaPanel, inputAreaLabel, 0,2, 1, 1, GridBagConstraints.BOTH, 0.2,0.2);
 
 
         // Set jTextField and add it to layout
         inputAreaTextField = new JTextField();
         inputAreaTextField.setText("Start your adventure!"); // Placeholder, see method below
 
-        addComp(inputArea, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
+        addComp(inputAreaPanel, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
 // LISTENERS
         // Listener for sending of a command
@@ -141,9 +143,9 @@ public class GameWindow implements Printable {
 
         emptyLogButton.addActionListener(e -> emptyLog());
 
-        menuButton.addActionListener(e -> {
+        mainMenuButton.addActionListener(e -> {
             new MainMenu();
-            frame.dispose();
+            //frame.dispose();
         });
 
 // ASSEMBLY
@@ -156,7 +158,7 @@ public class GameWindow implements Printable {
         vertSplitPane.setEnabled(false);
 
         // Set horizontal split.
-        JSplitPane horiSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, vertSplitPane, inputArea);
+        JSplitPane horiSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, vertSplitPane, inputAreaPanel);
         horiSplitPane.setDividerLocation(400);
         horiSplitPane.setDividerSize(5);
         horiSplitPane.setOneTouchExpandable(false);
@@ -225,15 +227,28 @@ public class GameWindow implements Printable {
         }
     }
 
+    public void printToSidebarArea(int numb, String dash) {
+        if (dash.equals("dash")) {
+            sidebarTextArea.append("- " + numb + "\n");
+            sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
+        }
+        else {
+            sidebarTextArea.append(numb + "\n");
+            sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
+        }
+    }
+
     // Prints the available commands to the sidebar
     public void feedSideBar(Choice activeChoice) {
-        if (activeChoice.getAvailableMovementCommands() != null && activeChoice.getAvailableMovementCommands().length > 0) {
-            printToSidebarArea("MOVEMENT:", "dash");
-            for (MovementCommand aMovementCommand : activeChoice.getAvailableMovementCommands()) {
+         int turnCount = gameSettings.getTurnCount();
+         printToSidebarArea(turnCount, "dash");
+         if (activeChoice.getAvailableMovementCommands() != null && activeChoice.getAvailableMovementCommands().length > 0) {
+             printToSidebarArea("MOVEMENT:", "dash");
+             for (MovementCommand aMovementCommand : activeChoice.getAvailableMovementCommands()) {
                 printToSidebarArea(aMovementCommand.getMovementCommand(), "dash");
             }
-        }
-        if (activeChoice.getAvailableActionCommands() != null && !activeChoice.getAvailableActionCommands().isEmpty()){
+         }
+         if (activeChoice.getAvailableActionCommands() != null && !activeChoice.getAvailableActionCommands().isEmpty()){
             printToSidebarArea("", "nodash");
             printToSidebarArea("ACTIONS:", "dash");
             for (String aCommand:activeChoice.getAvailableActionCommands()) {

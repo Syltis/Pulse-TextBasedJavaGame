@@ -20,10 +20,6 @@ public class GameSettings {
 
     private static GameSettings instance = null;
     private static List<MovementCommand> movementCommandArchive = null;
-
-    // The map from json sys.outs: {"go back"=0, "open door"=1}
-    // The map from this hashmap is {go back=1, open door=1}
-
     private static final List<String> actionCommandArchive = Stream.of(
             "take key",
             "inventory"
@@ -33,12 +29,12 @@ public class GameSettings {
             "kill rat"
 
     ).collect(Collectors.toList());
-    private int turnCount;
+    private int turnCount = 1;
     private GameSettings() {}
 
     public int getTurnCount() { return turnCount; }
 
-    public void setTurnCount(int turnCount) { this.turnCount = turnCount; }
+    public void upTurnCount() { turnCount = turnCount + 1; }
 
     public synchronized static GameSettings getInstance() {
         if (instance == null) {
@@ -48,15 +44,14 @@ public class GameSettings {
         // TODO: These could be retrieved from JSON automatically
         movementCommandArchive = new ArrayList<>();
         // IntroRooms 0-4
-        movementCommandArchive.add(new MovementCommand("door north","introRoom1"));
+        movementCommandArchive.add(new MovementCommand("go north","introRoom1"));
         movementCommandArchive.add(new MovementCommand("north","introRoom1"));
-        movementCommandArchive.add(new MovementCommand("open west","introRoom2"));
+        movementCommandArchive.add(new MovementCommand("go west","introRoom2"));
         movementCommandArchive.add(new MovementCommand("west","introRoom2"));
-        movementCommandArchive.add(new MovementCommand("open east","introRoom3"));
+        movementCommandArchive.add(new MovementCommand("go east","introRoom3"));
         movementCommandArchive.add(new MovementCommand("east","introRoom3"));
         movementCommandArchive.add(new MovementCommand("go back","introRoom0"));
-        movementCommandArchive.add(new MovementCommand("open north","introRoom4"));
-        movementCommandArchive.add(new MovementCommand("go back","introRoom1"));
+        movementCommandArchive.add(new MovementCommand("go north","introRoom4"));
         movementCommandArchive.add(new MovementCommand("go back","introRoom1"));
         movementCommandArchive.add(new MovementCommand("go back","introRoom2"));
 
