@@ -3,7 +3,6 @@ F18-03-1.iml
 .idea/
 .iml
 _windows/
-codestyles/
 acceptedLanguageLevels.xml
 colors.scheme.xml
 debugger.xml
