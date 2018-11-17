@@ -5,7 +5,7 @@
     "description": "You wake up in a dark room. The sound of machinery can be heard around you. There is a small table with a brown box on it , and a door in in the direction of what you think is north..",
     "availableMovementCommands": [
       {
-        "command": "door north",
+        "command": "go north",
         "nextChoiceId": "introRoom1"
       },
       {
@@ -21,13 +21,13 @@
     "title": "Double doored room",
     "description": "You are in a room with two doors, one to the west and one to the east.",
     "availableMovementCommands": [
-      {"command": "open west",
+      {"command": "go west",
         "nextChoiceId": "introRoom2"
       },
       {"command": "west",
         "nextChoiceId": "introRoom2"
       },
-      {"command": "open east",
+      {"command": "go east",
         "nextChoiceId": "introRoom3"
       },
       {"command": "east",
@@ -45,7 +45,7 @@
     "title": "Dark room",
     "description": "You are in a dark room. There is a man lying on his stomach on the floor. A gun is lying besides him. There is a door to the north",
     "availableMovementCommands": [
-      {"command": "open north",
+      {"command": "go north",
         "nextChoiceId": "introRoom4"
       },
       {"command": "go back",

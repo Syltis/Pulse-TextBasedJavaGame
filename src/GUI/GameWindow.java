@@ -50,7 +50,7 @@ public class GameWindow implements Printable {
         - inputArea, a JPanel where the player enters commands and views them in a log
          */
 
-// Main build
+        // Main build
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setSize(850, 650);
         frame.setLocationRelativeTo(null);
@@ -225,6 +225,7 @@ public class GameWindow implements Printable {
         }
     }
 
+    // Prints the available commands to the sidebar
     public void feedSideBar(Choice activeChoice) {
         if (activeChoice.getAvailableMovementCommands() != null && activeChoice.getAvailableMovementCommands().length > 0) {
             printToSidebarArea("MOVEMENT:", "dash");

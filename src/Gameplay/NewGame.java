@@ -20,7 +20,8 @@ public class NewGame implements Choosable {
     private JSONParsing jsonParser;
     Printer printer;
 
-    public NewGame() {
+    public NewGame()
+    {
         this.gameWindow = new GameWindow(NewGame.this, printable);
         this.jsonParser = new JSONParsing();
         this.printer = new Printer(gameWindow);

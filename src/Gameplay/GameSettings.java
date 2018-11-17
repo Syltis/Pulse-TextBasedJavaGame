@@ -29,15 +29,16 @@ public class GameSettings {
             "inventory"
 
     ).collect(Collectors.toList());
-
     private static final List<String> combatCommandArchive = Stream.of(
             "kill rat"
 
     ).collect(Collectors.toList());
+    private int turnCount;
+    private GameSettings() {}
 
-    private GameSettings() {
+    public int getTurnCount() { return turnCount; }
 
-    }
+    public void setTurnCount(int turnCount) { this.turnCount = turnCount; }
 
     public synchronized static GameSettings getInstance() {
         if (instance == null) {

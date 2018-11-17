@@ -19,7 +19,8 @@ class CommandListener implements ActionListener {
     GameWindow gameWindow;
 
     // TODO Why doesnt printable work?
-    CommandListener(Printable printable, Choosable choosable) {
+    CommandListener(Printable printable, Choosable choosable)
+    {
 
         this.printable = printable;
         this.choosable = choosable;

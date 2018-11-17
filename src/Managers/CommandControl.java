@@ -10,6 +10,12 @@ import Models.PlayerCommand;
 /*
 Has edited this:
 - Kristoffer
+
+
+- This class receives the players command and the active choice, figures out the
+command type and processes the command. It uses the lists of available commands from
+the active choice and from gameSettings.
+
 */
 
 public class CommandControl {
@@ -24,19 +30,17 @@ public class CommandControl {
         NOMATCH
     }
 
-    public CommandControl(PlayerCommand playerCommand, Choice activeChoice, Printable printable, Choosable choosable) {
+    public CommandControl(PlayerCommand playerCommand, Choice activeChoice, Printable printable, Choosable choosable)
+    {
         this.printable = printable;
         this.choosable = choosable;
-
-        // Get right commandType-enum
-        // Send to the right 'controller' for processing
         commandController(controlPlayerCommandType(playerCommand, activeChoice), activeChoice, playerCommand);
     }
 
     private void commandController(CommandTypeEnum commandType, Choice activeChoice, PlayerCommand playerCommand) {
         String nextChoiceId = null;
         switch (commandType) {
-            // Check the playercommand with the activeChoice, and compare the nextChoiceId's to get the mtching object
+            // Check the playercommand with the activeChoice-object, and compare their nextChoiceId's to get the matching object
             case MOVEMENTCOMMAND:
                 for (MovementCommand aMovementCommand: activeChoice.getAvailableMovementCommands()) {
                     if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand())) {
