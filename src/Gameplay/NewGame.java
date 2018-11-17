@@ -16,11 +16,13 @@ public class NewGame implements Choosable {
 
     Printable printable;
     private final GameWindow gameWindow;
+    private GameSettings gameSettings = GameSettings.getInstance();
     private Choice activeChoice;
     private JSONParsing jsonParser;
     Printer printer;
 
-    public NewGame() {
+    public NewGame()
+    {
         this.gameWindow = new GameWindow(NewGame.this, printable);
         this.jsonParser = new JSONParsing();
         this.printer = new Printer(gameWindow);
@@ -39,6 +41,7 @@ public class NewGame implements Choosable {
         Choice newActiveChoice = jsonParser.getChoiceFromJsonV2(id);
         gameWindow.printResponseToGameArea(newActiveChoice.getTitle(), newActiveChoice.getDescription());
         this.activeChoice = newActiveChoice;
+        gameSettings.upTurnCount();
         gameWindow.feedSideBar(newActiveChoice);
     }
 
