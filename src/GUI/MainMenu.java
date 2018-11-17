@@ -24,7 +24,7 @@ public class MainMenu {
     private void buildWindow(JFrame frame)
     {
         // Main build
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setSize(400, 220);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);

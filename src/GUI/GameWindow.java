@@ -40,20 +40,21 @@ public class GameWindow implements Printable {
     }
 
     private void buildGameWindow(JFrame frame) {
-        c = new GridBagConstraints();
-        c.anchor = GridBagConstraints.FIRST_LINE_START;
-        int hGap = 5;
-        int vGap = 5;
-        c.insets = new Insets(hGap, vGap, hGap, vGap);
-        /*
+         /*
         GameWindow consists of:
         - gameTextArea, a JTextAreawhere the output from the game will be printed.
         - sideBarPanel,a JTextArea info about available commands
         - inputArea, a JPanel where the player enters commands and views them in a log
          */
 
+        c = new GridBagConstraints();
+        c.anchor = GridBagConstraints.FIRST_LINE_START;
+        int hGap = 5;
+        int vGap = 5;
+        c.insets = new Insets(hGap, vGap, hGap, vGap);
+
         // Main build
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setSize(850, 650);
         frame.setLocationRelativeTo(null);
         frame.setResizable(true);
@@ -98,21 +99,19 @@ public class GameWindow implements Printable {
         inputAreaTextArea = new JTextArea(10,20);
         inputAreaTextArea.setEditable(false);
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
-
         printCommandToLog("This is your command log. Your commands will be logged here.");
         JScrollPane textAreaScrollPane = new JScrollPane(inputAreaTextArea);
 
         // (addComp) method for placing elements in gridBagLayout.
         addComp(inputAreaPanel, textAreaScrollPane, 0, 1, 1, 1, GridBagConstraints.BOTH, 2, 2);
-
-        JButton emptyLogButton = new JButton("Empty Log");
         JButton mainMenuButton = new JButton("Main Menu");
+        JButton emptyLogButton = new JButton("Empty Log");
         JPanel inputAreaButtonPanel = new JPanel();
 
         inputAreaButtonPanel.setLayout(new BoxLayout(inputAreaButtonPanel, BoxLayout.Y_AXIS));
-        inputAreaButtonPanel.add(emptyLogButton);
-        inputAreaButtonPanel.add(Box.createRigidArea(new Dimension(0,8)));
         inputAreaButtonPanel.add(mainMenuButton);
+        inputAreaButtonPanel.add(Box.createRigidArea(new Dimension(0,84)));
+        inputAreaButtonPanel.add(emptyLogButton);
 
         addComp(inputAreaPanel, inputAreaButtonPanel, 1, 0, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
@@ -123,8 +122,8 @@ public class GameWindow implements Printable {
 
 
         // Set jTextField and add it to layout
-        inputAreaTextField = new JTextField();
-        inputAreaTextField.setText("Start your adventure!"); // Placeholder, see method below
+        inputAreaTextField = new JTextField("Start your adventure!",100);
+
 
         addComp(inputAreaPanel, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
@@ -241,7 +240,7 @@ public class GameWindow implements Printable {
     // Prints the available commands to the sidebar
     public void feedSideBar(Choice activeChoice) {
          int turnCount = gameSettings.getTurnCount();
-         printToSidebarArea(turnCount, "dash");
+         printToSidebarArea(turnCount + "\n", "dash");
          if (activeChoice.getAvailableMovementCommands() != null && activeChoice.getAvailableMovementCommands().length > 0) {
              printToSidebarArea("MOVEMENT:", "dash");
              for (MovementCommand aMovementCommand : activeChoice.getAvailableMovementCommands()) {

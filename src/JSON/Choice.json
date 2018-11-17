@@ -2,7 +2,7 @@
   {
     "id": "introRoom0",
     "title": "Start",
-    "description": "You wake up in a dark room. The sound of machinery can be heard around you. There is a small table with a brown box on it , and a door in in the direction of what you think is north..",
+    "description": "You wake up in a dark room. The sound of machinery can be heard around you. There is a small table with a brown box on it , and a door in in the direction of what you think is north.",
     "availableMovementCommands": [
       {
         "command": "go north",
