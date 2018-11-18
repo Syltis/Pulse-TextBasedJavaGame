@@ -31,6 +31,10 @@ public class GameWindow implements Printable {
     JTextField inputAreaTextField;
     private GridBagConstraints c;
 
+    private String mainMenuButtonText = "Main menu";
+    private String emptyLogButtonText = "Empty Log";
+    private String sendButtonText = "Send";
+
      public GameWindow(Choosable choosable, Printable printable) {
          this.choosable = choosable;
          this.printable = printable;
@@ -92,44 +96,42 @@ public class GameWindow implements Printable {
         );
         sideBarPanel.add(sideBarAreaScrollPane);
 
-
 // INPUT AREA.
         // Set textArea and add it to scrollpane, which is then added to the layout
         JPanel inputAreaPanel = new JPanel(new GridBagLayout());
         inputAreaTextArea = new JTextArea(10,20);
         inputAreaTextArea.setEditable(false);
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
-        printCommandToLog("This is your command log. Your commands will be logged here.");
-        JScrollPane textAreaScrollPane = new JScrollPane(inputAreaTextArea);
 
+        JScrollPane textAreaScrollPane = new JScrollPane(inputAreaTextArea);
         // (addComp) method for placing elements in gridBagLayout.
         addComp(inputAreaPanel, textAreaScrollPane, 0, 1, 1, 1, GridBagConstraints.BOTH, 2, 2);
-        JButton mainMenuButton = new JButton("Main Menu");
-        JButton emptyLogButton = new JButton("Empty Log");
-        JPanel inputAreaButtonPanel = new JPanel();
+        JButton mainMenuButton = gameWindowButton(mainMenuButtonText);
+        JButton emptyLogButton = gameWindowButton(emptyLogButtonText);
 
+        JPanel inputAreaButtonPanel = new JPanel();
         inputAreaButtonPanel.setLayout(new BoxLayout(inputAreaButtonPanel, BoxLayout.Y_AXIS));
         inputAreaButtonPanel.add(mainMenuButton);
-        inputAreaButtonPanel.add(Box.createRigidArea(new Dimension(0,84)));
+        inputAreaButtonPanel.add(Box.createRigidArea(new Dimension(0,79)));
         inputAreaButtonPanel.add(emptyLogButton);
-
         addComp(inputAreaPanel, inputAreaButtonPanel, 1, 0, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
-
 
         // Label with user instruction on using the inputAreaTextField
         JLabel inputAreaLabel = new JLabel("Enter commands below.");
         addComp(inputAreaPanel, inputAreaLabel, 0,2, 1, 1, GridBagConstraints.BOTH, 0.2,0.2);
 
-
         // Set jTextField and add it to layout
         inputAreaTextField = new JTextField("Start your adventure!",100);
-
-
         addComp(inputAreaPanel, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
+
+        JButton sendCommandButton = gameWindowButton(sendButtonText);
+        addComp(inputAreaPanel, sendCommandButton, 1, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
 // LISTENERS
         // Listener for sending of a command
         inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable) {});
+
+        sendCommandButton.addActionListener(new CommandListener(GameWindow.this, choosable));
 
         // Method for the placeholder text.
         inputAreaTextField.addFocusListener(new FocusAdapter() {
@@ -138,13 +140,6 @@ public class GameWindow implements Printable {
                 source.setText("");
                 source.removeFocusListener(this);
             }
-        });
-
-        emptyLogButton.addActionListener(e -> emptyLog());
-
-        mainMenuButton.addActionListener(e -> {
-            new MainMenu();
-            //frame.dispose();
         });
 
 // ASSEMBLY
@@ -164,6 +159,7 @@ public class GameWindow implements Printable {
         horiSplitPane.setResizeWeight(1.0);
         horiSplitPane.setEnabled(false);
 
+        printCommandToLog("This is your command log. Your commands will be logged here.");
         frame.add(horiSplitPane);
     }
 
@@ -183,6 +179,21 @@ public class GameWindow implements Printable {
         c.weighty = weighty;
 
         panel.add(comp, c);
+    }
+
+    // Returns a button and a set actionListener. Cant be used with the 'Send'-button, as it uses the CommandListener
+    public JButton gameWindowButton(String buttonName) {
+         JButton returnedButton = new JButton(buttonName);
+         returnedButton.addActionListener(e -> {
+             JButton source = (JButton)e.getSource();
+             if (source.getText().equalsIgnoreCase(mainMenuButtonText)) {
+                 new MainMenu();
+             }
+             if (source.getText().equalsIgnoreCase(emptyLogButtonText)) {
+                 emptyLog();
+             }
+         });
+         return returnedButton;
     }
 
     // Prints  player command to inputAreaTextField (log)
