@@ -226,8 +226,8 @@ public class GameWindow implements Printable {
     }
 
     // Has alternative for dash ('-') in front of printed string
-    public void printToSidebarArea(String text,String dash) {
-        if (dash.equals("dash")) {
+    public void printToSidebarArea(String text,String hasDash) {
+        if (hasDash.equals("dash")) {
             sidebarTextArea.append("- " + text + "\n");
             sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
         }
@@ -237,8 +237,8 @@ public class GameWindow implements Printable {
         }
     }
 
-    public void printToSidebarArea(int numb, String dash) {
-        if (dash.equals("dash")) {
+    public void printToSidebarArea(int numb, String hasDash) {
+        if (hasDash.equals("dash")) {
             sidebarTextArea.append("- " + numb + "\n");
             sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
         }
@@ -252,6 +252,7 @@ public class GameWindow implements Printable {
     public void feedSideBar(Choice activeChoice) {
          int turnCount = gameSettings.getTurnCount();
          printToSidebarArea(turnCount + "\n", "dash");
+
          if (activeChoice.getAvailableMovementCommands() != null && activeChoice.getAvailableMovementCommands().length > 0) {
              printToSidebarArea("MOVEMENT:", "dash");
              for (MovementCommand aMovementCommand : activeChoice.getAvailableMovementCommands()) {
