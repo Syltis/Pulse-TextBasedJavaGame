@@ -6,6 +6,7 @@ Has edited this:
 */
 
 import Interfaces.Choosable;
+import Interfaces.Playable;
 import Interfaces.Printable;
 import Models.PlayerCommand;
 
@@ -15,16 +16,18 @@ public class PlayerInput {
 
     private final Printable printable;
     private final Choosable choosable;
+    private final Playable playable;
 
-    public PlayerInput(Printable printable, Choosable choosable) {
+    public PlayerInput(Printable printable, Choosable choosable, Playable playable) {
 
         this.printable = printable;
         this.choosable = choosable;
+        this.playable = playable;
     }
 
     public void receiveCommand(String input) {
         PlayerCommand playerCommand = new PlayerCommand(cleanString(input));
-        new CommandControl(playerCommand,choosable.getActiveChoice(), printable, choosable);
+        new CommandControl(playerCommand,choosable.getActiveChoice(), printable, choosable, playable);
     }
 
     // Separates string by whitespace
@@ -46,4 +49,11 @@ public class PlayerInput {
         string = string.toLowerCase();
         return string;
     }
+
+    /* private void checkSwearing(PlayerCommand playerCommand) {
+        for (String aSwearWord:GameSettings.getSwearWords()) {
+            if (aSwearWord.equalsIgnoreCase(playerCommand.getPlayerCommand()) {
+
+            }
+    } */
 }

@@ -9,7 +9,6 @@ import Models.Choice;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -20,12 +19,11 @@ import java.util.Collection;
 public class JSONParsing {
 
     public Choice getChoiceFromJsonV2(String id) {
-        BufferedReader reader;
         Choice newChoice = new Choice();
         Type choiceType = new TypeToken<Collection<Choice>>(){}.getType();
 
         try {
-            reader = new BufferedReader(new FileReader("src/JSON/Choice.json"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/Choice.json"));
             Gson gson = new GsonBuilder().create();
             Collection<Choice> choices = gson.fromJson(reader, choiceType);
             if (!choices.isEmpty()) {
@@ -40,7 +38,6 @@ public class JSONParsing {
             e.printStackTrace();
         }
         return newChoice;
-
     }
 
     /*

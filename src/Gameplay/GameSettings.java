@@ -19,22 +19,37 @@ import java.util.stream.Stream;
 public class GameSettings {
 
     private static GameSettings instance = null;
-    private static List<MovementCommand> movementCommandArchive = null;
-    private static final List<String> actionCommandArchive = Stream.of(
+    private static List<MovementCommand> movementCommandBank = null;
+    private static final List<String> actionCommandBank = Stream.of(
             "take key",
             "inventory"
 
     ).collect(Collectors.toList());
-    private static final List<String> combatCommandArchive = Stream.of(
+    private static final List<String> combatCommandBank = Stream.of(
             "kill rat"
 
     ).collect(Collectors.toList());
     private int turnCount = 1;
-    private GameSettings() {}
+
+    private static final List<String> swearWords = Stream.of(
+            "fuck",
+            "asshole",
+            "bitch",
+            "shit"
+    ).collect(Collectors.toList());
+
+    private GameSettings()
+    {
+
+    }
 
     public int getTurnCount() { return turnCount; }
 
     public void upTurnCount() { turnCount = turnCount + 1; }
+
+    public static List<String> getSwearWords() {
+        return swearWords;
+    }
 
     public synchronized static GameSettings getInstance() {
         if (instance == null) {
@@ -42,31 +57,31 @@ public class GameSettings {
         }
         // Set archive of movements when instantiated
         // TODO: These could be retrieved from JSON automatically
-        movementCommandArchive = new ArrayList<>();
+        movementCommandBank = new ArrayList<>();
         // IntroRooms 0-4
-        movementCommandArchive.add(new MovementCommand("go north","introRoom1"));
-        movementCommandArchive.add(new MovementCommand("north","introRoom1"));
-        movementCommandArchive.add(new MovementCommand("go west","introRoom2"));
-        movementCommandArchive.add(new MovementCommand("west","introRoom2"));
-        movementCommandArchive.add(new MovementCommand("go east","introRoom3"));
-        movementCommandArchive.add(new MovementCommand("east","introRoom3"));
-        movementCommandArchive.add(new MovementCommand("go back","introRoom0"));
-        movementCommandArchive.add(new MovementCommand("go north","introRoom4"));
-        movementCommandArchive.add(new MovementCommand("go back","introRoom1"));
-        movementCommandArchive.add(new MovementCommand("go back","introRoom2"));
+        movementCommandBank.add(new MovementCommand("go north","introRoom1"));
+        movementCommandBank.add(new MovementCommand("north","introRoom1"));
+        movementCommandBank.add(new MovementCommand("go west","introRoom2"));
+        movementCommandBank.add(new MovementCommand("west","introRoom2"));
+        movementCommandBank.add(new MovementCommand("go east","introRoom3"));
+        movementCommandBank.add(new MovementCommand("east","introRoom3"));
+        movementCommandBank.add(new MovementCommand("go back","introRoom0"));
+        movementCommandBank.add(new MovementCommand("go north","introRoom4"));
+        movementCommandBank.add(new MovementCommand("go back","introRoom1"));
+        movementCommandBank.add(new MovementCommand("go back","introRoom2"));
 
         return instance;
     }
     // TODO automatically get all movementcommands from JSON
-    public List<MovementCommand> getMovementCommandArchive() {
-        return movementCommandArchive;
+    public List<MovementCommand> getMovementCommandBank() {
+        return movementCommandBank;
     }
 
-    public List<String> getActionCommandArchive() {
-        return actionCommandArchive;
+    public List<String> getActionCommandBank() {
+        return actionCommandBank;
     }
 
-    public List<String> getCombatCommandArchive() {
-        return combatCommandArchive;
+    public List<String> getCombatCommandBank() {
+        return combatCommandBank;
     }
 }

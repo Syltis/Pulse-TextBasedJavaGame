@@ -7,6 +7,7 @@ Has edited this:
 
 import Gameplay.GameSettings;
 import Interfaces.Choosable;
+import Interfaces.Playable;
 import Interfaces.Printable;
 import Models.Choice;
 import Models.MovementCommand;
@@ -21,6 +22,7 @@ public class GameWindow implements Printable {
 
     private final Choosable choosable;
     private final Printable printable;
+    private final Playable playable;
     Printer printer;
     GameSettings gameSettings = GameSettings.getInstance();
     JTextArea sidebarTextArea;
@@ -35,9 +37,10 @@ public class GameWindow implements Printable {
     private String emptyLogButtonText = "Empty Log";
     private String sendButtonText = "Send";
 
-     public GameWindow(Choosable choosable, Printable printable) {
+     public GameWindow(Choosable choosable, Printable printable, Playable playable) {
          this.choosable = choosable;
          this.printable = printable;
+         this.playable = playable;
 
          JFrame gameFrame = new JFrame("UntitledRPG™");
          buildGameWindow(gameFrame);
@@ -129,9 +132,9 @@ public class GameWindow implements Printable {
 
 // LISTENERS
         // Listener for sending of a command
-        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable) {});
+        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable, playable) {});
 
-        sendCommandButton.addActionListener(new CommandListener(GameWindow.this, choosable));
+        sendCommandButton.addActionListener(new CommandListener(GameWindow.this, choosable, playable));
 
         // Method for the placeholder text.
         inputAreaTextField.addFocusListener(new FocusAdapter() {
@@ -141,7 +144,6 @@ public class GameWindow implements Printable {
                 source.removeFocusListener(this);
             }
         });
-
 // ASSEMBLY
         // Set vertical splitpane.
         JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameAreaPanel, sideBarPanel);
@@ -159,7 +161,7 @@ public class GameWindow implements Printable {
         horiSplitPane.setResizeWeight(1.0);
         horiSplitPane.setEnabled(false);
 
-        printCommandToLog("This is your command log. Your commands will be logged here.");
+        printResponseToLog("This is your command log. Your commands will be logged here.");
         frame.add(horiSplitPane);
     }
 
