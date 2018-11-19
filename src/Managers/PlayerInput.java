@@ -1,42 +1,48 @@
 package Managers;
 
-import DataTransferObjects.Command;
-import GUI.GameWindow;
+/*
+Has edited this:
+- Kristoffer
+*/
+
+import Interfaces.Choosable;
+import Interfaces.Playable;
+import Interfaces.Printable;
+import Models.PlayerCommand;
+
 import java.util.ArrayList;
 
 public class PlayerInput {
 
-    ArrayList<String> commandList;
-    ArrayList<String> availableCommandList;
-    GameWindow gameWindow;
+    private final Printable printable;
+    private final Choosable choosable;
+    private final Playable playable;
 
-    // Called in gameWindow when given user input.
-    public void receiveCommand(String command) {
-        command = cleanString(command);
-        Command commandList = new Command();
-        commandList.setCommandList(splitCommand(command));
+    public PlayerInput(Printable printable, Choosable choosable, Playable playable) {
+
+        this.printable = printable;
+        this.choosable = choosable;
+        this.playable = playable;
     }
 
-    // Makes an arrayList, either with one word or two.
+    public void receiveCommand(String input) {
+        PlayerCommand playerCommand = new PlayerCommand(cleanString(input));
+        new CommandControl(playerCommand,choosable.getActiveChoice(), printable, choosable, playable);
+    }
+
+    // Separates string by whitespace
     // Clean the String before using this!
-    // TODO Should this just set the commandList and not return it
-    public ArrayList<String> splitCommand(String command) {
-        commandList = new ArrayList<>();
-        //Check if the resulting string is split by a space, thereby being two words.
-        if(command.matches("\\s+")) {
-            String actionCommand = command.substring(0, command.indexOf(" "));
-            String commandTarget = command.substring(command.indexOf(" "), command.length());
-            commandList.add(actionCommand);
-            commandList.add(commandTarget);
-        }
-        else {
-            commandList.add(command);
-        }
-        return commandList;
+    public ArrayList<String> splitCommand(String input) {
+        String actionCommand = input.substring(0, input.indexOf(" "));
+        String commandTarget = input.substring(input.indexOf(" "), input.length());
+        ArrayList<String> splitCommandList = new ArrayList<>();
+        splitCommandList.add(actionCommand);
+        splitCommandList.add(commandTarget);
+        return splitCommandList;
     }
 
-    // Trim string, turn double+ whitespace into single, lowercase and remove all other than letters.
-    public String cleanString(String string) {
+    // Trim string, turn double+ whitespace into single, lowercase and remove everything but letters.
+    private static String cleanString(String string) {
         string = string.trim();
         string = string.replaceAll("[-!@#$%^&*(),.?\":{}|<>0-9+/']+", "");
         string = string.replaceAll("[ ]{2,}", " ");
@@ -44,7 +50,10 @@ public class PlayerInput {
         return string;
     }
 
-    public void checkIfPlayerInput() {
-        // TODO: Confirm player input and report to NewGame.
-    }
+    /* private void checkSwearing(PlayerCommand playerCommand) {
+        for (String aSwearWord:GameSettings.getSwearWords()) {
+            if (aSwearWord.equalsIgnoreCase(playerCommand.getPlayerCommand()) {
+
+            }
+    } */
 }

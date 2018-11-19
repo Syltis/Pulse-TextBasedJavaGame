@@ -1,27 +1,30 @@
 package GUI;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 import Gameplay.NewGame;
 import javax.swing.*;
 import java.awt.*;
 
 public class MainMenu {
 
-    private String newGame;
-    private String loadGame;
-    private String settings;
-    private JFrame frame = new JFrame("UntitledRPG™ Main Menu");
+    private final String newGame = "New Game";
+    private final String loadGame = "Load Game";
+    private final String settings = "Settings";
+    private final JFrame frame = new JFrame("UntitledRPG™ Main Menu");
 
-    public MainMenu() {
-        newGame = "New Game";
-        loadGame = "Load Game";
-        settings = "Settings";
+    public MainMenu()
+    {
         buildWindow(frame);
     }
 
     private void buildWindow(JFrame frame)
     {
         // Main build
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setSize(400, 220);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
@@ -73,18 +76,16 @@ public class MainMenu {
         returned.addActionListener(e -> {
             JButton source = (JButton)e.getSource();
             if (source.getText().equalsIgnoreCase(newGame)) {
-                NewGame newGame = new NewGame();
-                newGame.runNewGame();
+                new NewGame();
                 frame.dispose();
             }
             if (source.getText().equalsIgnoreCase(loadGame)) {
-                popUp popUp = new popUp();
-                popUp.popUpWindow("You have no saves to load!", "Error!");
+                new PopUp("You have no saves to load!", "Error!");
+
             }
             // TODO: Pass settings as an object to be used by gameWindow. Here we could add game dimensions
             if (source.getText().equalsIgnoreCase(settings)) {
-                popUp popUp = new popUp();
-                popUp.popUpWindow("We haven'made any settings yet!", "Error!");
+                new PopUp("We haven'made any settings yet!", "Error!");
             }
         });
         return returned;

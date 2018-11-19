@@ -1,11 +1,16 @@
 package GUI;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 import javax.swing.*;
 
-public class popUp {
+class PopUp {
 
-    public void popUpWindow(String infoMessage, String titleBar) {
-
+    PopUp(String infoMessage, String titleBar)
+    {
         JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
 }

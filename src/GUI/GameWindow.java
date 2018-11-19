@@ -1,104 +1,142 @@
 package GUI;
 
-import Managers.PlayerInput;
+/*
+Has edited this:
+- Kristoffer
+*/
+
+import Gameplay.GameSettings;
+import Interfaces.Choosable;
+import Interfaces.Playable;
+import Interfaces.Printable;
+import Models.Choice;
+import Models.MovementCommand;
 
 import javax.swing.*;
+import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 
-public class GameWindow {
+public class GameWindow implements Printable {
 
-    private JTextArea sideBarArea;
-    private JTextArea gameArea; // Am I sure about this? - kris
-    private JTextArea inputAreaTextArea;
-    private JTextField inputAreaTextField;
+    private final Choosable choosable;
+    private final Printable printable;
+    private final Playable playable;
+    Printer printer;
+    GameSettings gameSettings = GameSettings.getInstance();
+    JTextArea sidebarTextArea;
+    private JPanel sideBarPanel;
+    JTextArea gameTextArea;
+    private JPanel gameAreaPanel;
+    JTextArea inputAreaTextArea;
+    JTextField inputAreaTextField;
     private GridBagConstraints c;
-    private PlayerInput playerInput;
 
-     public GameWindow() {
+    private String mainMenuButtonText = "Main menu";
+    private String emptyLogButtonText = "Empty Log";
+    private String sendButtonText = "Send";
+
+     public GameWindow(Choosable choosable, Printable printable, Playable playable) {
+         this.choosable = choosable;
+         this.printable = printable;
+         this.playable = playable;
+
+         JFrame gameFrame = new JFrame("UntitledRPG™");
+         buildGameWindow(gameFrame);
+    }
+
+    private void buildGameWindow(JFrame frame) {
+         /*
+        GameWindow consists of:
+        - gameTextArea, a JTextAreawhere the output from the game will be printed.
+        - sideBarPanel,a JTextArea info about available commands
+        - inputArea, a JPanel where the player enters commands and views them in a log
+         */
+
         c = new GridBagConstraints();
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         int hGap = 5;
         int vGap = 5;
         c.insets = new Insets(hGap, vGap, hGap, vGap);
-    }
-
-    public void openGameWindow() {
-        JFrame frame = new JFrame("UntitledRPG™");
-        buildGameWindow(frame);
-    }
-
-    private void buildGameWindow(JFrame frame) {
-
-        /* GameWindow consists of:
-        - gameArea, a JTextField where the output from the game will be printed.
-        - sideBarArea, TODO: Sidebar with info about available commands
-        - inputArea, a JPanel where the player enters commands and views them in a log
-         */
 
         // Main build
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(700, 600);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setSize(850, 650);
         frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setVisible(true);
 
-        // Set areas
-        gameArea = new JTextArea(5, 10);
-        sideBarArea = new JTextArea(5, 10);
-        JPanel inputArea = new JPanel(new GridBagLayout());
+// GAME AREA
+        gameTextArea = new JTextArea(5, 10);
+        gameTextArea.setEditable(false);
+        gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
+        gameTextArea.setLineWrap(true);
+        gameTextArea.setWrapStyleWord(true);
 
-        // GAME AREA
-        gameArea.setEditable(false);
-        gameArea.setCaretPosition(gameArea.getDocument().getLength());
-        gameArea.setWrapStyleWord(true);
-        gameArea.setLineWrap(true);
-        JScrollPane gameAreaScrollPane = new JScrollPane(gameArea);
+        gameAreaPanel = new JPanel();
+        gameAreaPanel.setLayout(new BorderLayout());
+        gameAreaPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+        gameAreaPanel.add(gameTextArea);
 
-        //SIDEBAR AREA
-        sideBarArea.setEditable(false);
+        JScrollPane gameAreaScrollPane = new JScrollPane(gameTextArea,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
+        );
+        gameAreaPanel.add(gameAreaScrollPane);
 
-        // INPUT AREA.
+// SIDEBAR AREA
+        sidebarTextArea = new JTextArea(5, 10);
+        sidebarTextArea.setEditable(false);
+        sidebarTextArea.setWrapStyleWord(true);
+        sidebarTextArea.setLineWrap(true);
+        sideBarPanel = new JPanel();
+        sideBarPanel.setLayout(new BorderLayout());
+        sideBarPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
+        JScrollPane sideBarAreaScrollPane = new JScrollPane(sidebarTextArea,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER
+        );
+        sideBarPanel.add(sideBarAreaScrollPane);
+
+// INPUT AREA.
         // Set textArea and add it to scrollpane, which is then added to the layout
+        JPanel inputAreaPanel = new JPanel(new GridBagLayout());
         inputAreaTextArea = new JTextArea(10,20);
         inputAreaTextArea.setEditable(false);
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
 
-        // Message in the inputAreaTextArea to user.
-        String welcomeMsg= "This is your command log. Your commands will be printed here.";
-        printToLog(welcomeMsg);
         JScrollPane textAreaScrollPane = new JScrollPane(inputAreaTextArea);
-
         // (addComp) method for placing elements in gridBagLayout.
-        addComp(inputArea, textAreaScrollPane, 0, 1, 1, 1, GridBagConstraints.BOTH, 2, 2);
+        addComp(inputAreaPanel, textAreaScrollPane, 0, 1, 1, 1, GridBagConstraints.BOTH, 2, 2);
+        JButton mainMenuButton = gameWindowButton(mainMenuButtonText);
+        JButton emptyLogButton = gameWindowButton(emptyLogButtonText);
+
+        JPanel inputAreaButtonPanel = new JPanel();
+        inputAreaButtonPanel.setLayout(new BoxLayout(inputAreaButtonPanel, BoxLayout.Y_AXIS));
+        inputAreaButtonPanel.add(mainMenuButton);
+        inputAreaButtonPanel.add(Box.createRigidArea(new Dimension(0,79)));
+        inputAreaButtonPanel.add(emptyLogButton);
+        addComp(inputAreaPanel, inputAreaButtonPanel, 1, 0, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
         // Label with user instruction on using the inputAreaTextField
         JLabel inputAreaLabel = new JLabel("Enter commands below.");
-        addComp(inputArea, inputAreaLabel, 0,2, 1, 1, GridBagConstraints.BOTH, 0.2,0.2);
+        addComp(inputAreaPanel, inputAreaLabel, 0,2, 1, 1, GridBagConstraints.BOTH, 0.2,0.2);
 
-        // Set jTextfield and add it to layout
-        inputAreaTextField = new JTextField();
-        inputAreaTextField.setText("Start your adventure!"); // Placeholder, see method below
-        addComp(inputArea, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
+        // Set jTextField and add it to layout
+        inputAreaTextField = new JTextField("Start your adventure!",100);
+        addComp(inputAreaPanel, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
+        JButton sendCommandButton = gameWindowButton(sendButtonText);
+        addComp(inputAreaPanel, sendCommandButton, 1, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
+
+// LISTENERS
         // Listener for sending of a command
-        inputAreaTextField.addActionListener((e -> {
-            String command = inputAreaTextField.getText();
-            if(command.length() > 0) {
-                playerInput = new PlayerInput();
-                // Print in the inputAreaTextField (log)
-                printToLog(command);
-                // Send to playerInput.
-                playerInput.receiveCommand(command);
-                inputAreaTextField.setText("");
-            }
-            else {
-                printToLog("You should make a choice.");
-            }
-        }));
+        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable, playable) {});
 
-        // Method for the placeholder text. Show up one time before textField is in focus
+        sendCommandButton.addActionListener(new CommandListener(GameWindow.this, choosable, playable));
+
+        // Method for the placeholder text.
         inputAreaTextField.addFocusListener(new FocusAdapter() {
             public void focusGained(FocusEvent e) {
                 JTextField source = (JTextField)e.getComponent();
@@ -106,26 +144,30 @@ public class GameWindow {
                 source.removeFocusListener(this);
             }
         });
-
-        // ASSEMBLY
-        // Set vertical splitpane. Second layer
-        JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameAreaScrollPane, sideBarArea);
-        vertSplitPane.setDividerLocation(500);
-        vertSplitPane.setDividerSize(10);
+// ASSEMBLY
+        // Set vertical splitpane.
+        JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameAreaPanel, sideBarPanel);
+        vertSplitPane.setDividerLocation(670);
+        vertSplitPane.setDividerSize(5);
+        vertSplitPane.setOneTouchExpandable(false);
+        vertSplitPane.setResizeWeight(1.0);
         vertSplitPane.setEnabled(false);
 
-        // Set horizontal split. Top layer
-        JSplitPane horiSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, vertSplitPane, inputArea);
-        vertSplitPane.setOneTouchExpandable(false);
+        // Set horizontal split.
+        JSplitPane horiSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, vertSplitPane, inputAreaPanel);
         horiSplitPane.setDividerLocation(400);
         horiSplitPane.setDividerSize(5);
+        horiSplitPane.setOneTouchExpandable(false);
+        horiSplitPane.setResizeWeight(1.0);
         horiSplitPane.setEnabled(false);
 
+        printResponseToLog("This is your command log. Your commands will be logged here.");
         frame.add(horiSplitPane);
     }
 
+// MUTATORS AND HELPERS
     // Easier implementation of constraints for gridBagLayout
-    // Found on Stack Overflow somewhere, but I can't find the link. - kris
+    // Found on Stack Overflow somewhere.
     private void addComp(JPanel panel, JComponent comp
                             , int x, int y, int gWidth
                                 , int gHeight, int fill
@@ -141,15 +183,109 @@ public class GameWindow {
         panel.add(comp, c);
     }
 
+    // Returns a button and a set actionListener. Cant be used with the 'Send'-button, as it uses the CommandListener
+    public JButton gameWindowButton(String buttonName) {
+         JButton returnedButton = new JButton(buttonName);
+         returnedButton.addActionListener(e -> {
+             JButton source = (JButton)e.getSource();
+             if (source.getText().equalsIgnoreCase(mainMenuButtonText)) {
+                 new MainMenu();
+             }
+             if (source.getText().equalsIgnoreCase(emptyLogButtonText)) {
+                 emptyLog();
+             }
+         });
+         return returnedButton;
+    }
+
     // Prints  player command to inputAreaTextField (log)
-    public void printToLog(String text) {
-        inputAreaTextArea.append(">" + text + "\n");
+    public void printCommandToLog(String text) {
+
+        inputAreaTextArea.append("> " + text + "\n");
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
-    // Prints strings to the gameArea.
-    public void printToGameArea(String text) {
-         gameArea.append(">" + text + "\n");
-         gameArea.setCaretPosition(gameArea.getDocument().getLength());
+    public void printResponseToLog(String text) {
+
+        inputAreaTextArea.append("- " + text + "\n");
+        inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
+    }
+
+    public void emptyLog(){
+         inputAreaTextArea.setText("");
+    }
+
+    // Prints to the gameTextArea.
+    public void printResponseToGameArea(String title, String descrption) {
+         gameTextArea.append(" " + title + "\n");
+         gameTextArea.append("> " + descrption + "\n");
+         gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
+    }
+
+    public void printCommandToGameArea(String text) {
+         gameTextArea.append("- " + text + "\n" + "\n");
+         gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
+    }
+
+    // Has alternative for dash ('-') in front of printed string
+    public void printToSidebarArea(String text,String hasDash) {
+        if (hasDash.equals("dash")) {
+            sidebarTextArea.append("- " + text + "\n");
+            sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
+        }
+        else {
+            sidebarTextArea.append(text + "\n");
+            sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
+        }
+    }
+
+    public void printToSidebarArea(int numb, String hasDash) {
+        if (hasDash.equals("dash")) {
+            sidebarTextArea.append("- " + numb + "\n");
+            sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
+        }
+        else {
+            sidebarTextArea.append(numb + "\n");
+            sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());
+        }
+    }
+
+    // Prints the available commands to the sidebar
+    public void feedSideBar(Choice activeChoice) {
+         int turnCount = gameSettings.getTurnCount();
+         printToSidebarArea(turnCount + "\n", "dash");
+
+         if (activeChoice.getAvailableMovementCommands() != null && activeChoice.getAvailableMovementCommands().length > 0) {
+             printToSidebarArea("MOVEMENT:", "dash");
+             for (MovementCommand aMovementCommand : activeChoice.getAvailableMovementCommands()) {
+                printToSidebarArea(aMovementCommand.getMovementCommand(), "dash");
+            }
+         }
+         if (activeChoice.getAvailableActionCommands() != null && !activeChoice.getAvailableActionCommands().isEmpty()){
+            printToSidebarArea("", "nodash");
+            printToSidebarArea("ACTIONS:", "dash");
+            for (String aCommand:activeChoice.getAvailableActionCommands()) {
+                printToSidebarArea(aCommand.replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+",""), "dash");
+            }
+        }
+        if (activeChoice.getAvailableCombatCommands() != null && !activeChoice.getAvailableCombatCommands().isEmpty()) {
+            printToSidebarArea("", "nodash");
+            printToSidebarArea("COMBAT:", "dash");
+            for (String aCombatCommand:activeChoice.getAvailableCombatCommands()) {
+                printToSidebarArea(aCombatCommand.replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""),"dash");
+            }
+        }
+    }
+
+    public void clearSideBarArea() {
+         sidebarTextArea.setText("");
+    }
+
+    public String getInputAreaTextField() {
+         return inputAreaTextField.getText();
+    }
+
+    public void setInputAreaTextField(String text) {
+         inputAreaTextField.setText(text);
     }
 }
