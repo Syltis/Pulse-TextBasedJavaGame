@@ -19,7 +19,6 @@ public class Character {
     private int[] skills;
     private int money;
     private String location;
-    private
 
     Character(String name, String description, int health, int[] skills, int money, String location) {
         this.name = name;
