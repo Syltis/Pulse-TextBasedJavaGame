@@ -31,13 +31,6 @@ public class GameSettings {
     ).collect(Collectors.toList());
     private int turnCount = 1;
 
-    private static final List<String> swearWords = Stream.of(
-            "fuck",
-            "asshole",
-            "bitch",
-            "shit"
-    ).collect(Collectors.toList());
-
     private GameSettings()
     {
 
@@ -46,10 +39,6 @@ public class GameSettings {
     public int getTurnCount() { return turnCount; }
 
     public void upTurnCount() { turnCount = turnCount + 1; }
-
-    public static List<String> getSwearWords() {
-        return swearWords;
-    }
 
     public synchronized static GameSettings getInstance() {
         if (instance == null) {
