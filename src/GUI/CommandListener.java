@@ -6,8 +6,10 @@ Has edited this:
 */
 
 import Interfaces.Choosable;
+import Interfaces.Playable;
 import Interfaces.Printable;
 import Managers.PlayerInput;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,16 +17,18 @@ class CommandListener implements ActionListener {
 
     private final Printable printable;
     private Choosable choosable;
+    Playable playable;
     private int blankCounter;
     GameWindow gameWindow;
 
     // TODO Why doesnt printable work?
-    CommandListener(Printable printable, Choosable choosable)
+    CommandListener(Printable printable, Choosable choosable, Playable playable)
     {
 
         this.printable = printable;
         this.choosable = choosable;
         this.gameWindow = gameWindow;
+        this.playable = playable;
     }
 
     // This is called then the player enters a command
@@ -35,7 +39,7 @@ class CommandListener implements ActionListener {
                 // Print in the inputAreaTextField (log)
                 printable.printCommandToLog(input);
                 // Send to playerInput.
-                playerInput = new PlayerInput(printable, choosable);
+                playerInput = new PlayerInput(printable, choosable, playable);
                 playerInput.receiveCommand(input);
                 printable.setInputAreaTextField("");
                 blankCounter = 0;

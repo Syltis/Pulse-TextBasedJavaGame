@@ -11,6 +11,7 @@ import Interfaces.Choosable;
 import Interfaces.Printable;
 import Managers.JSONParsing;
 import Models.Choice;
+import Models.Player;
 
 public class NewGame implements Choosable {
 
@@ -19,14 +20,17 @@ public class NewGame implements Choosable {
     private GameSettings gameSettings = GameSettings.getInstance();
     private Choice activeChoice;
     private JSONParsing jsonParser;
+    private Player player;
     Printer printer;
 
     public NewGame()
     {
-        this.gameWindow = new GameWindow(NewGame.this, printable);
+        this.player = new Player("Kris");
+        this.gameWindow = new GameWindow(NewGame.this, printable, this.player);
         this.jsonParser = new JSONParsing();
         this.printer = new Printer(gameWindow);
         this.printable = printer.getPrintable();
+        player = new Player("Kris");
         runStartChoice();
     }
 

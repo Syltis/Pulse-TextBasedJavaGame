@@ -2,6 +2,7 @@ package Managers;
 
 import Gameplay.GameSettings;
 import Interfaces.Choosable;
+import Interfaces.Playable;
 import Interfaces.Printable;
 import Models.Choice;
 import Models.MovementCommand;
@@ -12,9 +13,9 @@ Has edited this:
 - Kristoffer
 
 
-- This class receives the players command and the active choice, figures out the
+- This class receives the players command and the activeChoice, figures out the
 command type and processes the command. It uses the lists of available commands from
-the active choice and from gameSettings.
+the activeChoice and from gameSettings.
 
 */
 
@@ -22,6 +23,7 @@ public class CommandControl {
 
     private final Printable printable;
     private final Choosable choosable;
+    private final Playable playable;
     private final GameSettings gameSettings = GameSettings.getInstance();
     private enum CommandTypeEnum {
         MOVEMENTCOMMAND,
@@ -30,11 +32,12 @@ public class CommandControl {
         NOMATCH
     }
 
-    public CommandControl(PlayerCommand playerCommand, Choice activeChoice, Printable printable, Choosable choosable)
+    public CommandControl(PlayerCommand playerCommand, Choice activeChoice, Printable printable, Choosable choosable, Playable playable)
     {
         this.printable = printable;
         this.choosable = choosable;
-        commandController(controlPlayerCommandType(playerCommand, activeChoice), activeChoice, playerCommand);
+        this.playable = playable;
+        commandController(findPlayerCommandType(playerCommand, activeChoice), activeChoice, playerCommand);
     }
 
     private void commandController(CommandTypeEnum commandType, Choice activeChoice, PlayerCommand playerCommand) {
@@ -44,7 +47,7 @@ public class CommandControl {
             case MOVEMENTCOMMAND:
                 for (MovementCommand aMovementCommand: activeChoice.getAvailableMovementCommands()) {
                     if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand())) {
-                        for (MovementCommand anotherMovementCommand:gameSettings.getMovementCommandArchive()) {
+                        for (MovementCommand anotherMovementCommand:gameSettings.getMovementCommandBank()) {
                             if (aMovementCommand.getNextChoiceId().equals(anotherMovementCommand.getNextChoiceId())) {
                                 nextChoiceId = aMovementCommand.getNextChoiceId();
                             }
@@ -61,7 +64,10 @@ public class CommandControl {
                 break;
 
             case ACTIONCOMMAND:
-                // TODO action logic
+                /* TODO action logic
+                    Inventory: Instead of having key in the room in the desc in JSON,
+                Have a container to search, where yo get the item if you don't have it already.
+                */
                 break;
 
             case COMBATCOMMAND:
@@ -74,17 +80,17 @@ public class CommandControl {
         }
     }
 
-    private CommandTypeEnum controlPlayerCommandType(PlayerCommand playerCommand, Choice activeChoice) {
+    private CommandTypeEnum findPlayerCommandType(PlayerCommand playerCommand, Choice activeChoice) {
         // Check if the command exists in gameSettings and in the activechoice
-        for (MovementCommand aMovementCommand: gameSettings.getMovementCommandArchive()) {
+        for (MovementCommand aMovementCommand: gameSettings.getMovementCommandBank()) {
             if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand()))
                 return CommandTypeEnum.MOVEMENTCOMMAND;
         }
-        if (gameSettings.getActionCommandArchive().contains(playerCommand.getPlayerCommand())
+        if (gameSettings.getActionCommandBank().contains(playerCommand.getPlayerCommand())
                 && activeChoice.getAvailableActionCommands().contains(playerCommand.getPlayerCommand())) {
             return CommandTypeEnum.ACTIONCOMMAND;
         }
-        else if (gameSettings.getActionCommandArchive().contains(playerCommand.getPlayerCommand())
+        else if (gameSettings.getActionCommandBank().contains(playerCommand.getPlayerCommand())
                 && activeChoice.getAvailableCombatCommands().contains(playerCommand.getPlayerCommand())) {
             return CommandTypeEnum.COMBATCOMMAND;
         }

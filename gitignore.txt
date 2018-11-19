@@ -1,6 +1,7 @@
 # THE ONES WE'WE ADDED. THE REST ARE FROM INTELLIJ'S GUIDE
 F18-03-1.iml
 .idea/
+.idea/codeStyles/codeStyleConfig.xml
 .iml
 _windows/
 acceptedLanguageLevels.xml
