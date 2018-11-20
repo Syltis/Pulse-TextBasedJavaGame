@@ -9,7 +9,7 @@ import Gameplay.GameSettings;
 import Interfaces.Choosable;
 import Interfaces.Playable;
 import Interfaces.Printable;
-import Models.Choice;
+import Models.Scenario;
 import Models.MovementCommand;
 
 import javax.swing.*;
@@ -132,7 +132,7 @@ public class GameWindow implements Printable {
 
 // LISTENERS
         // Listener for sending of a command
-        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable, playable) {});
+        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable, playable));
 
         sendCommandButton.addActionListener(new CommandListener(GameWindow.this, choosable, playable));
 
@@ -251,27 +251,27 @@ public class GameWindow implements Printable {
     }
 
     // Prints the available commands to the sidebar
-    public void feedSideBar(Choice activeChoice) {
+    public void feedSideBar(Scenario activeScenario) {
          int turnCount = gameSettings.getTurnCount();
          printToSidebarArea(turnCount + "\n", "dash");
 
-         if (activeChoice.getAvailableMovementCommands() != null && activeChoice.getAvailableMovementCommands().length > 0) {
+         if (activeScenario.getAvailableMovementCommands() != null && activeScenario.getAvailableMovementCommands().length > 0) {
              printToSidebarArea("MOVEMENT:", "dash");
-             for (MovementCommand aMovementCommand : activeChoice.getAvailableMovementCommands()) {
+             for (MovementCommand aMovementCommand : activeScenario.getAvailableMovementCommands()) {
                 printToSidebarArea(aMovementCommand.getMovementCommand(), "dash");
             }
          }
-         if (activeChoice.getAvailableActionCommands() != null && !activeChoice.getAvailableActionCommands().isEmpty()){
+         if (activeScenario.getAvailableActionCommands() != null && !activeScenario.getAvailableActionCommands().isEmpty()){
             printToSidebarArea("", "nodash");
             printToSidebarArea("ACTIONS:", "dash");
-            for (String aCommand:activeChoice.getAvailableActionCommands()) {
+            for (String aCommand: activeScenario.getAvailableActionCommands()) {
                 printToSidebarArea(aCommand.replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+",""), "dash");
             }
         }
-        if (activeChoice.getAvailableCombatCommands() != null && !activeChoice.getAvailableCombatCommands().isEmpty()) {
+        if (activeScenario.getAvailableCombatCommands() != null && !activeScenario.getAvailableCombatCommands().isEmpty()) {
             printToSidebarArea("", "nodash");
             printToSidebarArea("COMBAT:", "dash");
-            for (String aCombatCommand:activeChoice.getAvailableCombatCommands()) {
+            for (String aCombatCommand: activeScenario.getAvailableCombatCommands()) {
                 printToSidebarArea(aCombatCommand.replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""),"dash");
             }
         }

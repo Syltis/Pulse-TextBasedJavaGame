@@ -7,8 +7,12 @@ Has edited this:
 
 /*
 Singleton class for storing game sava data and for saving a game.
+A singleton has a private constructor, and can only be instantiated and accessed
+    though the getInstance()-method. The method checks if the class has already been
+    instantiated. If it has not, it instantiates it, and return the object.
 */
 
+import Models.Item;
 import Models.MovementCommand;
 
 import java.util.ArrayList;
@@ -19,6 +23,7 @@ import java.util.stream.Stream;
 public class GameSettings {
 
     private static GameSettings instance = null;
+    private static List<Item> itemBank  = null;
     private static List<MovementCommand> movementCommandBank = null;
     private static final List<String> actionCommandBank = Stream.of(
             "take key",
@@ -29,13 +34,13 @@ public class GameSettings {
             "kill rat"
 
     ).collect(Collectors.toList());
+
     private int turnCount = 1;
 
-    private GameSettings()
-    {
+    private GameSettings() {}
 
-    }
-
+    // Turncount is used to count how many choices the user has made. Is accessed in
+    //      NewGame.java in the nextChoice()-method, and is displayed in the GameWindow.
     public int getTurnCount() { return turnCount; }
 
     public void upTurnCount() { turnCount = turnCount + 1; }
@@ -44,7 +49,7 @@ public class GameSettings {
         if (instance == null) {
             instance = new GameSettings();
         }
-        // Set archive of movements when instantiated
+        // Instantiate bank of movements when the singleton is instantiated
         // TODO: These could be retrieved from JSON automatically
         movementCommandBank = new ArrayList<>();
         // IntroRooms 0-4
@@ -59,8 +64,14 @@ public class GameSettings {
         movementCommandBank.add(new MovementCommand("go back","introRoom1"));
         movementCommandBank.add(new MovementCommand("go back","introRoom2"));
 
+        // Instantiate bank of movements when the singleton is instantiated
+        itemBank = new ArrayList<>();
+        // Test-items
+        itemBank.add(new Item("Rusty key", "key"));
+
         return instance;
     }
+
     // TODO automatically get all movementcommands from JSON
     public List<MovementCommand> getMovementCommandBank() {
         return movementCommandBank;
