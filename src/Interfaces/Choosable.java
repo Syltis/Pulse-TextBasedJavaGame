@@ -11,5 +11,5 @@ public interface Choosable {
 
     Scenario getActiveScenario();
 
-    void nextChoice(String id);
+    void nextScenario(String id);
 }

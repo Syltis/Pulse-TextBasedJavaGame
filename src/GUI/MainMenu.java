@@ -49,7 +49,7 @@ public class MainMenu {
         JButton loadGameBtn = selectGameTypeBtn(loadGame);
         JButton settingsBtn = selectGameTypeBtn(settings);
 
-        // Set values. Can be integrated to the instantiation for cleaner look
+        // Set values.
         String welcomeText = "Welcome to the Untitled RPG!";
         String gameDesc = "<html>Press 'New Game' to start your adventure,<br /> or 'Load Game' to continue an existing one!</html> ";
         settingsBtn.setText("Settings");

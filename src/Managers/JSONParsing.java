@@ -18,18 +18,18 @@ import java.util.Collection;
 // Here the json.simple library is used
 public class JSONParsing {
 
-    public Scenario getChoiceFromJsonV2(String id) {
+    public Scenario getScenarioFromJsonV2(String id) {
         Scenario newScenario = new Scenario();
-        Type choiceType = new TypeToken<Collection<Scenario>>(){}.getType();
+        Type scenarioType = new TypeToken<Collection<Scenario>>(){}.getType();
 
         try {
             BufferedReader reader = new BufferedReader(new FileReader("src/JSON/Scenario.json"));
             Gson gson = new GsonBuilder().create();
-            Collection<Scenario> scenarios = gson.fromJson(reader, choiceType);
+            Collection<Scenario> scenarios = gson.fromJson(reader, scenarioType);
             if (!scenarios.isEmpty()) {
-                for (Scenario scenario1 : scenarios) {
-                    if (scenario1.getId().equals(id)) {
-                        newScenario = scenario1;
+                for (Scenario aScenario : scenarios) {
+                    if (aScenario.getId().equals(id)) {
+                        newScenario = aScenario;
                     }
                 }
             }

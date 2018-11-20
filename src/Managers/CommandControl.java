@@ -37,30 +37,32 @@ public class CommandControl {
         this.printable = printable;
         this.choosable = choosable;
         this.playable = playable;
-        commandController(findPlayerCommandType(playerCommand, activeScenario), activeScenario, playerCommand);
+        commandController(
+                findPlayerCommandType(playerCommand, activeScenario),
+            activeScenario, playerCommand);
     }
 
     private void commandController(CommandTypeEnum commandType, Scenario activeScenario, PlayerCommand playerCommand) {
-        String nextChoiceId = null;
+        String nextScenarioId = null;
         switch (commandType) {
-            // Check the playercommand with the activeScenario-object, and compare their nextChoiceId's to get the matching object
+            // Check the playercommand with the activeScenario-object, and compare their nextScenarioId's to get the matching object
             case MOVEMENTCOMMAND:
                 for (MovementCommand aMovementCommand: activeScenario.getAvailableMovementCommands()) {
                     if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand())) {
                         for (MovementCommand anotherMovementCommand:gameSettings.getMovementCommandBank()) {
                             if (aMovementCommand.getNextScenarioId().equals(anotherMovementCommand.getNextScenarioId())) {
-                                nextChoiceId = aMovementCommand.getNextScenarioId();
+                                nextScenarioId = aMovementCommand.getNextScenarioId();
                             }
                         }
                     }
                 }
                 // Gives error if its is a viable command, but not for that Scenario.
-                if (nextChoiceId != null) {
+                if (nextScenarioId != null) {
                     printable.printCommandToGameArea(playerCommand.getPlayerCommand());
                     printable.clearSideBarArea();
-                    choosable.nextChoice(nextChoiceId);
+                    choosable.nextScenario(nextScenarioId);
                 } else
-                    printable.printResponseToLog("What do you mean?");
+                    printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' even mean?");
                 break;
 
             case ACTIONCOMMAND:
@@ -75,7 +77,7 @@ public class CommandControl {
                 break;
 
             case NOMATCH:
-                printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' mean?");
+                printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' even mean?");
                 break;
         }
     }
