@@ -3,11 +3,11 @@ package Models;
 public class MovementCommand {
 
     private String command;
-    private String nextChoiceId;
+    private String nextScenarioId;
 
-    public MovementCommand(String command, String nextChoiceId) {
+    public MovementCommand(String command, String nextScenarioId) {
         this.command = command;
-        this.nextChoiceId = nextChoiceId;
+        this.nextScenarioId = nextScenarioId;
     }
 
     public String getMovementCommand() {
@@ -18,11 +18,11 @@ public class MovementCommand {
         this.command = movementCommand;
     }
 
-    public String getNextChoiceId() {
-        return nextChoiceId;
+    public String getNextScenarioId() {
+        return nextScenarioId;
     }
 
-    public void setNextChoiceId(String nextChoiceId) {
-        this.nextChoiceId = nextChoiceId;
+    public void setNextScenarioId(String nextScenarioId) {
+        this.nextScenarioId = nextScenarioId;
     }
 }

@@ -4,7 +4,7 @@ import Gameplay.GameSettings;
 import Interfaces.Choosable;
 import Interfaces.Playable;
 import Interfaces.Printable;
-import Models.Choice;
+import Models.Scenario;
 import Models.MovementCommand;
 import Models.PlayerCommand;
 
@@ -32,29 +32,29 @@ public class CommandControl {
         NOMATCH
     }
 
-    public CommandControl(PlayerCommand playerCommand, Choice activeChoice, Printable printable, Choosable choosable, Playable playable)
+    public CommandControl(PlayerCommand playerCommand, Scenario activeScenario, Printable printable, Choosable choosable, Playable playable)
     {
         this.printable = printable;
         this.choosable = choosable;
         this.playable = playable;
-        commandController(findPlayerCommandType(playerCommand, activeChoice), activeChoice, playerCommand);
+        commandController(findPlayerCommandType(playerCommand, activeScenario), activeScenario, playerCommand);
     }
 
-    private void commandController(CommandTypeEnum commandType, Choice activeChoice, PlayerCommand playerCommand) {
+    private void commandController(CommandTypeEnum commandType, Scenario activeScenario, PlayerCommand playerCommand) {
         String nextChoiceId = null;
         switch (commandType) {
-            // Check the playercommand with the activeChoice-object, and compare their nextChoiceId's to get the matching object
+            // Check the playercommand with the activeScenario-object, and compare their nextChoiceId's to get the matching object
             case MOVEMENTCOMMAND:
-                for (MovementCommand aMovementCommand: activeChoice.getAvailableMovementCommands()) {
+                for (MovementCommand aMovementCommand: activeScenario.getAvailableMovementCommands()) {
                     if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand())) {
                         for (MovementCommand anotherMovementCommand:gameSettings.getMovementCommandBank()) {
-                            if (aMovementCommand.getNextChoiceId().equals(anotherMovementCommand.getNextChoiceId())) {
-                                nextChoiceId = aMovementCommand.getNextChoiceId();
+                            if (aMovementCommand.getNextScenarioId().equals(anotherMovementCommand.getNextScenarioId())) {
+                                nextChoiceId = aMovementCommand.getNextScenarioId();
                             }
                         }
                     }
                 }
-                // Gives error if its is a viable command, but not for that Choice.
+                // Gives error if its is a viable command, but not for that Scenario.
                 if (nextChoiceId != null) {
                     printable.printCommandToGameArea(playerCommand.getPlayerCommand());
                     printable.clearSideBarArea();
@@ -80,18 +80,18 @@ public class CommandControl {
         }
     }
 
-    private CommandTypeEnum findPlayerCommandType(PlayerCommand playerCommand, Choice activeChoice) {
+    private CommandTypeEnum findPlayerCommandType(PlayerCommand playerCommand, Scenario activeScenario) {
         // Check if the command exists in gameSettings and in the activechoice
         for (MovementCommand aMovementCommand: gameSettings.getMovementCommandBank()) {
             if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand()))
                 return CommandTypeEnum.MOVEMENTCOMMAND;
         }
         if (gameSettings.getActionCommandBank().contains(playerCommand.getPlayerCommand())
-                && activeChoice.getAvailableActionCommands().contains(playerCommand.getPlayerCommand())) {
+                && activeScenario.getAvailableActionCommands().contains(playerCommand.getPlayerCommand())) {
             return CommandTypeEnum.ACTIONCOMMAND;
         }
         else if (gameSettings.getActionCommandBank().contains(playerCommand.getPlayerCommand())
-                && activeChoice.getAvailableCombatCommands().contains(playerCommand.getPlayerCommand())) {
+                && activeScenario.getAvailableCombatCommands().contains(playerCommand.getPlayerCommand())) {
             return CommandTypeEnum.COMBATCOMMAND;
         }
         else

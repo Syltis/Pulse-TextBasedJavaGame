@@ -1,7 +1,7 @@
 package GUI;
 
 import Interfaces.Printable;
-import Models.Choice;
+import Models.Scenario;
 import Models.MovementCommand;
 
 // METHOD NOT FINISHED AND NOT IN USE
@@ -46,21 +46,21 @@ public class Printer implements Printable {
         gameWindow.sidebarTextArea.setCaretPosition(gameWindow.sidebarTextArea.getDocument().getLength());
     }
 
-    public void feedSideBar(Choice activeChoice) {
+    public void feedSideBar(Scenario activeScenario) {
         printToSidebarArea("MOVEMENT:");
-        if (activeChoice.getAvailableMovementCommands() != null && activeChoice.getAvailableMovementCommands().length > 0) {
-            for (MovementCommand aMovementCommand : activeChoice.getAvailableMovementCommands()) {
+        if (activeScenario.getAvailableMovementCommands() != null && activeScenario.getAvailableMovementCommands().length > 0) {
+            for (MovementCommand aMovementCommand : activeScenario.getAvailableMovementCommands()) {
                 printToSidebarArea(aMovementCommand.getMovementCommand());
             }
         }
-        //printToSidebarArea(activeChoice.getAvailableMovementCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=]+", ""));
+        //printToSidebarArea(activeScenario.getAvailableMovementCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=]+", ""));
         printToSidebarArea("ACTIONS:");
-        if (activeChoice.getAvailableActionCommands() != null && !activeChoice.getAvailableActionCommands().isEmpty()){
-            printToSidebarArea(activeChoice.getAvailableActionCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        if (activeScenario.getAvailableActionCommands() != null && !activeScenario.getAvailableActionCommands().isEmpty()){
+            printToSidebarArea(activeScenario.getAvailableActionCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
         }
         printToSidebarArea("COMBAT:");
-        if (activeChoice.getAvailableCombatCommands() != null && !activeChoice.getAvailableCombatCommands().isEmpty()) {
-            printToSidebarArea(activeChoice.getAvailableCombatCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
+        if (activeScenario.getAvailableCombatCommands() != null && !activeScenario.getAvailableCombatCommands().isEmpty()) {
+            printToSidebarArea(activeScenario.getAvailableCombatCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
         }
     }
 

@@ -10,7 +10,7 @@ import GUI.Printer;
 import Interfaces.Choosable;
 import Interfaces.Printable;
 import Managers.JSONParsing;
-import Models.Choice;
+import Models.Scenario;
 import Models.Player;
 
 public class NewGame implements Choosable {
@@ -18,7 +18,7 @@ public class NewGame implements Choosable {
     Printable printable;
     private final GameWindow gameWindow;
     private GameSettings gameSettings = GameSettings.getInstance();
-    private Choice activeChoice;
+    private Scenario activeScenario;
     private JSONParsing jsonParser;
     private Player player;
     Printer printer;
@@ -35,20 +35,20 @@ public class NewGame implements Choosable {
     }
 
     private void runStartChoice() {
-        this.activeChoice = jsonParser.getChoiceFromJsonV2("introRoom0");
-        gameWindow.printResponseToGameArea(this.activeChoice.getTitle(), this.activeChoice.getDescription());
-        gameWindow.feedSideBar(this.activeChoice);
+        this.activeScenario = jsonParser.getChoiceFromJsonV2("introRoom0");
+        gameWindow.printResponseToGameArea(this.activeScenario.getTitle(), this.activeScenario.getDescription());
+        gameWindow.feedSideBar(this.activeScenario);
     }
 
     // Give this the id of the movementCommand
     public void nextChoice(String id) {
-        Choice newActiveChoice = jsonParser.getChoiceFromJsonV2(id);
-        gameWindow.printResponseToGameArea(newActiveChoice.getTitle(), newActiveChoice.getDescription());
-        this.activeChoice = newActiveChoice;
+        Scenario newActiveScenario = jsonParser.getChoiceFromJsonV2(id);
+        gameWindow.printResponseToGameArea(newActiveScenario.getTitle(), newActiveScenario.getDescription());
+        this.activeScenario = newActiveScenario;
         gameSettings.upTurnCount();
-        gameWindow.feedSideBar(newActiveChoice);
+        gameWindow.feedSideBar(newActiveScenario);
     }
 
     @Override
-    public Choice getActiveChoice() { return activeChoice; }
+    public Scenario getActiveScenario() { return activeScenario; }
 }

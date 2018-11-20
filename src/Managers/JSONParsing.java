@@ -5,7 +5,7 @@ Has edited this:
 - Kristoffer
 */
 
-import Models.Choice;
+import Models.Scenario;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -18,18 +18,18 @@ import java.util.Collection;
 // Here the json.simple library is used
 public class JSONParsing {
 
-    public Choice getChoiceFromJsonV2(String id) {
-        Choice newChoice = new Choice();
-        Type choiceType = new TypeToken<Collection<Choice>>(){}.getType();
+    public Scenario getChoiceFromJsonV2(String id) {
+        Scenario newScenario = new Scenario();
+        Type choiceType = new TypeToken<Collection<Scenario>>(){}.getType();
 
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/Choice.json"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/Scenario.json"));
             Gson gson = new GsonBuilder().create();
-            Collection<Choice> choices = gson.fromJson(reader, choiceType);
-            if (!choices.isEmpty()) {
-                for (Choice choice1:choices) {
-                    if (choice1.getId().equals(id)) {
-                        newChoice = choice1;
+            Collection<Scenario> scenarios = gson.fromJson(reader, choiceType);
+            if (!scenarios.isEmpty()) {
+                for (Scenario scenario1 : scenarios) {
+                    if (scenario1.getId().equals(id)) {
+                        newScenario = scenario1;
                     }
                 }
             }
@@ -37,20 +37,20 @@ public class JSONParsing {
         catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        return newChoice;
+        return newScenario;
     }
 
     /*
     - Old parser, could still be of use later.
 
-    public Choice getChoiceFromJson(int id) {
+    public Scenario getChoiceFromJson(int id) {
 
         JsonParser parser = new JsonParser();
         HashMap<String, Integer> map = new HashMap<>();
-        Choice choice = null;
+        Scenario choice = null;
 
         try {
-            JsonArray jsonArr = (JsonArray) parser.parse(new FileReader("src/JSON/Choice.json"));
+            JsonArray jsonArr = (JsonArray) parser.parse(new FileReader("src/JSON/Scenario.json"));
             JsonObject jsonChoice = (JsonObject) jsonArr.get(id);
             long idLong = jsonChoice.get("id").getAsInt();
             int idInt = (int) idLong;
@@ -76,7 +76,7 @@ public class JSONParsing {
             for (Object command:combatCommands) {
                 combatCommandList.add(command.toString());
             }
-            choice = new Choice(idInt, title, description, map, actionCommandList, combatCommandList);
+            choice = new Scenario(idInt, title, description, map, actionCommandList, combatCommandList);
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
