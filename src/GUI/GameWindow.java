@@ -132,7 +132,7 @@ public class GameWindow implements Printable {
 
 // LISTENERS
         // Listener for sending of a command
-        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable, playable) {});
+        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable, playable));
 
         sendCommandButton.addActionListener(new CommandListener(GameWindow.this, choosable, playable));
 
