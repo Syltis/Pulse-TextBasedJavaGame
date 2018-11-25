@@ -35,6 +35,7 @@ public class GameSettings {
 
     ).collect(Collectors.toList());
 
+    // TODO this bugs int he beginning, 0-3
     private int turnCount = 1;
 
     private GameSettings() {}

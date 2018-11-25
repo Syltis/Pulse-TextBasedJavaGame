@@ -13,9 +13,9 @@ Has edited this:
 - Kristoffer
 
 
-- This class receives the players command and the activeChoice, figures out the
+- This class receives the players command and the activeScenario, figures out the
 command type and processes the command. It uses the lists of available commands from
-the activeChoice and from gameSettings.
+the activeScenario and from gameSettings.
 
 */
 
@@ -37,9 +37,8 @@ public class CommandControl {
         this.printable = printable;
         this.choosable = choosable;
         this.playable = playable;
-        commandController(
-                findPlayerCommandType(playerCommand, activeScenario),
-            activeScenario, playerCommand);
+        // Find out commands type and send it to commandController
+        commandController(findPlayerCommandType(playerCommand, activeScenario), activeScenario, playerCommand);
     }
 
     private void commandController(CommandTypeEnum commandType, Scenario activeScenario, PlayerCommand playerCommand) {
@@ -57,12 +56,15 @@ public class CommandControl {
                     }
                 }
                 // Gives error if its is a viable command, but not for that Scenario.
-                if (nextScenarioId != null) {
-                    printable.printCommandToGameArea(playerCommand.getPlayerCommand());
-                    printable.clearSideBarArea();
-                    choosable.nextScenario(nextScenarioId);
-                } else
+                if (nextScenarioId == null) {
                     printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' even mean?");
+                    break;
+                }
+                // Next scenario
+                printable.printCommandToGameArea(playerCommand.getPlayerCommand());
+                // Clearing of sidebar must be done here and not in nextScenario(), though the new values are sent from there
+                printable.clearSideBarArea();
+                choosable.nextScenario(nextScenarioId);
                 break;
 
             case ACTIONCOMMAND:

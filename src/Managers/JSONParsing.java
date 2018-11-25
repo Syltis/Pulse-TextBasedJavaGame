@@ -29,6 +29,7 @@ public class JSONParsing {
             if (!scenarios.isEmpty()) {
                 for (Scenario aScenario : scenarios) {
                     if (aScenario.getId().equals(id)) {
+                        newScenario = new Scenario();
                         newScenario = aScenario;
                     }
                 }
