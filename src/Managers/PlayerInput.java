@@ -14,6 +14,8 @@ import java.util.ArrayList;
 
 public class PlayerInput {
 
+    // TODO Figure out if this class can be removed
+
     private final Printable printable;
     private final Choosable choosable;
     private final Playable playable;
