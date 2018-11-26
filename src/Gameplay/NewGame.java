@@ -43,9 +43,9 @@ public class NewGame implements Choosable {
     public void nextScenario(String nextScenarioId) {
         Scenario newActiveScenario = jsonParser.getScenarioFromJsonV2(nextScenarioId);
         gameWindow.printResponseToGameArea(newActiveScenario.getTitle(), newActiveScenario.getDescription());
-        gameWindow.feedSideBar(newActiveScenario);
         this.activeScenario = newActiveScenario;
         gameSettings.upTurnCount();
+        gameWindow.feedSideBar(newActiveScenario);
     }
 
     @Override
