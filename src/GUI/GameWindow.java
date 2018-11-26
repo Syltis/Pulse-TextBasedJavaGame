@@ -21,9 +21,7 @@ import java.awt.event.FocusEvent;
 public class GameWindow implements Printable {
 
     private final Choosable choosable;
-    private final Printable printable;
     private final Playable playable;
-    Printer printer;
     GameSettings gameSettings = GameSettings.getInstance();
     JTextArea sidebarTextArea;
     private JPanel sideBarPanel;
@@ -39,7 +37,6 @@ public class GameWindow implements Printable {
 
      public GameWindow(Choosable choosable, Printable printable, Playable playable) {
          this.choosable = choosable;
-         this.printable = printable;
          this.playable = playable;
 
          JFrame gameFrame = new JFrame("UntitledRPG™");
@@ -201,7 +198,7 @@ public class GameWindow implements Printable {
     // Prints  player command to inputAreaTextField (log)
     public void printCommandToLog(String text) {
 
-        inputAreaTextArea.append("> " + text + "\n");
+        inputAreaTextArea.append(" " + gameSettings.getTurnCount() + ". " + text + "\n");
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
@@ -217,7 +214,7 @@ public class GameWindow implements Printable {
 
     // Prints to the gameTextArea.
     public void printResponseToGameArea(String title, String descrption) {
-         gameTextArea.append(" " + title + "\n");
+         gameTextArea.append(" " + gameSettings.getTurnCount() + ". " + title + "\n");
          gameTextArea.append("> " + descrption + "\n");
          gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
     }

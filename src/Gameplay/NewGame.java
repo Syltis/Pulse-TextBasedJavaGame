@@ -42,9 +42,9 @@ public class NewGame implements Choosable {
     // Give this the id of the movementCommand
     public void nextScenario(String nextScenarioId) {
         Scenario newActiveScenario = jsonParser.getScenarioFromJsonV2(nextScenarioId);
+        gameSettings.upTurnCount();
         gameWindow.printResponseToGameArea(newActiveScenario.getTitle(), newActiveScenario.getDescription());
         this.activeScenario = newActiveScenario;
-        gameSettings.upTurnCount();
         gameWindow.feedSideBar(newActiveScenario);
     }
 
