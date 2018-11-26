@@ -19,7 +19,6 @@ class CommandListener implements ActionListener {
     private Choosable choosable;
     Playable playable;
     private int blankCounter;
-    GameWindow gameWindow;
 
     // TODO Why doesnt printable work?
     CommandListener(Printable printable, Choosable choosable, Playable playable)
@@ -27,7 +26,6 @@ class CommandListener implements ActionListener {
 
         this.printable = printable;
         this.choosable = choosable;
-        this.gameWindow = gameWindow;
         this.playable = playable;
     }
 
