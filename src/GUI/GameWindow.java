@@ -232,9 +232,9 @@ public class GameWindow implements Printable {
              gameTextArea.append("> Inventory empty" + "\n");
          }
          else {
+             gameTextArea.append("\n" + "> Inventory:" + "\n");
              for (Item aItem:inventory) {
-                 gameTextArea.append("\n" + "> Inventory:" + "\n");
-                 gameTextArea.append("> " + aItem.getItemName() + " (" + aItem.getItemType() + ")" + "\n");
+                 gameTextArea.append("- " + aItem.getItemName() + " (" + aItem.getItemType() + ")" + "\n");
              }
          }
     }

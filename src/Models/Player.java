@@ -17,7 +17,9 @@ public class Player implements Playable {
 	public Player(String playerName)
 	{
 		this.playerName = playerName;
+		// Default items for testing
 		addToInventory(new Item("Excalibur", "Sword"));
+		addToInventory(new Item("Bread", "Food"));
 	}
 
 	public String getPlayerName() {
