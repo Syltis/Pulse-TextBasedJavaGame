@@ -9,21 +9,21 @@ import Gameplay.GameSettings;
 import Interfaces.Choosable;
 import Interfaces.Playable;
 import Interfaces.Printable;
-import Models.Scenario;
+import Models.Item;
 import Models.MovementCommand;
+import Models.Scenario;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.List;
 
 public class GameWindow implements Printable {
 
     private final Choosable choosable;
-    private final Printable printable;
     private final Playable playable;
-    Printer printer;
     GameSettings gameSettings = GameSettings.getInstance();
     JTextArea sidebarTextArea;
     private JPanel sideBarPanel;
@@ -39,7 +39,6 @@ public class GameWindow implements Printable {
 
      public GameWindow(Choosable choosable, Printable printable, Playable playable) {
          this.choosable = choosable;
-         this.printable = printable;
          this.playable = playable;
 
          JFrame gameFrame = new JFrame("UntitledRPG™");
@@ -201,7 +200,7 @@ public class GameWindow implements Printable {
     // Prints  player command to inputAreaTextField (log)
     public void printCommandToLog(String text) {
 
-        inputAreaTextArea.append("> " + text + "\n");
+        inputAreaTextArea.append(" " + gameSettings.getTurnCount() + ". " + text + "\n");
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
@@ -216,8 +215,8 @@ public class GameWindow implements Printable {
     }
 
     // Prints to the gameTextArea.
-    public void printResponseToGameArea(String title, String descrption) {
-         gameTextArea.append(" " + title + "\n");
+    public void printScenarioToGameArea(String title, String descrption) {
+         gameTextArea.append(" " + gameSettings.getTurnCount() + ". " + title + "\n");
          gameTextArea.append("> " + descrption + "\n");
          gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
     }
@@ -225,6 +224,18 @@ public class GameWindow implements Printable {
     public void printCommandToGameArea(String text) {
          gameTextArea.append("- " + text + "\n" + "\n");
          gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
+    }
+
+    public void printInventoryToGameArea(List<Item> inventory) {
+         if (inventory.isEmpty()) {
+             gameTextArea.append("> Inventory empty" + "\n");
+         }
+         else {
+             for (Item aItem:inventory) {
+                 gameTextArea.append("\n" + "> Inventory:" + "\n");
+                 gameTextArea.append("> " + aItem.getItemName() + " (" + aItem.getItemType() + ")" + "\n");
+             }
+         }
     }
 
     // Has alternative for dash ('-') in front of printed string

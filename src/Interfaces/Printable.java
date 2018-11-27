@@ -5,6 +5,10 @@ Has edited this:
 - Kristoffer
 */
 
+import Models.Item;
+
+import java.util.List;
+
 public interface Printable {
 
     void printCommandToLog(String text);
@@ -12,6 +16,10 @@ public interface Printable {
     void printResponseToLog(String text);
 
     void printCommandToGameArea(String text);
+
+    void printScenarioToGameArea(String title, String description);
+
+    void printInventoryToGameArea(List<Item> inventory);
 
     void setInputAreaTextField(String text);
 

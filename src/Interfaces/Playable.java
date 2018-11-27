@@ -1,11 +1,13 @@
 package Interfaces;
 
+import Models.Item;
+
 import java.util.List;
 
 public interface Playable {
 
-	public List<String> getInventory();
+	public List<Item> getInventory();
 
-	public void setInventory(List<String> inventory);
+	public void setInventory(List<Item> inventory);
 
 }

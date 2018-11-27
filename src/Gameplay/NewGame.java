@@ -35,16 +35,16 @@ public class NewGame implements Choosable {
 
     private void runStartChoice() {
         this.activeScenario = jsonParser.getScenarioFromJsonV2("introRoom0");
-        gameWindow.printResponseToGameArea(this.activeScenario.getTitle(), this.activeScenario.getDescription());
+        gameWindow.printScenarioToGameArea(this.activeScenario.getTitle(), this.activeScenario.getDescription());
         gameWindow.feedSideBar(this.activeScenario);
     }
 
     // Give this the id of the movementCommand
     public void nextScenario(String nextScenarioId) {
         Scenario newActiveScenario = jsonParser.getScenarioFromJsonV2(nextScenarioId);
-        gameWindow.printResponseToGameArea(newActiveScenario.getTitle(), newActiveScenario.getDescription());
-        this.activeScenario = newActiveScenario;
         gameSettings.upTurnCount();
+        gameWindow.printScenarioToGameArea(newActiveScenario.getTitle(), newActiveScenario.getDescription());
+        this.activeScenario = newActiveScenario;
         gameWindow.feedSideBar(newActiveScenario);
     }
 
