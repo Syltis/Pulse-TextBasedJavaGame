@@ -23,7 +23,8 @@ public class Scenario {
     public Scenario(String id, String title, String description,
                     MovementCommand[] availableMovementCommands,
                     ArrayList availableActionCommands,
-                    ArrayList availableCombatCommands) {
+                    ArrayList availableCombatCommands)
+    {
         this.id = id;
         this.title = title;
         this.description = description;

@@ -1,9 +1,13 @@
 package Models;
 
 import Interfaces.Playable;
-
 import java.util.ArrayList;
 import java.util.List;
+
+/*
+Has edited this:
+- Kristoffer
+*/
 
 public class Player implements Playable {
 
