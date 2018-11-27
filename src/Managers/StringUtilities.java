@@ -24,7 +24,7 @@ public final class StringUtilities {
 		String commandTarget = input.substring(input.indexOf(" "), input.length());
 		ArrayList<String> splitCommandList = new ArrayList<>();
 		splitCommandList.add(actionCommand);
-		splitCommandList.add(commandTarget);
+		splitCommandList.add(cleanString(commandTarget));
 		return splitCommandList;
 	}
 

@@ -12,7 +12,6 @@ Has edited this:
 public class Player implements Playable {
 
 	private String playerName;
-
 	private List<Item> inventory = new ArrayList<>();
 
 	public Player(String playerName)
