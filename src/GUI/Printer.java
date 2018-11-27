@@ -1,8 +1,11 @@
 package GUI;
 
 import Interfaces.Printable;
+import Models.Item;
 import Models.Scenario;
 import Models.MovementCommand;
+
+import java.util.List;
 
 // METHOD NOT FINISHED AND NOT IN USE
 public class Printer implements Printable {
@@ -30,10 +33,15 @@ public class Printer implements Printable {
     }
 
     // Prints to the gameTextArea.
-    public void printResponseToGameArea(String title, String descrption) {
+    public void printScenarioToGameArea(String title, String descrption) {
         gameWindow.gameTextArea.append(" " + title + "\n");
         gameWindow.gameTextArea.append("> " + descrption + "\n");
         gameWindow.gameTextArea.setCaretPosition(gameWindow.gameTextArea.getDocument().getLength());
+    }
+
+    @Override
+    public void printInventoryToGameArea(List<Item> inventory) {
+
     }
 
     public void printCommandToGameArea(String text) {

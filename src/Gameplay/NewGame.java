@@ -35,7 +35,7 @@ public class NewGame implements Choosable {
 
     private void runStartChoice() {
         this.activeScenario = jsonParser.getScenarioFromJsonV2("introRoom0");
-        gameWindow.printResponseToGameArea(this.activeScenario.getTitle(), this.activeScenario.getDescription());
+        gameWindow.printScenarioToGameArea(this.activeScenario.getTitle(), this.activeScenario.getDescription());
         gameWindow.feedSideBar(this.activeScenario);
     }
 
@@ -43,7 +43,7 @@ public class NewGame implements Choosable {
     public void nextScenario(String nextScenarioId) {
         Scenario newActiveScenario = jsonParser.getScenarioFromJsonV2(nextScenarioId);
         gameSettings.upTurnCount();
-        gameWindow.printResponseToGameArea(newActiveScenario.getTitle(), newActiveScenario.getDescription());
+        gameWindow.printScenarioToGameArea(newActiveScenario.getTitle(), newActiveScenario.getDescription());
         this.activeScenario = newActiveScenario;
         gameWindow.feedSideBar(newActiveScenario);
     }

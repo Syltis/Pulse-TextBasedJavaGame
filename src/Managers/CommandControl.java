@@ -4,9 +4,9 @@ import Gameplay.GameSettings;
 import Interfaces.Choosable;
 import Interfaces.Playable;
 import Interfaces.Printable;
-import Models.Scenario;
 import Models.MovementCommand;
 import Models.PlayerCommand;
+import Models.Scenario;
 
 /*
 Has edited this:
@@ -68,10 +68,9 @@ public class CommandControl {
                 break;
 
             case ACTIONCOMMAND:
-                /* TODO action logic
-                    Inventory: Instead of having key in the room in the desc in JSON,
-                Have a container to search, where yo get the item if you don't have it already.
-                */
+                if (playerCommand.getPlayerCommand().equals("inventory")) {
+                    printable.printInventoryToGameArea(playable.getInventory());
+                }
                 break;
 
             case COMBATCOMMAND:

@@ -14,7 +14,7 @@
       }
     ],
     "availableActionCommands": ["inventory"],
-    "availableCombatCommands": []
+    "availableCombatCommands": ["attack rat"]
   },
   {
     "id": "introRoom1",
