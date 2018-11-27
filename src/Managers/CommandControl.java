@@ -8,6 +8,8 @@ import Models.MovementCommand;
 import Models.PlayerCommand;
 import Models.Scenario;
 
+import java.util.List;
+
 /*
 Has edited this:
 - Kristoffer
@@ -70,7 +72,14 @@ public class CommandControl {
             case ACTIONCOMMAND:
                 if (playerCommand.getPlayerCommand().equals("inventory")) {
                     printable.printInventoryToGameArea(playable.getInventory());
+                    break;
                 }
+                // Check if two words
+                if (playerCommand.getPlayerCommand().contains(" ")) {
+                    List<String> splitCommand = StringUtilities.splitCommand(playerCommand.getPlayerCommand());
+                    System.out.println(splitCommand.toString());
+                }
+                else printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' even mean??");
                 break;
 
             case COMBATCOMMAND:
