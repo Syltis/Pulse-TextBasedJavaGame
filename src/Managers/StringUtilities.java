@@ -11,7 +11,7 @@ public final class StringUtilities {
 
 	private StringUtilities() {}
 
-	public ArrayList<String> splitCommand(String input) {
+	public static ArrayList<String> splitCommand(String input) {
 		String actionCommand = input.substring(0, input.indexOf(" "));
 		String commandTarget = input.substring(input.indexOf(" "), input.length());
 		ArrayList<String> splitCommandList = new ArrayList<>();
