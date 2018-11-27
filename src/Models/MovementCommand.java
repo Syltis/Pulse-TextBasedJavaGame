@@ -5,7 +5,8 @@ public class MovementCommand {
     private String command;
     private String nextScenarioId;
 
-    public MovementCommand(String command, String nextScenarioId) {
+    public MovementCommand(String command, String nextScenarioId)
+    {
         this.command = command;
         this.nextScenarioId = nextScenarioId;
     }

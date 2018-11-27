@@ -83,6 +83,7 @@ public class CommandControl {
         }
     }
 
+    // Decide what type of command the player has entered
     private CommandTypeEnum findPlayerCommandType(PlayerCommand playerCommand, Scenario activeScenario) {
         // Check if the command exists in gameSettings and in the activechoice
         for (MovementCommand aMovementCommand: gameSettings.getMovementCommandBank()) {

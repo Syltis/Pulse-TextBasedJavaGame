@@ -20,8 +20,8 @@ public class PlayerInput {
     private final Choosable choosable;
     private final Playable playable;
 
-    public PlayerInput(Printable printable, Choosable choosable, Playable playable) {
-
+    public PlayerInput(Printable printable, Choosable choosable, Playable playable)
+    {
         this.printable = printable;
         this.choosable = choosable;
         this.playable = playable;

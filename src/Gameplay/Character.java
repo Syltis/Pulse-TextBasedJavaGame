@@ -20,7 +20,8 @@ public class Character {
     private int money;
     private String location;
 
-    Character(String name, String description, int health, int[] skills, int money, String location) {
+    Character(String name, String description, int health, int[] skills, int money, String location)
+    {
         this.name = name;
         this.description = description;
         this.health = health;
@@ -29,7 +30,8 @@ public class Character {
         this.location = location;
     }
     
-    Character() {
+    Character()
+    {
         this.name = "Unnamed";
         this.description = "No description";
         this.health = 100;

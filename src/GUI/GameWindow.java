@@ -37,7 +37,8 @@ public class GameWindow implements Printable {
     private String emptyLogButtonText = "Empty Log";
     private String sendButtonText = "Send";
 
-     public GameWindow(Choosable choosable, Printable printable, Playable playable) {
+     public GameWindow(Choosable choosable, Printable printable, Playable playable)
+     {
          this.choosable = choosable;
          this.playable = playable;
 
