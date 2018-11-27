@@ -13,7 +13,7 @@
         "nextScenarioId": "introRoom1"
       }
     ],
-    "availableActionCommands": ["inventory"],
+    "availableActionCommands": ["inventory", "take key"],
     "availableCombatCommands": ["attack rat"]
   },
   {

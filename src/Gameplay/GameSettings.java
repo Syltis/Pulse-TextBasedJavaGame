@@ -31,7 +31,7 @@ public class GameSettings {
 
     ).collect(Collectors.toList());
     private static final List<String> combatCommandBank = Stream.of(
-            "kill rat"
+            "attack rat"
 
     ).collect(Collectors.toList());
 

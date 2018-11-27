@@ -74,12 +74,14 @@ public class CommandControl {
                     printable.printInventoryToGameArea(playable.getInventory());
                     break;
                 }
-                // Check if two words
+                // Check if two words, thereby being a command to use something
                 if (playerCommand.getPlayerCommand().contains(" ")) {
                     List<String> splitCommand = StringUtilities.splitCommand(playerCommand.getPlayerCommand());
                     System.out.println(splitCommand.toString());
                 }
-                else printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' even mean??");
+                else {
+                    printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' even mean??");
+                }
                 break;
 
             case COMBATCOMMAND:
