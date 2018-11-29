@@ -15,7 +15,7 @@ import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.Collection;
 
-// Here the json.simple library is used
+// Here the google.Gson library is used
 public class JSONParsing {
 
     public Scenario getScenarioFromJsonV2(String id) {
@@ -42,7 +42,7 @@ public class JSONParsing {
     }
 
     /*
-    - Old parser, could still be of use later.
+    - Old parser, could still be of use later. Uses the json.simple library
 
     public Scenario getChoiceFromJson(int id) {
 

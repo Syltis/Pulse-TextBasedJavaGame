@@ -35,5 +35,4 @@ public final class StringUtilities {
 		string = string.toLowerCase();
 		return string;
 	}
-
 }
