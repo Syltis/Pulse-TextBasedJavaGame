@@ -18,7 +18,7 @@ import java.util.Collection;
 // Here the google.Gson library is used
 public class JSONParsing {
 
-    public Scenario getScenarioFromJsonV2(String id) {
+    public Scenario getScenarioFromJson(String id) {
         Scenario newScenario = new Scenario();
         Type scenarioType = new TypeToken<Collection<Scenario>>(){}.getType();
 

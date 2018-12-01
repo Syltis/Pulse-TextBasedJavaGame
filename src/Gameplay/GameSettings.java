@@ -38,8 +38,8 @@ public class GameSettings {
     // TODO this bugs int he beginning, 0-3
     private int turnCount = 1;
 
-    // Turncount is used to count how many choices the user has made. Is accessed in
-    //      NewGame.java in the nextScenario()-method, and is displayed in the GameWindow.
+    // Turncount is used to count how many choices the user has made. It is accessed in
+    //   NewGame.java in the nextScenario()-method, and is displayed in the GameWindow.
     public int getTurnCount() { return turnCount; }
 
     public void upTurnCount() { turnCount = turnCount + 1; }

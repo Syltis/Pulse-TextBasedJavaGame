@@ -13,8 +13,6 @@ public interface Playable {
 
 	List<Item> getInventory();
 
-	void setInventory(List<Item> inventory);
-
 	void addToInventory(Item item);
 
 }

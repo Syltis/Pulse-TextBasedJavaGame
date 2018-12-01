@@ -20,19 +20,6 @@ public class Scenario {
 
     }
 
-    public Scenario(String id, String title, String description,
-                    MovementCommand[] availableMovementCommands,
-                    ArrayList availableActionCommands,
-                    ArrayList availableCombatCommands)
-    {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.availableMovementCommands = availableMovementCommands;
-        this.availableActionCommands = availableActionCommands;
-        this.availableCombatCommands = availableCombatCommands;
-    }
-
     public String getId() { return id; }
 
     public void setId(String id) { this.id = id; }

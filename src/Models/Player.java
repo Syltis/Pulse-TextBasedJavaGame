@@ -34,10 +34,6 @@ public class Player implements Playable {
 		return inventory;
 	}
 
-	public void setInventory(List<Item> inventory) {
-		this.inventory = inventory;
-	}
-
 	public void addToInventory(Item item) {
 		inventory.add(item);
 	}
