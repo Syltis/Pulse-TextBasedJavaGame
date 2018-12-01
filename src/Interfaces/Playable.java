@@ -11,8 +11,8 @@ import java.util.List;
 
 public interface Playable {
 
-	public List<Item> getInventory();
+	List<Item> getInventory();
 
-	public void setInventory(List<Item> inventory);
+	void addToInventory(Item item);
 
 }

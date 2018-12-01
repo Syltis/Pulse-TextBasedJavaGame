@@ -6,6 +6,10 @@ Has edited this:
 - Kristoffer
 */
 
+/*
+TODO Split model (Character) from battle-logic
+ */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;

@@ -39,11 +39,11 @@ public class CommandControl {
         this.printable = printable;
         this.choosable = choosable;
         this.playable = playable;
-        // Find out commands type and send it to commandController
-        commandController(findPlayerCommandType(playerCommand, activeScenario), activeScenario, playerCommand);
+        // Find out command type and send it to commandControl-method
+        commandControl(findPlayerCommandType(playerCommand, activeScenario), activeScenario, playerCommand);
     }
 
-    private void commandController(CommandTypeEnum commandType, Scenario activeScenario, PlayerCommand playerCommand) {
+    private void commandControl(CommandTypeEnum commandType, Scenario activeScenario, PlayerCommand playerCommand) {
         String nextScenarioId = null;
         switch (commandType) {
             // Check the playercommand with the activeScenario-object, and compare their nextScenarioId's to get the matching object
@@ -57,12 +57,10 @@ public class CommandControl {
                         }
                     }
                 }
-                // Gives error if its is a viable command, but not for that Scenario.
                 if (nextScenarioId == null) {
                     printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' even mean?");
                     break;
                 }
-                // Next scenario
                 printable.printCommandToGameArea(playerCommand.getPlayerCommand());
                 // Clearing of sidebar must be done here and not in nextScenario(), though the new values are sent from there
                 printable.clearSideBarArea();

@@ -232,9 +232,9 @@ public class GameWindow implements Printable {
              gameTextArea.append("> Inventory empty" + "\n");
          }
          else {
+             gameTextArea.append("\n" + "> Inventory:" + "\n");
              for (Item aItem:inventory) {
-                 gameTextArea.append("\n" + "> Inventory:" + "\n");
-                 gameTextArea.append("> " + aItem.getItemName() + " (" + aItem.getItemType() + ")" + "\n");
+                 gameTextArea.append("- " + aItem.getItemName() + " (" + aItem.getItemType() + ")" + "\n");
              }
          }
     }
@@ -264,9 +264,6 @@ public class GameWindow implements Printable {
 
     // Prints the available commands to the sidebar
     public void feedSideBar(Scenario activeScenario) {
-         int turnCount = gameSettings.getTurnCount();
-         printToSidebarArea(turnCount + "\n", "dash");
-
          if (activeScenario.getAvailableMovementCommands() != null && activeScenario.getAvailableMovementCommands().length > 0) {
              printToSidebarArea("MOVEMENT:", "dash");
              for (MovementCommand aMovementCommand : activeScenario.getAvailableMovementCommands()) {

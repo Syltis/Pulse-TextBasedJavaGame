@@ -17,12 +17,11 @@ import java.awt.event.ActionListener;
 
 class CommandListener implements ActionListener {
 
-    private final Printable printable;
+    private Printable printable;
     private Choosable choosable;
-    Playable playable;
+    private Playable playable;
     private int blankCounter;
 
-    // TODO Why doesnt printable work?
     CommandListener(Printable printable, Choosable choosable, Playable playable)
     {
 

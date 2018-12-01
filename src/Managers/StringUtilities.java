@@ -15,7 +15,8 @@ import java.util.List;
 public final class StringUtilities {
 
 	// Private constructor so the class cannot be instantiated
-	private StringUtilities() {
+	private StringUtilities()
+	{
 		throw new UnsupportedOperationException();
 	}
 
@@ -35,5 +36,4 @@ public final class StringUtilities {
 		string = string.toLowerCase();
 		return string;
 	}
-
 }
