@@ -8,39 +8,37 @@ Has edited this:
 import Interfaces.Choosable;
 import Interfaces.Playable;
 import Interfaces.Printable;
-import Managers.PlayerInput;
+import Managers.CommandControl;
+import Managers.StringUtilities;
+import Models.PlayerCommand;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 class CommandListener implements ActionListener {
 
-    private final Printable printable;
+    private Printable printable;
     private Choosable choosable;
-    Playable playable;
+    private Playable playable;
     private int blankCounter;
-    GameWindow gameWindow;
 
-    // TODO Why doesnt printable work?
     CommandListener(Printable printable, Choosable choosable, Playable playable)
     {
 
         this.printable = printable;
         this.choosable = choosable;
-        this.gameWindow = gameWindow;
         this.playable = playable;
     }
 
     // This is called then the player enters a command
     public void  actionPerformed(ActionEvent e) {
-        PlayerInput playerInput;
             String input = printable.getInputAreaTextField();
             if (input.length() > 0) {
                 // Print in the inputAreaTextField (log)
                 printable.printCommandToLog(input);
                 // Send to playerInput.
-                playerInput = new PlayerInput(printable, choosable, playable);
-                playerInput.receiveCommand(input);
+                PlayerCommand playerCommand = new PlayerCommand(StringUtilities.cleanString(input));
+                new CommandControl(playerCommand, choosable.getActiveScenario(), printable, choosable, playable);
                 printable.setInputAreaTextField("");
                 blankCounter = 0;
             }

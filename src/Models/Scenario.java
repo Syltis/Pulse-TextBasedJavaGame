@@ -7,30 +7,17 @@ Has edited this:
 
 import java.util.ArrayList;
 
-public class Choice {
+public class Scenario {
 
     private String id;
     private String title;
     private String description;
-
     private MovementCommand[] availableMovementCommands;
     private ArrayList<String> availableActionCommands;
     private ArrayList<String> availableCombatCommands;
 
-    public Choice() {
+    public Scenario() {
 
-    }
-
-    public Choice(String id, String title, String description,
-                  MovementCommand[] availableMovementCommands,
-                  ArrayList availableActionCommands,
-                  ArrayList availableCombatCommands) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.availableMovementCommands = availableMovementCommands;
-        this.availableActionCommands = availableActionCommands;
-        this.availableCombatCommands = availableCombatCommands;
     }
 
     public String getId() { return id; }

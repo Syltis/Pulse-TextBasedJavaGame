@@ -6,6 +6,10 @@ Has edited this:
 - Kristoffer
 */
 
+/*
+TODO Split model (Character) from battle-logic
+ */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,7 +24,8 @@ public class Character {
     private int money;
     private String location;
 
-    Character(String name, String description, int health, int[] skills, int money, String location) {
+    Character(String name, String description, int health, int[] skills, int money, String location)
+    {
         this.name = name;
         this.description = description;
         this.health = health;
@@ -29,7 +34,8 @@ public class Character {
         this.location = location;
     }
     
-    Character() {
+    Character()
+    {
         this.name = "Unnamed";
         this.description = "No description";
         this.health = 100;

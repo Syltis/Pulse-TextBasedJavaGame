@@ -9,21 +9,21 @@ import Gameplay.GameSettings;
 import Interfaces.Choosable;
 import Interfaces.Playable;
 import Interfaces.Printable;
-import Models.Choice;
+import Models.Item;
 import Models.MovementCommand;
+import Models.Scenario;
 
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.util.List;
 
 public class GameWindow implements Printable {
 
     private final Choosable choosable;
-    private final Printable printable;
     private final Playable playable;
-    Printer printer;
     GameSettings gameSettings = GameSettings.getInstance();
     JTextArea sidebarTextArea;
     private JPanel sideBarPanel;
@@ -37,9 +37,9 @@ public class GameWindow implements Printable {
     private String emptyLogButtonText = "Empty Log";
     private String sendButtonText = "Send";
 
-     public GameWindow(Choosable choosable, Printable printable, Playable playable) {
+     public GameWindow(Choosable choosable, Printable printable, Playable playable)
+     {
          this.choosable = choosable;
-         this.printable = printable;
          this.playable = playable;
 
          JFrame gameFrame = new JFrame("UntitledRPG™");
@@ -132,7 +132,7 @@ public class GameWindow implements Printable {
 
 // LISTENERS
         // Listener for sending of a command
-        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable, playable) {});
+        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable, playable));
 
         sendCommandButton.addActionListener(new CommandListener(GameWindow.this, choosable, playable));
 
@@ -201,7 +201,7 @@ public class GameWindow implements Printable {
     // Prints  player command to inputAreaTextField (log)
     public void printCommandToLog(String text) {
 
-        inputAreaTextArea.append("> " + text + "\n");
+        inputAreaTextArea.append(" " + gameSettings.getTurnCount() + ". " + text + "\n");
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
@@ -216,8 +216,8 @@ public class GameWindow implements Printable {
     }
 
     // Prints to the gameTextArea.
-    public void printResponseToGameArea(String title, String descrption) {
-         gameTextArea.append(" " + title + "\n");
+    public void printScenarioToGameArea(String title, String descrption) {
+         gameTextArea.append(" " + gameSettings.getTurnCount() + ". " + title + "\n");
          gameTextArea.append("> " + descrption + "\n");
          gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
     }
@@ -225,6 +225,18 @@ public class GameWindow implements Printable {
     public void printCommandToGameArea(String text) {
          gameTextArea.append("- " + text + "\n" + "\n");
          gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
+    }
+
+    public void printInventoryToGameArea(List<Item> inventory) {
+         if (inventory.isEmpty()) {
+             gameTextArea.append("> Inventory empty" + "\n");
+         }
+         else {
+             gameTextArea.append("\n" + "> Inventory:" + "\n");
+             for (Item aItem:inventory) {
+                 gameTextArea.append("- " + aItem.getItemName() + " (" + aItem.getItemType() + ")" + "\n");
+             }
+         }
     }
 
     // Has alternative for dash ('-') in front of printed string
@@ -251,27 +263,24 @@ public class GameWindow implements Printable {
     }
 
     // Prints the available commands to the sidebar
-    public void feedSideBar(Choice activeChoice) {
-         int turnCount = gameSettings.getTurnCount();
-         printToSidebarArea(turnCount + "\n", "dash");
-
-         if (activeChoice.getAvailableMovementCommands() != null && activeChoice.getAvailableMovementCommands().length > 0) {
+    public void feedSideBar(Scenario activeScenario) {
+         if (activeScenario.getAvailableMovementCommands() != null && activeScenario.getAvailableMovementCommands().length > 0) {
              printToSidebarArea("MOVEMENT:", "dash");
-             for (MovementCommand aMovementCommand : activeChoice.getAvailableMovementCommands()) {
+             for (MovementCommand aMovementCommand : activeScenario.getAvailableMovementCommands()) {
                 printToSidebarArea(aMovementCommand.getMovementCommand(), "dash");
             }
          }
-         if (activeChoice.getAvailableActionCommands() != null && !activeChoice.getAvailableActionCommands().isEmpty()){
+         if (activeScenario.getAvailableActionCommands() != null && !activeScenario.getAvailableActionCommands().isEmpty()){
             printToSidebarArea("", "nodash");
             printToSidebarArea("ACTIONS:", "dash");
-            for (String aCommand:activeChoice.getAvailableActionCommands()) {
+            for (String aCommand: activeScenario.getAvailableActionCommands()) {
                 printToSidebarArea(aCommand.replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+",""), "dash");
             }
         }
-        if (activeChoice.getAvailableCombatCommands() != null && !activeChoice.getAvailableCombatCommands().isEmpty()) {
+        if (activeScenario.getAvailableCombatCommands() != null && !activeScenario.getAvailableCombatCommands().isEmpty()) {
             printToSidebarArea("", "nodash");
             printToSidebarArea("COMBAT:", "dash");
-            for (String aCombatCommand:activeChoice.getAvailableCombatCommands()) {
+            for (String aCombatCommand: activeScenario.getAvailableCombatCommands()) {
                 printToSidebarArea(aCombatCommand.replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""),"dash");
             }
         }

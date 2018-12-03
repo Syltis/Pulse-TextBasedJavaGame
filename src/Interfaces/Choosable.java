@@ -5,11 +5,11 @@ Has edited this:
 - Kristoffer
 */
 
-import Models.Choice;
+import Models.Scenario;
 
 public interface Choosable {
 
-    Choice getActiveChoice();
+    Scenario getActiveScenario();
 
-    void nextChoice(String id);
+    void nextScenario(String nextScenarioId);
 }

@@ -6,35 +6,36 @@
     "availableMovementCommands": [
       {
         "command": "go north",
-        "nextChoiceId": "introRoom1"
+        "nextScenarioId": "introRoom1"
       },
       {
         "command": "north",
-        "nextChoiceId": "introRoom1"
+        "nextScenarioId": "introRoom1"
       }
     ],
-    "availableActionCommands": ["take key", "inventory"],
-    "availableCombatCommands": []
+    "availableActionCommands": ["inventory", "take key"],
+    "availableCombatCommands": ["attack rat"]
   },
   {
     "id": "introRoom1",
     "title": "Double doored room",
     "description": "You are in a room with two doors, one to the west and one to the east.",
     "availableMovementCommands": [
-      {"command": "go west",
-        "nextChoiceId": "introRoom2"
+      {
+        "command": "go west",
+        "nextScenarioId": "introRoom2"
       },
       {"command": "west",
-        "nextChoiceId": "introRoom2"
+        "nextScenarioId": "introRoom2"
       },
       {"command": "go east",
-        "nextChoiceId": "introRoom3"
+        "nextScenarioId": "introRoom3"
       },
       {"command": "east",
-        "nextChoiceId": "introRoom3"
+        "nextScenarioId": "introRoom3"
       },
       {"command": "go back",
-        "nextChoiceId": "introRoom0"
+        "nextScenarioId": "introRoom0"
       }
     ],
     "availableActionCommands": ["inventory"],
@@ -45,11 +46,12 @@
     "title": "Dark room",
     "description": "You are in a dark room. There is a man lying on his stomach on the floor. A gun is lying besides him. There is a door to the north",
     "availableMovementCommands": [
-      {"command": "go north",
-        "nextChoiceId": "introRoom4"
+      {
+        "command": "go north",
+        "nextScenarioId": "introRoom4"
       },
       {"command": "go back",
-        "nextChoiceId": "introRoom1"
+        "nextScenarioId": "introRoom1"
       }
     ],
     "availableActionCommands": ["inventory"],
@@ -60,8 +62,9 @@
     "title": "Empty room",
     "description": "You are in a room that appears to be empty.",
     "availableMovementCommands": [
-      {"command": "go back",
-        "nextChoiceId": "introRoom1"
+      {
+        "command": "go back",
+        "nextScenarioId": "introRoom1"
       }
     ],
     "availableActionCommands": ["inventory"],
@@ -72,8 +75,9 @@
     "title": "Dim lit room",
     "description": "You are in a dim lit room. There are bunk bed by the walls. One of the bunk beds has a ball of blankets on it, and one can hear a wheezing-noice coming from it.",
     "availableMovementCommands": [
-      {"command": "go back",
-        "nextChoiceId": "introRoom2"
+      {
+        "command": "go back",
+        "nextScenarioId": "introRoom2"
       }
     ],
     "availableActionCommands": ["inventory"],
