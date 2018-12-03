@@ -14,16 +14,17 @@ public class MainMenu {
     private final String newGame = "New Game";
     private final String loadGame = "Load Game";
     private final String settings = "Settings";
-    private JFrame frame = new JFrame("UntitledRPG™ Main Menu");
+    private final JFrame frame = new JFrame("UntitledRPG™ Main Menu");
 
-    public MainMenu() {
+    public MainMenu()
+    {
         buildWindow(frame);
     }
 
     private void buildWindow(JFrame frame)
     {
         // Main build
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         frame.setSize(400, 220);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
@@ -48,7 +49,7 @@ public class MainMenu {
         JButton loadGameBtn = selectGameTypeBtn(loadGame);
         JButton settingsBtn = selectGameTypeBtn(settings);
 
-        // Set values. Can be integrated to the instantiation for cleaner look
+        // Set values.
         String welcomeText = "Welcome to the Untitled RPG!";
         String gameDesc = "<html>Press 'New Game' to start your adventure,<br /> or 'Load Game' to continue an existing one!</html> ";
         settingsBtn.setText("Settings");

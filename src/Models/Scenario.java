@@ -6,36 +6,23 @@ Has edited this:
 */
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class Choice {
+public class Scenario {
 
-    private int id;
+    private String id;
     private String title;
     private String description;
-    private HashMap<String, Integer> availableMovementCommands;
+    private MovementCommand[] availableMovementCommands;
     private ArrayList<String> availableActionCommands;
     private ArrayList<String> availableCombatCommands;
 
-    public Choice() {
+    public Scenario() {
 
     }
 
-    public Choice(int id, String title, String description,
-                  HashMap availableMovementCommands,
-                  ArrayList availableActionCommands,
-                  ArrayList availableCombatCommands) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.availableMovementCommands = availableMovementCommands;
-        this.availableActionCommands = availableActionCommands;
-        this.availableCombatCommands = availableCombatCommands;
-    }
+    public String getId() { return id; }
 
-    public int getId() { return id; }
-
-    public void setId(int id) { this.id = id; }
+    public void setId(String id) { this.id = id; }
 
     public String getTitle() { return title; }
 
@@ -45,12 +32,12 @@ public class Choice {
 
     public void setDescription(String description) { this.description = description; }
 
-    public HashMap<String, Integer> getAvailableMovementCommands() {
-        return this.availableMovementCommands;
+    public MovementCommand[] getAvailableMovementCommands() {
+        return availableMovementCommands;
     }
 
-    public void setAvailableMovementCommands(HashMap<String, Integer> hashMap) {
-        this.availableMovementCommands = hashMap;
+    public void setAvailableMovementCommands(MovementCommand[] availableMovementCommands) {
+        this.availableMovementCommands = availableMovementCommands;
     }
 
     public ArrayList<String> getAvailableActionCommands() {

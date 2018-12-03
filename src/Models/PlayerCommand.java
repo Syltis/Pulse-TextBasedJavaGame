@@ -7,9 +7,10 @@ Has edited this:
 
 public class PlayerCommand {
 
-    private String command;
+    private final String command;
 
-    public PlayerCommand(String command) {
+    public PlayerCommand(String command)
+    {
         this.command = command;
     }
 

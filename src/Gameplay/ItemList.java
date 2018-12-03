@@ -1,123 +1,125 @@
+package Gameplay;
+
 import java.util.ArrayList;
 import java.util.List;
 
 class Item_List {
     public static void main(String[] args) {
-        List Weapons = new ArrayList();
+        List<String> weapons = new ArrayList();
 
-        Weapons.add("Wooden Sword");
-        Weapons.add("Copper Sword");
-        Weapons.add("Broadsword");
-        Weapons.add("Flashing Blade");
-        Weapons.add("Scimitar");
-        Weapons.add("Katana");
-        Weapons.add("Dual Blades");
-        Weapons.add("Light Blade");
-        Weapons.add("Mecha-Excalibur");
+        weapons.add("Wooden Sword");
+        weapons.add("Copper Sword");
+        weapons.add("Broadsword");
+        weapons.add("Flashing Blade");
+        weapons.add("Scimitar");
+        weapons.add("Katana");
+        weapons.add("Dual Blades");
+        weapons.add("Light Blade");
+        weapons.add("Mecha-Excalibur");
 
-        Weapons.add("Woodcutter's Axe");
-        Weapons.add("Iron Axe");
-        Weapons.add("Tomahawk");
-        Weapons.add("Heavy Axe");
-        Weapons.add("Obsidian Hatchet");
-        Weapons.add("Marauder's Hatchet");
-        Weapons.add("Holy Cleaver");
-        Weapons.add("Cyber Axe");
+        weapons.add("Woodcutter's Axe");
+        weapons.add("Iron Axe");
+        weapons.add("Tomahawk");
+        weapons.add("Heavy Axe");
+        weapons.add("Obsidian Hatchet");
+        weapons.add("Marauder's Hatchet");
+        weapons.add("Holy Cleaver");
+        weapons.add("Cyber Axe");
 
-        Weapons.add("Withered Staff");
-        Weapons.add("Oak Staff");
-        Weapons.add("Mystic Rod");
-        Weapons.add("Enchanted Mace");
-        Weapons.add("Holy Rod");
-        Weapons.add("Crystal Scepter");
-        Weapons.add("Arcane Wand");
-        Weapons.add("Divine Scepter");
+        weapons.add("Withered Staff");
+        weapons.add("Oak Staff");
+        weapons.add("Mystic Rod");
+        weapons.add("Enchanted Mace");
+        weapons.add("Holy Rod");
+        weapons.add("Crystal Scepter");
+        weapons.add("Arcane Wand");
+        weapons.add("Divine Scepter");
 
-        Weapons.add("Trainee Bow");
-        Weapons.add("Hunting Bow");
-        Weapons.add("Crossbow");
-        Weapons.add("GTO Bow");
-        Weapons.add("Double Bow");
-        Weapons.add("Marksman's Bow");
-        Weapons.add("Augmented Crossbow");
+        weapons.add("Trainee Bow");
+        weapons.add("Hunting Bow");
+        weapons.add("Crossbow");
+        weapons.add("GTO Bow");
+        weapons.add("Double Bow");
+        weapons.add("Marksman's Bow");
+        weapons.add("Augmented Crossbow");
 
-        Weapons.add("Handgun");
-        Weapons.add("Submachine Gun");
-        Weapons.add("Semi-Automatic Rifle");
-        Weapons.add("Automatic Rifle");
-        Weapons.add("Machine Gun");
-        Weapons.add("Flare Gun");
-        Weapons.add("Ray Gun");
-        Weapons.add("Cryo SMG");
-        Weapons.add("Tesla Blaster");
-        Weapons.add("Minigun");
-        Weapons.add("Plasma Rifle");
-        Weapons.add("Big Bang(tm) Blaster");
+        weapons.add("Handgun");
+        weapons.add("Submachine Gun");
+        weapons.add("Semi-Automatic Rifle");
+        weapons.add("Automatic Rifle");
+        weapons.add("Machine Gun");
+        weapons.add("Flare Gun");
+        weapons.add("Ray Gun");
+        weapons.add("Cryo SMG");
+        weapons.add("Tesla Blaster");
+        weapons.add("Minigun");
+        weapons.add("Plasma Rifle");
+        weapons.add("Big Bang(tm) Blaster");
 
-        Weapons.add("Pocket Grenade");
-        Weapons.add("Hand Grenade");
-        Weapons.add("Incendiary Grenade");
-        Weapons.add("Flashbang");
-        Weapons.add("Remote Bombs");
-        Weapons.add("Dynamite");
-        Weapons.add("EMP Grenade");
-        Weapons.add("Missile Launcher");
-        Weapons.add("Flamethrower");
-        Weapons.add("Incendiary Cannon");
-        Weapons.add("Big Bang(tm) Bazooka");
+        weapons.add("Pocket Grenade");
+        weapons.add("Hand Grenade");
+        weapons.add("Incendiary Grenade");
+        weapons.add("Flashbang");
+        weapons.add("Remote Bombs");
+        weapons.add("Dynamite");
+        weapons.add("EMP Grenade");
+        weapons.add("Missile Launcher");
+        weapons.add("Flamethrower");
+        weapons.add("Incendiary Cannon");
+        weapons.add("Big Bang(tm) Bazooka");
 
-        List Consumables = new ArrayList();
+        List<String> consumables = new ArrayList();
 
-        Consumables.add("Potion");
-        Consumables.add("Remedial Vial");
-        Consumables.add("Large Potion");
-        Consumables.add("GTO Bottle");
-        Consumables.add("Heavy Elixir");
-        Consumables.add("Alchemist's Flask");
+        consumables.add("Potion");
+        consumables.add("Remedial Vial");
+        consumables.add("Large Potion");
+        consumables.add("GTO Bottle");
+        consumables.add("Heavy Elixir");
+        consumables.add("Alchemist's Flask");
 
-        List Armor = new ArrayList();
+        List<String> armor = new ArrayList();
 
-        Armor.add("Tattered Vest");
-        Armor.add("Leather Armor");
-        Armor.add("Mystic Robes");
-        Armor.add("Kevlar Vest");
-        Armor.add("Chainmail Armor");
-        Armor.add("Obsidian Breastplate");
-        Armor.add("Heavy Armor");
-        Armor.add("Hi-Tech Plating");
+        armor.add("Tattered Vest");
+        armor.add("Leather Armor");
+        armor.add("Mystic Robes");
+        armor.add("Kevlar Vest");
+        armor.add("Chainmail Armor");
+        armor.add("Obsidian Breastplate");
+        armor.add("Heavy Armor");
+        armor.add("Hi-Tech Plating");
 
-        List Shields = new ArrayList();
+        List<String> shields = new ArrayList();
 
-        Shields.add("Rusty Shield");
-        Shields.add("Small Shield");
-        Shields.add("Iron Shield");
-        Shields.add("Large Shield");
-        Shields.add("Silver Shield");
-        Shields.add("Heavy Shield");
-        Shields.add("Kinetic Absorber");
+        shields.add("Rusty Shield");
+        shields.add("Small Shield");
+        shields.add("Iron Shield");
+        shields.add("Large Shield");
+        shields.add("Silver Shield");
+        shields.add("Heavy Shield");
+        shields.add("Kinetic Absorber");
 
-        List Holy = new ArrayList();
+        List<String> holy = new ArrayList();
 
-        Holy.add("Prayer");
-        Holy.add("Salvation");
-        Holy.add("Judgement");
-        Holy.add("Imbue");
-        Holy.add("Reprimand");
-        Holy.add("Constitute");
-        Holy.add("Divine Retribution");
+        holy.add("Prayer");
+        holy.add("Salvation");
+        holy.add("Judgement");
+        holy.add("Imbue");
+        holy.add("Reprimand");
+        holy.add("Constitute");
+        holy.add("Divine Retribution");
 
-        List Arcane = new ArrayList();
+        List<String> arcane = new ArrayList();
 
-        Arcane.add("Flame");
-        Arcane.add("Chill");
-        Arcane.add("Bolt");
-        Arcane.add("Gale");
-        Arcane.add("Blast");
-        Arcane.add("Blaze");
-        Arcane.add("Cryo");
-        Arcane.add("Zap");
-        Arcane.add("Gust");
-        Arcane.add("Barrier");
-        Arcane.add("Arcane Nova");
+        arcane.add("Flame");
+        arcane.add("Chill");
+        arcane.add("Bolt");
+        arcane.add("Gale");
+        arcane.add("Blast");
+        arcane.add("Blaze");
+        arcane.add("Cryo");
+        arcane.add("Zap");
+        arcane.add("Gust");
+        arcane.add("Barrier");
+        arcane.add("Arcane Nova");
     }
 }

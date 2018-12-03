@@ -9,7 +9,8 @@ import javax.swing.*;
 
 class PopUp {
 
-    PopUp(String infoMessage, String titleBar) {
+    PopUp(String infoMessage, String titleBar)
+    {
         JOptionPane.showMessageDialog(null, infoMessage, titleBar, JOptionPane.INFORMATION_MESSAGE);
     }
 }

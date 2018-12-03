@@ -6,10 +6,16 @@ Has edited this:
 */
 
 /*
-Singleton class for storing data. Currently here to store the the choice-id of the active choice.
+Singleton class for storing game sava data and for saving a game.
+A singleton has a private constructor, and can only be instantiated and accessed
+    though the getInstance()-method. The method checks if the class has already been
+    instantiated. If it has not, it instantiates it, and return the object.
 */
 
-import java.util.HashMap;
+import Models.Item;
+import Models.MovementCommand;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,50 +23,64 @@ import java.util.stream.Stream;
 public class GameSettings {
 
     private static GameSettings instance = null;
-    private static HashMap<String, Integer> movementCommandArchive = null;
-
-    // The map from json sys.outs: {"go back"=0, "open door"=1}
-    // The map from this hashmap is {go back=1, open door=1}
-
-    private static final List<String> actionCommandArchive = Stream.of(
+    private static List<Item> itemBank  = null;
+    private static List<MovementCommand> movementCommandBank = null;
+    private static final List<String> actionCommandBank = Stream.of(
             "take key",
             "inventory"
 
     ).collect(Collectors.toList());
-
-    private static final List<String> combatCommandArchive = Stream.of(
-            "kill rat"
+    private static final List<String> combatCommandBank = Stream.of(
+            "attack rat"
 
     ).collect(Collectors.toList());
 
-    private GameSettings() {
+    // TODO this bugs int he beginning, 0-3
+    private int turnCount = 1;
 
-    }
+    // Turncount is used to count how many choices the user has made. It is accessed in
+    //   NewGame.java in the nextScenario()-method, and is displayed in the GameWindow.
+    public int getTurnCount() { return turnCount; }
 
-    // TODO Make the movementCommandArchive a running list of the json commands, and use strings, the titles of the choices, and the JSON id.
+    public void upTurnCount() { turnCount = turnCount + 1; }
+
     public synchronized static GameSettings getInstance() {
         if (instance == null) {
             instance = new GameSettings();
         }
-        // These are put when the singleton is instatiated
-        movementCommandArchive = new HashMap<>();
-                movementCommandArchive.put("open door", 1);
-                movementCommandArchive.put("open west", 2);
-                movementCommandArchive.put("open east", 3);
-                movementCommandArchive.put("open north", 3);
-                movementCommandArchive.put("go back", 0);
+        // Instantiate bank of movements when the singleton is instantiated
+        // TODO: These could be retrieved from JSON automatically
+        movementCommandBank = new ArrayList<>();
+        // IntroRooms 0-4
+        movementCommandBank.add(new MovementCommand("go north","introRoom1"));
+        movementCommandBank.add(new MovementCommand("north","introRoom1"));
+        movementCommandBank.add(new MovementCommand("go west","introRoom2"));
+        movementCommandBank.add(new MovementCommand("west","introRoom2"));
+        movementCommandBank.add(new MovementCommand("go east","introRoom3"));
+        movementCommandBank.add(new MovementCommand("east","introRoom3"));
+        movementCommandBank.add(new MovementCommand("go back","introRoom0"));
+        movementCommandBank.add(new MovementCommand("go north","introRoom4"));
+        movementCommandBank.add(new MovementCommand("go back","introRoom1"));
+        movementCommandBank.add(new MovementCommand("go back","introRoom2"));
+
+        // Instantiate bank of movements when the singleton is instantiated
+        itemBank = new ArrayList<>();
+        // Test-items
+        itemBank.add(new Item("Rusty key", "key"));
+
         return instance;
     }
 
-    public HashMap<String, Integer> getMovementCommandArchive() {
-        return movementCommandArchive;
+    // TODO automatically get all movementcommands from JSON
+    public List<MovementCommand> getMovementCommandBank() {
+        return movementCommandBank;
     }
 
-    public List<String> getActionCommandArchive() {
-        return actionCommandArchive;
+    public List<String> getActionCommandBank() {
+        return actionCommandBank;
     }
 
-    public List<String> getCombatCommandArchive() {
-        return combatCommandArchive;
+    public List<String> getCombatCommandBank() {
+        return combatCommandBank;
     }
 }
