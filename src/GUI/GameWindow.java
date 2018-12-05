@@ -13,7 +13,6 @@ import Models.ActionCommand;
 import Models.Item;
 import Models.MovementCommand;
 import Models.Scenario;
-
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
@@ -25,7 +24,6 @@ public class GameWindow implements Printable {
 
     private final Choosable choosable;
     private final Playable playable;
-    GameSettings gameSettings = GameSettings.getInstance();
     JTextArea sidebarTextArea;
     private JPanel sideBarPanel;
     JTextArea gameTextArea;
@@ -202,7 +200,7 @@ public class GameWindow implements Printable {
     // Prints  player command to inputAreaTextField (log)
     public void printCommandToLog(String text) {
 
-        inputAreaTextArea.append(" " + gameSettings.getTurnCount() + ". " + text + "\n");
+        inputAreaTextArea.append(" " + GameSettings.getTurnCount() + ". " + text + "\n");
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
@@ -218,7 +216,7 @@ public class GameWindow implements Printable {
 
     // Prints to the gameTextArea.
     public void printScenarioToGameArea(String title, String descrption) {
-         gameTextArea.append(" " + gameSettings.getTurnCount() + ". " + title + "\n");
+         gameTextArea.append(" " + GameSettings.getTurnCount() + ". " + title + "\n");
          gameTextArea.append("> " + descrption + "\n");
          gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
     }

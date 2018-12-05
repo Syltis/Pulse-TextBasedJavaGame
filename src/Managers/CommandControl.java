@@ -9,8 +9,6 @@ import Models.MovementCommand;
 import Models.PlayerCommand;
 import Models.Scenario;
 
-import java.util.List;
-
 /*
 Has edited this:
 - Kristoffer
@@ -44,6 +42,7 @@ public class CommandControl {
         commandControl(findPlayerCommandType(playerCommand, activeScenario), activeScenario, playerCommand);
     }
 
+    // TODO Move these pieces of logic to their own class/method
     private void commandControl(CommandTypeEnum commandType, Scenario activeScenario, PlayerCommand playerCommand) {
         String nextScenarioId = null;
         switch (commandType) {
@@ -69,18 +68,12 @@ public class CommandControl {
                 break;
 
             case ACTIONCOMMAND:
+                // Check if player asks for inventory
                 if (playerCommand.getPlayerCommand().equals("inventory")) {
                     printable.printInventoryToGameArea(playable.getInventory());
                     break;
                 }
-                // Check if two words, thereby being a command to use something
-                if (playerCommand.getPlayerCommand().contains(" ")) {
-                    List<String> splitCommand = StringUtilities.splitCommand(playerCommand.getPlayerCommand());
-                    System.out.println(splitCommand.toString());
-                }
-                else {
-                    printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' even mean??");
-                }
+                // TODO: Logic for receiving actionCommands
                 break;
 
             case COMBATCOMMAND:
@@ -104,7 +97,7 @@ public class CommandControl {
             if (aActionCommand.getActionCommand().equals(playerCommand.getPlayerCommand()))
                 return CommandTypeEnum.ACTIONCOMMAND;
         }
-        if (gameSettings.getActionCommandBank().contains(playerCommand.getPlayerCommand())
+        if (gameSettings.getCombatCommandBank().contains(playerCommand.getPlayerCommand())
                 && activeScenario.getAvailableCombatCommands().contains(playerCommand.getPlayerCommand())) {
             return CommandTypeEnum.COMBATCOMMAND;
         }

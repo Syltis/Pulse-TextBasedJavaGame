@@ -10,7 +10,10 @@ public class ActionCommand {
 	private String command;
 	private String actionResult;
 
-	public ActionCommand(String command, String actionResult) {}
+	public ActionCommand(String command, String actionResult) {
+		this.command = command;
+		this.actionResult = actionResult;
+	}
 
 	public String getActionCommand() { return command; }
 

@@ -32,12 +32,11 @@ public class GameSettings {
 
     ).collect(Collectors.toList());
 
-    // TODO this bugs int he beginning, 0-3
-    private int turnCount = 1;
+    private static int turnCount = 1;
 
     // Turncount is used to count how many choices the user has made. It is accessed in
     //   NewGame.java in the nextScenario()-method, and is displayed in the GameWindow.
-    public int getTurnCount() { return turnCount; }
+    public static int getTurnCount() { return turnCount; }
 
     public void upTurnCount() { turnCount = turnCount + 1; }
 
@@ -73,14 +72,11 @@ public class GameSettings {
         return instance;
     }
 
-    // TODO automatically get all movementcommands from JSON
     public List<MovementCommand> getMovementCommandBank() {
         return movementCommandBank;
     }
 
-    public List<ActionCommand> getActionCommandBank() {
-        return actionCommandBank;
-    }
+    public List<ActionCommand> getActionCommandBank() { return actionCommandBank; }
 
     public List<String> getCombatCommandBank() {
         return combatCommandBank;
