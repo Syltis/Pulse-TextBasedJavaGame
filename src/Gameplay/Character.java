@@ -136,7 +136,7 @@ public class Character {
     public void startBattle(Character Enemy) throws IOException {
         //BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         while(this.isAlive() && Enemy.isAlive()) {
-            int battleChoice = this.choose("Select an action!", new String[] {"Attack","Defend"});
+            int battleChoice = this.choose("Select an action!", new String[] {"Attack","Rest"});
             if(battleChoice == 1) this.rest(Enemy);
             if(battleChoice == 0){
             if(this.isAlive()) this.attack(Enemy);
