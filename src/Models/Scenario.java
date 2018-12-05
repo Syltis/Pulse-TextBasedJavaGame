@@ -13,7 +13,7 @@ public class Scenario {
     private String title;
     private String description;
     private MovementCommand[] availableMovementCommands;
-    private ArrayList<String> availableActionCommands;
+    private ActionCommand[] availableActionCommands;
     private ArrayList<String> availableCombatCommands;
 
     public Scenario() {
@@ -40,11 +40,11 @@ public class Scenario {
         this.availableMovementCommands = availableMovementCommands;
     }
 
-    public ArrayList<String> getAvailableActionCommands() {
+    public ActionCommand[] getAvailableActionCommands() {
         return this.availableActionCommands;
     }
 
-    public void setAvailableActionCommands(ArrayList<String> availableActionCommands) {
+    public void setAvailableActionCommands(ActionCommand[] availableActionCommands) {
         this.availableActionCommands = availableActionCommands;
     }
 

@@ -4,6 +4,7 @@ import Gameplay.GameSettings;
 import Interfaces.Choosable;
 import Interfaces.Playable;
 import Interfaces.Printable;
+import Models.ActionCommand;
 import Models.MovementCommand;
 import Models.PlayerCommand;
 import Models.Scenario;
@@ -99,11 +100,11 @@ public class CommandControl {
             if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand()))
                 return CommandTypeEnum.MOVEMENTCOMMAND;
         }
-        if (gameSettings.getActionCommandBank().contains(playerCommand.getPlayerCommand())
-                && activeScenario.getAvailableActionCommands().contains(playerCommand.getPlayerCommand())) {
-            return CommandTypeEnum.ACTIONCOMMAND;
+        for (ActionCommand aActionCommand: gameSettings.getActionCommandBank()) {
+            if (aActionCommand.getActionCommand().equals(playerCommand.getPlayerCommand()))
+                return CommandTypeEnum.ACTIONCOMMAND;
         }
-        else if (gameSettings.getActionCommandBank().contains(playerCommand.getPlayerCommand())
+        if (gameSettings.getActionCommandBank().contains(playerCommand.getPlayerCommand())
                 && activeScenario.getAvailableCombatCommands().contains(playerCommand.getPlayerCommand())) {
             return CommandTypeEnum.COMBATCOMMAND;
         }

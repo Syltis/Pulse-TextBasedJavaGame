@@ -13,7 +13,16 @@
         "nextScenarioId": "introRoom1"
       }
     ],
-    "availableActionCommands": ["inventory", "take key"],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "actionResult": "take key"
+      },
+      {
+        "command": "take key",
+        "actionResult": "keybrown"
+      }
+    ],
     "availableCombatCommands": ["attack rat"]
   },
   {
@@ -38,7 +47,12 @@
         "nextScenarioId": "introRoom0"
       }
     ],
-    "availableActionCommands": ["inventory"],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "actionResult": "take key"
+      }
+    ],
     "availableCombatCommands": ["kill rat"]
   },
   {
@@ -54,7 +68,12 @@
         "nextScenarioId": "introRoom1"
       }
     ],
-    "availableActionCommands": ["inventory"],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "actionResult": "take key"
+      }
+    ],
     "availableCombatCommands": ["kill rat"]
   },
   {
@@ -67,7 +86,12 @@
         "nextScenarioId": "introRoom1"
       }
     ],
-    "availableActionCommands": ["inventory"],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "actionResult": "take key"
+      }
+    ],
     "availableCombatCommands": ["kill rat"]
   },
   {
@@ -80,7 +104,12 @@
         "nextScenarioId": "introRoom2"
       }
     ],
-    "availableActionCommands": ["inventory"],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "actionResult": "take key"
+      }
+    ],
     "availableCombatCommands": ["kill rat"]
   }
 ]

@@ -12,6 +12,7 @@ A singleton has a private constructor, and can only be instantiated and accessed
     instantiated. If it has not, it instantiates it, and return the object.
 */
 
+import Models.ActionCommand;
 import Models.Item;
 import Models.MovementCommand;
 
@@ -25,11 +26,7 @@ public class GameSettings {
     private static GameSettings instance = null;
     private static List<Item> itemBank  = null;
     private static List<MovementCommand> movementCommandBank = null;
-    private static final List<String> actionCommandBank = Stream.of(
-            "take key",
-            "inventory"
-
-    ).collect(Collectors.toList());
+    private static List<ActionCommand> actionCommandBank = null;
     private static final List<String> combatCommandBank = Stream.of(
             "attack rat"
 
@@ -63,6 +60,11 @@ public class GameSettings {
         movementCommandBank.add(new MovementCommand("go back","introRoom1"));
         movementCommandBank.add(new MovementCommand("go back","introRoom2"));
 
+        // Instantiates bank for actionCommands when the singleton is instantiated
+        actionCommandBank = new ArrayList<>();
+        actionCommandBank.add(new ActionCommand("inventory", "inventory"));
+        actionCommandBank.add(new ActionCommand("take key", "keybrown"));
+
         // Instantiate bank of movements when the singleton is instantiated
         itemBank = new ArrayList<>();
         // Test-items
@@ -76,7 +78,7 @@ public class GameSettings {
         return movementCommandBank;
     }
 
-    public List<String> getActionCommandBank() {
+    public List<ActionCommand> getActionCommandBank() {
         return actionCommandBank;
     }
 

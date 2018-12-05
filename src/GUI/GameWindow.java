@@ -9,6 +9,7 @@ import Gameplay.GameSettings;
 import Interfaces.Choosable;
 import Interfaces.Playable;
 import Interfaces.Printable;
+import Models.ActionCommand;
 import Models.Item;
 import Models.MovementCommand;
 import Models.Scenario;
@@ -37,7 +38,7 @@ public class GameWindow implements Printable {
     private String emptyLogButtonText = "Empty Log";
     private String sendButtonText = "Send";
 
-     public GameWindow(Choosable choosable, Printable printable, Playable playable)
+     public GameWindow(Choosable choosable, Playable playable)
      {
          this.choosable = choosable;
          this.playable = playable;
@@ -270,11 +271,11 @@ public class GameWindow implements Printable {
                 printToSidebarArea(aMovementCommand.getMovementCommand(), "dash");
             }
          }
-         if (activeScenario.getAvailableActionCommands() != null && !activeScenario.getAvailableActionCommands().isEmpty()){
+         if (activeScenario.getAvailableActionCommands() != null && activeScenario.getAvailableActionCommands().length > 0){
             printToSidebarArea("", "nodash");
             printToSidebarArea("ACTIONS:", "dash");
-            for (String aCommand: activeScenario.getAvailableActionCommands()) {
-                printToSidebarArea(aCommand.replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+",""), "dash");
+            for (ActionCommand aActionCommand: activeScenario.getAvailableActionCommands()) {
+                printToSidebarArea(aActionCommand.getActionCommand(), "dash");
             }
         }
         if (activeScenario.getAvailableCombatCommands() != null && !activeScenario.getAvailableCombatCommands().isEmpty()) {
