@@ -12,6 +12,7 @@ A singleton has a private constructor, and can only be instantiated and accessed
     instantiated. If it has not, it instantiates it, and return the object.
 */
 
+import Models.ActionCommand;
 import Models.Item;
 import Models.MovementCommand;
 
@@ -25,22 +26,17 @@ public class GameSettings {
     private static GameSettings instance = null;
     private static List<Item> itemBank  = null;
     private static List<MovementCommand> movementCommandBank = null;
-    private static final List<String> actionCommandBank = Stream.of(
-            "take key",
-            "inventory"
-
-    ).collect(Collectors.toList());
+    private static List<ActionCommand> actionCommandBank = null;
     private static final List<String> combatCommandBank = Stream.of(
             "attack rat"
 
     ).collect(Collectors.toList());
 
-    // TODO this bugs int he beginning, 0-3
-    private int turnCount = 1;
+    private static int turnCount = 1;
 
     // Turncount is used to count how many choices the user has made. It is accessed in
     //   NewGame.java in the nextScenario()-method, and is displayed in the GameWindow.
-    public int getTurnCount() { return turnCount; }
+    public static int getTurnCount() { return turnCount; }
 
     public void upTurnCount() { turnCount = turnCount + 1; }
 
@@ -63,6 +59,11 @@ public class GameSettings {
         movementCommandBank.add(new MovementCommand("go back","introRoom1"));
         movementCommandBank.add(new MovementCommand("go back","introRoom2"));
 
+        // Instantiates bank for actionCommands when the singleton is instantiated
+        actionCommandBank = new ArrayList<>();
+        actionCommandBank.add(new ActionCommand("inventory", "inventory"));
+        actionCommandBank.add(new ActionCommand("take key", "keybrown"));
+
         // Instantiate bank of movements when the singleton is instantiated
         itemBank = new ArrayList<>();
         // Test-items
@@ -71,14 +72,11 @@ public class GameSettings {
         return instance;
     }
 
-    // TODO automatically get all movementcommands from JSON
     public List<MovementCommand> getMovementCommandBank() {
         return movementCommandBank;
     }
 
-    public List<String> getActionCommandBank() {
-        return actionCommandBank;
-    }
+    public List<ActionCommand> getActionCommandBank() { return actionCommandBank; }
 
     public List<String> getCombatCommandBank() {
         return combatCommandBank;

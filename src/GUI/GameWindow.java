@@ -9,10 +9,10 @@ import Gameplay.GameSettings;
 import Interfaces.Choosable;
 import Interfaces.Playable;
 import Interfaces.Printable;
+import Models.ActionCommand;
 import Models.Item;
 import Models.MovementCommand;
 import Models.Scenario;
-
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
@@ -24,7 +24,6 @@ public class GameWindow implements Printable {
 
     private final Choosable choosable;
     private final Playable playable;
-    GameSettings gameSettings = GameSettings.getInstance();
     JTextArea sidebarTextArea;
     private JPanel sideBarPanel;
     JTextArea gameTextArea;
@@ -37,7 +36,7 @@ public class GameWindow implements Printable {
     private String emptyLogButtonText = "Empty Log";
     private String sendButtonText = "Send";
 
-     public GameWindow(Choosable choosable, Printable printable, Playable playable)
+     public GameWindow(Choosable choosable, Playable playable)
      {
          this.choosable = choosable;
          this.playable = playable;
@@ -201,7 +200,7 @@ public class GameWindow implements Printable {
     // Prints  player command to inputAreaTextField (log)
     public void printCommandToLog(String text) {
 
-        inputAreaTextArea.append(" " + gameSettings.getTurnCount() + ". " + text + "\n");
+        inputAreaTextArea.append(" " + GameSettings.getTurnCount() + ". " + text + "\n");
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
@@ -217,7 +216,7 @@ public class GameWindow implements Printable {
 
     // Prints to the gameTextArea.
     public void printScenarioToGameArea(String title, String descrption) {
-         gameTextArea.append(" " + gameSettings.getTurnCount() + ". " + title + "\n");
+         gameTextArea.append(" " + GameSettings.getTurnCount() + ". " + title + "\n");
          gameTextArea.append("> " + descrption + "\n");
          gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
     }
@@ -270,11 +269,11 @@ public class GameWindow implements Printable {
                 printToSidebarArea(aMovementCommand.getMovementCommand(), "dash");
             }
          }
-         if (activeScenario.getAvailableActionCommands() != null && !activeScenario.getAvailableActionCommands().isEmpty()){
+         if (activeScenario.getAvailableActionCommands() != null && activeScenario.getAvailableActionCommands().length > 0){
             printToSidebarArea("", "nodash");
             printToSidebarArea("ACTIONS:", "dash");
-            for (String aCommand: activeScenario.getAvailableActionCommands()) {
-                printToSidebarArea(aCommand.replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+",""), "dash");
+            for (ActionCommand aActionCommand: activeScenario.getAvailableActionCommands()) {
+                printToSidebarArea(aActionCommand.getActionCommand(), "dash");
             }
         }
         if (activeScenario.getAvailableCombatCommands() != null && !activeScenario.getAvailableCombatCommands().isEmpty()) {

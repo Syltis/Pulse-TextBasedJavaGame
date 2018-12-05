@@ -7,8 +7,17 @@ public class ActionCommand {
 	- Kristoffer
 	*/
 
+	private String command;
 	private String actionResult;
-	private String availableActionCommand;
+
+	public ActionCommand(String command, String actionResult) {
+		this.command = command;
+		this.actionResult = actionResult;
+	}
+
+	public String getActionCommand() { return command; }
+
+	public void setActionCommand(String command) { this.command = command; }
 
 	public String getActionResult() {
 		return actionResult;
@@ -16,13 +25,5 @@ public class ActionCommand {
 
 	public void setActionResult(String actionResult) {
 		this.actionResult = actionResult;
-	}
-
-	public String getAvailableActionCommand() {
-		return availableActionCommand;
-	}
-
-	public void setAvailableActionCommand(String availableActionCommand) {
-		this.availableActionCommand = availableActionCommand;
 	}
 }

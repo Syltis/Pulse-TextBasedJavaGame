@@ -26,7 +26,7 @@ public class NewGame implements Choosable {
     public NewGame()
     {
         this.player = new Player("Kris");
-        this.gameWindow = new GameWindow(NewGame.this, printable, this.player);
+        this.gameWindow = new GameWindow(NewGame.this, this.player);
         this.jsonParser = new JSONParsing();
         this.printer = new Printer(gameWindow);
         this.printable = printer.getPrintable();
