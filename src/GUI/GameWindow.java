@@ -23,18 +23,15 @@ public class GameWindow implements Printable {
     private final Choosable choosable;
     private final Playable playable;
     JTextArea sidebarTextArea;
-    private JPanel sideBarPanel;
     JTextArea gameTextArea;
-    private JPanel gameAreaPanel;
     JTextArea inputAreaTextArea;
     JTextField inputAreaTextField;
     private GridBagConstraints c;
 
     private String mainMenuButtonText = "Main menu";
     private String emptyLogButtonText = "Empty Log";
-    private String sendButtonText = "Send";
 
-     public GameWindow(Choosable choosable, Playable playable)
+    public GameWindow(Choosable choosable, Playable playable)
      {
          this.choosable = choosable;
          this.playable = playable;
@@ -71,7 +68,7 @@ public class GameWindow implements Printable {
         gameTextArea.setLineWrap(true);
         gameTextArea.setWrapStyleWord(true);
 
-        gameAreaPanel = new JPanel();
+        JPanel gameAreaPanel = new JPanel();
         gameAreaPanel.setLayout(new BorderLayout());
         gameAreaPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         gameAreaPanel.add(gameTextArea);
@@ -87,7 +84,7 @@ public class GameWindow implements Printable {
         sidebarTextArea.setEditable(false);
         sidebarTextArea.setWrapStyleWord(true);
         sidebarTextArea.setLineWrap(true);
-        sideBarPanel = new JPanel();
+        JPanel sideBarPanel = new JPanel();
         sideBarPanel.setLayout(new BorderLayout());
         sideBarPanel.setBorder(BorderFactory.createEtchedBorder(EtchedBorder.LOWERED));
         JScrollPane sideBarAreaScrollPane = new JScrollPane(sidebarTextArea,
@@ -124,6 +121,7 @@ public class GameWindow implements Printable {
         inputAreaTextField = new JTextField("Start your adventure!",100);
         addComp(inputAreaPanel, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
+        String sendButtonText = "Send";
         JButton sendCommandButton = gameWindowButton(sendButtonText);
         addComp(inputAreaPanel, sendCommandButton, 1, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 

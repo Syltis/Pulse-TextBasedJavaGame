@@ -5,7 +5,7 @@ import java.util.List;
 
 class Item_List {
     public static void main(String[] args) {
-        List<String> weapons = new ArrayList();
+        List<String> weapons = new ArrayList<>();
 
         weapons.add("Wooden Sword");
         weapons.add("Copper Sword");
@@ -68,7 +68,7 @@ class Item_List {
         weapons.add("Incendiary Cannon");
         weapons.add("Big Bang(tm) Bazooka");
 
-        List<String> consumables = new ArrayList();
+        List<String> consumables = new ArrayList<>();
 
         consumables.add("Potion");
         consumables.add("Remedial Vial");
@@ -77,7 +77,7 @@ class Item_List {
         consumables.add("Heavy Elixir");
         consumables.add("Alchemist's Flask");
 
-        List<String> armor = new ArrayList();
+        List<String> armor = new ArrayList<>();
 
         armor.add("Tattered Vest");
         armor.add("Leather Armor");
@@ -88,7 +88,7 @@ class Item_List {
         armor.add("Heavy Armor");
         armor.add("Hi-Tech Plating");
 
-        List<String> shields = new ArrayList();
+        List<String> shields = new ArrayList<>();
 
         shields.add("Rusty Shield");
         shields.add("Small Shield");
@@ -98,7 +98,7 @@ class Item_List {
         shields.add("Heavy Shield");
         shields.add("Kinetic Absorber");
 
-        List<String> holy = new ArrayList();
+        List<String> holy = new ArrayList<>();
 
         holy.add("Prayer");
         holy.add("Salvation");
@@ -108,7 +108,7 @@ class Item_List {
         holy.add("Constitute");
         holy.add("Divine Retribution");
 
-        List<String> arcane = new ArrayList();
+        List<String> arcane = new ArrayList<>();
 
         arcane.add("Flame");
         arcane.add("Chill");

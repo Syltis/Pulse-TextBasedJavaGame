@@ -77,8 +77,8 @@ public class Printer implements Printable {
             return gameWindow.inputAreaTextField.getText();
         else {
             System.out.println("textfield empty");
-            String nullResult = "null";
-            return nullResult;
+            return "null";
+
         }
     }
 
