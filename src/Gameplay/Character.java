@@ -78,11 +78,8 @@ public class Character implements Playable {
     }
 
     public void setStat(String stat, int value) {
-        if(stat.equals("STR")) {
-            this.skills[0] = value;
-        }
-        if(stat.equals("LCK")) this.skills[0] = value;
-        if(stat.equals("CHR")) this.skills[1] = value;
+        if(stat.equals("STR")) this.skills[0] = value;
+        if(stat.equals("LCK")) this.skills[1] = value;
         if(stat.equals("CON")) this.skills[2] = value;
 
     }
