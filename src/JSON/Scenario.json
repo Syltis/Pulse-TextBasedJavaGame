@@ -23,7 +23,12 @@
         "actionResult": "keybrown"
       }
     ],
-    "availableCombatCommands": ["attack rat"]
+    "availableCombatCommands": [
+      {
+        "command": "attack rat",
+        "combatResult": "rat221"
+      }
+    ]
   },
   {
     "id": "introRoom1",
@@ -53,7 +58,12 @@
         "actionResult": "take key"
       }
     ],
-    "availableCombatCommands": ["kill rat"]
+    "availableCombatCommands": [
+        {
+          "command": "attack rat",
+          "combatResult": "rat221"
+        }
+    ]
   },
   {
     "id": "introRoom2",
@@ -74,7 +84,12 @@
         "actionResult": "take key"
       }
     ],
-    "availableCombatCommands": ["kill rat"]
+    "availableCombatCommands": [
+      {
+        "command": "attack rat",
+        "combatResult": "rat221"
+      }
+    ]
   },
   {
     "id": "introRoom3",
@@ -92,7 +107,12 @@
         "actionResult": "take key"
       }
     ],
-    "availableCombatCommands": ["kill rat"]
+    "availableCombatCommands": [
+      {
+        "command": "attack rat",
+        "combatResult": "rat221"
+      }
+    ]
   },
   {
     "id": "introRoom4",
@@ -110,6 +130,11 @@
         "actionResult": "take key"
       }
     ],
-    "availableCombatCommands": ["kill rat"]
+    "availableCombatCommands": [
+      {
+        "command": "attack rat",
+        "combatResult": "rat221"
+      }
+    ]
   }
 ]

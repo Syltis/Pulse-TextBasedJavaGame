@@ -9,10 +9,8 @@ import Gameplay.GameSettings;
 import Interfaces.Choosable;
 import Interfaces.Playable;
 import Interfaces.Printable;
-import Models.ActionCommand;
-import Models.Item;
-import Models.MovementCommand;
-import Models.Scenario;
+import Models.*;
+
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;
@@ -276,11 +274,11 @@ public class GameWindow implements Printable {
                 printToSidebarArea(aActionCommand.getActionCommand(), "dash");
             }
         }
-        if (activeScenario.getAvailableCombatCommands() != null && !activeScenario.getAvailableCombatCommands().isEmpty()) {
+        if (activeScenario.getAvailableCombatCommands() != null && activeScenario.getAvailableCombatCommands().length > 0) {
             printToSidebarArea("", "nodash");
             printToSidebarArea("COMBAT:", "dash");
-            for (String aCombatCommand: activeScenario.getAvailableCombatCommands()) {
-                printToSidebarArea(aCombatCommand.replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""),"dash");
+            for (CombatCommand aCombatCommand: activeScenario.getAvailableCombatCommands()) {
+                printToSidebarArea(aCombatCommand.getCombatCommand(), "dash");
             }
         }
     }

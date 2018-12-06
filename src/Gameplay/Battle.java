@@ -1,24 +1,24 @@
-package untitledRPG;
+package Gameplay;
 
 import java.io.IOException;
 
 public class Battle {
-	private Character CombatantA;
+	private Character playerCombatant;
 	private Character CombatantB;
 	
-	Battle(Character CombatantA, Character CombatantB) throws IOException{
-		this.CombatantA = CombatantA;
+	Battle(Character playerCombatant, Character CombatantB) throws IOException{
+		this.playerCombatant = playerCombatant;
 		this.CombatantB = CombatantB;
-		executeBattle(this.CombatantA, this.CombatantB);
+		executeBattle(this.playerCombatant, this.CombatantB);
 	}
     public void executeBattle(Character CombatantA, Character CombatantB) throws IOException {
     	//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     	while(CombatantA.isAlive() && CombatantB.isAlive()) {
     		int battleChoice = CombatantA.choose("Select an action!", new String[] {"Attack","Defend"});
-    		if(battleChoice == 1) CombatantA.rest(CombatantB);
+    		if(battleChoice == 1) rest(CombatantB);
     		if(battleChoice == 0){
-    		if(CombatantA.isAlive()) CombatantA.attack(CombatantB);
-    		if(CombatantB.isAlive() && CombatantA.isAlive()) CombatantB.attack(CombatantA);
+    		if(CombatantA.isAlive()) attack(CombatantB);
+    		if(CombatantB.isAlive() && CombatantA.isAlive()) attack(CombatantA);
     		}
     	}
     	if(CombatantA.getHealth()<0) {
@@ -28,6 +28,43 @@ public class Battle {
     		System.out.println(CombatantB.getName()+" has defeated " + CombatantA.getName());
     	}
     }
+
+	public void attack(Character Enemy) {
+		int damage = (int)((playerCombatant.getStat("STR") - Enemy.getStat("CON") /2) * Math.random());
+		if(Math.signum(damage)!=-1.0) {
+			//Enemy.health-=damage;
+		}
+		else {}
+	}
+
+	public void rest(Character Enemy) {
+		int recovery = (int)((playerCombatant.getStat("CON")) * Math.random());
+		if(Math.signum(recovery)!=-1.0) {
+			System.out.println(playerCombatant.getName() + " rested for " + recovery + " HP.");
+			//this.health+=recovery;
+		}
+		else {System.out.println(playerCombatant.getName() + " was blocked from resting.");}
+	}
+
+	public void startBattle(Character Enemy) throws IOException {
+		//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		while(playerCombatant.isAlive() && Enemy.isAlive()) {
+			int battleChoice = playerCombatant.choose("Select an action!", new String[] {"Attack","Rest"});
+			if(battleChoice == 1) this.rest(Enemy);
+			if(battleChoice == 0){
+				if(playerCombatant.isAlive()) this.attack(Enemy);
+				if(Enemy.isAlive() && playerCombatant.isAlive()) {
+					attack(CombatantB);
+				}
+			}
+		}
+		if(playerCombatant.getHealth()<0) {
+			System.out.println("You are Dead.");
+		}
+		if(playerCombatant.getHealth()<0) {
+			System.out.println("Damn, you killed that guy.");
+		}
+	}
 	
 
 }

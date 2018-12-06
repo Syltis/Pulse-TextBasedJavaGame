@@ -5,8 +5,6 @@ Has edited this:
 - Kristoffer
 */
 
-import java.util.ArrayList;
-
 public class Scenario {
 
     private String id;
@@ -14,7 +12,7 @@ public class Scenario {
     private String description;
     private MovementCommand[] availableMovementCommands;
     private ActionCommand[] availableActionCommands;
-    private ArrayList<String> availableCombatCommands;
+    private CombatCommand[] availableCombatCommands;
 
     public Scenario() {
 
@@ -48,11 +46,11 @@ public class Scenario {
         this.availableActionCommands = availableActionCommands;
     }
 
-    public ArrayList<String> getAvailableCombatCommands() {
+    public CombatCommand[] getAvailableCombatCommands() {
         return availableCombatCommands;
     }
 
-    public void setAvailableCombatCommands(ArrayList<String> availableCombatCommands) {
+    public void setAvailableCombatCommands(CombatCommand[] availableCombatCommands) {
         this.availableCombatCommands = availableCombatCommands;
     }
 }
