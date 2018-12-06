@@ -11,22 +11,22 @@ import Interfaces.Choosable;
 import Interfaces.Printable;
 import Managers.JSONParsing;
 import Models.Scenario;
-import Models.Player;
 
 public class NewGame implements Choosable {
 
     Printable printable;
     private final GameWindow gameWindow;
+    private Character playerCharacter;
     private GameSettings gameSettings = GameSettings.getInstance();
     private Scenario activeScenario;
     private JSONParsing jsonParser;
-    private Player player;
+
     private Printer printer;
 
     public NewGame()
     {
-        this.player = new Player("Kris");
-        this.gameWindow = new GameWindow(NewGame.this, this.player);
+        this.playerCharacter = new Character();
+        this.gameWindow = new GameWindow(NewGame.this, this.playerCharacter);
         this.jsonParser = new JSONParsing();
         this.printer = new Printer(gameWindow);
         this.printable = printer.getPrintable();

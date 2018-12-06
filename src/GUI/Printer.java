@@ -67,7 +67,7 @@ public class Printer implements Printable {
             printToSidebarArea(activeScenario.getAvailableActionCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
         }
         printToSidebarArea("COMBAT:");
-        if (activeScenario.getAvailableCombatCommands() != null && !activeScenario.getAvailableCombatCommands().isEmpty()) {
+        if (activeScenario.getAvailableCombatCommands() != null && activeScenario.getAvailableCombatCommands().length > 0) {
             printToSidebarArea(activeScenario.getAvailableCombatCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=\\[\\]]+", ""));
         }
     }

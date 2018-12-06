@@ -4,16 +4,14 @@ import Gameplay.GameSettings;
 import Interfaces.Choosable;
 import Interfaces.Playable;
 import Interfaces.Printable;
-import Models.ActionCommand;
-import Models.MovementCommand;
-import Models.PlayerCommand;
-import Models.Scenario;
+import Models.*;
 
 /*
 Has edited this:
 - Kristoffer
+*/
 
-
+/*
 - This class receives the players command and the activeScenario, figures out the
 command type and processes the command. It uses the lists of available commands from
 the activeScenario and from gameSettings.
@@ -77,7 +75,19 @@ public class CommandControl {
                 break;
 
             case COMBATCOMMAND:
-                // TODO combat logic
+                String combatResult = null;
+                for (CombatCommand aCombatCommand:activeScenario.getAvailableCombatCommands()) {
+                    if (aCombatCommand.getCombatCommand().equals(playerCommand.getPlayerCommand())) {
+                        for (CombatCommand anotherCombatCommand:gameSettings.getCombatCommandBank()) {
+                            if (aCombatCommand.getCombatResult().equals(anotherCombatCommand.getCombatResult())) {
+                                combatResult = aCombatCommand.getCombatResult();
+
+                                StringUtilities.instaCharacterFromCombatResult(combatResult);
+                            }
+                        }
+                    }
+
+                }
                 break;
 
             case NOMATCH:
@@ -97,11 +107,10 @@ public class CommandControl {
             if (aActionCommand.getActionCommand().equals(playerCommand.getPlayerCommand()))
                 return CommandTypeEnum.ACTIONCOMMAND;
         }
-        if (gameSettings.getCombatCommandBank().contains(playerCommand.getPlayerCommand())
-                && activeScenario.getAvailableCombatCommands().contains(playerCommand.getPlayerCommand())) {
-            return CommandTypeEnum.COMBATCOMMAND;
+        for (CombatCommand aCombatCommand: gameSettings.getCombatCommandBank()) {
+            if (aCombatCommand.getCombatCommand().equals(playerCommand.getPlayerCommand()))
+                return CommandTypeEnum.COMBATCOMMAND;
         }
-        else
-            return CommandTypeEnum.NOMATCH;
+        return CommandTypeEnum.NOMATCH;
     }
 }

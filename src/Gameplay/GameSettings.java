@@ -13,13 +13,12 @@ A singleton has a private constructor, and can only be instantiated and accessed
 */
 
 import Models.ActionCommand;
+import Models.CombatCommand;
 import Models.Item;
 import Models.MovementCommand;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class GameSettings {
 
@@ -27,10 +26,7 @@ public class GameSettings {
     private static List<Item> itemBank  = null;
     private static List<MovementCommand> movementCommandBank = null;
     private static List<ActionCommand> actionCommandBank = null;
-    private static final List<String> combatCommandBank = Stream.of(
-            "attack rat"
-
-    ).collect(Collectors.toList());
+    private static List<CombatCommand> combatCommandBank = null;
 
     private static int turnCount = 1;
 
@@ -64,6 +60,9 @@ public class GameSettings {
         actionCommandBank.add(new ActionCommand("inventory", "inventory"));
         actionCommandBank.add(new ActionCommand("take key", "keybrown"));
 
+        combatCommandBank = new ArrayList<>();
+        combatCommandBank.add(new CombatCommand("attack rat", "rat221"));
+
         // Instantiate bank of movements when the singleton is instantiated
         itemBank = new ArrayList<>();
         // Test-items
@@ -78,7 +77,7 @@ public class GameSettings {
 
     public List<ActionCommand> getActionCommandBank() { return actionCommandBank; }
 
-    public List<String> getCombatCommandBank() {
+    public List<CombatCommand> getCombatCommandBank() {
         return combatCommandBank;
     }
 }
