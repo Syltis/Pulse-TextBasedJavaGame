@@ -1,4 +1,4 @@
-package Gameplay;
+package Models;
 
 /*
 Has edited this:
@@ -7,18 +7,17 @@ Has edited this:
 
 //import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-import java.io.IOException;
 
-class CharacterTest {
+class PlayerCharacterTest {
 
     @Test
     void test() {
-        Character Player = new Character();
+        PlayerCharacter Player = new PlayerCharacter();
         Player.setName("Test Player:");
         Player.setStat("STR",20);
         System.out.println(Player.getName() + ": " + Player.getStat("STR") + " STR");
         
-        Character TestEnemy = new Character();
+        PlayerCharacter TestEnemy = new PlayerCharacter();
         //DumbLoser.setName("Test Enemy:");
         //DumbLoser.setStat("STR", 20);
 

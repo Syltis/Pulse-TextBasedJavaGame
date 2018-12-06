@@ -57,8 +57,8 @@ public final class StringUtilities {
 		skills[2]  = Integer.parseInt(skill3);
 
 		// TODO: This is where we are now.
-		//Character newCharacter = new Character(characterName, "An actual" + characterName, 100, skills, 5);
+		//PlayerCharacter newCharacter = new PlayerCharacter(characterName, "An actual" + characterName, 100, skills, 5);
 
-		//new Character(characterName, "It's a" + characterName, 100, characterSkills)
+		//new PlayerCharacter(characterName, "It's a" + characterName, 100, characterSkills)
 	}
 }

@@ -10,6 +10,7 @@ import GUI.Printer;
 import Interfaces.Choosable;
 import Interfaces.Printable;
 import Managers.JSONParsing;
+import Models.PlayerCharacter;
 import Models.Scenario;
 
 public class NewGame implements Choosable {
@@ -22,7 +23,7 @@ public class NewGame implements Choosable {
 
     public NewGame()
     {
-        Character playerCharacter = new Character();
+        PlayerCharacter playerCharacter = new PlayerCharacter();
         this.gameWindow = new GameWindow(NewGame.this, playerCharacter);
         this.jsonParser = new JSONParsing();
         Printer printer = new Printer(gameWindow);
