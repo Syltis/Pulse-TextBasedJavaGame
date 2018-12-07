@@ -1,17 +1,19 @@
 package Gameplay;
 
+import Models.PlayerCharacter;
+
 import java.io.IOException;
 
 public class Battle {
-	private Character playerCombatant;
-	private Character CombatantB;
+	private PlayerCharacter playerCombatant;
+	private PlayerCharacter CombatantB;
 	
-	Battle(Character playerCombatant, Character CombatantB) throws IOException{
+	Battle(PlayerCharacter playerCombatant, PlayerCharacter CombatantB) throws IOException{
 		this.playerCombatant = playerCombatant;
 		this.CombatantB = CombatantB;
 		executeBattle(this.playerCombatant, this.CombatantB);
 	}
-    public void executeBattle(Character CombatantA, Character CombatantB) throws IOException {
+    public void executeBattle(PlayerCharacter CombatantA, PlayerCharacter CombatantB) throws IOException {
     	//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     	while(CombatantA.isAlive() && CombatantB.isAlive()) {
     		int battleChoice = CombatantA.choose("Select an action!", new String[] {"Attack","Defend"});
@@ -29,7 +31,7 @@ public class Battle {
     	}
     }
 
-	public void attack(Character Enemy) {
+	public void attack(PlayerCharacter Enemy) {
 		int damage = (int)((playerCombatant.getStat("STR") - Enemy.getStat("CON") /2) * Math.random());
 		if(Math.signum(damage)!=-1.0) {
 			//Enemy.health-=damage;
@@ -37,7 +39,7 @@ public class Battle {
 		else {}
 	}
 
-	public void rest(Character Enemy) {
+	public void rest(PlayerCharacter Enemy) {
 		int recovery = (int)((playerCombatant.getStat("CON")) * Math.random());
 		if(Math.signum(recovery)!=-1.0) {
 			System.out.println(playerCombatant.getName() + " rested for " + recovery + " HP.");
@@ -46,7 +48,7 @@ public class Battle {
 		else {System.out.println(playerCombatant.getName() + " was blocked from resting.");}
 	}
 
-	public void startBattle(Character Enemy) throws IOException {
+	public void startBattle(PlayerCharacter Enemy) throws IOException {
 		//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while(playerCombatant.isAlive() && Enemy.isAlive()) {
 			int battleChoice = playerCombatant.choose("Select an action!", new String[] {"Attack","Rest"});

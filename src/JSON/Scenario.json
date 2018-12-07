@@ -62,7 +62,11 @@
         {
           "command": "attack rat",
           "combatResult": "rat221"
-        }
+        },
+      {
+        "command": "stomp cockroach",
+        "combatResult": "cockroach111"
+      }
     ]
   },
   {
