@@ -42,10 +42,10 @@ public class CommandControl {
 
     // TODO Move these pieces of logic to their own class/method
     private void commandControl(CommandTypeEnum commandType, Scenario activeScenario, PlayerCommand playerCommand) {
-        String nextScenarioId = null;
         switch (commandType) {
             // Check the playercommand with the activeScenario-object, and compare their nextScenarioId's to get the matching object
             case MOVEMENTCOMMAND:
+                String nextScenarioId = null;
                 for (MovementCommand aMovementCommand: activeScenario.getAvailableMovementCommands()) {
                     if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand())) {
                         for (MovementCommand anotherMovementCommand:gameSettings.getMovementCommandBank()) {
@@ -81,8 +81,8 @@ public class CommandControl {
                         for (CombatCommand anotherCombatCommand:gameSettings.getCombatCommandBank()) {
                             if (aCombatCommand.getCombatResult().equals(anotherCombatCommand.getCombatResult())) {
                                 combatResult = aCombatCommand.getCombatResult();
+                                EnemyCharacter enemy = StringUtilities.getCharacterFromCombatResult(combatResult);
 
-                                StringUtilities.instaCharacterFromCombatResult(combatResult);
                             }
                         }
                     }

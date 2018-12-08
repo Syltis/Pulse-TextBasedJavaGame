@@ -1,11 +1,11 @@
 package Models;
 
-public class ActionCommand {
+/*
+Has edited this:
+- Kristoffer
+*/
 
-	/*
-	Has edited this:
-	- Kristoffer
-	*/
+public class ActionCommand {
 
 	private String command;
 	private String actionResult;
