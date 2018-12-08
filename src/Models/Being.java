@@ -1,5 +1,10 @@
 package Models;
 
+/*
+Has edited this:
+- Kristoffer
+*/
+
 import Interfaces.Playable;
 
 import java.util.ArrayList;

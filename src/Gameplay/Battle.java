@@ -1,16 +1,28 @@
 package Gameplay;
 
+/*
+Has edited this:
+- Kristoffer
+- Matt
+*/
+
+import Interfaces.Printable;
+import Models.Being;
 import Models.PlayerCharacter;
 
 import java.io.IOException;
 
 public class Battle {
+
 	private PlayerCharacter playerCombatant;
 	private PlayerCharacter CombatantB;
+	private Printable printable;
 	
-	Battle(PlayerCharacter playerCombatant, PlayerCharacter CombatantB) throws IOException{
+	public Battle(PlayerCharacter playerCombatant, PlayerCharacter CombatantB, Printable printable) throws IOException
+	{
 		this.playerCombatant = playerCombatant;
 		this.CombatantB = CombatantB;
+		this.printable = printable;
 		executeBattle(this.playerCombatant, this.CombatantB);
 	}
     public void executeBattle(PlayerCharacter CombatantA, PlayerCharacter CombatantB) throws IOException {
@@ -31,10 +43,11 @@ public class Battle {
     	}
     }
 
-	public void attack(PlayerCharacter Enemy) {
-		int damage = (int)((playerCombatant.getStat("STR") - Enemy.getStat("CON") /2) * Math.random());
+	public void attack(Being enemy) {
+		int damage = (int)((playerCombatant.getStat("STR") - enemy.getStat("CON") /2) * Math.random());
 		if(Math.signum(damage)!=-1.0) {
-			//Enemy.health-=damage;
+			int newHealth = enemy.getHealth()-damage;
+			enemy.setHealth(newHealth-=damage);
 		}
 		else {}
 	}

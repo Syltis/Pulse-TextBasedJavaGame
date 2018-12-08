@@ -6,11 +6,8 @@ Has edited this:
 */
 
 import Gameplay.GameSettings;
-import Interfaces.Choosable;
-import Interfaces.Playable;
-import Interfaces.Printable;
+import Interfaces.*;
 import Models.*;
-
 import javax.swing.*;
 import javax.swing.border.EtchedBorder;
 import java.awt.*;

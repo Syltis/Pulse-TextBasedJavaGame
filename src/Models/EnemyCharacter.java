@@ -1,5 +1,8 @@
 package Models;
-
+/*
+Has edited this:
+- Kristoffer
+*/
 import java.util.ArrayList;
 import java.util.List;
 
