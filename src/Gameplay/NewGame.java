@@ -28,10 +28,10 @@ public class NewGame implements Choosable {
         this.jsonParser = new JSONParsing();
         Printer printer = new Printer(gameWindow);
         this.printable = printer.getPrintable();
-        runStartChoice();
+        startFirstScenario();
     }
 
-    private void runStartChoice() {
+    private void startFirstScenario() {
         this.activeScenario = jsonParser.getScenarioFromJson("introRoom0");
         gameWindow.printScenarioToGameArea(this.activeScenario.getTitle(), this.activeScenario.getDescription());
         gameWindow.feedSideBar(this.activeScenario);
