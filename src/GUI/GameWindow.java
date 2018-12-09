@@ -32,7 +32,6 @@ public class GameWindow implements Printable {
      {
          this.choosable = choosable;
          this.playable = playable;
-
          JFrame gameFrame = new JFrame("UntitledRPG™");
          buildGameWindow(gameFrame);
     }
@@ -136,6 +135,7 @@ public class GameWindow implements Printable {
                 source.removeFocusListener(this);
             }
         });
+
 // ASSEMBLY
         // Set vertical splitpane.
         JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameAreaPanel, sideBarPanel);

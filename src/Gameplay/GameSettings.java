@@ -59,6 +59,7 @@ public class GameSettings {
 
         itemCommandBank = new ArrayList<>();
         itemCommandBank.add(new ItemCommand("take key", "Brown Key"));
+        itemCommandBank.add(new ItemCommand("take gun", "9mm Pistol"));
 
         combatCommandBank = new ArrayList<>();
         combatCommandBank.add(new CombatCommand("attack rat", "rat221"));
@@ -70,6 +71,7 @@ public class GameSettings {
         itemBank.add(new Item("Excalibur", "Sword", true));
         itemBank.add(new Item("Bread", "Food", false));
         itemBank.add(new Item("Health Potion", "Healing", false));
+        itemBank.add(new Item("9mm Pistol", "gun", false));
 
         return instance;
     }

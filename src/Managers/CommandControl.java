@@ -60,6 +60,7 @@ public class CommandControl {
                     printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' even mean?");
                     break;
                 }
+                printable.printToGameArea("", false);
                 printable.printToGameArea(playerCommand.getPlayerCommand(), true);
                 // Clearing of sidebar must be done here and not in nextScenario(), though the new values are sent from there
                 printable.clearSideBarArea();
@@ -70,7 +71,6 @@ public class CommandControl {
                 // Check if player asks for inventory
                 String actionResult = null;
                 if (playerCommand.getPlayerCommand().equals("inventory")) {
-
                     printable.printInventoryToGameArea(playable.getInventory());
                     break;
                 }
