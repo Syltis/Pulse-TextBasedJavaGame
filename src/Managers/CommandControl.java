@@ -109,9 +109,11 @@ public class CommandControl {
                     printable.printResponseToLog("Hm, what does '" + playerCommand.getPlayerCommand() + "' even mean?");
                     break;
                 }
-                if (item.isUnique() && playable.getInventory().contains(item)){
-                    printable.printToGameArea("You have already picked up a " + item);
-                    break;
+                for (Item anItem:playable.getInventory()) {
+                    if (item.isUnique() && anItem.equals(item)) {
+                        printable.printToGameArea("You have already picked up a " + item.getItemName());
+                        break;
+                    }
                 }
                 printable.printToGameArea("A " + item.getItemName() + " was added to the inventory");
                 playable.addToInventory(item);
