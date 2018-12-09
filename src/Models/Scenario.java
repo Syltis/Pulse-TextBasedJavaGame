@@ -12,6 +12,7 @@ public class Scenario {
     private String description;
     private MovementCommand[] availableMovementCommands;
     private ActionCommand[] availableActionCommands;
+    private ItemCommand[] availableItemCommands;
     private CombatCommand[] availableCombatCommands;
 
     public Scenario() {
@@ -45,6 +46,10 @@ public class Scenario {
     public void setAvailableActionCommands(ActionCommand[] availableActionCommands) {
         this.availableActionCommands = availableActionCommands;
     }
+
+    public ItemCommand[] getAvailableItemCommands() { return availableItemCommands; }
+
+    public void setAvailableItemCommands(ItemCommand[] availableItemCommands) { this.availableItemCommands = availableItemCommands; }
 
     public CombatCommand[] getAvailableCombatCommands() {
         return availableCombatCommands;

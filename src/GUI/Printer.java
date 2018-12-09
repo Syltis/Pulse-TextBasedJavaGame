@@ -44,9 +44,15 @@ public class Printer implements Printable {
 
     }
 
-    public void printCommandToGameArea(String text) {
-        gameWindow.gameTextArea.append("- " + text + "\n" + "\n");
-        gameWindow.gameTextArea.setCaretPosition(gameWindow.gameTextArea.getDocument().getLength());
+    public void printToGameArea(String text, boolean hasDash) {
+        if (hasDash) {
+            gameWindow.gameTextArea.append("- " + text + "\n");
+            gameWindow.gameTextArea.setCaretPosition(gameWindow.gameTextArea.getDocument().getLength());
+        }
+        else {
+            gameWindow.gameTextArea.append(text + "\n");
+            gameWindow.gameTextArea.setCaretPosition(gameWindow.gameTextArea.getDocument().getLength());
+        }
     }
 
     public void printToSidebarArea(String text) {
@@ -58,7 +64,7 @@ public class Printer implements Printable {
         printToSidebarArea("MOVEMENT:");
         if (activeScenario.getAvailableMovementCommands() != null && activeScenario.getAvailableMovementCommands().length > 0) {
             for (MovementCommand aMovementCommand : activeScenario.getAvailableMovementCommands()) {
-                printToSidebarArea(aMovementCommand.getMovementCommand());
+                printToSidebarArea(aMovementCommand.getCommand());
             }
         }
         //printToSidebarArea(activeScenario.getAvailableMovementCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=]+", ""));

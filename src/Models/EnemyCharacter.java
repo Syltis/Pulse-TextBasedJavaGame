@@ -21,7 +21,7 @@ public class EnemyCharacter extends Being {
 		this.health = health;
 		this.skills = skills;
 		this.money = money;
-		addToInventory(new Item("Excalibur", "Sword"));
-		addToInventory(new Item("Bread", "Food"));
+		addToInventory(new Item("Excalibur", "Sword", true));
+		addToInventory(new Item("Bread", "Food", false));
 	}
 }

@@ -5,25 +5,10 @@ Has edited this:
 - Kristoffer
 */
 
-public class ActionCommand {
+public class ActionCommand extends Command {
 
-	private String command;
-	private String actionResult;
-
-	public ActionCommand(String command, String actionResult) {
-		this.command = command;
-		this.actionResult = actionResult;
-	}
-
-	public String getActionCommand() { return command; }
-
-	public void setActionCommand(String command) { this.command = command; }
-
-	public String getActionResult() {
-		return actionResult;
-	}
-
-	public void setActionResult(String actionResult) {
-		this.actionResult = actionResult;
+	public ActionCommand(String command, String result)
+	{
+		super(command, result);
 	}
 }

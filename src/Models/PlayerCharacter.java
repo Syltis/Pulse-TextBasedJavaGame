@@ -6,11 +6,6 @@ Has edited this:
 - Kristoffer
 */
 
-/*
-TODO Split model (PlayerCharacter) from battle-logic
- */
-
-import Interfaces.Playable;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class PlayerCharacter extends Being implements Playable {
+public class PlayerCharacter extends Being {
 
     private String name;
     private String description;
@@ -34,8 +29,8 @@ public class PlayerCharacter extends Being implements Playable {
         this.health = health;
         this.skills = skills;
         this.money = money;
-        addToInventory(new Item("Excalibur", "Sword"));
-        addToInventory(new Item("Bread", "Food"));
+        addToInventory(new Item("Excalibur", "Sword", true));
+        addToInventory(new Item("Bread", "Food", false));
     }
     
     public PlayerCharacter()
@@ -45,12 +40,8 @@ public class PlayerCharacter extends Being implements Playable {
         this.health = 100;
         this.money = 0;
         this.skills = new int[] {0,0,0};
-        addToInventory(new Item("Excalibur", "Sword"));
-        addToInventory(new Item("Bread", "Food"));
-    }
-
-    public PlayerCharacter getCharacter() {
-        return PlayerCharacter.this;
+        addToInventory(new Item("Excalibur", "Sword", true));
+        addToInventory(new Item("Bread", "Food", false));
     }
 
     public boolean isAlive() {

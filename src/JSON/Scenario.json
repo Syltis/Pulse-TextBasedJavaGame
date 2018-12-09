@@ -6,27 +6,29 @@
     "availableMovementCommands": [
       {
         "command": "go north",
-        "nextScenarioId": "introRoom1"
+        "result": "introRoom1"
       },
       {
         "command": "north",
-        "nextScenarioId": "introRoom1"
+        "result": "introRoom1"
       }
     ],
     "availableActionCommands": [
       {
         "command": "inventory",
-        "actionResult": "take key"
-      },
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
       {
         "command": "take key",
-        "actionResult": "keybrown"
+        "result": "Brown Key"
       }
     ],
     "availableCombatCommands": [
       {
         "command": "attack rat",
-        "combatResult": "rat221"
+        "result": "rat221"
       }
     ]
   },
@@ -37,35 +39,38 @@
     "availableMovementCommands": [
       {
         "command": "go west",
-        "nextScenarioId": "introRoom2"
+        "result": "introRoom2"
       },
       {"command": "west",
-        "nextScenarioId": "introRoom2"
+        "result": "introRoom2"
       },
       {"command": "go east",
-        "nextScenarioId": "introRoom3"
+        "result": "introRoom3"
       },
       {"command": "east",
-        "nextScenarioId": "introRoom3"
+        "result": "introRoom3"
       },
       {"command": "go back",
-        "nextScenarioId": "introRoom0"
+        "result": "introRoom0"
       }
     ],
     "availableActionCommands": [
       {
         "command": "inventory",
-        "actionResult": "take key"
+        "result": "inventory"
       }
+    ],
+    "availableItemCommands": [
+
     ],
     "availableCombatCommands": [
         {
           "command": "attack rat",
-          "combatResult": "rat221"
+          "result": "rat221"
         },
       {
         "command": "stomp cockroach",
-        "combatResult": "cockroach111"
+        "result": "cockroach111"
       }
     ]
   },
@@ -76,22 +81,28 @@
     "availableMovementCommands": [
       {
         "command": "go north",
-        "nextScenarioId": "introRoom4"
+        "result": "introRoom4"
       },
       {"command": "go back",
-        "nextScenarioId": "introRoom1"
+        "result": "introRoom1"
       }
     ],
     "availableActionCommands": [
       {
         "command": "inventory",
-        "actionResult": "take key"
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+      {
+        "command": "take key",
+        "result": "Brown Key"
       }
     ],
     "availableCombatCommands": [
       {
         "command": "attack rat",
-        "combatResult": "rat221"
+        "result": "rat221"
       }
     ]
   },
@@ -102,19 +113,25 @@
     "availableMovementCommands": [
       {
         "command": "go back",
-        "nextScenarioId": "introRoom1"
+        "result": "introRoom1"
       }
     ],
     "availableActionCommands": [
       {
         "command": "inventory",
-        "actionResult": "take key"
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+      {
+        "command": "take key",
+        "result": "Brown Key"
       }
     ],
     "availableCombatCommands": [
       {
         "command": "attack rat",
-        "combatResult": "rat221"
+        "result": "rat221"
       }
     ]
   },
@@ -125,19 +142,25 @@
     "availableMovementCommands": [
       {
         "command": "go back",
-        "nextScenarioId": "introRoom2"
+        "result": "introRoom2"
       }
     ],
     "availableActionCommands": [
       {
         "command": "inventory",
-        "actionResult": "take key"
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+      {
+        "command": "take key",
+        "result": "Brown Key"
       }
     ],
     "availableCombatCommands": [
       {
         "command": "attack rat",
-        "combatResult": "rat221"
+        "result": "rat221"
       }
     ]
   }
