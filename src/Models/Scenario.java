@@ -15,10 +15,6 @@ public class Scenario {
     private ItemCommand[] availableItemCommands;
     private CombatCommand[] availableCombatCommands;
 
-    public Scenario() {
-
-    }
-
     public String getId() { return id; }
 
     public void setId(String id) { this.id = id; }
@@ -47,9 +43,13 @@ public class Scenario {
         this.availableActionCommands = availableActionCommands;
     }
 
-    public ItemCommand[] getAvailableItemCommands() { return availableItemCommands; }
+    public ItemCommand[] getAvailableItemCommands() {
+        return availableItemCommands;
+    }
 
-    public void setAvailableItemCommands(ItemCommand[] availableItemCommands) { this.availableItemCommands = availableItemCommands; }
+    public void setAvailableItemCommands(ItemCommand[] availableItemCommands) {
+        this.availableItemCommands = availableItemCommands;
+    }
 
     public CombatCommand[] getAvailableCombatCommands() {
         return availableCombatCommands;

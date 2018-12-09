@@ -67,6 +67,9 @@ public class GameSettings {
         itemBank = new ArrayList<>();
         // Test-items
         itemBank.add(new Item("Brown Key", "key", true));
+        itemBank.add(new Item("Excalibur", "Sword", true));
+        itemBank.add(new Item("Bread", "Food", false));
+        itemBank.add(new Item("Health Potion", "Healing", false));
 
         return instance;
     }
