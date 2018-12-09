@@ -214,7 +214,7 @@ public class GameWindow implements Printable {
          gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
     }
 
-    public void printCommandToGameArea(String text) {
+    public void printToGameArea(String text) {
          gameTextArea.append("- " + text + "\n" + "\n");
          gameTextArea.setCaretPosition(gameTextArea.getDocument().getLength());
     }
@@ -259,21 +259,29 @@ public class GameWindow implements Printable {
          if (activeScenario.getAvailableMovementCommands() != null && activeScenario.getAvailableMovementCommands().length > 0) {
              printToSidebarArea("MOVEMENT:", "dash");
              for (MovementCommand aMovementCommand : activeScenario.getAvailableMovementCommands()) {
-                printToSidebarArea(aMovementCommand.getMovementCommand(), "dash");
+                printToSidebarArea(aMovementCommand.getCommand(), "dash");
             }
          }
-         if (activeScenario.getAvailableActionCommands() != null && activeScenario.getAvailableActionCommands().length > 0){
+         if (activeScenario.getAvailableActionCommands() != null && activeScenario.getAvailableActionCommands().length > 0) {
             printToSidebarArea("", "nodash");
             printToSidebarArea("ACTIONS:", "dash");
             for (ActionCommand aActionCommand: activeScenario.getAvailableActionCommands()) {
-                printToSidebarArea(aActionCommand.getActionCommand(), "dash");
+                printToSidebarArea(aActionCommand.getCommand(), "dash");
+            }
+        }
+
+        if (activeScenario.getAvailableItemCommands() != null && activeScenario.getAvailableItemCommands().length > 0) {
+            printToSidebarArea("", "nodash");
+            printToSidebarArea("ITEMS:", "dash");
+            for (ItemCommand aItemCommand: activeScenario.getAvailableItemCommands()) {
+                printToSidebarArea(aItemCommand.getCommand(), "dash");
             }
         }
         if (activeScenario.getAvailableCombatCommands() != null && activeScenario.getAvailableCombatCommands().length > 0) {
             printToSidebarArea("", "nodash");
             printToSidebarArea("COMBAT:", "dash");
             for (CombatCommand aCombatCommand: activeScenario.getAvailableCombatCommands()) {
-                printToSidebarArea(aCombatCommand.getCombatCommand(), "dash");
+                printToSidebarArea(aCombatCommand.getCommand(), "dash");
             }
         }
     }

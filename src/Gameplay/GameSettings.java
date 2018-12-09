@@ -12,10 +12,7 @@ A singleton has a private constructor, and can only be instantiated and accessed
     instantiated. If it has not, it instantiates it, and return the object.
 */
 
-import Models.ActionCommand;
-import Models.CombatCommand;
-import Models.Item;
-import Models.MovementCommand;
+import Models.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +23,7 @@ public class GameSettings {
     private static List<Item> itemBank  = null;
     private static List<MovementCommand> movementCommandBank = null;
     private static List<ActionCommand> actionCommandBank = null;
+    private static List<ItemCommand> itemCommandBank = null;
     private static List<CombatCommand> combatCommandBank = null;
 
     private static int turnCount = 1;
@@ -58,7 +56,9 @@ public class GameSettings {
         // Instantiates bank for actionCommands when the singleton is instantiated
         actionCommandBank = new ArrayList<>();
         actionCommandBank.add(new ActionCommand("inventory", "inventory"));
-        actionCommandBank.add(new ActionCommand("take key", "keybrown"));
+
+        itemCommandBank = new ArrayList<>();
+        itemCommandBank.add(new ItemCommand("take key", "Brown Key"));
 
         combatCommandBank = new ArrayList<>();
         combatCommandBank.add(new CombatCommand("attack rat", "rat221"));
@@ -66,7 +66,7 @@ public class GameSettings {
         // Instantiate bank of movements when the singleton is instantiated
         itemBank = new ArrayList<>();
         // Test-items
-        itemBank.add(new Item("Rusty key", "key"));
+        itemBank.add(new Item("Brown Key", "key", true));
 
         return instance;
     }
@@ -77,7 +77,11 @@ public class GameSettings {
 
     public List<ActionCommand> getActionCommandBank() { return actionCommandBank; }
 
+    public List<ItemCommand> getItemCommandBank() { return itemCommandBank; }
+
     public List<CombatCommand> getCombatCommandBank() {
         return combatCommandBank;
     }
+
+    public List<Item> getItemBank() { return itemBank; }
 }

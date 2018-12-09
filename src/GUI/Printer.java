@@ -44,7 +44,7 @@ public class Printer implements Printable {
 
     }
 
-    public void printCommandToGameArea(String text) {
+    public void printToGameArea(String text) {
         gameWindow.gameTextArea.append("- " + text + "\n" + "\n");
         gameWindow.gameTextArea.setCaretPosition(gameWindow.gameTextArea.getDocument().getLength());
     }
@@ -58,7 +58,7 @@ public class Printer implements Printable {
         printToSidebarArea("MOVEMENT:");
         if (activeScenario.getAvailableMovementCommands() != null && activeScenario.getAvailableMovementCommands().length > 0) {
             for (MovementCommand aMovementCommand : activeScenario.getAvailableMovementCommands()) {
-                printToSidebarArea(aMovementCommand.getMovementCommand());
+                printToSidebarArea(aMovementCommand.getCommand());
             }
         }
         //printToSidebarArea(activeScenario.getAvailableMovementCommands().toString().replaceAll("[-!@#$%^&*().?\":{}|<>0-9+/'=]+", ""));

@@ -7,7 +7,7 @@ import Interfaces.Printable;
 import Models.*;
 
 /*
-Has edited this:
+HHas edited this:
 - Kristoffer
 */
 
@@ -27,6 +27,7 @@ public class CommandControl {
     private enum CommandTypeEnum {
         MOVEMENTCOMMAND,
         ACTIONCOMMAND,
+        ITEMCOMMAND,
         COMBATCOMMAND,
         NOMATCH
     }
@@ -37,46 +38,47 @@ public class CommandControl {
         this.choosable = choosable;
         this.playable = playable;
         // Find out command type and send it to commandControl-method
-        commandControl(findPlayerCommandType(playerCommand, activeScenario), activeScenario, playerCommand);
+        commandControl(findPlayerCommandType(playerCommand), activeScenario, playerCommand);
     }
 
     // TODO Move these pieces of logic to their own class/method
     private void commandControl(CommandTypeEnum commandType, Scenario activeScenario, PlayerCommand playerCommand) {
         switch (commandType) {
-            // Check the playercommand with the activeScenario-object, and compare their nextScenarioId's to get the matching object
+            // Check the playercommand with the activeScenario-object, and compare their result's to get the matching object
             case MOVEMENTCOMMAND:
-                String nextScenarioId = null;
+                String result = null;
                 for (MovementCommand aMovementCommand: activeScenario.getAvailableMovementCommands()) {
-                    if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand())) {
+                    if (aMovementCommand.getCommand().equals(playerCommand.getPlayerCommand())) {
                         for (MovementCommand anotherMovementCommand:gameSettings.getMovementCommandBank()) {
-                            if (aMovementCommand.getNextScenarioId().equals(anotherMovementCommand.getNextScenarioId())) {
-                                nextScenarioId = aMovementCommand.getNextScenarioId();
+                            if (aMovementCommand.getResult().equals(anotherMovementCommand.getResult())) {
+                                result = aMovementCommand.getResult();
                             }
                         }
                     }
                 }
-                if (nextScenarioId == null) {
+                if (result == null) {
                     printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' even mean?");
                     break;
                 }
-                printable.printCommandToGameArea(playerCommand.getPlayerCommand());
+                printable.printToGameArea(playerCommand.getPlayerCommand());
                 // Clearing of sidebar must be done here and not in nextScenario(), though the new values are sent from there
                 printable.clearSideBarArea();
-                choosable.nextScenario(nextScenarioId);
+                choosable.nextScenario(result);
                 break;
 
             case ACTIONCOMMAND:
                 // Check if player asks for inventory
                 String actionResult = null;
                 if (playerCommand.getPlayerCommand().equals("inventory")) {
+
                     printable.printInventoryToGameArea(playable.getInventory());
                     break;
                 }
-                for (ActionCommand aActionCommand:activeScenario.getAvailableActionCommands()) {
+                for (ActionCommand aActionCommand: activeScenario.getAvailableActionCommands()) {
                     if (aActionCommand.equals(playerCommand.getPlayerCommand())) {
                         for (ActionCommand anotherActionCommand:gameSettings.getActionCommandBank()) {
-                            if (aActionCommand.getActionResult().equals(anotherActionCommand.getActionResult())) {
-                                actionResult = aActionCommand.getActionResult();
+                            if (aActionCommand.getResult().equals(anotherActionCommand.getResult())) {
+                                actionResult = aActionCommand.getResult();
                             }
                         }
                     }
@@ -85,17 +87,45 @@ public class CommandControl {
                     printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' even mean?");
                     break;
                 }
+                printable.printResponseToLog("The actionCommand worked, but we have yet to develop that part of the game.");
+                break;
+
+            case ITEMCOMMAND:
+                Item item = null;
+                for (ItemCommand aItemCommand: activeScenario.getAvailableItemCommands()) {
+                    if (aItemCommand.getCommand().equals(playerCommand.getPlayerCommand())) {
+                        for (ItemCommand anotherItemCommand: gameSettings.getItemCommandBank()) {
+                            if (aItemCommand.getResult().equals(anotherItemCommand.getResult())) {
+                                for (Item aItem: gameSettings.getItemBank()) {
+                                    if (aItemCommand.getResult().equals(aItem.getItemName())) {
+                                        item = aItem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                if (item == null) {
+                    printable.printResponseToLog("Hm, what does '" + playerCommand.getPlayerCommand() + "' even mean?");
+                    break;
+                }
+                if (item.isUnique() && playable.getInventory().contains(item)){
+                    printable.printToGameArea("You have already picked up a " + item);
+                    break;
+                }
+                printable.printToGameArea("A " + item.getItemName() + " was added to the inventory");
+                playable.addToInventory(item);
                 break;
 
             case COMBATCOMMAND:
                 String combatResult = null;
                 for (CombatCommand aCombatCommand:activeScenario.getAvailableCombatCommands()) {
-                    if (aCombatCommand.getCombatCommand().equals(playerCommand.getPlayerCommand())) {
+                    if (aCombatCommand.getCommand().equals(playerCommand.getPlayerCommand())) {
                         for (CombatCommand anotherCombatCommand:gameSettings.getCombatCommandBank()) {
-                            if (aCombatCommand.getCombatResult().equals(anotherCombatCommand.getCombatResult())) {
-                                combatResult = aCombatCommand.getCombatResult();
+                            if (aCombatCommand.getResult().equals(anotherCombatCommand.getResult())) {
+                                combatResult = aCombatCommand.getResult();
                                 EnemyCharacter enemy = StringUtilities.getCharacterFromCombatResult(combatResult);
-                                // TODO new Battle(playable.getBeing, enemy)
+
                             }
                         }
                     }
@@ -104,6 +134,7 @@ public class CommandControl {
                     printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' even mean?");
                     break;
                 }
+                // TODO new Battle(playable.getBeing, enemy)
                 break;
 
             case NOMATCH:
@@ -113,18 +144,22 @@ public class CommandControl {
     }
 
     // Decide what type of command the player has entered
-    private CommandTypeEnum findPlayerCommandType(PlayerCommand playerCommand, Scenario activeScenario) {
+    private CommandTypeEnum findPlayerCommandType(PlayerCommand playerCommand) {
         // Check if the command exists in gameSettings and in the activechoice
         for (MovementCommand aMovementCommand: gameSettings.getMovementCommandBank()) {
-            if (aMovementCommand.getMovementCommand().equals(playerCommand.getPlayerCommand()))
+            if (aMovementCommand.getCommand().equals(playerCommand.getPlayerCommand()))
                 return CommandTypeEnum.MOVEMENTCOMMAND;
         }
         for (ActionCommand aActionCommand: gameSettings.getActionCommandBank()) {
-            if (aActionCommand.getActionCommand().equals(playerCommand.getPlayerCommand()))
+            if (aActionCommand.getCommand().equals(playerCommand.getPlayerCommand()))
                 return CommandTypeEnum.ACTIONCOMMAND;
         }
+        for (ItemCommand aItemCommand: gameSettings.getItemCommandBank()) {
+            if (aItemCommand.getCommand().equals(playerCommand.getPlayerCommand()))
+                return CommandTypeEnum.ITEMCOMMAND;
+        }
         for (CombatCommand aCombatCommand: gameSettings.getCombatCommandBank()) {
-            if (aCombatCommand.getCombatCommand().equals(playerCommand.getPlayerCommand()))
+            if (aCombatCommand.getCommand().equals(playerCommand.getPlayerCommand()))
                 return CommandTypeEnum.COMBATCOMMAND;
         }
         return CommandTypeEnum.NOMATCH;
