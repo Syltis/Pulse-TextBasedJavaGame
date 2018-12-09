@@ -49,10 +49,6 @@ public class PlayerCharacter extends Being implements Playable {
         addToInventory(new Item("Bread", "Food"));
     }
 
-    public PlayerCharacter getCharacter() {
-        return PlayerCharacter.this;
-    }
-
     public boolean isAlive() {
         return health >= 0;
     }

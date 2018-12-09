@@ -67,11 +67,24 @@ public class CommandControl {
 
             case ACTIONCOMMAND:
                 // Check if player asks for inventory
+                String actionResult = null;
                 if (playerCommand.getPlayerCommand().equals("inventory")) {
                     printable.printInventoryToGameArea(playable.getInventory());
                     break;
                 }
-                // TODO: Logic for receiving actionCommands
+                for (ActionCommand aActionCommand:activeScenario.getAvailableActionCommands()) {
+                    if (aActionCommand.equals(playerCommand.getPlayerCommand())) {
+                        for (ActionCommand anotherActionCommand:gameSettings.getActionCommandBank()) {
+                            if (aActionCommand.getActionResult().equals(anotherActionCommand.getActionResult())) {
+                                actionResult = aActionCommand.getActionResult();
+                            }
+                        }
+                    }
+                }
+                if (actionResult == null) {
+                    printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' even mean?");
+                    break;
+                }
                 break;
 
             case COMBATCOMMAND:
@@ -82,10 +95,14 @@ public class CommandControl {
                             if (aCombatCommand.getCombatResult().equals(anotherCombatCommand.getCombatResult())) {
                                 combatResult = aCombatCommand.getCombatResult();
                                 EnemyCharacter enemy = StringUtilities.getCharacterFromCombatResult(combatResult);
-
+                                // TODO new Battle(playable.getBeing, enemy)
                             }
                         }
                     }
+                }
+                if (combatResult == null) {
+                    printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' even mean?");
+                    break;
                 }
                 break;
 

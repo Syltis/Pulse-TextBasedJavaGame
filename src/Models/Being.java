@@ -19,6 +19,9 @@ public class Being implements Playable {
 	private int money;
 	private List<Item> inventory = new ArrayList<>();
 
+	public Being getBeing() {
+		return Being.this;
+	}
 	public String getName() {
 		return name;
 	}
