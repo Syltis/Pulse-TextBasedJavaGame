@@ -15,7 +15,7 @@ public interface Printable {
 
     void printResponseToLog(String text);
 
-    void printToGameArea(String text);
+    void printToGameArea(String text, boolean hasDash);
 
     void printScenarioToGameArea(String title, String description);
 

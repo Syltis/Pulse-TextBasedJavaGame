@@ -60,7 +60,7 @@ public class CommandControl {
                     printable.printResponseToLog("What does '" + playerCommand.getPlayerCommand() + "' even mean?");
                     break;
                 }
-                printable.printToGameArea(playerCommand.getPlayerCommand());
+                printable.printToGameArea(playerCommand.getPlayerCommand(), true);
                 // Clearing of sidebar must be done here and not in nextScenario(), though the new values are sent from there
                 printable.clearSideBarArea();
                 choosable.nextScenario(result);
@@ -111,11 +111,13 @@ public class CommandControl {
                 }
                 for (Item anItem:playable.getInventory()) {
                     if (item.isUnique() && anItem.equals(item)) {
-                        printable.printToGameArea("You have already picked up a " + item.getItemName());
-                        break;
+                        printable.printToGameArea("", false);
+                        printable.printToGameArea("You have already picked up a " + item.getItemName(), true);
+                        return;
                     }
                 }
-                printable.printToGameArea("A " + item.getItemName() + " was added to the inventory");
+                printable.printToGameArea("", false);
+                printable.printToGameArea("A " + item.getItemName() + " was added to the inventory", true);
                 playable.addToInventory(item);
                 break;
 

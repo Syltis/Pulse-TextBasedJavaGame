@@ -44,9 +44,15 @@ public class Printer implements Printable {
 
     }
 
-    public void printToGameArea(String text) {
-        gameWindow.gameTextArea.append("- " + text + "\n" + "\n");
-        gameWindow.gameTextArea.setCaretPosition(gameWindow.gameTextArea.getDocument().getLength());
+    public void printToGameArea(String text, boolean hasDash) {
+        if (hasDash) {
+            gameWindow.gameTextArea.append("- " + text + "\n");
+            gameWindow.gameTextArea.setCaretPosition(gameWindow.gameTextArea.getDocument().getLength());
+        }
+        else {
+            gameWindow.gameTextArea.append(text + "\n");
+            gameWindow.gameTextArea.setCaretPosition(gameWindow.gameTextArea.getDocument().getLength());
+        }
     }
 
     public void printToSidebarArea(String text) {
