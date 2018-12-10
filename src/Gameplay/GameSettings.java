@@ -65,6 +65,7 @@ public class GameSettings {
         combatCommandBank.add(new CombatCommand("attack rat", "rat221"));
 
         // Instantiate bank of movements when the singleton is instantiated
+        // TODO The items could be stored as objects in a json file.
         itemBank = new ArrayList<>();
         // Test-items
         itemBank.add(new Item("Brown Key", "key", true));

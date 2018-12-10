@@ -6,7 +6,6 @@ Has edited this:
 */
 
 import Interfaces.Playable;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +57,6 @@ public class Being implements Playable {
 		if(stat.equals("STR")) return this.skills[0];
 		if(stat.equals("LCK")) return this.skills[1];
 		if(stat.equals("CON")) return this.skills[2];
-
 		return -1;
 	}
 
@@ -82,5 +80,9 @@ public class Being implements Playable {
 
 	public void addToInventory(Item item) {
 		inventory.add(item);
+	}
+
+	public boolean isAlive() {
+		return health >= 0;
 	}
 }

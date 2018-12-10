@@ -10,7 +10,6 @@ import Interfaces.Playable;
 import Interfaces.Printable;
 import Managers.CommandControl;
 import Managers.StringUtilities;
-import Models.PlayerCommand;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,8 +36,8 @@ class CommandListener implements ActionListener {
                 // Print in the inputAreaTextField (log)
                 printable.printCommandToLog(input);
                 // Send to playerInput.
-                PlayerCommand playerCommand = new PlayerCommand(StringUtilities.cleanString(input));
-                new CommandControl(playerCommand, choosable.getActiveScenario(), printable, choosable, playable);
+                input = StringUtilities.cleanString(input);
+                new CommandControl(input, choosable.getActiveScenario(), printable, choosable, playable);
                 printable.setInputAreaTextField("");
                 blankCounter = 0;
             }
