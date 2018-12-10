@@ -191,8 +191,7 @@ public class GameWindow implements IPrinter {
                  emptyLog();
              }
              if(source.getText().equalsIgnoreCase(exitGameButtonText)) {
-                 // TODO Pop-up with confirmation on exit
-                 gameFrame.dispose();
+                 new ExitConfirm(GameWindow.this);
              }
          });
          return returnedButton;
@@ -311,5 +310,9 @@ public class GameWindow implements IPrinter {
 
     public void setInputAreaTextField(String text) {
          inputAreaTextField.setText(text);
+    }
+
+    public void disposeWindow() {
+        gameFrame.dispose();
     }
 }
