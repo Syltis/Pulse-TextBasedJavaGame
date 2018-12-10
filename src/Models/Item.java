@@ -9,12 +9,16 @@ public class Item {
 
 	private String itemName;
 	private String itemType;
+	private String effect;
 	private boolean isUnique;
 
-	public Item(String itemName, String itemType, boolean isUnique)
+	public Item() {}
+
+	public Item(String itemName, String itemType, String effect, boolean isUnique)
 	{
 		this.itemName = itemName;
 		this.itemType = itemType;
+		this.effect = effect;
 		this.isUnique = isUnique;
 	}
 	public String getItemName() {

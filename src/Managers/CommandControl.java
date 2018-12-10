@@ -129,7 +129,7 @@ public class CommandControl {
                         for (CombatCommand anotherCombatCommand:gameSettings.getCombatCommandBank()) {
                             if (aCombatCommand.getResult().equals(anotherCombatCommand.getResult())) {
                                 combatResult = aCombatCommand.getResult();
-                                EnemyBeing enemy = StringUtilities.getCharacterFromCombatResult(combatResult);
+                                EnemyBeing enemy = StringUtilities.generateBeingFromCombatResult(combatResult);
 
                             }
                         }

@@ -16,25 +16,23 @@ public class NewGame implements INewGame {
     private final GameWindow gameWindow;
     private GameSettings gameSettings = GameSettings.getInstance();
     private Scenario activeScenario;
-    private JSONParsing jsonParser;
 
     public NewGame()
     {
         PlayerBeing playerBeing = new PlayerBeing();
         this.gameWindow = new GameWindow(NewGame.this, playerBeing);
-        this.jsonParser = new JSONParsing();
         startFirstScenario();
     }
 
     private void startFirstScenario() {
-        this.activeScenario = jsonParser.getScenarioFromJson("introRoom0");
+        this.activeScenario = JSONParsing.getScenarioFromJson("introRoom0");
         gameWindow.printScenarioToGameArea(this.activeScenario.getTitle(), this.activeScenario.getDescription());
         gameWindow.feedSideBar(this.activeScenario);
     }
 
     // Give this the id of the movementCommand
     public void nextScenario(String result) {
-        Scenario newActiveScenario = jsonParser.getScenarioFromJson(result);
+        Scenario newActiveScenario = JSONParsing.getScenarioFromJson(result);
         gameSettings.upTurnCount();
         gameWindow.printScenarioToGameArea(newActiveScenario.getTitle(), newActiveScenario.getDescription());
         this.activeScenario = newActiveScenario;

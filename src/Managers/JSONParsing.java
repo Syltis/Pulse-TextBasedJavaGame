@@ -5,6 +5,7 @@ Has edited this:
 - Kristoffer
 */
 
+import Models.Item;
 import Models.Scenario;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -16,12 +17,16 @@ import java.lang.reflect.Type;
 import java.util.Collection;
 
 // Here the google.Gson library is used
-public class JSONParsing {
+public final class JSONParsing {
 
-    public Scenario getScenarioFromJson(String id) {
-        Scenario newScenario = new Scenario();
+    private JSONParsing()
+    {
+        throw new UnsupportedOperationException();
+    }
+
+    public static Scenario getScenarioFromJson(String id) {
+        Scenario newScenario = null;
         Type scenarioType = new TypeToken<Collection<Scenario>>(){}.getType();
-
         try {
             BufferedReader reader = new BufferedReader(new FileReader("src/JSON/Scenario.json"));
             Gson gson = new GsonBuilder().create();
@@ -29,7 +34,6 @@ public class JSONParsing {
             if (!scenarios.isEmpty()) {
                 for (Scenario aScenario : scenarios) {
                     if (aScenario.getId().equals(id)) {
-                        newScenario = new Scenario();
                         newScenario = aScenario;
                     }
                 }
@@ -39,6 +43,27 @@ public class JSONParsing {
             e.printStackTrace();
         }
         return newScenario;
+    }
+
+    public static Item getItemFromJson(String id) {
+        Item newItem = null;
+        Type itemType = new TypeToken<Collection<Item>>(){}.getType();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/Item.json"));
+            Gson gson = new GsonBuilder().create();
+            Collection<Item> items = gson.fromJson(reader, itemType);
+            if (!items.isEmpty()) {
+                for (Item aItem: items) {
+                    if (aItem.getItemName().equals(id)) {
+                        newItem = aItem;
+                    }
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return newItem;
     }
 
     /*

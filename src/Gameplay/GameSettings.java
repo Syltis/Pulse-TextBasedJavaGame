@@ -68,11 +68,10 @@ public class GameSettings {
         // TODO The items could be stored as objects in a json file.
         itemBank = new ArrayList<>();
         // Test-items
-        itemBank.add(new Item("Brown Key", "key", true));
-        itemBank.add(new Item("Excalibur", "Sword", true));
-        itemBank.add(new Item("Bread", "Food", false));
-        itemBank.add(new Item("Health Potion", "Healing", false));
-        itemBank.add(new Item("9mm Pistol", "gun", false));
+        itemBank.add(new Item("Brown Key", "key", "openDoor1", true));
+        itemBank.add(new Item("9mm Pistol", "gun", "STR+2",false));
+        itemBank.add(new Item("Bread", "Food","health+10", false));
+        itemBank.add(new Item("Health Potion", "Healing", "health+40", false));
 
         return instance;
     }
