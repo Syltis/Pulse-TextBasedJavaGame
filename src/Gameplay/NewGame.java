@@ -6,16 +6,13 @@ Has edited this:
 */
 
 import GUI.GameWindow;
-import GUI.Printer;
-import Interfaces.Choosable;
-import Interfaces.Printable;
+import Interfaces.IActiveScenario;
 import Managers.JSONParsing;
-import Models.PlayerCharacter;
+import Models.PlayerBeing;
 import Models.Scenario;
 
-public class NewGame implements Choosable {
+public class NewGame implements IActiveScenario {
 
-    private Printable printable;
     private final GameWindow gameWindow;
     private GameSettings gameSettings = GameSettings.getInstance();
     private Scenario activeScenario;
@@ -23,11 +20,9 @@ public class NewGame implements Choosable {
 
     public NewGame()
     {
-        PlayerCharacter playerCharacter = new PlayerCharacter();
-        this.gameWindow = new GameWindow(NewGame.this, playerCharacter);
+        PlayerBeing playerBeing = new PlayerBeing();
+        this.gameWindow = new GameWindow(NewGame.this, playerBeing);
         this.jsonParser = new JSONParsing();
-        Printer printer = new Printer(gameWindow);
-        this.printable = printer.getPrintable();
         startFirstScenario();
     }
 
@@ -46,6 +41,5 @@ public class NewGame implements Choosable {
         gameWindow.feedSideBar(newActiveScenario);
     }
 
-    @Override
     public Scenario getActiveScenario() { return activeScenario; }
 }

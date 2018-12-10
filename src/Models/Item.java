@@ -9,8 +9,7 @@ public class Item {
 
 	private String itemName;
 	private String itemType;
-
-	boolean isUnique;
+	private boolean isUnique;
 
 	public Item(String itemName, String itemType, boolean isUnique)
 	{
@@ -22,22 +21,13 @@ public class Item {
 		return itemName;
 	}
 
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
-	}
-
 	public String getItemType() {
 		return itemType;
 	}
 
-	public void setItemType(String itemType) {
-		this.itemType = itemType;
-	}
-
 	public boolean isUnique() { return isUnique; }
 
-	public void setUnique(boolean unique) { isUnique = unique; }
-
+	// Overridden .equals() that compares objects correctly
 	public boolean equals(Object object) {
 		if (!(object instanceof Item)) {
 			return false;

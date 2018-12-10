@@ -7,7 +7,7 @@ Has edited this:
 
 import Models.Scenario;
 
-public interface Choosable {
+public interface IActiveScenario {
 
     Scenario getActiveScenario();
 

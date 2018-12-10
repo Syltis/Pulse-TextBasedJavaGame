@@ -1,9 +1,9 @@
 package Managers;
 
 import Gameplay.GameSettings;
-import Interfaces.Choosable;
-import Interfaces.Playable;
-import Interfaces.Printable;
+import Interfaces.IActiveScenario;
+import Interfaces.IPlayerBeing;
+import Interfaces.IGameWindowPrinter;
 import Models.*;
 
 /*
@@ -20,9 +20,9 @@ the activeScenario and from gameSettings.
 
 public class CommandControl {
 
-    private final Printable printable;
-    private final Choosable choosable;
-    private final Playable playable;
+    private final IGameWindowPrinter IGameWindowPrinter;
+    private final IActiveScenario IActiveScenario;
+    private final IPlayerBeing IPlayerBeing;
     private final GameSettings gameSettings = GameSettings.getInstance();
     private enum CommandTypeEnum {
         MOVEMENTCOMMAND,
@@ -32,11 +32,11 @@ public class CommandControl {
         NOMATCH
     }
 
-    public CommandControl(String playerCommand, Scenario activeScenario, Printable printable, Choosable choosable, Playable playable)
+    public CommandControl(String playerCommand, Scenario activeScenario, IGameWindowPrinter IGameWindowPrinter, IActiveScenario IActiveScenario, IPlayerBeing IPlayerBeing)
     {
-        this.printable = printable;
-        this.choosable = choosable;
-        this.playable = playable;
+        this.IGameWindowPrinter = IGameWindowPrinter;
+        this.IActiveScenario = IActiveScenario;
+        this.IPlayerBeing = IPlayerBeing;
         // Find out command type and send it to commandControl-method
         commandControl(findPlayerCommandType(playerCommand), activeScenario, playerCommand);
     }
@@ -58,21 +58,21 @@ public class CommandControl {
                     }
                 }
                 if (result == null) {
-                    printable.printResponseToLog("What does '" + playerCommand + "' even mean?");
+                    IGameWindowPrinter.printResponseToLog("What does '" + playerCommand + "' even mean?");
                     break;
                 }
-                printable.printToGameArea(playerCommand, true);
-                printable.printToGameArea("", false);
+                IGameWindowPrinter.printToGameArea(playerCommand, true);
+                IGameWindowPrinter.printToGameArea("", false);
                 // Clearing of sidebar must be done here and not in nextScenario(), though the new values are sent from there
-                printable.clearSideBarArea();
-                choosable.nextScenario(result);
+                IGameWindowPrinter.clearSideBarArea();
+                IActiveScenario.nextScenario(result);
                 break;
 
             case ACTIONCOMMAND:
                 // Check if player asks for inventory
                 String actionResult = null;
                 if (playerCommand.equals("inventory")) {
-                    printable.printInventoryToGameArea(playable.getInventory());
+                    IGameWindowPrinter.printInventoryToGameArea(IPlayerBeing.getInventory());
                     break;
                 }
                 for (ActionCommand aActionCommand: activeScenario.getAvailableActionCommands()) {
@@ -85,10 +85,10 @@ public class CommandControl {
                     }
                 }
                 if (actionResult == null) {
-                    printable.printResponseToLog("What does '" + playerCommand + "' even mean?");
+                    IGameWindowPrinter.printResponseToLog("What does '" + playerCommand + "' even mean?");
                     break;
                 }
-                printable.printResponseToLog("The actionCommand worked, but we have yet to develop that part of the game.");
+                IGameWindowPrinter.printResponseToLog("The actionCommand worked, but we have yet to develop that part of the game.");
                 break;
 
             case ITEMCOMMAND:
@@ -107,19 +107,19 @@ public class CommandControl {
                     }
                 }
                 if (item == null) {
-                    printable.printResponseToLog("Hm, what does '" + playerCommand + "' even mean?");
+                    IGameWindowPrinter.printResponseToLog("Hm, what does '" + playerCommand + "' even mean?");
                     break;
                 }
-                for (Item anItem:playable.getInventory()) {
+                for (Item anItem: IPlayerBeing.getInventory()) {
                     if (item.isUnique() && anItem.equals(item)) {
-                        printable.printToGameArea("", false);
-                        printable.printToGameArea("You have already picked up a " + item.getItemName(), true);
+                        IGameWindowPrinter.printToGameArea("", false);
+                        IGameWindowPrinter.printToGameArea("You have already picked up a " + item.getItemName(), true);
                         return;
                     }
                 }
-                printable.printToGameArea("", false);
-                printable.printToGameArea("A " + item.getItemName() + " was added to the inventory", true);
-                playable.addToInventory(item);
+                IGameWindowPrinter.printToGameArea("", false);
+                IGameWindowPrinter.printToGameArea("A " + item.getItemName() + " was added to the inventory", true);
+                IPlayerBeing.addToInventory(item);
                 break;
 
             case COMBATCOMMAND:
@@ -129,21 +129,21 @@ public class CommandControl {
                         for (CombatCommand anotherCombatCommand:gameSettings.getCombatCommandBank()) {
                             if (aCombatCommand.getResult().equals(anotherCombatCommand.getResult())) {
                                 combatResult = aCombatCommand.getResult();
-                                EnemyCharacter enemy = StringUtilities.getCharacterFromCombatResult(combatResult);
+                                EnemyBeing enemy = StringUtilities.getCharacterFromCombatResult(combatResult);
 
                             }
                         }
                     }
                 }
                 if (combatResult == null) {
-                    printable.printResponseToLog("What does '" + playerCommand + "' even mean?");
+                    IGameWindowPrinter.printResponseToLog("What does '" + playerCommand + "' even mean?");
                     break;
                 }
-                // TODO new Battle(playable.getBeing, enemy)
+                // TODO new Battle(IPlayerBeing.getPlayerCharacter, enemy)
                 break;
 
             case NOMATCH:
-                printable.printResponseToLog("What does '" + playerCommand + "' even mean?");
+                IGameWindowPrinter.printResponseToLog("What does '" + playerCommand + "' even mean?");
                 break;
         }
     }

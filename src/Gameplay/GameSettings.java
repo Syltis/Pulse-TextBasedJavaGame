@@ -9,7 +9,7 @@ Has edited this:
 Singleton class for storing game sava data and for saving a game.
 A singleton has a private constructor, and can only be instantiated and accessed
     though the getInstance()-method. The method checks if the class has already been
-    instantiated. If it has not, it instantiates it, and return the object.
+    instantiated. If it has not it instantiates it and returns the object.
 */
 
 import Models.*;
@@ -38,8 +38,8 @@ public class GameSettings {
         if (instance == null) {
             instance = new GameSettings();
         }
-        // Instantiate bank of movements when the singleton is instantiated
         // TODO: These could be retrieved from JSON automatically
+        // Instantiate bank of movements when the singleton is instantiated
         movementCommandBank = new ArrayList<>();
         // IntroRooms 0-4
         movementCommandBank.add(new MovementCommand("go north","introRoom1"));

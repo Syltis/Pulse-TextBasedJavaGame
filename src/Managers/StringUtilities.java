@@ -9,7 +9,7 @@ Has edited this:
 Utility class for working on strings. All static methods and no object instatiation
  */
 
-import Models.EnemyCharacter;
+import Models.EnemyBeing;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ public final class StringUtilities {
 		return string;
 	}
 
-	public static EnemyCharacter getCharacterFromCombatResult(String combatResult) {
+	public static EnemyBeing getCharacterFromCombatResult(String combatResult) {
 		Pattern p = Pattern.compile("([a-z]+)([0-9]+)");
 		Matcher m = p.matcher(combatResult);
 		if (!m.find())
@@ -59,7 +59,7 @@ public final class StringUtilities {
 		skills[2]  = Integer.parseInt(skill3);
 
 		// TODO: This is where we are now.
-		EnemyCharacter newCharacter = new EnemyCharacter(characterName, "An actual" + characterName, 100, skills, 5);
+		EnemyBeing newCharacter = new EnemyBeing(characterName, "An actual" + characterName, 100, skills, 5);
 		return newCharacter;
 	}
 }
