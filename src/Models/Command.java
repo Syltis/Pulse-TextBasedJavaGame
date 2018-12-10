@@ -3,9 +3,9 @@ package Models;
 public class Command {
 
 	private String command;
-	private String result;
+	private final String result;
 
-	public Command(String command, String result)
+	Command(String command, String result)
 	{
 		this.command = command;
 		this.result = result;

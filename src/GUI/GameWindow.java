@@ -19,22 +19,22 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
 
     private final INewGame INewGame;
     private final IPlayerBeing IPlayerBeing;
-    private JFrame gameFrame;
+    private final JFrame gameFrame;
     private JTextArea sidebarTextArea;
     private JTextArea gameTextArea;
     private JTextArea inputAreaTextArea;
     private JTextField inputAreaTextField;
     private GridBagConstraints c;
 
-    private String mainMenuButtonText = "Main menu";
-    private String emptyLogButtonText = "Empty Log";
-    private String exitGameButtonText = "Exit Game ";
+    private final String mainMenuButtonText = "Main menu";
+    private final String emptyLogButtonText = "Empty Log";
+    private final String exitGameButtonText = "Exit Game ";
 
     public GameWindow(INewGame INewGame, IPlayerBeing IPlayerBeing)
      {
          this.INewGame = INewGame;
          this.IPlayerBeing = IPlayerBeing;
-         gameFrame = new JFrame("UntitledRPG™");
+         gameFrame = new JFrame("Pulse™");
          buildGameWindow(gameFrame);
     }
 
@@ -180,7 +180,7 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
     }
 
     // Returns a button and a set actionListener. Cant be used with the 'Send'-button, as it uses the CommandListener
-    public JButton gameWindowButton(String buttonName) {
+    private JButton gameWindowButton(String buttonName) {
          JButton returnedButton = new JButton(buttonName);
          returnedButton.addActionListener(e -> {
              JButton source = (JButton)e.getSource();
@@ -210,7 +210,7 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
         inputAreaTextArea.setCaretPosition(inputAreaTextArea.getDocument().getLength());
     }
 
-    public void emptyLog(){
+    private void emptyLog(){
          inputAreaTextArea.setText("");
     }
 
@@ -245,7 +245,7 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
     }
 
     // Has alternative for dash ('-') in front of printed string
-    public void printToSidebarArea(String text, boolean hasDash) {
+    private void printToSidebarArea(String text, boolean hasDash) {
         if (hasDash) {
             sidebarTextArea.append("- " + text + "\n");
             sidebarTextArea.setCaretPosition(sidebarTextArea.getDocument().getLength());

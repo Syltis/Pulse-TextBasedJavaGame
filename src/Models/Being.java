@@ -15,9 +15,9 @@ public class Being {
 	private int health;
 	private int[] skills;
 	private int money;
-	private List<Item> inventory = new ArrayList<>();
+	private final List<Item> inventory = new ArrayList<>();
 
-	public Being(String name, String description, int health, int[] skills, int money) {
+	Being(String name, String description, int health, int[] skills, int money) {
 		this.name = name;
 		this.description = description;
 		this.health = health;
@@ -82,7 +82,7 @@ public class Being {
 		return inventory;
 	}
 
-	public void addToInventory(Item item) {
+	void addToInventory(Item item) {
 		inventory.add(item);
 	}
 

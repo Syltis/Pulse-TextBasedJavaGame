@@ -16,10 +16,10 @@ import java.awt.*;
 
 class ExitConfirm {
 
-	private JFrame frame;
-	private String exitGame = "Exit Game";
-	private String continueGame = "Continue Game";
-	private IGameWindowDispose IGameWindowDispose;
+	private final JFrame frame;
+	private final String exitGame = "Exit Game";
+	private final String continueGame = "Continue Game";
+	private final IGameWindowDispose IGameWindowDispose;
 
 	ExitConfirm(IGameWindowDispose IGameWindowDispose) {
 		this.IGameWindowDispose = IGameWindowDispose;

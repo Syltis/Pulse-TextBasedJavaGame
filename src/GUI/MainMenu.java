@@ -20,7 +20,7 @@ public class MainMenu {
     private final String loadGame = "Load Game";
     private final String exitGame = "Exit Game";
     private final String settings = "Settings";
-    private final JFrame frame = new JFrame("UntitledRPG™ Main Menu");
+    private final JFrame frame = new JFrame("Pulse™ Main Menu");
     private final String imagePath = "images/spaceShip_8Bit_Cropped.png";
     private GridBagConstraints c;
 
@@ -51,7 +51,7 @@ public class MainMenu {
 
         // Panel for title
         JPanel titlePanel = new JPanel();
-        JLabel titleLabel = new JLabel("<html><span style='font-size:16px'>" + "Welcome to the SpaceRPG!" + "</span></html>");
+        JLabel titleLabel = new JLabel("<html><span style='font-size:16px'>" + "Welcome to Pulse™ - a text-based RPG" + "</span></html>");
         titlePanel.add(titleLabel);
 
         // Panels for individual buttons

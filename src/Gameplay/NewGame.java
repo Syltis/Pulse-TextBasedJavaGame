@@ -14,7 +14,7 @@ import Models.Scenario;
 public class NewGame implements INewGame {
 
     private final GameWindow gameWindow;
-    private GameSettings gameSettings = GameSettings.getInstance();
+    private final GameSettings gameSettings = GameSettings.getInstance();
     private Scenario activeScenario;
 
     public NewGame()

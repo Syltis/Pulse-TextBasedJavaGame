@@ -16,9 +16,9 @@ import java.awt.event.ActionListener;
 
 class CommandListener implements ActionListener {
 
-    private IGameWindowPrint IGameWindowPrint;
-    private INewGame INewGame;
-    private IPlayerBeing IPlayerBeing;
+    private final IGameWindowPrint IGameWindowPrint;
+    private final INewGame INewGame;
+    private final IPlayerBeing IPlayerBeing;
     private int blankCounter;
 
     CommandListener(IGameWindowPrint IGameWindowPrint, INewGame INewGame, IPlayerBeing IPlayerBeing)

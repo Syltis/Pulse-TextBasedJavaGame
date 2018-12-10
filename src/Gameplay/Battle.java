@@ -14,9 +14,9 @@ import java.io.IOException;
 
 public class Battle {
 
-	private PlayerBeing playerCombatant;
-	private PlayerBeing CombatantB;
-	private IGameWindowPrint IGameWindowPrint;
+	private final PlayerBeing playerCombatant;
+	private final PlayerBeing CombatantB;
+	private final IGameWindowPrint IGameWindowPrint;
 	
 	public Battle(PlayerBeing playerCombatant, PlayerBeing CombatantB, IGameWindowPrint IGameWindowPrint) throws IOException
 	{
