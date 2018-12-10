@@ -16,6 +16,7 @@ import Managers.JSONParsing;
 import Models.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -27,7 +28,6 @@ public class GameSettings {
     private static List<ActionCommand> actionCommandBank = null;
     private static List<ItemCommand> itemCommandBank = null;
     private static List<CombatCommand> combatCommandBank = null;
-
     private static int turnCount = 1;
 
     // Turncount is used to count how many choices the user has made. It is accessed in
@@ -40,52 +40,41 @@ public class GameSettings {
         if (instance == null) {
             instance = new GameSettings();
         }
-        // TODO: These could be retrieved from JSON automatically
-        // Instantiate bank of movements when the singleton is instantiated
-        movementCommandBank = new ArrayList<>();
-        // IntroRooms 0-4
-        movementCommandBank.add(new MovementCommand("go north","introRoom1"));
-        movementCommandBank.add(new MovementCommand("north","introRoom1"));
-        movementCommandBank.add(new MovementCommand("go west","introRoom2"));
-        movementCommandBank.add(new MovementCommand("west","introRoom2"));
-        movementCommandBank.add(new MovementCommand("go east","introRoom3"));
-        movementCommandBank.add(new MovementCommand("east","introRoom3"));
-        movementCommandBank.add(new MovementCommand("go back","introRoom0"));
-        movementCommandBank.add(new MovementCommand("go north","introRoom4"));
-        movementCommandBank.add(new MovementCommand("go back","introRoom1"));
-        movementCommandBank.add(new MovementCommand("go back","introRoom2"));
-
-        // Instantiates bank for actionCommands when the singleton is instantiated
-        actionCommandBank = new ArrayList<>();
-        actionCommandBank.add(new ActionCommand("inventory", ""));
-        actionCommandBank.add(new ActionCommand("i", ""));
-
-        itemCommandBank = new ArrayList<>();
-        itemCommandBank.add(new ItemCommand("take key", "Brown Key"));
-        itemCommandBank.add(new ItemCommand("take gun", "9mm Pistol"));
-
-        combatCommandBank = new ArrayList<>();
-        combatCommandBank.add(new CombatCommand("attack rat", "rat221"));
-
-        // Instantiate a bank of item to reference in commandControl
-        itemBank = new ArrayList<>();
-        Collection<Item> itemList = JSONParsing.getItemListFromJson();
-        itemBank.addAll(itemList);
-
+        readListsFromJson();
         return instance;
     }
 
-    public List<MovementCommand> getMovementCommandBank() {
-        return movementCommandBank;
-    }
+    public List<MovementCommand> getMovementCommandBank() { return movementCommandBank; }
 
     public List<ActionCommand> getActionCommandBank() { return actionCommandBank; }
 
     public List<ItemCommand> getItemCommandBank() { return itemCommandBank; }
 
-    public List<CombatCommand> getCombatCommandBank() {
-        return combatCommandBank;
-    }
+    public List<CombatCommand> getCombatCommandBank() { return combatCommandBank; }
 
     public List<Item> getItemBank() { return itemBank; }
+
+    private static void readListsFromJson() {
+        // Instantiate lists of available commands for referencing in CommandControl
+        movementCommandBank = new ArrayList<>();
+        for (Scenario aScenario:JSONParsing.getScenarioListFromJson()) {
+            movementCommandBank.addAll(Arrays.asList(aScenario.getAvailableMovementCommands()));
+        }
+        actionCommandBank = new ArrayList<>();
+        for (Scenario aScenario:JSONParsing.getScenarioListFromJson()) {
+            actionCommandBank.addAll(Arrays.asList(aScenario.getAvailableActionCommands()));
+        }
+        itemCommandBank = new ArrayList<>();
+        for (Scenario aScenario:JSONParsing.getScenarioListFromJson()) {
+            itemCommandBank.addAll(Arrays.asList(aScenario.getAvailableItemCommands()));
+        }
+        combatCommandBank = new ArrayList<>();
+        for (Scenario aScenario:JSONParsing.getScenarioListFromJson()) {
+            combatCommandBank.addAll(Arrays.asList(aScenario.getAvailableCombatCommands()));
+        }
+        // Instantiate a bank of item to reference in commandControl
+        itemBank = new ArrayList<>();
+        Collection<Item> itemList = JSONParsing.getItemListFromJson();
+        itemBank.addAll(itemList);
+    }
 }

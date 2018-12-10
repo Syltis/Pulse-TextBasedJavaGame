@@ -29,6 +29,8 @@ public class Item {
 		return itemType;
 	}
 
+	public String getEffect() { return effect; }
+
 	public boolean isUnique() { return isUnique; }
 
 	// Overridden .equals() that compares objects correctly
@@ -40,6 +42,7 @@ public class Item {
 
 		return this.getItemName().equals(aItem.getItemName())
 				&& this.getItemType().equals(aItem.getItemType())
+				&& this.getEffect().equals(aItem.getEffect())
 				&& this.isUnique == aItem.isUnique;
 	}
 }
