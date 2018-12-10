@@ -6,12 +6,12 @@ Has edited this:
 */
 
 import GUI.GameWindow;
-import Interfaces.IActiveScenario;
+import Interfaces.INewGame;
 import Managers.JSONParsing;
 import Models.PlayerBeing;
 import Models.Scenario;
 
-public class NewGame implements IActiveScenario {
+public class NewGame implements INewGame {
 
     private final GameWindow gameWindow;
     private GameSettings gameSettings = GameSettings.getInstance();

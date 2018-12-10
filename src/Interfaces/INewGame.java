@@ -7,7 +7,7 @@ Has edited this:
 
 import Models.Scenario;
 
-public interface IActiveScenario {
+public interface INewGame {
 
     Scenario getActiveScenario();
 

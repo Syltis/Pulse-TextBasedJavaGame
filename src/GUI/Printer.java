@@ -1,6 +1,6 @@
 package GUI;
 
-import Interfaces.IGameWindowPrinter;
+import Interfaces.IPrinter;
 import Models.Item;
 import Models.Scenario;
 import Models.MovementCommand;
@@ -8,7 +8,7 @@ import Models.MovementCommand;
 import java.util.List;
 
 // CLASS NOT FINISHED AND NOT IN USE
-public class Printer implements IGameWindowPrinter {
+public class Printer implements IPrinter {
 
     GameWindow gameWindow;
 
@@ -16,7 +16,7 @@ public class Printer implements IGameWindowPrinter {
         this.gameWindow = gameWindow;
     }
 
-    public IGameWindowPrinter getPrintable() {
+    public IPrinter getPrintable() {
         return Printer.this;
     }
     // Prints  player command to inputAreaTextField (log)

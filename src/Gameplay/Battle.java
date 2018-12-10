@@ -6,7 +6,7 @@ Has edited this:
 - Matt
 */
 
-import Interfaces.IGameWindowPrinter;
+import Interfaces.IPrinter;
 import Models.Being;
 import Models.PlayerBeing;
 
@@ -16,13 +16,13 @@ public class Battle {
 
 	private PlayerBeing playerCombatant;
 	private PlayerBeing CombatantB;
-	private IGameWindowPrinter IGameWindowPrinter;
+	private IPrinter IPrinter;
 	
-	public Battle(PlayerBeing playerCombatant, PlayerBeing CombatantB, IGameWindowPrinter IGameWindowPrinter) throws IOException
+	public Battle(PlayerBeing playerCombatant, PlayerBeing CombatantB, IPrinter IPrinter) throws IOException
 	{
 		this.playerCombatant = playerCombatant;
 		this.CombatantB = CombatantB;
-		this.IGameWindowPrinter = IGameWindowPrinter;
+		this.IPrinter = IPrinter;
 		executeBattle(this.playerCombatant, this.CombatantB);
 	}
     public void executeBattle(PlayerBeing CombatantA, PlayerBeing CombatantB) throws IOException {

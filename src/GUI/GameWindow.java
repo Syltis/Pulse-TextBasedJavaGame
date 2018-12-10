@@ -15,9 +15,9 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.List;
 
-public class GameWindow implements IGameWindowPrinter {
+public class GameWindow implements IPrinter {
 
-    private final IActiveScenario IActiveScenario;
+    private final INewGame INewGame;
     private final IPlayerBeing IPlayerBeing;
     JTextArea sidebarTextArea;
     JTextArea gameTextArea;
@@ -28,9 +28,9 @@ public class GameWindow implements IGameWindowPrinter {
     private String mainMenuButtonText = "Main menu";
     private String emptyLogButtonText = "Empty Log";
 
-    public GameWindow(IActiveScenario IActiveScenario, IPlayerBeing IPlayerBeing)
+    public GameWindow(INewGame INewGame, IPlayerBeing IPlayerBeing)
      {
-         this.IActiveScenario = IActiveScenario;
+         this.INewGame = INewGame;
          this.IPlayerBeing = IPlayerBeing;
          JFrame gameFrame = new JFrame("UntitledRPG™");
          buildGameWindow(gameFrame);
@@ -123,9 +123,9 @@ public class GameWindow implements IGameWindowPrinter {
 
 // LISTENERS
         // Listener for sending of a command
-        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, IActiveScenario, IPlayerBeing));
+        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, INewGame, IPlayerBeing));
 
-        sendCommandButton.addActionListener(new CommandListener(GameWindow.this, IActiveScenario, IPlayerBeing));
+        sendCommandButton.addActionListener(new CommandListener(GameWindow.this, INewGame, IPlayerBeing));
 
         // Method for the placeholder text.
         inputAreaTextField.addFocusListener(new FocusAdapter() {
