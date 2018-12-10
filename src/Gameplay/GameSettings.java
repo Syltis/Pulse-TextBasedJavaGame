@@ -57,7 +57,8 @@ public class GameSettings {
 
         // Instantiates bank for actionCommands when the singleton is instantiated
         actionCommandBank = new ArrayList<>();
-        actionCommandBank.add(new ActionCommand("inventory", "inventory"));
+        actionCommandBank.add(new ActionCommand("inventory", ""));
+        actionCommandBank.add(new ActionCommand("i", ""));
 
         itemCommandBank = new ArrayList<>();
         itemCommandBank.add(new ItemCommand("take key", "Brown Key"));

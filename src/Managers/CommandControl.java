@@ -71,7 +71,7 @@ public class CommandControl {
             case ACTIONCOMMAND:
                 // Check if player asks for inventory
                 String actionResult = null;
-                if (playerCommand.equals("inventory")) {
+                if (playerCommand.equals("inventory") || playerCommand.equals("i")) {
                     IPrinter.printInventoryToGameArea(IPlayerBeing.getInventory());
                     break;
                 }
