@@ -9,7 +9,7 @@ import Models.Item;
 
 import java.util.List;
 
-public interface IPrinter {
+public interface IGameWindowPrint {
 
     void printCommandToLog(String text);
 

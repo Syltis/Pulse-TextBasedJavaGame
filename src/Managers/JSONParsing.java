@@ -45,6 +45,23 @@ public final class JSONParsing {
         return newScenario;
     }
 
+    public static Collection<Scenario> getScenarioListFromJson() {
+        Collection<Scenario> scenarios = null;
+        Type scenarioType = new TypeToken<Collection<Scenario>>(){}.getType();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/Scenario.json"));
+            Gson gson = new GsonBuilder().create();
+            scenarios = gson.fromJson(reader, scenarioType);
+            if (!scenarios.isEmpty()) {
+                return scenarios;
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return scenarios;
+    }
+
     public static Item getItemFromJson(String id) {
         Item newItem = null;
         Type itemType = new TypeToken<Collection<Item>>(){}.getType();

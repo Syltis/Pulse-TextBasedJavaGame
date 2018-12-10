@@ -15,15 +15,15 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.List;
 
-public class GameWindow implements IPrinter {
+public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
 
     private final INewGame INewGame;
     private final IPlayerBeing IPlayerBeing;
     private JFrame gameFrame;
-    JTextArea sidebarTextArea;
-    JTextArea gameTextArea;
-    JTextArea inputAreaTextArea;
-    JTextField inputAreaTextField;
+    private JTextArea sidebarTextArea;
+    private JTextArea gameTextArea;
+    private JTextArea inputAreaTextArea;
+    private JTextField inputAreaTextField;
     private GridBagConstraints c;
 
     private String mainMenuButtonText = "Main menu";
@@ -165,11 +165,11 @@ public class GameWindow implements IPrinter {
     // Easier implementation of constraints for gridBagLayout
     // Found on Stack Overflow somewhere.
     private void addComp(JPanel panel, JComponent comp
-                            , int x, int y, int gWidth
+                            , int column, int row, int gWidth
                                 , int gHeight, int fill
                                     , double weightx, double weighty) {
-        c.gridx = x;
-        c.gridy = y;
+        c.gridx = column;
+        c.gridy = row;
         c.gridwidth = gWidth;
         c.gridheight = gHeight;
         c.fill = fill;
@@ -191,8 +191,7 @@ public class GameWindow implements IPrinter {
                  emptyLog();
              }
              if(source.getText().equalsIgnoreCase(exitGameButtonText)) {
-                 // TODO Pop-up with confirmation on exit
-                 gameFrame.dispose();
+                 new ExitConfirm(GameWindow.this);
              }
          });
          return returnedButton;
@@ -311,5 +310,9 @@ public class GameWindow implements IPrinter {
 
     public void setInputAreaTextField(String text) {
          inputAreaTextField.setText(text);
+    }
+
+    public void disposeWindow() {
+        gameFrame.dispose();
     }
 }
