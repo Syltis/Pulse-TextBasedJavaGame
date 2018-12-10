@@ -66,6 +66,23 @@ public final class JSONParsing {
         return newItem;
     }
 
+    public static Collection<Item> getItemListFromJson() {
+        Collection<Item> items = null;
+        Type itemType = new TypeToken<Collection<Item>>(){}.getType();
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/Item.json"));
+            Gson gson = new GsonBuilder().create();
+            items = gson.fromJson(reader, itemType);
+            if (!items.isEmpty()) {
+                return items;
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return items;
+    }
+
     /*
     - Old parser, could still be of use later. Uses the json.simple library
 

@@ -12,9 +12,11 @@ A singleton has a private constructor, and can only be instantiated and accessed
     instantiated. If it has not it instantiates it and returns the object.
 */
 
+import Managers.JSONParsing;
 import Models.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class GameSettings {
@@ -64,14 +66,10 @@ public class GameSettings {
         combatCommandBank = new ArrayList<>();
         combatCommandBank.add(new CombatCommand("attack rat", "rat221"));
 
-        // Instantiate bank of movements when the singleton is instantiated
-        // TODO The items could be stored as objects in a json file.
+        // Instantiate a bank of item to reference in commandControl
         itemBank = new ArrayList<>();
-        // Test-items
-        itemBank.add(new Item("Brown Key", "key", "openDoor1", true));
-        itemBank.add(new Item("9mm Pistol", "gun", "STR+2",false));
-        itemBank.add(new Item("Bread", "Food","health+10", false));
-        itemBank.add(new Item("Health Potion", "Healing", "health+40", false));
+        Collection<Item> itemList = JSONParsing.getItemListFromJson();
+        itemBank.addAll(itemList);
 
         return instance;
     }

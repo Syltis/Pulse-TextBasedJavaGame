@@ -110,6 +110,7 @@ public class CommandControl {
                     IPrinter.printResponseToLog("Hm, what does '" + playerCommand + "' even mean?");
                     break;
                 }
+                // Check if item is marked an unique and if layer already has one
                 for (Item anItem: IPlayerBeing.getInventory()) {
                     if (item.isUnique() && anItem.equals(item)) {
                         IPrinter.printToGameArea("", false);

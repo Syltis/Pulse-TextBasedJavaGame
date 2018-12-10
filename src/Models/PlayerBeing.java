@@ -18,7 +18,7 @@ public class PlayerBeing extends Being implements IPlayerBeing {
     public PlayerBeing(String name, String description, int health, int[] skills, int money)
     {
         super(name, description, health, skills, money);
-        addToInventory(new Item("Bread", "Food", false));
+        addToInventory(new Item("Bread", "Food", "health+10", false));
     }
     
     public PlayerBeing()
@@ -29,7 +29,7 @@ public class PlayerBeing extends Being implements IPlayerBeing {
                 new int[] {0,0,0},
                 50
         );
-        addToInventory(new Item("Bread", "Food", false));
+        addToInventory(new Item("Bread", "Food", "health+10", false));
     }
 
     public int choose(String prompt, String[] choices) throws IOException {
