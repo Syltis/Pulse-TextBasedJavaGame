@@ -59,15 +59,15 @@ public class Being {
 
 	public int getStat(String stat) {
 		if(stat.equals("STR")) return this.skills[0];
-		if(stat.equals("LCK")) return this.skills[1];
-		if(stat.equals("CON")) return this.skills[2];
+		if(stat.equals("CON")) return this.skills[1];
+		if(stat.equals("LCK")) return this.skills[2];
 		return -1;
 	}
 
 	public void setStat(String stat, int value) {
 		if(stat.equals("STR")) this.skills[0] = value;
-		if(stat.equals("LCK")) this.skills[0] = value;
-		if(stat.equals("CON")) this.skills[2] = value;
+		if(stat.equals("CON")) this.skills[0] = value;
+		if(stat.equals("LCK")) this.skills[2] = value;
 	}
 
 	public int getMoney() {

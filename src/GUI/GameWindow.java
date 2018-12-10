@@ -19,6 +19,7 @@ public class GameWindow implements IPrinter {
 
     private final INewGame INewGame;
     private final IPlayerBeing IPlayerBeing;
+    private JFrame gameFrame;
     JTextArea sidebarTextArea;
     JTextArea gameTextArea;
     JTextArea inputAreaTextArea;
@@ -27,12 +28,13 @@ public class GameWindow implements IPrinter {
 
     private String mainMenuButtonText = "Main menu";
     private String emptyLogButtonText = "Empty Log";
+    private String exitGameButtonText = "Exit Game ";
 
     public GameWindow(INewGame INewGame, IPlayerBeing IPlayerBeing)
      {
          this.INewGame = INewGame;
          this.IPlayerBeing = IPlayerBeing;
-         JFrame gameFrame = new JFrame("UntitledRPG™");
+         gameFrame = new JFrame("UntitledRPG™");
          buildGameWindow(gameFrame);
     }
 
@@ -101,11 +103,14 @@ public class GameWindow implements IPrinter {
         addComp(inputAreaPanel, textAreaScrollPane, 0, 1, 1, 1, GridBagConstraints.BOTH, 2, 2);
         JButton mainMenuButton = gameWindowButton(mainMenuButtonText);
         JButton emptyLogButton = gameWindowButton(emptyLogButtonText);
+        JButton exitGameButton = gameWindowButton(exitGameButtonText);
 
         JPanel inputAreaButtonPanel = new JPanel();
         inputAreaButtonPanel.setLayout(new BoxLayout(inputAreaButtonPanel, BoxLayout.Y_AXIS));
         inputAreaButtonPanel.add(mainMenuButton);
-        inputAreaButtonPanel.add(Box.createRigidArea(new Dimension(0,79)));
+        inputAreaButtonPanel.add(Box.createRigidArea(new Dimension(0,10)));
+        inputAreaButtonPanel.add(exitGameButton);
+        inputAreaButtonPanel.add(Box.createRigidArea(new Dimension(0,43)));
         inputAreaButtonPanel.add(emptyLogButton);
         addComp(inputAreaPanel, inputAreaButtonPanel, 1, 0, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
@@ -117,8 +122,7 @@ public class GameWindow implements IPrinter {
         inputAreaTextField = new JTextField("Start your adventure!",100);
         addComp(inputAreaPanel, inputAreaTextField, 0, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
-        String sendButtonText = "Send";
-        JButton sendCommandButton = gameWindowButton(sendButtonText);
+        JButton sendCommandButton = gameWindowButton("Send");
         addComp(inputAreaPanel, sendCommandButton, 1, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
 // LISTENERS
@@ -186,6 +190,10 @@ public class GameWindow implements IPrinter {
              if (source.getText().equalsIgnoreCase(emptyLogButtonText)) {
                  emptyLog();
              }
+             if(source.getText().equalsIgnoreCase(exitGameButtonText)) {
+                 // TODO Pop-up with confirmation on exit
+                 gameFrame.dispose();
+             }
          });
          return returnedButton;
     }
@@ -251,6 +259,18 @@ public class GameWindow implements IPrinter {
 
     // Prints the available commands to the sidebar
     public void feedSideBar(Scenario activeScenario) {
+
+        printToSidebarArea("CHARACTER", false);
+        printToSidebarArea("Name: " + IPlayerBeing.getPlayerCharacter().getName(), true);
+        printToSidebarArea("HP: " + IPlayerBeing.getPlayerCharacter().getHealth(), true);
+        printToSidebarArea("$: " + IPlayerBeing.getPlayerCharacter().getMoney(), true);
+        printToSidebarArea("STR: " + IPlayerBeing.getPlayerCharacter().getStat("STR"), true);
+        printToSidebarArea("CON: " + IPlayerBeing.getPlayerCharacter().getStat("CON"), true);
+        printToSidebarArea("LCK: " + IPlayerBeing.getPlayerCharacter().getStat("LCK"), true);
+
+        printToSidebarArea("", false);
+        printToSidebarArea("", false);
+        printToSidebarArea("AVAILABLE COMMANDS", false);
          if (activeScenario.getAvailableMovementCommands() != null && activeScenario.getAvailableMovementCommands().length > 0) {
              printToSidebarArea("MOVEMENT:", true);
              for (MovementCommand aMovementCommand : activeScenario.getAvailableMovementCommands()) {
