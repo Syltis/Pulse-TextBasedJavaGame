@@ -30,7 +30,7 @@ public class MainMenu {
     }
 
     private void buildWindow(JFrame frame) {
-        
+
         c = new GridBagConstraints();
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         int hGap = 5;
