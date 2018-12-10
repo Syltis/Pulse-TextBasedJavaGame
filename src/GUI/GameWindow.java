@@ -165,11 +165,11 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
     // Easier implementation of constraints for gridBagLayout
     // Found on Stack Overflow somewhere.
     private void addComp(JPanel panel, JComponent comp
-                            , int x, int y, int gWidth
+                            , int column, int row, int gWidth
                                 , int gHeight, int fill
                                     , double weightx, double weighty) {
-        c.gridx = x;
-        c.gridy = y;
+        c.gridx = column;
+        c.gridy = row;
         c.gridwidth = gWidth;
         c.gridheight = gHeight;
         c.fill = fill;
