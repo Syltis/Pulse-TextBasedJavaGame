@@ -9,12 +9,14 @@ Has edited this:
 Singleton class for storing game sava data and for saving a game.
 A singleton has a private constructor, and can only be instantiated and accessed
     though the getInstance()-method. The method checks if the class has already been
-    instantiated. If it has not, it instantiates it, and return the object.
+    instantiated. If it has not it instantiates it and returns the object.
 */
 
+import Managers.JSONParsing;
 import Models.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class GameSettings {
@@ -38,8 +40,8 @@ public class GameSettings {
         if (instance == null) {
             instance = new GameSettings();
         }
-        // Instantiate bank of movements when the singleton is instantiated
         // TODO: These could be retrieved from JSON automatically
+        // Instantiate bank of movements when the singleton is instantiated
         movementCommandBank = new ArrayList<>();
         // IntroRooms 0-4
         movementCommandBank.add(new MovementCommand("go north","introRoom1"));
@@ -59,14 +61,15 @@ public class GameSettings {
 
         itemCommandBank = new ArrayList<>();
         itemCommandBank.add(new ItemCommand("take key", "Brown Key"));
+        itemCommandBank.add(new ItemCommand("take gun", "9mm Pistol"));
 
         combatCommandBank = new ArrayList<>();
         combatCommandBank.add(new CombatCommand("attack rat", "rat221"));
 
-        // Instantiate bank of movements when the singleton is instantiated
+        // Instantiate a bank of item to reference in commandControl
         itemBank = new ArrayList<>();
-        // Test-items
-        itemBank.add(new Item("Brown Key", "key", true));
+        Collection<Item> itemList = JSONParsing.getItemListFromJson();
+        itemBank.addAll(itemList);
 
         return instance;
     }

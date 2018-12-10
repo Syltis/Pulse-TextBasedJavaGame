@@ -15,10 +15,10 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.List;
 
-public class GameWindow implements Printable {
+public class GameWindow implements IPrinter {
 
-    private final Choosable choosable;
-    private final Playable playable;
+    private final INewGame INewGame;
+    private final IPlayerBeing IPlayerBeing;
     JTextArea sidebarTextArea;
     JTextArea gameTextArea;
     JTextArea inputAreaTextArea;
@@ -28,11 +28,10 @@ public class GameWindow implements Printable {
     private String mainMenuButtonText = "Main menu";
     private String emptyLogButtonText = "Empty Log";
 
-    public GameWindow(Choosable choosable, Playable playable)
+    public GameWindow(INewGame INewGame, IPlayerBeing IPlayerBeing)
      {
-         this.choosable = choosable;
-         this.playable = playable;
-
+         this.INewGame = INewGame;
+         this.IPlayerBeing = IPlayerBeing;
          JFrame gameFrame = new JFrame("UntitledRPG™");
          buildGameWindow(gameFrame);
     }
@@ -124,9 +123,9 @@ public class GameWindow implements Printable {
 
 // LISTENERS
         // Listener for sending of a command
-        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, choosable, playable));
+        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, INewGame, IPlayerBeing));
 
-        sendCommandButton.addActionListener(new CommandListener(GameWindow.this, choosable, playable));
+        sendCommandButton.addActionListener(new CommandListener(GameWindow.this, INewGame, IPlayerBeing));
 
         // Method for the placeholder text.
         inputAreaTextField.addFocusListener(new FocusAdapter() {
@@ -136,6 +135,7 @@ public class GameWindow implements Printable {
                 source.removeFocusListener(this);
             }
         });
+
 // ASSEMBLY
         // Set vertical splitpane.
         JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameAreaPanel, sideBarPanel);

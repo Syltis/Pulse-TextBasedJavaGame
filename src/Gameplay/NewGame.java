@@ -6,46 +6,38 @@ Has edited this:
 */
 
 import GUI.GameWindow;
-import GUI.Printer;
-import Interfaces.Choosable;
-import Interfaces.Printable;
+import Interfaces.INewGame;
 import Managers.JSONParsing;
-import Models.PlayerCharacter;
+import Models.PlayerBeing;
 import Models.Scenario;
 
-public class NewGame implements Choosable {
+public class NewGame implements INewGame {
 
-    private Printable printable;
     private final GameWindow gameWindow;
     private GameSettings gameSettings = GameSettings.getInstance();
     private Scenario activeScenario;
-    private JSONParsing jsonParser;
 
     public NewGame()
     {
-        PlayerCharacter playerCharacter = new PlayerCharacter();
-        this.gameWindow = new GameWindow(NewGame.this, playerCharacter);
-        this.jsonParser = new JSONParsing();
-        Printer printer = new Printer(gameWindow);
-        this.printable = printer.getPrintable();
+        PlayerBeing playerBeing = new PlayerBeing();
+        this.gameWindow = new GameWindow(NewGame.this, playerBeing);
         startFirstScenario();
     }
 
     private void startFirstScenario() {
-        this.activeScenario = jsonParser.getScenarioFromJson("introRoom0");
+        this.activeScenario = JSONParsing.getScenarioFromJson("introRoom0");
         gameWindow.printScenarioToGameArea(this.activeScenario.getTitle(), this.activeScenario.getDescription());
         gameWindow.feedSideBar(this.activeScenario);
     }
 
     // Give this the id of the movementCommand
     public void nextScenario(String result) {
-        Scenario newActiveScenario = jsonParser.getScenarioFromJson(result);
+        Scenario newActiveScenario = JSONParsing.getScenarioFromJson(result);
         gameSettings.upTurnCount();
         gameWindow.printScenarioToGameArea(newActiveScenario.getTitle(), newActiveScenario.getDescription());
         this.activeScenario = newActiveScenario;
         gameWindow.feedSideBar(newActiveScenario);
     }
 
-    @Override
     public Scenario getActiveScenario() { return activeScenario; }
 }

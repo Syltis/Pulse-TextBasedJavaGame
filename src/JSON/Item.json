@@ -1,0 +1,26 @@
+[
+  {
+    "itemName": "Brown Key",
+    "itemType": "key",
+    "effect": "openDoor1",
+    "isUnique": true
+  },
+  {
+    "itemName": "9mm Pistol",
+    "itemType": "Weapon",
+    "effect": "STR+2",
+    "isUnique": true
+  },
+  {
+    "itemName": "Bread",
+    "itemType": "food",
+    "effect": "health+10",
+    "isUnique": true
+  },
+  {
+    "itemName": "Health Potion",
+    "itemType": "healing",
+    "effect": "health+40",
+    "isUnique": true
+  }
+]

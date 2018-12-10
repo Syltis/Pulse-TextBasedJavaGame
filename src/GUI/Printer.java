@@ -1,14 +1,14 @@
 package GUI;
 
-import Interfaces.Printable;
+import Interfaces.IPrinter;
 import Models.Item;
 import Models.Scenario;
 import Models.MovementCommand;
 
 import java.util.List;
 
-// METHOD NOT FINISHED AND NOT IN USE
-public class Printer implements Printable {
+// CLASS NOT FINISHED AND NOT IN USE
+public class Printer implements IPrinter {
 
     GameWindow gameWindow;
 
@@ -16,7 +16,7 @@ public class Printer implements Printable {
         this.gameWindow = gameWindow;
     }
 
-    public Printable getPrintable() {
+    public IPrinter getPrintable() {
         return Printer.this;
     }
     // Prints  player command to inputAreaTextField (log)

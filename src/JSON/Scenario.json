@@ -95,8 +95,8 @@
     ],
     "availableItemCommands": [
       {
-        "command": "take key",
-        "result": "Brown Key"
+        "command": "take gun",
+        "result": "9mm Pistol"
       }
     ],
     "availableCombatCommands": [
@@ -123,10 +123,7 @@
       }
     ],
     "availableItemCommands": [
-      {
-        "command": "take key",
-        "result": "Brown Key"
-      }
+
     ],
     "availableCombatCommands": [
       {
@@ -152,10 +149,7 @@
       }
     ],
     "availableItemCommands": [
-      {
-        "command": "take key",
-        "result": "Brown Key"
-      }
+
     ],
     "availableCombatCommands": [
       {

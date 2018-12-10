@@ -9,7 +9,7 @@ Has edited this:
 Utility class for working on strings. All static methods and no object instatiation
  */
 
-import Models.EnemyCharacter;
+import Models.EnemyBeing;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,25 +41,31 @@ public final class StringUtilities {
 		return string;
 	}
 
-	public static EnemyCharacter getCharacterFromCombatResult(String combatResult) {
+	public static EnemyBeing generateBeingFromCombatResult(String combatResult) {
+		EnemyBeing enemyBeing = null;
 		Pattern p = Pattern.compile("([a-z]+)([0-9]+)");
 		Matcher m = p.matcher(combatResult);
 		if (!m.find())
 		{
-			System.out.println("nomatch");
+			return enemyBeing;
 		}
 		String characterName = m.group(1);
 		String characterSkills = m.group(2);
-		int[] skills = new int[3];
-		String skill1 = characterSkills.substring(0,1);
-		String skill2 = characterSkills.substring(1,2);
-		String skill3 = characterSkills.substring(2,3);
-		skills[0] = Integer.parseInt(skill1);
-		skills[1]  = Integer.parseInt(skill2);
-		skills[2]  = Integer.parseInt(skill3);
+		int[] skills = new int[]
+				{
+						Integer.parseInt(characterSkills.substring(0,1)),
+						Integer.parseInt(characterSkills.substring(1,2)),
+						Integer.parseInt(characterSkills.substring(2,3))
+				};
 
-		// TODO: This is where we are now.
-		EnemyCharacter newCharacter = new EnemyCharacter(characterName, "An actual" + characterName, 100, skills, 5);
-		return newCharacter;
+		enemyBeing = new EnemyBeing
+				(
+						characterName,
+						"An actual" + characterName,
+						100,
+						skills,
+						5
+				);
+		return enemyBeing;
 	}
 }

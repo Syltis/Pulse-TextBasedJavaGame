@@ -5,17 +5,16 @@ Has edited this:
 - Kristoffer
 */
 
-import Models.Being;
 import Models.Item;
+import Models.PlayerBeing;
 
 import java.util.List;
 
-public interface Playable {
+public interface IPlayerBeing {
 
 	List<Item> getInventory();
 
 	void addToInventory(Item item);
 
-	Being getBeing();
-
+	PlayerBeing getPlayerCharacter();
 }

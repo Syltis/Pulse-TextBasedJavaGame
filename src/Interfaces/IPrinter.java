@@ -9,7 +9,7 @@ import Models.Item;
 
 import java.util.List;
 
-public interface Printable {
+public interface IPrinter {
 
     void printCommandToLog(String text);
 

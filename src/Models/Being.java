@@ -5,12 +5,10 @@ Has edited this:
 - Kristoffer
 */
 
-import Interfaces.Playable;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Being implements Playable {
+public class Being {
 
 	private String name;
 	private String description;
@@ -19,9 +17,14 @@ public class Being implements Playable {
 	private int money;
 	private List<Item> inventory = new ArrayList<>();
 
-	public Being getBeing() {
-		return Being.this;
+	public Being(String name, String description, int health, int[] skills, int money) {
+		this.name = name;
+		this.description = description;
+		this.health = health;
+		this.skills = skills;
+		this.money = money;
 	}
+
 	public String getName() {
 		return name;
 	}
@@ -58,7 +61,6 @@ public class Being implements Playable {
 		if(stat.equals("STR")) return this.skills[0];
 		if(stat.equals("LCK")) return this.skills[1];
 		if(stat.equals("CON")) return this.skills[2];
-
 		return -1;
 	}
 
@@ -82,5 +84,9 @@ public class Being implements Playable {
 
 	public void addToInventory(Item item) {
 		inventory.add(item);
+	}
+
+	public boolean isAlive() {
+		return health >= 0;
 	}
 }
