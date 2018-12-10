@@ -1,5 +1,16 @@
 package GUI;
 
+/*
+Has edited this:
+- Kristoffer
+ */
+
+/*
+- Class that instantiates a frame with two buttons, asking the player if they really wants to exit the game.
+- The class takes the GameWindow-instance
+ */
+import Interfaces.IGameWindowDispose;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,10 +19,10 @@ class ExitConfirm {
 	private JFrame frame;
 	private String exitGame = "Exit Game";
 	private String continueGame = "Continue Game";
-	private GameWindow gameWindow;
+	private IGameWindowDispose IGameWindowDispose;
 
-	ExitConfirm(GameWindow gameWindow) {
-		this.gameWindow = gameWindow;
+	ExitConfirm(IGameWindowDispose IGameWindowDispose) {
+		this.IGameWindowDispose = IGameWindowDispose;
 		frame = new JFrame();
 		buildWindow(frame);
 	}
@@ -52,7 +63,7 @@ class ExitConfirm {
 		returned.addActionListener(e -> {
 			JButton source = (JButton)e.getSource();
 			if (source.getText().equalsIgnoreCase(exitGame)) {
-				gameWindow.disposeWindow();
+				IGameWindowDispose.disposeWindow();
 				frame.dispose();
 			}
 			if (source.getText().equalsIgnoreCase(continueGame)) {

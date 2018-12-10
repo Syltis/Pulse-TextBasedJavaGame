@@ -3,7 +3,7 @@ package Managers;
 import Gameplay.GameSettings;
 import Interfaces.INewGame;
 import Interfaces.IPlayerBeing;
-import Interfaces.IPrinter;
+import Interfaces.IGameWindowPrint;
 import Models.*;
 
 /*
@@ -20,7 +20,7 @@ the activeScenario and from gameSettings.
 
 public class CommandControl {
 
-    private final IPrinter IPrinter;
+    private final IGameWindowPrint IGameWindowPrint;
     private final INewGame INewGame;
     private final IPlayerBeing IPlayerBeing;
     private final GameSettings gameSettings = GameSettings.getInstance();
@@ -32,9 +32,9 @@ public class CommandControl {
         NOMATCH
     }
 
-    public CommandControl(String playerCommand, Scenario activeScenario, IPrinter IPrinter, INewGame INewGame, IPlayerBeing IPlayerBeing)
+    public CommandControl(String playerCommand, Scenario activeScenario, IGameWindowPrint IGameWindowPrint, INewGame INewGame, IPlayerBeing IPlayerBeing)
     {
-        this.IPrinter = IPrinter;
+        this.IGameWindowPrint = IGameWindowPrint;
         this.INewGame = INewGame;
         this.IPlayerBeing = IPlayerBeing;
         // Find out command type and send it to commandControl-method
@@ -58,13 +58,13 @@ public class CommandControl {
                     }
                 }
                 if (result == null) {
-                    IPrinter.printResponseToLog("What does '" + playerCommand + "' even mean?");
+                    IGameWindowPrint.printResponseToLog("What does '" + playerCommand + "' even mean?");
                     break;
                 }
-                IPrinter.printToGameArea(playerCommand, true);
-                IPrinter.printToGameArea("", false);
+                IGameWindowPrint.printToGameArea(playerCommand, true);
+                IGameWindowPrint.printToGameArea("", false);
                 // Clearing of sidebar must be done here and not in nextScenario(), though the new values are sent from there
-                IPrinter.clearSideBarArea();
+                IGameWindowPrint.clearSideBarArea();
                 INewGame.nextScenario(result);
                 break;
 
@@ -72,7 +72,7 @@ public class CommandControl {
                 // Check if player asks for inventory
                 String actionResult = null;
                 if (playerCommand.equals("inventory") || playerCommand.equals("i")) {
-                    IPrinter.printInventoryToGameArea(IPlayerBeing.getInventory());
+                    IGameWindowPrint.printInventoryToGameArea(IPlayerBeing.getInventory());
                     break;
                 }
                 for (ActionCommand aActionCommand: activeScenario.getAvailableActionCommands()) {
@@ -85,10 +85,10 @@ public class CommandControl {
                     }
                 }
                 if (actionResult == null) {
-                    IPrinter.printResponseToLog("What does '" + playerCommand + "' even mean?");
+                    IGameWindowPrint.printResponseToLog("What does '" + playerCommand + "' even mean?");
                     break;
                 }
-                IPrinter.printResponseToLog("The actionCommand worked, but we have yet to develop that part of the game.");
+                IGameWindowPrint.printResponseToLog("The actionCommand worked, but we have yet to develop that part of the game.");
                 break;
 
             case ITEMCOMMAND:
@@ -107,19 +107,19 @@ public class CommandControl {
                     }
                 }
                 if (item == null) {
-                    IPrinter.printResponseToLog("Hm, what does '" + playerCommand + "' even mean?");
+                    IGameWindowPrint.printResponseToLog("Hm, what does '" + playerCommand + "' even mean?");
                     break;
                 }
                 // Check if item is marked an unique and if layer already has one
                 for (Item anItem: IPlayerBeing.getInventory()) {
                     if (item.isUnique() && anItem.equals(item)) {
-                        IPrinter.printToGameArea("", false);
-                        IPrinter.printToGameArea("You have already picked up a " + item.getItemName(), true);
+                        IGameWindowPrint.printToGameArea("", false);
+                        IGameWindowPrint.printToGameArea("You have already picked up a " + item.getItemName(), true);
                         return;
                     }
                 }
-                IPrinter.printToGameArea("", false);
-                IPrinter.printToGameArea("A " + item.getItemName() + " was added to the inventory", true);
+                IGameWindowPrint.printToGameArea("", false);
+                IGameWindowPrint.printToGameArea("A " + item.getItemName() + " was added to the inventory", true);
                 IPlayerBeing.addToInventory(item);
                 break;
 
@@ -137,14 +137,14 @@ public class CommandControl {
                     }
                 }
                 if (combatResult == null) {
-                    IPrinter.printResponseToLog("What does '" + playerCommand + "' even mean?");
+                    IGameWindowPrint.printResponseToLog("What does '" + playerCommand + "' even mean?");
                     break;
                 }
                 // TODO new Battle(IPlayerBeing.getPlayerCharacter, enemy)
                 break;
 
             case NOMATCH:
-                IPrinter.printResponseToLog("What does '" + playerCommand + "' even mean?");
+                IGameWindowPrint.printResponseToLog("What does '" + playerCommand + "' even mean?");
                 break;
         }
     }

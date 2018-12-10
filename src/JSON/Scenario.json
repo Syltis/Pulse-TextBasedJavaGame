@@ -7,15 +7,15 @@
       {
         "command": "go north",
         "result": "introRoom1"
-      },
-      {
-        "command": "north",
-        "result": "introRoom1"
       }
     ],
     "availableActionCommands": [
       {
         "command": "inventory",
+        "result": "inventory"
+      },
+      {
+        "command": "i",
         "result": "inventory"
       }
     ],
@@ -41,13 +41,7 @@
         "command": "go west",
         "result": "introRoom2"
       },
-      {"command": "west",
-        "result": "introRoom2"
-      },
       {"command": "go east",
-        "result": "introRoom3"
-      },
-      {"command": "east",
         "result": "introRoom3"
       },
       {"command": "go back",

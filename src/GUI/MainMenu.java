@@ -6,15 +6,22 @@ Has edited this:
 */
 
 import Gameplay.NewGame;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 public class MainMenu {
 
     private final String newGame = "New Game";
     private final String loadGame = "Load Game";
+    private final String exitGame = "Exit Game";
     private final String settings = "Settings";
     private final JFrame frame = new JFrame("UntitledRPG™ Main Menu");
+    private GridBagConstraints c;
 
     public MainMenu()
     {
@@ -23,51 +30,70 @@ public class MainMenu {
 
     private void buildWindow(JFrame frame)
     {
+
+        c = new GridBagConstraints();
+        c.anchor = GridBagConstraints.FIRST_LINE_START;
+        int hGap = 5;
+        int vGap = 5;
+        c.insets = new Insets(hGap, vGap, hGap, vGap);
+
         // Main build
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-        frame.setSize(400, 220);
+        frame.setSize(450, 400);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
 
-        // Draw layout with grid
-        // Look into GridBagLayout if this proves insufficient
-        frame.setLayout(new GridLayout(3,1));
-        JPanel field1 = new JPanel();
-        JPanel field2 = new JPanel(new GridLayout(1, 3));
-        JPanel field21 = new JPanel();
-        JPanel field22 = new JPanel();
-        JPanel field23 = new JPanel();
-        field2.add(field21);
-        field2.add(field22);
-        field2.add(field23);
-        JPanel field3 = new JPanel();
+        // Container for field1, 2, 3
+        JPanel container = new JPanel();
+        container.setLayout(new GridLayout(3,1));
 
-        // Instantiate objects
-        JLabel welcomeTextLabel = new JLabel();
-        JLabel gameDescLabel = new JLabel();
-        JButton newGameBtn = selectGameTypeBtn(newGame);
-        JButton loadGameBtn = selectGameTypeBtn(loadGame);
-        JButton settingsBtn = selectGameTypeBtn(settings);
+        // Panel for image
+        JPanel imagePanel = new JPanel();
 
-        // Set values.
-        String welcomeText = "Welcome to the Untitled RPG!";
-        String gameDesc = "<html>Press 'New Game' to start your adventure,<br /> or 'Load Game' to continue an existing one!</html> ";
-        settingsBtn.setText("Settings");
-        welcomeTextLabel.setText(welcomeText);
-        gameDescLabel.setText(gameDesc);
 
-        //Add objects to panels
-        field1.add(welcomeTextLabel);
-        field21.add(newGameBtn);
-        field22.add(loadGameBtn);
-        field23.add(settingsBtn);
-        field3.add(gameDescLabel);
+        // Panel for button-panels
+        JPanel buttonContainer = new JPanel(new GridLayout(2, 3));
+
+        JPanel buttonPanelTop = new JPanel(new GridLayout(1,3));
+
+        // Panel for game-description
+        JPanel gameDescPanel = new JPanel();
+
+        // Panels for buttons
+        JPanel newGameButtonPanel = new JPanel();
+        JPanel loadGameButtonPanel = new JPanel();
+        JPanel exitGameButtonPanel = new JPanel();
+        JPanel settingsButtonPanel = new JPanel();
+
+        newGameButtonPanel.add(selectGameTypeBtn(newGame));
+        loadGameButtonPanel.add(selectGameTypeBtn(loadGame));
+        exitGameButtonPanel.add(selectGameTypeBtn(exitGame));
+        settingsButtonPanel.add(selectGameTypeBtn(settings));
+        buttonPanelTop.add(newGameButtonPanel);
+        buttonPanelTop.add(loadGameButtonPanel);
+        buttonPanelTop.add(exitGameButtonPanel);
+
+        buttonContainer.add(buttonPanelTop);
+        buttonContainer.add(settingsButtonPanel);
+
+        try {
+            BufferedImage myImage = ImageIO.read(new File("src/GUI/spaceShip_8Bit_Cropped.png"));
+            JLabel imageLabel = new JLabel(new ImageIcon(myImage.getScaledInstance(400, 200,Image.SCALE_FAST)));
+            imagePanel.add(imageLabel);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        JLabel gameDescLabel = new JLabel("<html>Press 'New Game' to start your adventure,<br /> or 'Load Game' to continue an existing one!</html> ");
+        gameDescPanel.add(gameDescLabel);
 
         // Add panels to grid
-        frame.add(field1);
-        frame.add(field2);
-        frame.add(field3);
+        container.add(imagePanel);
+        container.add(buttonContainer);
+        container.add(gameDescPanel);
 
+        frame.add(container);
         frame.setVisible(true);
     }
 
@@ -82,6 +108,9 @@ public class MainMenu {
             if (source.getText().equalsIgnoreCase(loadGame)) {
                 new PopUp("You have no saves to load!", "Error!");
 
+            }
+            if (source.getText().equalsIgnoreCase(exitGame)) {
+                frame.dispose();
             }
             // TODO: Pass settings as an object to be used by gameWindow. Here we could add game dimensions
             if (source.getText().equalsIgnoreCase(settings)) {

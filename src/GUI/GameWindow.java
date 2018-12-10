@@ -15,15 +15,15 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.util.List;
 
-public class GameWindow implements IPrinter {
+public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
 
     private final INewGame INewGame;
     private final IPlayerBeing IPlayerBeing;
     private JFrame gameFrame;
-    JTextArea sidebarTextArea;
-    JTextArea gameTextArea;
-    JTextArea inputAreaTextArea;
-    JTextField inputAreaTextField;
+    private JTextArea sidebarTextArea;
+    private JTextArea gameTextArea;
+    private JTextArea inputAreaTextArea;
+    private JTextField inputAreaTextField;
     private GridBagConstraints c;
 
     private String mainMenuButtonText = "Main menu";
