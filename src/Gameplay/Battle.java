@@ -6,6 +6,11 @@ import Models.Player;
 
 import java.io.IOException;
 
+/*
+Class for handling the battles between the Player and various Enemies
+Was previously written for using the console for I/O, so these methods needs to be changed.
+ */
+
 public class Battle {
 
 	private final Player playerCombatant;

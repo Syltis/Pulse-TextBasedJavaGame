@@ -42,7 +42,7 @@ public class MainMenu {
         JPanel imagePanel = new JPanel();
 
         // Generate imageLabel with path specified at the top
-        imagePanel.add(generateImageLabel(imagePath));
+        imagePanel.add(generateImageLabel(imagePath, 450, 150));
 
         // Panel for title
         JPanel titlePanel = new JPanel();
@@ -129,12 +129,12 @@ public class MainMenu {
         panel.add(comp, c);
     }
 
-    private JLabel generateImageLabel(String imagePath) {
+    private JLabel generateImageLabel(String imagePath, int width, int height) {
         JLabel imageLabel = null;
         try {
             File imageFile = new File(imagePath);
             BufferedImage myImage = ImageIO.read(imageFile);
-            imageLabel = new JLabel(new ImageIcon(myImage.getScaledInstance(430, 150,Image.SCALE_FAST)));
+            imageLabel = new JLabel(new ImageIcon(myImage.getScaledInstance(width, height,Image.SCALE_FAST)));
         }
         catch (IOException e) {
             e.printStackTrace();

@@ -6,6 +6,9 @@ import Managers.JSONParsing;
 import Models.Player;
 import Models.Scenario;
 
+/*
+Class for running a new game.
+ */
 public class NewGame implements INewGame {
 
     private final GameWindow gameWindow;
@@ -19,13 +22,15 @@ public class NewGame implements INewGame {
         startFirstScenario();
     }
 
+    // Displays the first scenario
     private void startFirstScenario() {
         this.activeScenario = JSONParsing.getScenarioFromJson("introRoom0");
         gameWindow.printScenarioToGameArea(this.activeScenario.getTitle(), this.activeScenario.getDescription());
         gameWindow.feedSideBar(this.activeScenario);
     }
 
-    // Give this the id of the movementCommand
+    //      Receives the ID of the next scenario to be displayed, ups the turnCount,
+    // displays the scenario, sets activeScenario to the new one and updates the sidebar.
     public void nextScenario(String result) {
         Scenario newActiveScenario = JSONParsing.getScenarioFromJson(result);
         gameSettings.upTurnCount();

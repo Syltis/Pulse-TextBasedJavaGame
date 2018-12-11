@@ -31,6 +31,7 @@ public class GameSettings {
 
     public void upTurnCount() { turnCount = turnCount + 1; }
 
+    // Method for instantiating and getting the singleton instance
     public synchronized static GameSettings getInstance() {
         if (instance == null) {
             instance = new GameSettings();
@@ -39,6 +40,7 @@ public class GameSettings {
         return instance;
     }
 
+    // Lists which keeps all the available commands and items. The list is used for reference, as in CommandControl
     public List<MovementCommand> getMovementCommandBank() { return movementCommandBank; }
 
     public List<ActionCommand> getActionCommandBank() { return actionCommandBank; }
@@ -49,8 +51,8 @@ public class GameSettings {
 
     public List<Item> getItemBank() { return itemBank; }
 
+    // Method for adding all the available commands to the lists, from JSON
     private static void readListsFromJson() {
-        // Instantiate lists of available commands for referencing in CommandControl
         movementCommandBank = new ArrayList<>();
         for (Scenario aScenario:JSONParsing.getScenarioListFromJson()) {
             movementCommandBank.addAll(Arrays.asList(aScenario.getAvailableMovementCommands()));

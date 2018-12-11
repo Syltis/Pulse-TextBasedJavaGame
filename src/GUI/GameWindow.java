@@ -8,6 +8,8 @@ import javax.swing.border.EtchedBorder;
 import java.awt.*;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.List;
 
 public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
@@ -48,7 +50,7 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
         c.insets = new Insets(hGap, vGap, hGap, vGap);
 
         // Main build
-        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
         frame.setSize(850, 650);
         frame.setLocationRelativeTo(null);
         frame.setResizable(true);
@@ -132,6 +134,12 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
                 JTextField source = (JTextField)e.getComponent();
                 source.setText("");
                 source.removeFocusListener(this);
+            }
+        });
+
+        frame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                new ExitConfirm(GameWindow.this::disposeWindow);
             }
         });
 
