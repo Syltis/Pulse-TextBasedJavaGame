@@ -8,16 +8,16 @@ Has edited this:
 //import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-class PlayerBeingTest {
+class PlayerTest {
 
     @Test
     void test() {
-        PlayerBeing Player = new PlayerBeing();
+        Player Player = new Player();
         Player.setName("Test Player:");
         Player.setStat("STR",20);
         System.out.println(Player.getName() + ": " + Player.getStat("STR") + " STR");
         
-        PlayerBeing TestEnemy = new PlayerBeing();
+        Models.Player TestEnemy = new Player();
         //DumbLoser.setName("Test Enemy:");
         //DumbLoser.setStat("STR", 20);
 

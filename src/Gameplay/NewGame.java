@@ -1,14 +1,9 @@
 package Gameplay;
 
-/*
-Has edited this:
-- Kristoffer
-*/
-
 import GUI.GameWindow;
 import Interfaces.INewGame;
 import Managers.JSONParsing;
-import Models.PlayerBeing;
+import Models.Player;
 import Models.Scenario;
 
 public class NewGame implements INewGame {
@@ -19,8 +14,8 @@ public class NewGame implements INewGame {
 
     public NewGame()
     {
-        PlayerBeing playerBeing = new PlayerBeing();
-        this.gameWindow = new GameWindow(NewGame.this, playerBeing);
+        Player player = new Player();
+        this.gameWindow = new GameWindow(NewGame.this, player);
         startFirstScenario();
     }
 

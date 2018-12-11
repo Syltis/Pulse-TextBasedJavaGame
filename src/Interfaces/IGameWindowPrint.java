@@ -1,14 +1,10 @@
 package Interfaces;
 
-/*
-Has edited this:
-- Kristoffer
-*/
-
 import Models.Item;
 
 import java.util.List;
 
+// TODO Split this into smaller interfaces
 public interface IGameWindowPrint {
 
     void printCommandToLog(String text);

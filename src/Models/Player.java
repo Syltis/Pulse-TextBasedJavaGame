@@ -1,29 +1,23 @@
 package Models;
 
-/*
-Has edited this:
-- Matt
-- Kristoffer
-*/
-
-import Interfaces.IPlayerBeing;
+import Interfaces.IPlayer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
-public class PlayerBeing extends Being implements IPlayerBeing {
+public class Player extends Being implements IPlayer {
 
     private Item equippedItem;
 
-    public PlayerBeing(String name, String description, int health, int[] skills, int money)
+    public Player(String name, String description, int health, int[] skills, int money)
     {
         super(name, description, health, skills, money);
         addToInventory(new Item("Bread", "Food", "health+10", false));
     }
     
-    public PlayerBeing()
+    public Player()
     {
         super("Unnamed",
                 "No description",
@@ -44,8 +38,8 @@ public class PlayerBeing extends Being implements IPlayerBeing {
         return choice;
     }
 
-    public PlayerBeing getPlayerCharacter() {
-        return PlayerBeing.this;
+    public Player getPlayerCharacter() {
+        return Player.this;
     }
 
     public Item getEquippedItem() { return equippedItem; }

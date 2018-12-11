@@ -1,15 +1,10 @@
 package Managers;
 
 /*
-Has edited this:
-- Kristoffer
-*/
-
-/*
 Utility class for working on strings. All static methods and no object instatiation
  */
 
-import Models.EnemyBeing;
+import Models.Enemy;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,13 +36,13 @@ public final class StringUtilities {
 		return string;
 	}
 
-	public static EnemyBeing generateBeingFromCombatResult(String combatResult) {
-		EnemyBeing enemyBeing = null;
+	public static Enemy generateEnemyFromCombatResult(String combatResult) {
+		Enemy enemy = null;
 		Pattern p = Pattern.compile("([a-z]+)([0-9]+)");
 		Matcher m = p.matcher(combatResult);
 		if (!m.find())
 		{
-			return enemyBeing;
+			return enemy;
 		}
 		String characterName = m.group(1);
 		String characterSkills = m.group(2);
@@ -58,7 +53,7 @@ public final class StringUtilities {
 						Integer.parseInt(characterSkills.substring(2,3))
 				};
 
-		enemyBeing = new EnemyBeing
+		enemy = new Enemy
 				(
 						characterName,
 						"An actual" + characterName,
@@ -66,6 +61,6 @@ public final class StringUtilities {
 						skills,
 						5
 				);
-		return enemyBeing;
+		return enemy;
 	}
 }

@@ -1,10 +1,5 @@
 package GUI;
 
-/*
-Has edited this:
-- Kristoffer
-*/
-
 import Gameplay.NewGame;
 
 import javax.imageio.ImageIO;

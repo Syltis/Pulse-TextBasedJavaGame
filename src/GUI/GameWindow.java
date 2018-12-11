@@ -1,10 +1,5 @@
 package GUI;
 
-/*
-Has edited this:
-- Kristoffer
-*/
-
 import Gameplay.GameSettings;
 import Interfaces.*;
 import Models.*;
@@ -18,7 +13,7 @@ import java.util.List;
 public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
 
     private final INewGame INewGame;
-    private final IPlayerBeing IPlayerBeing;
+    private final IPlayer IPlayer;
     private final JFrame gameFrame;
     private JTextArea sidebarTextArea;
     private JTextArea gameTextArea;
@@ -30,10 +25,10 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
     private final String emptyLogButtonText = "Empty Log";
     private final String exitGameButtonText = "Exit Game ";
 
-    public GameWindow(INewGame INewGame, IPlayerBeing IPlayerBeing)
+    public GameWindow(INewGame INewGame, IPlayer IPlayer)
      {
          this.INewGame = INewGame;
-         this.IPlayerBeing = IPlayerBeing;
+         this.IPlayer = IPlayer;
          gameFrame = new JFrame("Pulse™");
          buildGameWindow(gameFrame);
     }
@@ -127,9 +122,9 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
 
 // LISTENERS
         // Listener for sending of a command
-        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, INewGame, IPlayerBeing));
+        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, INewGame, IPlayer));
 
-        sendCommandButton.addActionListener(new CommandListener(GameWindow.this, INewGame, IPlayerBeing));
+        sendCommandButton.addActionListener(new CommandListener(GameWindow.this, INewGame, IPlayer));
 
         // Method for the placeholder text.
         inputAreaTextField.addFocusListener(new FocusAdapter() {
@@ -260,12 +255,12 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
     public void feedSideBar(Scenario activeScenario) {
 
         printToSidebarArea("CHARACTER", false);
-        printToSidebarArea("Name: " + IPlayerBeing.getPlayerCharacter().getName(), true);
-        printToSidebarArea("HP: " + IPlayerBeing.getPlayerCharacter().getHealth(), true);
-        printToSidebarArea("$: " + IPlayerBeing.getPlayerCharacter().getMoney(), true);
-        printToSidebarArea("STR: " + IPlayerBeing.getPlayerCharacter().getStat("STR"), true);
-        printToSidebarArea("CON: " + IPlayerBeing.getPlayerCharacter().getStat("CON"), true);
-        printToSidebarArea("LCK: " + IPlayerBeing.getPlayerCharacter().getStat("LCK"), true);
+        printToSidebarArea("Name: " + IPlayer.getPlayerCharacter().getName(), true);
+        printToSidebarArea("HP: " + IPlayer.getPlayerCharacter().getHealth(), true);
+        printToSidebarArea("$: " + IPlayer.getPlayerCharacter().getMoney(), true);
+        printToSidebarArea("STR: " + IPlayer.getPlayerCharacter().getStat("STR"), true);
+        printToSidebarArea("CON: " + IPlayer.getPlayerCharacter().getStat("CON"), true);
+        printToSidebarArea("LCK: " + IPlayer.getPlayerCharacter().getStat("LCK"), true);
 
         printToSidebarArea("", false);
         printToSidebarArea("", false);

@@ -1,16 +1,11 @@
 package GUI;
 
 /*
-Has edited this:
-- Kristoffer
- */
-
-/*
 - Class that instantiates a frame with two buttons, asking the player if they really wants to exit the game.
-- The class takes the GameWindow-instance
+- The class takes the IGameWindow interface to allow it to dispose of the GameWindow through the disposeWindow-method
  */
-import Interfaces.IGameWindowDispose;
 
+import Interfaces.IGameWindowDispose;
 import javax.swing.*;
 import java.awt.*;
 

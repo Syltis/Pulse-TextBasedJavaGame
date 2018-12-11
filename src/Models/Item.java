@@ -1,10 +1,5 @@
 package Models;
 
-/*
-Has edited this:
-- Kristoffer
-*/
-
 public class Item {
 
 	private String itemName;

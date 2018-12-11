@@ -1,10 +1,5 @@
 package Managers;
 
-/*
-Has edited this:
-- Kristoffer
-*/
-
 import Models.Item;
 import Models.Scenario;
 import com.google.gson.Gson;

@@ -1,11 +1,6 @@
 package Gameplay;
 
 /*
-Has edited this:
-- Kristoffer
-*/
-
-/*
 Singleton class for storing game sava data and for saving a game.
 A singleton has a private constructor, and can only be instantiated and accessed
     though the getInstance()-method. The method checks if the class has already been

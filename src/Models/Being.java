@@ -1,10 +1,5 @@
 package Models;
 
-/*
-Has edited this:
-- Kristoffer
-*/
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,7 +77,7 @@ public class Being {
 		return inventory;
 	}
 
-	void addToInventory(Item item) {
+	public void addToInventory(Item item) {
 		inventory.add(item);
 	}
 

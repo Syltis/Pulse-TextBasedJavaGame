@@ -1,20 +1,15 @@
 package Interfaces;
 
-/*
-Has edited this:
-- Kristoffer
-*/
-
 import Models.Item;
-import Models.PlayerBeing;
+import Models.Player;
 
 import java.util.List;
 
-public interface IPlayerBeing {
+public interface IPlayer {
 
 	List<Item> getInventory();
 
 	void addToInventory(Item item);
 
-	PlayerBeing getPlayerCharacter();
+	Player getPlayerCharacter();
 }

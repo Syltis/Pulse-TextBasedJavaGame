@@ -1,12 +1,7 @@
 package GUI;
 
-/*
-Has edited this:
-- Kristoffer
-*/
-
 import Interfaces.INewGame;
-import Interfaces.IPlayerBeing;
+import Interfaces.IPlayer;
 import Interfaces.IGameWindowPrint;
 import Managers.CommandControl;
 import Managers.StringUtilities;
@@ -18,14 +13,14 @@ class CommandListener implements ActionListener {
 
     private final IGameWindowPrint IGameWindowPrint;
     private final INewGame INewGame;
-    private final IPlayerBeing IPlayerBeing;
+    private final IPlayer IPlayer;
     private int blankCounter;
 
-    CommandListener(IGameWindowPrint IGameWindowPrint, INewGame INewGame, IPlayerBeing IPlayerBeing)
+    CommandListener(IGameWindowPrint IGameWindowPrint, INewGame INewGame, IPlayer IPlayer)
     {
         this.IGameWindowPrint = IGameWindowPrint;
         this.INewGame = INewGame;
-        this.IPlayerBeing = IPlayerBeing;
+        this.IPlayer = IPlayer;
     }
 
     // This is called then the player enters a command
@@ -36,7 +31,7 @@ class CommandListener implements ActionListener {
                 IGameWindowPrint.printCommandToLog(input);
                 // Send to playerInput.
                 input = StringUtilities.cleanString(input);
-                new CommandControl(input, INewGame.getActiveScenario(), IGameWindowPrint, INewGame, IPlayerBeing);
+                new CommandControl(INewGame.getActiveScenario(), input, IGameWindowPrint, INewGame, IPlayer);
                 IGameWindowPrint.setInputAreaTextField("");
                 blankCounter = 0;
             }

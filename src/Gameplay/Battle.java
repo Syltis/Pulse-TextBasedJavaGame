@@ -1,31 +1,25 @@
 package Gameplay;
 
-/*
-Has edited this:
-- Kristoffer
-- Matt
-*/
-
 import Interfaces.IGameWindowPrint;
 import Models.Being;
-import Models.PlayerBeing;
+import Models.Player;
 
 import java.io.IOException;
 
 public class Battle {
 
-	private final PlayerBeing playerCombatant;
-	private final PlayerBeing CombatantB;
+	private final Player playerCombatant;
+	private final Player CombatantB;
 	private final IGameWindowPrint IGameWindowPrint;
 	
-	public Battle(PlayerBeing playerCombatant, PlayerBeing CombatantB, IGameWindowPrint IGameWindowPrint) throws IOException
+	public Battle(Player playerCombatant, Player CombatantB, IGameWindowPrint IGameWindowPrint) throws IOException
 	{
 		this.playerCombatant = playerCombatant;
 		this.CombatantB = CombatantB;
 		this.IGameWindowPrint = IGameWindowPrint;
 		executeBattle(this.playerCombatant, this.CombatantB);
 	}
-    public void executeBattle(PlayerBeing CombatantA, PlayerBeing CombatantB) throws IOException {
+    public void executeBattle(Player CombatantA, Player CombatantB) throws IOException {
     	//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     	while(CombatantA.isAlive() && CombatantB.isAlive()) {
     		int battleChoice = CombatantA.choose("Select an action!", new String[] {"Attack","Defend"});
@@ -52,7 +46,7 @@ public class Battle {
 		else {}
 	}
 
-	public void rest(PlayerBeing Enemy) {
+	public void rest(Player Enemy) {
 		int recovery = (int)((playerCombatant.getStat("CON")) * Math.random());
 		if(Math.signum(recovery)!=-1.0) {
 			System.out.println(playerCombatant.getName() + " rested for " + recovery + " HP.");
@@ -61,7 +55,7 @@ public class Battle {
 		else {System.out.println(playerCombatant.getName() + " was blocked from resting.");}
 	}
 
-	public void startBattle(PlayerBeing Enemy) throws IOException {
+	public void startBattle(Player Enemy) throws IOException {
 		//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while(playerCombatant.isAlive() && Enemy.isAlive()) {
 			int battleChoice = playerCombatant.choose("Select an action!", new String[] {"Attack","Rest"});

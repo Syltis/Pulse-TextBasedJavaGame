@@ -2,14 +2,9 @@ package Managers;
 
 import Gameplay.GameSettings;
 import Interfaces.INewGame;
-import Interfaces.IPlayerBeing;
+import Interfaces.IPlayer;
 import Interfaces.IGameWindowPrint;
 import Models.*;
-
-/*
-HHas edited this:
-- Kristoffer
-*/
 
 /*
 - This class receives the players command and the activeScenario, figures out the
@@ -22,7 +17,7 @@ public class CommandControl {
 
     private final IGameWindowPrint IGameWindowPrint;
     private final INewGame INewGame;
-    private final IPlayerBeing IPlayerBeing;
+    private final IPlayer IPlayer;
     private final GameSettings gameSettings = GameSettings.getInstance();
     private enum CommandTypeEnum {
         MOVEMENTCOMMAND,
@@ -32,17 +27,16 @@ public class CommandControl {
         NOMATCH
     }
 
-    public CommandControl(String playerCommand, Scenario activeScenario, IGameWindowPrint IGameWindowPrint, INewGame INewGame, IPlayerBeing IPlayerBeing)
+    public CommandControl(Scenario activeScenario, String playerCommand, IGameWindowPrint IGameWindowPrint, INewGame INewGame, IPlayer IPlayer)
     {
         this.IGameWindowPrint = IGameWindowPrint;
         this.INewGame = INewGame;
-        this.IPlayerBeing = IPlayerBeing;
+        this.IPlayer = IPlayer;
         // Find out command type and send it to commandControl-method
         commandControl(findPlayerCommandType(playerCommand), activeScenario, playerCommand);
     }
 
     // TODO Move these pieces of logic to their own class/method
-    // TODO Get rid of the PlayerCommand Object
     private void commandControl(CommandTypeEnum commandType, Scenario activeScenario, String playerCommand) {
         switch (commandType) {
             // Check the playercommand with the activeScenario-object, and compare their result's to get the matching object
@@ -72,7 +66,7 @@ public class CommandControl {
                 // Check if player asks for inventory
                 String actionResult = null;
                 if (playerCommand.equals("inventory") || playerCommand.equals("i")) {
-                    IGameWindowPrint.printInventoryToGameArea(IPlayerBeing.getInventory());
+                    IGameWindowPrint.printInventoryToGameArea(IPlayer.getInventory());
                     break;
                 }
                 for (ActionCommand aActionCommand: activeScenario.getAvailableActionCommands()) {
@@ -111,7 +105,7 @@ public class CommandControl {
                     break;
                 }
                 // Check if item is marked an unique and if layer already has one
-                for (Item anItem: IPlayerBeing.getInventory()) {
+                for (Item anItem: IPlayer.getInventory()) {
                     if (item.isUnique() && anItem.equals(item)) {
                         IGameWindowPrint.printToGameArea("", false);
                         IGameWindowPrint.printToGameArea("You have already picked up a " + item.getItemName(), true);
@@ -120,7 +114,7 @@ public class CommandControl {
                 }
                 IGameWindowPrint.printToGameArea("", false);
                 IGameWindowPrint.printToGameArea("A " + item.getItemName() + " was added to the inventory", true);
-                IPlayerBeing.addToInventory(item);
+                IPlayer.addToInventory(item);
                 break;
 
             case COMBATCOMMAND:
@@ -130,7 +124,7 @@ public class CommandControl {
                         for (CombatCommand anotherCombatCommand:gameSettings.getCombatCommandBank()) {
                             if (aCombatCommand.getResult().equals(anotherCombatCommand.getResult())) {
                                 combatResult = aCombatCommand.getResult();
-                                EnemyBeing enemy = StringUtilities.generateBeingFromCombatResult(combatResult);
+                                Enemy enemy = StringUtilities.generateEnemyFromCombatResult(combatResult);
 
                             }
                         }
@@ -140,7 +134,7 @@ public class CommandControl {
                     IGameWindowPrint.printResponseToLog("What does '" + playerCommand + "' even mean?");
                     break;
                 }
-                // TODO new Battle(IPlayerBeing.getPlayerCharacter, enemy)
+                // TODO new Battle(IPlayer.getPlayerCharacter, enemy)
                 break;
 
             case NOMATCH:
