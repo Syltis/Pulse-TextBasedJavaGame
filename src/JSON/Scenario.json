@@ -1,51 +1,91 @@
 [
   {
-    "id": "introRoom0",
+    "id": "Intro_Room",
     "title": "Start",
-    "description": "You wake up in a dark room. The sound of machinery can be heard around you. There is a small table with a brown box on it , and a door in in the direction of what you think is north.",
+    "description": " You are a cadet from the GTO academy on a space expedition in search of life within the galaxy. Your crew was ambushed by space pirates and you are ejected from the main sta-ship and wake up in a foreign galaxy.Your skills in space piloting has prepared you for this. You notice your space cruiser is out of warp drive fluid. To the North of you is a giant planet appearing to be able to sustain life. To the west of you is a station labeled Big Bang Ballistics. You are will need supplies to continue on and figure that the vendor-station might have what you're looking for. ",
     "availableMovementCommands": [
       {
         "command": "go north",
-        "result": "introRoom1"
+        "result": "ballsy"
+      },
+      {
+        "command": "go west",
+        "result": "bigBangBallistics"
       }
     ],
     "availableActionCommands": [
       {
         "command": "inventory",
         "result": "inventory"
-      },
+      }
+    ],
+    "availableItemCommands": [
+    ],
+    "availableCombatCommands": [
+    ]
+  },
+  {
+    "id": "ballsy",
+    "title": "Space",
+    "description": "Are you sure you want to go into space with nothing in your inventory? Pretty ballsy if you ask me.",
+    "availableMovementCommands": [
       {
-        "command": "i",
+        "command": "go north",
+        "result": "cant_go_that_way"
+      }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
         "result": "inventory"
       }
     ],
     "availableItemCommands": [
-      {
-        "command": "take key",
-        "result": "Brown Key"
-      }
+
     ],
     "availableCombatCommands": [
-      {
-        "command": "attack rat",
-        "result": "rat212"
-      }
+
     ]
   },
   {
-    "id": "introRoom1",
-    "title": "Double doored room",
-    "description": "You are in a room with two doors, one to the west and one to the east.",
+    "id": "cant_go_that_way",
+    "title": "Can't go that way",
+    "description": "Well that's too bad, you can't go that way.",
+    "availableMovementCommands": [
+      {
+        "command": "go north",
+        "result": "cant_go_that_way"
+      },
+      {
+        "command": "go west",
+        "result": "bigBangBallistics"
+      }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "bigBangBallistics",
+    "title": "Space Station",
+    "description": "As you approach the station, a plethora of ships come zooming out past your direction west of your previous location, as you enter the station you are welcomed by a sign that points you to 2 different locations.To the west is a vendor named Out-there-wares that seems to sell food or fuel. To the east is a vendor named Sudan Singularity that seems to sell weapons, armors, and shields.",
     "availableMovementCommands": [
       {
         "command": "go west",
-        "result": "introRoom2"
+        "result": "outThereWares"
       },
-      {"command": "go east",
-        "result": "introRoom3"
-      },
-      {"command": "go back",
-        "result": "introRoom0"
+      {
+        "command": "go east",
+        "result": "sudanSingularity"
       }
     ],
     "availableActionCommands": [
@@ -58,28 +98,346 @@
 
     ],
     "availableCombatCommands": [
-        {
-          "command": "attack rat",
-          "result": "rat212"
-        },
-      {
-        "command": "stomp cockroach",
-        "result": "cockroach111"
-      }
+
     ]
   },
   {
-    "id": "introRoom2",
-    "title": "Dark room",
-    "description": "You are in a dark room. There is a man lying on his stomach on the floor. A gun is lying besides him. There is a door to the north",
+    "id": "outThereWares",
+    "title": "Out-There-Wares",
+    "description": "You are greeted by what seems to be a sentient being with arms the size of a space cow, it waves at you welcoming you to its workshop. 'Welcome to Out-There-Wares! Hmm haven't seen you before. How about this since you're new here i'll give you something for free. Would you like to have some food, a drink, or a fuel core?",
     "availableMovementCommands": [
+      {
+        "command": "go back",
+        "result": "big_bang_ballistics"
+      },
+      {
+        "command": "food",
+        "result": "Yummy"
+      },
+      {
+        "command": "drink",
+        "result": "replenished"
+      },
+      {
+        "command": "fuel core",
+        "result": "space_fuel"
+      }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+
+    ],
+    "availableItemCommands": [
+
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "Yummy",
+    "title": "Out-There-Wares",
+    "description": "Well lucky you, i'm feeling nice today here some LAMB CHOP, don't eat it all now. Food will replenish your health in times of need. Hey do you mind do me a favor, i'll give you a free fuel core as a reward. Can you bring this package to the weaponsmith (Go back from your previous location and head east).",
+    "availableMovementCommands": [
+      {
+        "command": "go back",
+        "result": "big_bang_ballistics"
+      },
+      {
+        "command" : "ignore quest",
+        "result" : "mean_choice"
+      }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+      {
+        "command": "accept quest",
+        "result": "package"
+      }
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "replenished",
+    "title": "Out-There-Wares",
+    "description": "Well lucky you, i'm feeling nice today here some WATER, drink up. Hey do you mind do me a favor, i'll give you a free fuel core as a reward. Can you bring this package to the weaponsmith (Go back from your previous location and head east).",
+    "availableMovementCommands": [
+      {
+        "command": "go back",
+        "result": "big_bang_ballistics"
+      },
+      {
+        "command" : "ignore quest",
+        "result" : "mean_choice"
+      }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+      {
+        "command": "accept quest",
+        "result": "package"
+      }
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "space_fuel",
+    "title": "Out-There-Wares",
+    "description": "'Hmm well I can't just give out fuel cores for free! These things are very rare and allow adventurers to travel to new planets. Hmmm how about this... bring this package to the weaponsmith and I'll think about giving you one of my precious fuel cores.'",
+    "availableMovementCommands": [
+      {
+        "command": "go back",
+        "result": "big_bang_ballistics"
+      },
+      {
+        "command": "ignore quest",
+        "result": "mean_choice"
+      }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+      {
+        "command": "accept quest",
+        "result": "package"
+      }
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "mean_choice",
+    "title": "Out-there-wares",
+    "description": "Well you won't get a fuel core from anywhere else but here so....you might want to do me this favor (0_0)",
+    "availableMovementCommands": [
+      {
+        "command": "go back",
+        "result": "big_bang_ballistics"
+      }
+    ],
+    "availableActionCommands": [
+
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+
+    ],
+    "availableItemCommands": [
+      {
+        "command": "accept quest",
+        "result": "package"
+      }
+
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "big_bang_ballistics1",
+    "title": "Space Station",
+    "description": "To the west is Out-there-wares To the east is a vendor Sudan Singularity. ",
+    "availableMovementCommands": [
+      {
+        "command": "go west",
+        "result": "outThereWares"
+      },
+      {
+        "command": "go east",
+        "result": "sudanSingularity"
+      }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+
+    ],
+    "availableItemCommands": [
+
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "sudanSingularity",
+    "title": "Weapon Shop",
+    "description": "You approach a the old metallic door with rusted edges and vintage designs that seem to be before your time. You knock on the door and the sound doesn't initiate a reaction.  ",
+    "availableMovementCommands": [
+      {
+        "command": "bang on door",
+        "result": "sudanSingularity1"
+      }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "sudanSingularity1",
+    "title": "Weapon Shop",
+    "description": "'ERR, who is it ? I'm really busy right now and I DO NOT want to be disturbed' says The foreign alien.",
+    "availableMovementCommands": [
+      {
+        "command": "yell 'package delivery'",
+        "result": "openDoor"
+      }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+
+    ],
+    "availableItemCommands": [
+
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "openDoor",
+    "title": "Weapon Shop",
+    "description": "Oooh a present for me, you shouldn't have...oh it's from (alien speaks in foreign tongue). Would you mind thanking him for me. As you can see I am very busy. Come back later when I have more weapons, shields, and armor for sale, says the alien as pushed you out the door and back to main lobby. As your about to leave, the alien calls you back and hands you three items: A wooden sword, tattered vest, and a rusty shield ",
+    "availableMovementCommands": [
+      {
+        "command": "go back",
+        "result": "big_bang_ballistics1"
+      }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+      {
+        "command": "take wooden sword",
+        "result": "Wooden Sword"
+      },
+      {
+        "command": "take tattered vest",
+        "result": "Tattered Vest"
+      },
+      {
+        "command": "take rusty shield",
+        "result": "Rusty Shield"
+      }
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "big_bang_ballistics1",
+    "title": "Space Station",
+    "description": "To the west is Out-there-wares To the east is a vendor Sudan Singularity. ",
+    "availableMovementCommands": [
+      {
+        "command": "go west",
+        "result": "outThereWares1"
+      }
+    ],
+    "availableActionCommands": [
+
+    ],
+    "availableItemCommands": [
+
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "outThereWares1",
+    "title": "Item Shop",
+    "description": "Hey buddy, how'd it go? Did you fulfill the task I gave you?",
+    "availableMovementCommands": [
+      {
+        "command": "yes",
+        "result": "spaceShip"
+      },
+      {
+        "command": "no",
+        "result": "noFuelCore"
+      }
+
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+      {
+        "command": "take fuel core",
+        "result": "Fuel Core"
+      }
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "spaceShip",
+    "title": "Space ship",
+    "description": "Great! No way I was gonna leave this shop unprotected just to deliver a package for that mongrel. Always trying to get his grummy hands on my fuel cores. In fact, just to spite him, here is a fuel core on the house. And better yet, I'll throw in a free navigation chip for your ship so you can see nearby planets.' The sentient being hands you these items and leads you back to the lobby. 'This quadrant of the universe is full of dangerous creatures and the planets nearby will each present their own challenges. Every choice you make will have consequences, so be careful and good luck! Come back whenever you're in need of supplies.' The sentient being returns to his shop. As you climb back into your spaceship, the landing bay doors open to uncover the vast emtpiness of space before you. You lower yourself into the driver's seat and insert the navigation chip. A holographic map of three planets with coordinates appears in front of you, each with it's own distinct name and color. The three planets are named: Nolurn, Dradus 67, Tinzorilia. To North is the planet Nolurn. To West is the planet Dradus 67. To East is the planet Tinzorilla. Your journey begins here!",
+    "availableMovementCommands": [
+      {
+        "command": "go east",
+        "result": "Tinzorilia"
+      },
       {
         "command": "go north",
-        "result": "introRoom4"
+        "result": "Nolurn"
       },
-      {"command": "go back",
-        "result": "introRoom1"
+      {
+        "command": "go west",
+        "result": "Dradus_67"
+      },
+      {
+        "command": "no",
+        "result": "noFuelCore"
       }
+
     ],
     "availableActionCommands": [
       {
@@ -88,26 +446,24 @@
       }
     ],
     "availableItemCommands": [
-      {
-        "command": "take gun",
-        "result": "9mm Pistol"
-      }
+
     ],
     "availableCombatCommands": [
-      {
-        "command": "attack rat",
-        "result": "rat212"
-      }
+
     ]
   },
   {
-    "id": "introRoom3",
-    "title": "Empty room",
-    "description": "You are in a room that appears to be empty.",
+    "id": "Nolurn",
+    "title": "Landing on the planet",
+    "description": "You are approaching the planet known as Nolurn. It seems like a peaceful planet at first glance but as you descend further into the atmosphere, a chill runs down your spine and the setting begins to darken. As you land your spacecraft, there is an assortment of giant glowing trees creating a path through this intimidating forest.",
     "availableMovementCommands": [
       {
-        "command": "go back",
-        "result": "introRoom1"
+        "command": "forward",
+        "result": "dim_forest"
+      },
+      {
+        "command": "back to ship",
+        "results": "stuck_decision"
       }
     ],
     "availableActionCommands": [
@@ -120,20 +476,21 @@
 
     ],
     "availableCombatCommands": [
-      {
-        "command": "attack rat",
-        "result": "rat212"
-      }
+
     ]
   },
   {
-    "id": "introRoom4",
-    "title": "Dim lit room",
-    "description": "You are in a dim lit room. There are bunk bed by the walls. One of the bunk beds has a ball of blankets on it, and one can hear a wheezing-noice coming from it.",
+    "id": "dim_forest",
+    "title": "Dim Forest",
+    "description": "You begin to lurk through the dimly lit forest. As you progress throughout the path created by the glowing trees, you notice you are approaching two structures. One is to the East one is to the West.",
     "availableMovementCommands": [
       {
-        "command": "go back",
-        "result": "introRoom2"
+        "command": "east",
+        "results": "weapons_r_us"
+      },
+      {
+        "command": "west",
+        "results": "gladiator_arena"
       }
     ],
     "availableActionCommands": [
@@ -146,10 +503,80 @@
 
     ],
     "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "weapon_r_us",
+    "title": "Weapon shop",
+    "description": "You come upon a weapon shop named Weapons R Us. You go inside and see a feeble old woman. She speaks in a foreign language and you look very puzzled. She then goes in the back and gets some sort of translator and begins to speak in your native tongue. You then have a choice of weapons to choose from.",
+    "availableMovementCommands": [
       {
-        "command": "attack rat",
-        "result": "rat212"
+        "command": "go back",
+        "results": "dim_forest"
       }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "gladiator_arena",
+    "title": "Arena",
+    "description": "You are approaching what seems to be a gladiator arena. Do you think you are ready for blood and gore of battle!?",
+    "availableMovementCommands": [
+      {
+        "command": "Yes",
+        "results": "battle"
+      },
+      {
+        "command": "go back",
+        "results": "dim_forest"
+      }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "battle",
+    "title": "Fight to the Death",
+    "description": "You are now entering the arena… You come face to face with your enemy. Good Luck!",
+    "availableMovementCommands": [
+      {
+        "command": "Yes",
+        "results": "battle"
+      }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+
+    ],
+    "availableCombatCommands": [
+
     ]
   }
 ]

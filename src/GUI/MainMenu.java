@@ -19,7 +19,7 @@ public class MainMenu {
     private final String exitGame = "Exit Game";
     private final String settings = "Settings";
     private final JFrame frame = new JFrame("Pulse™ Main Menu");
-    private final String imagePath = "src/images/spaceShip_8Bit_Cropped.png";
+    private final String imagePath = "/images/spaceShip_8Bit_Cropped.png";
     private GridBagConstraints c;
 
     public MainMenu()
@@ -139,7 +139,8 @@ public class MainMenu {
         JLabel imageLabel = null;
         try {
             File imageFile = new File(imagePath);
-            BufferedImage myImage = ImageIO.read(imageFile);
+
+            BufferedImage myImage = ImageIO.read(getClass().getResourceAsStream(imagePath));
             imageLabel = new JLabel(new ImageIcon(myImage.getScaledInstance(width, height,Image.SCALE_FAST)));
         }
         catch (IOException e) {

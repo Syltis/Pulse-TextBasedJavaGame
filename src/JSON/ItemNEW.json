@@ -1,0 +1,104 @@
+[
+  {
+    "itemName": "Space Brown Key",
+    "itemType": "key",
+    "effect": "openDoor1",
+    "isUnique": true
+  },
+  {
+    "itemName": "Space9mm Pistol",
+    "itemType": "Weapon",
+    "effect": "STR+2",
+    "isUnique": true
+  },
+  {
+    "itemName": "Space Bread",
+    "itemType": "food",
+    "effect": "health+10",
+    "isUnique": false
+  },
+  {
+    "itemName": "Health Potion",
+    "itemType": "healing",
+    "effect": "health+30",
+    "isUnique": false
+  },
+  {
+    "itemName": "Wooden Sword",
+    "itemType": "weapon",
+    "effect": "STR+3",
+    "isUnique": true
+  },
+  {
+    "itemName": "Rusty Shield",
+    "itemType": "armor",
+    "effect": "CON+2",
+    "isUnique": true
+  },
+  {
+    "itemName": "Tattered Vest",
+    "itemType": "armor",
+    "effect": "CON+3",
+    "isUnique": true
+  },
+  {
+    "itemName": "Package",
+    "itemType": "Food",
+    "effect": "health-1",
+    "isUnique": true
+  },
+  {
+    "itemName": "Lamb Chop",
+    "itemType": "Food",
+    "effect": "health+10",
+    "isUnique": false
+  },
+  {
+    "itemName": "Space Golden Key",
+    "itemType": "key",
+    "effect": "openChest1",
+    "isUnique": true
+  },
+  {
+    "itemName": "Space Dagger",
+    "itemType": "weapon",
+    "effect": "STR+2",
+    "isUnique": true
+  },
+  {
+    "itemName": " SpaceCheese",
+    "itemType": "food",
+    "effect": "health+5",
+    "isUnique": false
+  },
+  {
+    "itemName": "Space Cat food",
+    "itemType": "food",
+    "effect": "health+2",
+    "isUnique": false
+  },
+  {
+    "itemName": "Space Steel Toe Boots",
+    "itemType": "weapon",
+    "effect": "STR+1",
+    "isUnique": true
+  },
+  {
+    "itemName": "Giant Potion",
+    "itemType": "healing",
+    "effect": "health+50",
+    "isUnique": false
+  },
+  {
+    "itemName": "Space Rifle",
+    "itemType": "weapon",
+    "effect": "STR+3",
+    "isUnique": true
+  },
+  {
+    "itemName": "Space Crab Legs",
+    "itemType": "food",
+    "effect": "health+10",
+    "isUnique": false
+  }
+]
