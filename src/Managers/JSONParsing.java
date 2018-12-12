@@ -11,7 +11,10 @@ import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.util.Collection;
 
-// Here the google.Gson library is used
+/*
+Parses Json with the Google.gson-library. Parses the Json-objects to java-objects.
+- Parses either a single scenario/item, or the whole lists
+ */
 public final class JSONParsing {
 
     private JSONParsing()
@@ -23,7 +26,7 @@ public final class JSONParsing {
         Scenario newScenario = null;
         Type scenarioType = new TypeToken<Collection<Scenario>>(){}.getType();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/Scenario.json"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/ScenarioNEW.json"));
             Gson gson = new GsonBuilder().create();
             Collection<Scenario> scenarios = gson.fromJson(reader, scenarioType);
             if (!scenarios.isEmpty()) {
@@ -44,7 +47,7 @@ public final class JSONParsing {
         Collection<Scenario> scenarios = null;
         Type scenarioType = new TypeToken<Collection<Scenario>>(){}.getType();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/Scenario.json"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/ScenarioNEW.json"));
             Gson gson = new GsonBuilder().create();
             scenarios = gson.fromJson(reader, scenarioType);
             if (!scenarios.isEmpty()) {

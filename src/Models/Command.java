@@ -1,5 +1,8 @@
 package Models;
 
+/*
+Superclass for Commands
+ */
 public class Command {
 
 	private String command;

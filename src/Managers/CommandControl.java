@@ -9,7 +9,7 @@ import Models.*;
 /*
 - This class receives the players command and the activeScenario, figures out the
 command type and processes the command. It uses the lists of available commands from
-the activeScenario and from gameSettings.
+the activeScenario and from gameSettings to confirm the commands and get the result.
 
 */
 
@@ -32,12 +32,12 @@ public class CommandControl {
         this.IGameWindowPrint = IGameWindowPrint;
         this.INewGame = INewGame;
         this.IPlayer = IPlayer;
-        // Find out command type and send it to commandControl-method
-        commandControl(findPlayerCommandType(playerCommand), activeScenario, playerCommand);
+        // Find out command type and send it to controlCommand-method
+        controlCommand(findPlayerCommandType(playerCommand), activeScenario, playerCommand);
     }
 
     // TODO Move these pieces of logic to their own class/method
-    private void commandControl(CommandTypeEnum commandType, Scenario activeScenario, String playerCommand) {
+    private void controlCommand(CommandTypeEnum commandType, Scenario activeScenario, String playerCommand) {
         switch (commandType) {
             // Check the playercommand with the activeScenario-object, and compare their result's to get the matching object
             case MOVEMENTCOMMAND:
@@ -55,10 +55,12 @@ public class CommandControl {
                     IGameWindowPrint.printResponseToLog("What does '" + playerCommand + "' even mean?");
                     break;
                 }
+                // Print command to GameArea
                 IGameWindowPrint.printToGameArea(playerCommand, true);
                 IGameWindowPrint.printToGameArea("", false);
                 // Clearing of sidebar must be done here and not in nextScenario(), though the new values are sent from there
                 IGameWindowPrint.clearSideBarArea();
+                // nextScenario() takes the new Scenario ID and displays the new Scenario
                 INewGame.nextScenario(result);
                 break;
 
@@ -66,6 +68,7 @@ public class CommandControl {
                 // Check if player asks for inventory
                 String actionResult = null;
                 if (playerCommand.equals("inventory") || playerCommand.equals("i")) {
+                    // Display current inventory
                     IGameWindowPrint.printInventoryToGameArea(IPlayer.getInventory());
                     break;
                 }
@@ -112,6 +115,7 @@ public class CommandControl {
                         return;
                     }
                 }
+                // Print confirmatin to the GameArea and add item to inventory
                 IGameWindowPrint.printToGameArea("", false);
                 IGameWindowPrint.printToGameArea("A " + item.getItemName() + " was added to the inventory", true);
                 IPlayer.addToInventory(item);
@@ -125,7 +129,6 @@ public class CommandControl {
                             if (aCombatCommand.getResult().equals(anotherCombatCommand.getResult())) {
                                 combatResult = aCombatCommand.getResult();
                                 Enemy enemy = StringUtilities.generateEnemyFromCombatResult(combatResult);
-
                             }
                         }
                     }
@@ -134,7 +137,7 @@ public class CommandControl {
                     IGameWindowPrint.printResponseToLog("What does '" + playerCommand + "' even mean?");
                     break;
                 }
-                // TODO new Battle(IPlayer.getPlayerCharacter, enemy)
+                // TODO Instantiate battle, e.g. new Battle(Player, Enemy);
                 break;
 
             case NOMATCH:
@@ -143,7 +146,7 @@ public class CommandControl {
         }
     }
 
-    // Decide what type of command the player has entered
+    // Decide what type of command the player has entered, using the different lists from GameSettings
     private CommandTypeEnum findPlayerCommandType(String playerCommand) {
         // Check if the command exists in gameSettings and in the activechoice
         for (MovementCommand aMovementCommand: gameSettings.getMovementCommandBank()) {

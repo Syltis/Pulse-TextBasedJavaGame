@@ -9,6 +9,10 @@ import Managers.StringUtilities;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/*
+Listener for the GameWindow/inputAreaTextField().
+- Clean the user input and sends it to the CommandControl-class
+ */
 class CommandListener implements ActionListener {
 
     private final IGameWindowPrint IGameWindowPrint;
@@ -29,14 +33,15 @@ class CommandListener implements ActionListener {
             if (input.length() > 0) {
                 // Print in the inputAreaTextField (log)
                 IGameWindowPrint.printCommandToLog(input);
-                // Send to playerInput.
+                // Clean the string
                 input = StringUtilities.cleanString(input);
+                // Pass to commandControl together with the relevant interfaces.
                 new CommandControl(INewGame.getActiveScenario(), input, IGameWindowPrint, INewGame, IPlayer);
                 IGameWindowPrint.setInputAreaTextField("");
                 blankCounter = 0;
             }
 
-        // These activate when the input is empty
+        // These are printed when the input is empty
         else if (blankCounter < 1) {
             IGameWindowPrint.printResponseToLog("You should make a choice.");
             blankCounter++;

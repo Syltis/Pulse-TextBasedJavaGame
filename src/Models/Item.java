@@ -1,5 +1,10 @@
 package Models;
 
+/*
+Model for Items, which are read from JSON and parsed.
+- Equals method has been overwritten so that objects can be compared properly.
+ */
+
 public class Item {
 
 	private String itemName;

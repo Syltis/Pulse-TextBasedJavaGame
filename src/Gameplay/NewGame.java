@@ -8,7 +8,9 @@ import Models.Scenario;
 
 /*
 Class for running a new game.
+- Holds the activescenario which accessed through the INewGame-interface in CommandControl
  */
+
 public class NewGame implements INewGame {
 
     private final GameWindow gameWindow;
@@ -24,7 +26,7 @@ public class NewGame implements INewGame {
 
     // Displays the first scenario
     private void startFirstScenario() {
-        this.activeScenario = JSONParsing.getScenarioFromJson("introRoom0");
+        this.activeScenario = JSONParsing.getScenarioFromJson("Intro_Room");
         gameWindow.printScenarioToGameArea(this.activeScenario.getTitle(), this.activeScenario.getDescription());
         gameWindow.feedSideBar(this.activeScenario);
     }

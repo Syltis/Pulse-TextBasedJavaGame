@@ -1,5 +1,8 @@
 package Models;
 
+/*
+Model for the scenarios that are read from JSON and used to store data on the scenario and which commands are available.
+ */
 public class Scenario {
 
     private String id;
@@ -20,31 +23,15 @@ public class Scenario {
         return availableMovementCommands;
     }
 
-    public void setAvailableMovementCommands(MovementCommand[] availableMovementCommands) {
-        this.availableMovementCommands = availableMovementCommands;
-    }
-
     public ActionCommand[] getAvailableActionCommands() {
         return this.availableActionCommands;
-    }
-
-    public void setAvailableActionCommands(ActionCommand[] availableActionCommands) {
-        this.availableActionCommands = availableActionCommands;
     }
 
     public ItemCommand[] getAvailableItemCommands() {
         return availableItemCommands;
     }
 
-    public void setAvailableItemCommands(ItemCommand[] availableItemCommands) {
-        this.availableItemCommands = availableItemCommands;
-    }
-
     public CombatCommand[] getAvailableCombatCommands() {
         return availableCombatCommands;
-    }
-
-    public void setAvailableCombatCommands(CombatCommand[] availableCombatCommands) {
-        this.availableCombatCommands = availableCombatCommands;
     }
 }

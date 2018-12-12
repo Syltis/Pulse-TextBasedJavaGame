@@ -5,6 +5,9 @@ import Models.Player;
 
 import java.util.List;
 
+/*
+Interface for accessing the player-character and the inventory
+ */
 public interface IPlayer {
 
 	List<Item> getInventory();

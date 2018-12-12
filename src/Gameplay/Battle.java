@@ -3,12 +3,15 @@ package Gameplay;
 import Interfaces.IGameWindowPrint;
 import Models.Being;
 import Models.Player;
-
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
 
 /*
 Class for handling the battles between the Player and various Enemies
 Was previously written for using the console for I/O, so these methods needs to be changed.
+TODO: Reconstruct class to work with the current idea of a battle-system
  */
 
 public class Battle {
@@ -27,7 +30,7 @@ public class Battle {
     public void executeBattle(Player CombatantA, Player CombatantB) throws IOException {
     	//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     	while(CombatantA.isAlive() && CombatantB.isAlive()) {
-    		int battleChoice = CombatantA.choose("Select an action!", new String[] {"Attack","Defend"});
+    		int battleChoice = choose("Select an action!", new String[] {"Attack","Defend"});
     		if(battleChoice == 1) rest(CombatantB);
     		if(battleChoice == 0){
     		if(CombatantA.isAlive()) attack(CombatantB);
@@ -63,7 +66,7 @@ public class Battle {
 	public void startBattle(Player Enemy) throws IOException {
 		//BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		while(playerCombatant.isAlive() && Enemy.isAlive()) {
-			int battleChoice = playerCombatant.choose("Select an action!", new String[] {"Attack","Rest"});
+			int battleChoice = choose("Select an action!", new String[] {"Attack","Rest"});
 			if(battleChoice == 1) this.rest(Enemy);
 			if(battleChoice == 0){
 				if(playerCombatant.isAlive()) this.attack(Enemy);
@@ -79,6 +82,14 @@ public class Battle {
 			System.out.println("Damn, you killed that guy.");
 		}
 	}
-	
 
+	public int choose(String prompt, String[] choices) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println(prompt);
+		System.out.println(Arrays.toString(choices));
+		String input = br.readLine();
+		int choice = Arrays.asList(choices).indexOf(input);
+		while(choice==-1) { input = br.readLine(); choice = Arrays.asList(choices).indexOf(input);}
+		return choice;
+	}
 }

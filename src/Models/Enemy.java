@@ -1,5 +1,9 @@
 package Models;
 
+/*
+See superclass 'Being' for details
+ */
+
 public class Enemy extends Being {
 
 	public Enemy(String name, String description, int health, int[] skills, int money)

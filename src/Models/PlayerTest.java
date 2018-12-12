@@ -1,9 +1,6 @@
 package Models;
 
-/*
-Has edited this:
-- Matt
-*/
+// Test-class for the battle system
 
 //import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;

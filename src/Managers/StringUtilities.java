@@ -1,15 +1,15 @@
 package Managers;
 
-/*
-Utility class for working on strings. All static methods and no object instatiation
- */
-
 import Models.Enemy;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+/*
+Utility class with static methods for working on strings.
+ */
 
 public final class StringUtilities {
 
@@ -36,6 +36,8 @@ public final class StringUtilities {
 		return string;
 	}
 
+	// Builds an anemy from a string
+	// Here the string 'rat211', will result in a 'Rat' enemy with the stats STR-2, CON-1, LCK-1
 	public static Enemy generateEnemyFromCombatResult(String combatResult) {
 		Enemy enemy = null;
 		Pattern p = Pattern.compile("([a-z]+)([0-9]+)");

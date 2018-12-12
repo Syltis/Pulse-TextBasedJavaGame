@@ -3,6 +3,11 @@ package Models;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+Superclass for characters(Player, Enemy)
+- Game has three skills, STR(Strength), CON(Constitution), LCK(Luck).
+- These skills will in the future be used for having battles between the player and enemies
+ */
 public class Being {
 
 	private String name;
@@ -12,7 +17,8 @@ public class Being {
 	private int money;
 	private final List<Item> inventory = new ArrayList<>();
 
-	Being(String name, String description, int health, int[] skills, int money) {
+	Being(String name, String description, int health, int[] skills, int money)
+	{
 		this.name = name;
 		this.description = description;
 		this.health = health;

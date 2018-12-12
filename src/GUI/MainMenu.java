@@ -9,6 +9,10 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/*
+Class for instantiating
+ */
+
 public class MainMenu {
 
     private final String newGame = "New Game";
@@ -26,6 +30,7 @@ public class MainMenu {
 
     private void buildWindow(JFrame frame) {
 
+        // Constraints for the GridBagLayout-layout manager
         c = new GridBagConstraints();
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         int hGap = 5;
@@ -89,6 +94,7 @@ public class MainMenu {
         frame.setVisible(true);
     }
 
+    // Returns buttons and implements an if-based actionlistener
     private JButton selectGameTypeBtn(String btnName) {
         JButton returned = new JButton(btnName);
         returned.addActionListener(e -> {
@@ -129,6 +135,7 @@ public class MainMenu {
         panel.add(comp, c);
     }
 
+    // Generates a JLabel with a image by filepath
     private JLabel generateImageLabel(String imagePath, int width, int height) {
         JLabel imageLabel = null;
         try {

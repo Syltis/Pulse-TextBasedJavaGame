@@ -2,11 +2,9 @@ package Models;
 
 import Interfaces.IPlayer;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-
+/*
+See superclass 'Being' for details
+ */
 public class Player extends Being implements IPlayer {
 
     private Item equippedItem;
@@ -26,16 +24,6 @@ public class Player extends Being implements IPlayer {
                 50
         );
         addToInventory(new Item("Bread", "Food", "health+10", false));
-    }
-
-    public int choose(String prompt, String[] choices) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println(prompt);
-        System.out.println(Arrays.toString(choices));
-        String input = br.readLine();
-        int choice = Arrays.asList(choices).indexOf(input);
-        while(choice==-1) { input = br.readLine(); choice = Arrays.asList(choices).indexOf(input);}
-        return choice;
     }
 
     public Player getPlayerCharacter() {

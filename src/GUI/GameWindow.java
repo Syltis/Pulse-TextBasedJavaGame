@@ -12,6 +12,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 
+/*
+This is the main frame of the game.
+- Implements interfaces for allowing other classes to work with the frame and it's components.
+ */
+
 public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
 
     private final INewGame INewGame;
@@ -123,9 +128,8 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
         addComp(inputAreaPanel, sendCommandButton, 1, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
 // LISTENERS
-        // Listener for sending of a command
+        // Listeners for sending of a command.
         inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, INewGame, IPlayer));
-
         sendCommandButton.addActionListener(new CommandListener(GameWindow.this, INewGame, IPlayer));
 
         // Method for the placeholder text.
@@ -137,9 +141,10 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
             }
         });
 
+        // Listener for click on close-window
         frame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                new ExitConfirm(GameWindow.this::disposeWindow);
+                new ExitConfirm(GameWindow.this);
             }
         });
 
