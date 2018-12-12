@@ -26,7 +26,7 @@ public final class JSONParsing {
         Scenario newScenario = null;
         Type scenarioType = new TypeToken<Collection<Scenario>>(){}.getType();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/ScenarioNEW.json"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/ScenarioNEW2.json"));
             Gson gson = new GsonBuilder().create();
             Collection<Scenario> scenarios = gson.fromJson(reader, scenarioType);
             if (!scenarios.isEmpty()) {
@@ -47,7 +47,7 @@ public final class JSONParsing {
         Collection<Scenario> scenarios = null;
         Type scenarioType = new TypeToken<Collection<Scenario>>(){}.getType();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/ScenarioNEW.json"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/ScenarioNEW2.json"));
             Gson gson = new GsonBuilder().create();
             scenarios = gson.fromJson(reader, scenarioType);
             if (!scenarios.isEmpty()) {
@@ -64,7 +64,7 @@ public final class JSONParsing {
         Item newItem = null;
         Type itemType = new TypeToken<Collection<Item>>(){}.getType();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/Item.json"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/ItemNEW.json"));
             Gson gson = new GsonBuilder().create();
             Collection<Item> items = gson.fromJson(reader, itemType);
             if (!items.isEmpty()) {
@@ -85,7 +85,7 @@ public final class JSONParsing {
         Collection<Item> items = null;
         Type itemType = new TypeToken<Collection<Item>>(){}.getType();
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/Item.json"));
+            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/ItemNEW.json"));
             Gson gson = new GsonBuilder().create();
             items = gson.fromJson(reader, itemType);
             if (!items.isEmpty()) {

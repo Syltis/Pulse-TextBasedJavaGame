@@ -10,9 +10,8 @@ import java.io.File;
 import java.io.IOException;
 
 /*
-Class for instantiating
+Class for instantiating the main menu of the game
  */
-
 public class MainMenu {
 
     private final String newGame = "New Game";
@@ -20,7 +19,7 @@ public class MainMenu {
     private final String exitGame = "Exit Game";
     private final String settings = "Settings";
     private final JFrame frame = new JFrame("Pulse™ Main Menu");
-    private final String imagePath = "images/spaceShip_8Bit_Cropped.png";
+    private final String imagePath = "src/images/spaceShip_8Bit_Cropped.png";
     private GridBagConstraints c;
 
     public MainMenu()
