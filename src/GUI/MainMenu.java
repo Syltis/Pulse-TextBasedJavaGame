@@ -6,7 +6,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 /*
@@ -19,7 +18,7 @@ public class MainMenu {
     private final String exitGame = "Exit Game";
     private final String settings = "Settings";
     private final JFrame frame = new JFrame("Pulse™ Main Menu");
-    private final String imagePath = "/images/spaceShip_8Bit_Cropped.png";
+    private final String imagePath = "/GUI/spaceShip_8Bit_Cropped.png";
     private GridBagConstraints c;
 
     public MainMenu()
@@ -138,8 +137,6 @@ public class MainMenu {
     private JLabel generateImageLabel(String imagePath, int width, int height) {
         JLabel imageLabel = null;
         try {
-            File imageFile = new File(imagePath);
-
             BufferedImage myImage = ImageIO.read(getClass().getResourceAsStream(imagePath));
             imageLabel = new JLabel(new ImageIcon(myImage.getScaledInstance(width, height,Image.SCALE_FAST)));
         }

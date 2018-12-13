@@ -7,7 +7,7 @@ A singleton has a private constructor, and can only be instantiated and accessed
     instantiated. If it has not it instantiates it and returns the object.
 */
 
-import Managers.JSONParsing;
+import JSON.JSONParsing;
 import Models.*;
 
 import java.util.ArrayList;

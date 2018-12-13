@@ -7,7 +7,7 @@
   },
   {
     "itemName": "Space9mm Pistol",
-    "itemType": "Weapon",
+    "itemType": "weapon",
     "effect": "STR+2",
     "isUnique": true
   },
@@ -43,13 +43,13 @@
   },
   {
     "itemName": "Package",
-    "itemType": "Food",
+    "itemType": "food",
     "effect": "health-1",
     "isUnique": true
   },
   {
     "itemName": "Lamb Chop",
-    "itemType": "Food",
+    "itemType": "food",
     "effect": "health+10",
     "isUnique": false
   },

@@ -1,4 +1,4 @@
-package Managers;
+package JSON;
 
 import Models.Item;
 import Models.Scenario;
@@ -25,39 +25,29 @@ public final class JSONParsing {
     public static Scenario getScenarioFromJson(String id) {
         Scenario newScenario = null;
         Type scenarioType = new TypeToken<Collection<Scenario>>(){}.getType();
-        try {
-            InputStream inputS = JSONParsing.class.getResourceAsStream("/JSON/Scenario.json");
-            BufferedReader read = new BufferedReader(new InputStreamReader(inputS));
-            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/Scenario.json"));
-            Gson gson = new GsonBuilder().create();
-            Collection<Scenario> scenarios = gson.fromJson(read, scenarioType);
-            if (!scenarios.isEmpty()) {
-                for (Scenario aScenario : scenarios) {
-                    if (aScenario.getId().equals(id)) {
-                        newScenario = aScenario;
-                    }
+        InputStream inputS = JSONParsing.class.getResourceAsStream("/JSON/Scenario.json");
+        BufferedReader read = new BufferedReader(new InputStreamReader(inputS));
+        Gson gson = new GsonBuilder().create();
+        Collection<Scenario> scenarios = gson.fromJson(read, scenarioType);
+        if (!scenarios.isEmpty()) {
+            for (Scenario aScenario : scenarios) {
+                if (aScenario.getId().equals(id)) {
+                    newScenario = aScenario;
                 }
             }
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
         return newScenario;
     }
 
     public static Collection<Scenario> getScenarioListFromJson() {
-        Collection<Scenario> scenarios = null;
+        Collection<Scenario> scenarios;
         Type scenarioType = new TypeToken<Collection<Scenario>>(){}.getType();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/Scenario.json"));
-            Gson gson = new GsonBuilder().create();
-            scenarios = gson.fromJson(reader, scenarioType);
-            if (!scenarios.isEmpty()) {
-                return scenarios;
-            }
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
+        InputStream inputS = JSONParsing.class.getResourceAsStream("/JSON/Scenario.json");
+        BufferedReader read = new BufferedReader(new InputStreamReader(inputS));
+        Gson gson = new GsonBuilder().create();
+        scenarios = gson.fromJson(read, scenarioType);
+        if (!scenarios.isEmpty()) {
+            return scenarios;
         }
         return scenarios;
     }
@@ -65,37 +55,29 @@ public final class JSONParsing {
     public static Item getItemFromJson(String id) {
         Item newItem = null;
         Type itemType = new TypeToken<Collection<Item>>(){}.getType();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/ItemNEW.json"));
-            Gson gson = new GsonBuilder().create();
-            Collection<Item> items = gson.fromJson(reader, itemType);
-            if (!items.isEmpty()) {
-                for (Item aItem: items) {
-                    if (aItem.getItemName().equals(id)) {
-                        newItem = aItem;
-                    }
+        InputStream inputS = JSONParsing.class.getResourceAsStream("/JSON/ItemNew.json");
+        BufferedReader read = new BufferedReader(new InputStreamReader(inputS));
+        Gson gson = new GsonBuilder().create();
+        Collection<Item> items = gson.fromJson(read, itemType);
+        if (!items.isEmpty()) {
+            for (Item aItem: items) {
+                if (aItem.getItemName().equals(id)) {
+                    newItem = aItem;
                 }
             }
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
         }
         return newItem;
     }
 
     public static Collection<Item> getItemListFromJson() {
-        Collection<Item> items = null;
+        Collection<Item> items;
         Type itemType = new TypeToken<Collection<Item>>(){}.getType();
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader("src/JSON/ItemNEW.json"));
-            Gson gson = new GsonBuilder().create();
-            items = gson.fromJson(reader, itemType);
-            if (!items.isEmpty()) {
-                return items;
-            }
-        }
-        catch (FileNotFoundException e) {
-            e.printStackTrace();
+        InputStream inputS = JSONParsing.class.getResourceAsStream("/JSON/Item.json");
+        BufferedReader read = new BufferedReader(new InputStreamReader(inputS));
+        Gson gson = new GsonBuilder().create();
+        items = gson.fromJson(read, itemType);
+        if (!items.isEmpty()) {
+            return items;
         }
         return items;
     }

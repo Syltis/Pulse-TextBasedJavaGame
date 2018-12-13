@@ -1,8 +1,8 @@
 [
   {
     "id": "Intro_Room",
-    "title": "Start",
-    "description": " You are a cadet from the GTO academy on a space expedition in search of life within the galaxy. Your crew was ambushed by space pirates and you are ejected from the main sta-ship and wake up in a foreign galaxy.Your skills in space piloting has prepared you for this. You notice your space cruiser is out of warp drive fluid. To the North of you is a giant planet appearing to be able to sustain life. To the west of you is a station labeled Big Bang Ballistics. You are will need supplies to continue on and figure that the vendor-station might have what you're looking for. ",
+    "title": "Awaken",
+    "description": " You are a cadet from the GTO academy on a space expedition in search of life within the galaxy. Your crew was ambushed by space pirates and you are ejected from the main star-ship and wake up in a foreign galaxy. Your skills in space piloting has prepared you for this. You notice your space cruiser is out of warp drive fluid. To the North of you is a giant planet appearing to be able to sustain life. To the west of you is a station labeled Big Bang Ballistics. You will need supplies to continue on and figure that the vendor-station might have what you're looking for. ",
     "availableMovementCommands": [
       {
         "command": "go north",
@@ -20,6 +20,7 @@
       }
     ],
     "availableItemCommands": [
+
     ],
     "availableCombatCommands": [
     ]
@@ -49,8 +50,8 @@
   },
   {
     "id": "cant_go_that_way",
-    "title": "Can't go that way",
-    "description": "Well that's too bad, you can't go that way.",
+    "title": "Doesn't seem like a viable path",
+    "description": "This was doesn't seem smart to take right now. Though while debating this a box bounces of the ships window. If you open the airlock and reach out, you can grab it.",
     "availableMovementCommands": [
       {
         "command": "go north",
@@ -68,6 +69,10 @@
       }
     ],
     "availableItemCommands": [
+      {
+        "command": "grab box",
+        "result": "Tattered Vest"
+      }
 
     ],
     "availableCombatCommands": [

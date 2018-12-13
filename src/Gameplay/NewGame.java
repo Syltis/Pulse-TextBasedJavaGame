@@ -2,7 +2,7 @@ package Gameplay;
 
 import GUI.GameWindow;
 import Interfaces.INewGame;
-import Managers.JSONParsing;
+import JSON.JSONParsing;
 import Models.Player;
 import Models.Scenario;
 

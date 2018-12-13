@@ -247,7 +247,7 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
          else {
              gameTextArea.append("\n" + "> Inventory:" + "\n");
              for (Item aItem:inventory) {
-                 gameTextArea.append("- " + aItem.getItemName() + " (" + aItem.getItemType() + ")" + "\n");
+                 gameTextArea.append("- " + aItem.getItemName() + " (" + aItem.getItemType() + " - " + aItem.getEffect() + ")" + "\n");
              }
          }
     }
