@@ -6,9 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.Collection;
 
@@ -18,6 +16,7 @@ Parses Json with the Google.gson-library. Parses the Json-objects to java-object
  */
 public final class JSONParsing {
 
+    // Private constructor as it is a static class
     private JSONParsing()
     {
         throw new UnsupportedOperationException();
@@ -27,9 +26,11 @@ public final class JSONParsing {
         Scenario newScenario = null;
         Type scenarioType = new TypeToken<Collection<Scenario>>(){}.getType();
         try {
+            InputStream inputS = JSONParsing.class.getResourceAsStream("/JSON/Scenario.json");
+            BufferedReader read = new BufferedReader(new InputStreamReader(inputS));
             BufferedReader reader = new BufferedReader(new FileReader("src/JSON/Scenario.json"));
             Gson gson = new GsonBuilder().create();
-            Collection<Scenario> scenarios = gson.fromJson(reader, scenarioType);
+            Collection<Scenario> scenarios = gson.fromJson(read, scenarioType);
             if (!scenarios.isEmpty()) {
                 for (Scenario aScenario : scenarios) {
                     if (aScenario.getId().equals(id)) {
