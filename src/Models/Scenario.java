@@ -5,6 +5,7 @@ Model for the scenarios that are read from JSON and used to store data on the sc
  */
 public class Scenario {
 
+    // Variables not assigned as they are parsed directly from JSON
     private String id;
     private String title;
     private String description;

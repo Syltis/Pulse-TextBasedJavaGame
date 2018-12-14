@@ -127,9 +127,6 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
         JButton sendCommandButton = gameWindowButton("Send");
         addComp(inputAreaPanel, sendCommandButton, 1, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
-        // TODO set focus to inputAreaTextField when frame loads
-        inputAreaTextField.requestFocusInWindow();
-
 // LISTENERS
         // Listeners for sending of a command.
         inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, INewGame, IPlayer));
@@ -155,12 +152,12 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
         // Set vertical splitpane.
         JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameAreaPanel, sideBarPanel);
         vertSplitPane.setDividerLocation(670);
-        vertSplitPane.setDividerSize(5);
-        vertSplitPane.setOneTouchExpandable(false);
+        vertSplitPane.setDividerSize(15);
+        vertSplitPane.setOneTouchExpandable(true);
         vertSplitPane.setResizeWeight(1.0);
         vertSplitPane.setEnabled(false);
 
-        // Set horizontal split.
+        // Set horizontal splitpane.
         JSplitPane horiSplitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, vertSplitPane, inputAreaPanel);
         horiSplitPane.setDividerLocation(400);
         horiSplitPane.setDividerSize(5);
@@ -174,7 +171,6 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
 
 // MUTATORS AND HELPERS
     // Easier implementation of constraints for gridBagLayout
-    // Found on Stack Overflow somewhere.
     private void addComp(JPanel panel, JComponent comp
                             , int column, int row, int gWidth
                                 , int gHeight, int fill
@@ -280,6 +276,7 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
 
         printToSidebarArea("", false);
         printToSidebarArea("", false);
+
         printToSidebarArea("AVAILABLE COMMANDS", false);
          if (activeScenario.getAvailableMovementCommands() != null && activeScenario.getAvailableMovementCommands().length > 0) {
              printToSidebarArea("MOVEMENT:", true);

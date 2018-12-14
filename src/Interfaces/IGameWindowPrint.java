@@ -5,7 +5,7 @@ import Models.Item;
 import java.util.List;
 
 // Interface for working with the different text-areas/field in the GameWindow
-// TODO Split this into smaller interfaces - Interface segregation principle
+// TODO Split this into smaller interfaces - S.O.L.(I).D - Interface segregation principle
 
 public interface IGameWindowPrint {
 
