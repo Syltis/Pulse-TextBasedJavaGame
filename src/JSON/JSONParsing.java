@@ -12,9 +12,12 @@ import java.util.Collection;
 
 /*
 Parses Json with the Google.gson-library. Parses the Json-objects to java-objects.
-- Parses either a single scenario/item, or the whole lists
+- Parses either a single scenario/item or the whole lists, which are used in gameSettings.
  */
 public final class JSONParsing {
+
+    private final static String jsonScenarioPath = "/JSON/Scenario.json";
+    private final static String jsonItemPath = "/JSON/Item.json";
 
     // Private constructor as it is a static class
     private JSONParsing()
@@ -25,7 +28,7 @@ public final class JSONParsing {
     public static Scenario getScenarioFromJson(String id) {
         Scenario newScenario = null;
         Type scenarioType = new TypeToken<Collection<Scenario>>(){}.getType();
-        InputStream inputS = JSONParsing.class.getResourceAsStream("/JSON/Scenario.json");
+        InputStream inputS = JSONParsing.class.getResourceAsStream(jsonScenarioPath);
         BufferedReader read = new BufferedReader(new InputStreamReader(inputS));
         Gson gson = new GsonBuilder().create();
         Collection<Scenario> scenarios = gson.fromJson(read, scenarioType);
@@ -42,7 +45,7 @@ public final class JSONParsing {
     public static Collection<Scenario> getScenarioListFromJson() {
         Collection<Scenario> scenarios;
         Type scenarioType = new TypeToken<Collection<Scenario>>(){}.getType();
-        InputStream inputS = JSONParsing.class.getResourceAsStream("/JSON/Scenario.json");
+        InputStream inputS = JSONParsing.class.getResourceAsStream(jsonScenarioPath);
         BufferedReader read = new BufferedReader(new InputStreamReader(inputS));
         Gson gson = new GsonBuilder().create();
         scenarios = gson.fromJson(read, scenarioType);
@@ -55,7 +58,7 @@ public final class JSONParsing {
     public static Item getItemFromJson(String id) {
         Item newItem = null;
         Type itemType = new TypeToken<Collection<Item>>(){}.getType();
-        InputStream inputS = JSONParsing.class.getResourceAsStream("/JSON/ItemNew.json");
+        InputStream inputS = JSONParsing.class.getResourceAsStream(jsonItemPath);
         BufferedReader read = new BufferedReader(new InputStreamReader(inputS));
         Gson gson = new GsonBuilder().create();
         Collection<Item> items = gson.fromJson(read, itemType);
@@ -72,7 +75,7 @@ public final class JSONParsing {
     public static Collection<Item> getItemListFromJson() {
         Collection<Item> items;
         Type itemType = new TypeToken<Collection<Item>>(){}.getType();
-        InputStream inputS = JSONParsing.class.getResourceAsStream("/JSON/Item.json");
+        InputStream inputS = JSONParsing.class.getResourceAsStream(jsonItemPath);
         BufferedReader read = new BufferedReader(new InputStreamReader(inputS));
         Gson gson = new GsonBuilder().create();
         items = gson.fromJson(read, itemType);

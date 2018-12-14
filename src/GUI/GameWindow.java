@@ -127,6 +127,9 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
         JButton sendCommandButton = gameWindowButton("Send");
         addComp(inputAreaPanel, sendCommandButton, 1, 3, 2, 2, GridBagConstraints.BOTH, 0.2, 0.2);
 
+        // TODO set focus to inputAreaTextField when frame loads
+        inputAreaTextField.requestFocusInWindow();
+
 // LISTENERS
         // Listeners for sending of a command.
         inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, INewGame, IPlayer));
