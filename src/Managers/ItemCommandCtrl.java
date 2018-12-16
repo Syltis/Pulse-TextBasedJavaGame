@@ -38,6 +38,9 @@ public class ItemCommandCtrl implements ICommandController {
 				return;
 			}
 		}
-
+		// Print confirmatin to the GameArea and add item to inventory
+		IGameWindowPrint.printToGameArea("", false);
+		IGameWindowPrint.printToGameArea("A " + item.getItemName() + " was added to the inventory", true);
+		IPlayer.addToInventory(item);
 	}
 }

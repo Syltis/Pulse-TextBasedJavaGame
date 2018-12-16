@@ -31,10 +31,8 @@ public class CommandControl {
     }
 
     public CommandControl(
-            Scenario activeScenario,
-            String playerCommand,
-            IGameWindowPrint IGameWindowPrint,
-            INewGame INewGame,
+            Scenario activeScenario, String playerCommand,
+            IGameWindowPrint IGameWindowPrint, INewGame INewGame,
             IPlayer IPlayer
     )
     {
