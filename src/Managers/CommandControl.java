@@ -54,48 +54,36 @@ public class CommandControl {
             case MOVEMENTCOMMAND:
                 ICommandController movementCommandCtrl = new MovementCommandCtrl();
                 movementCommandCtrl.ControlCommand(
-                        activeScenario,
-                        playerCommand,
-                        gameSettings,
-                        INewGame,
-                        IGameWindowPrint,
-                        IPlayer
+                        activeScenario, playerCommand,
+                        gameSettings, INewGame,
+                        IGameWindowPrint, IPlayer
                 );
                 break;
 
             case ACTIONCOMMAND:
                 ICommandController actionCommandCtrl = new ActionCommandCtrl();
                 actionCommandCtrl.ControlCommand(
-                        activeScenario,
-                        playerCommand,
-                        gameSettings,
-                        INewGame,
-                        IGameWindowPrint,
-                        IPlayer
+                        activeScenario, playerCommand,
+                        gameSettings, INewGame,
+                        IGameWindowPrint, IPlayer
                 );
                 break;
 
             case ITEMCOMMAND:
                 ICommandController itemCommandCtrl = new ItemCommandCtrl();
                 itemCommandCtrl.ControlCommand(
-                        activeScenario,
-                        playerCommand,
-                        gameSettings,
-                        INewGame,
-                        IGameWindowPrint,
-                        IPlayer
+                        activeScenario, playerCommand,
+                        gameSettings, INewGame,
+                        IGameWindowPrint, IPlayer
                 );
                 break;
 
             case COMBATCOMMAND:
                 ICommandController combatCommandCtrl = new CombatCommandCtlr();
                 combatCommandCtrl.ControlCommand(
-                        activeScenario,
-                        playerCommand,
-                        gameSettings,
-                        INewGame,
-                        IGameWindowPrint,
-                        IPlayer
+                        activeScenario, playerCommand,
+                        gameSettings, INewGame,
+                        IGameWindowPrint, IPlayer
                 );
                 break;
 
