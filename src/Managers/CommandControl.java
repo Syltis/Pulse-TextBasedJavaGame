@@ -29,7 +29,12 @@ public class CommandControl {
         NOMATCH
     }
 
-    public CommandControl(Scenario activeScenario, String playerCommand, IGameWindowPrint IGameWindowPrint, INewGame INewGame, IPlayer IPlayer)
+    public CommandControl(Scenario activeScenario,
+                          String playerCommand,
+                          IGameWindowPrint IGameWindowPrint,
+                          INewGame INewGame,
+                          IPlayer IPlayer
+    )
     {
         this.IGameWindowPrint = IGameWindowPrint;
         this.INewGame = INewGame;

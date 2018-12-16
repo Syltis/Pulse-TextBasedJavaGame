@@ -22,6 +22,7 @@ public class Player extends Being implements IPlayer {
                 100,
                 new int[] {3,3,3},
                 50
+
         );
         addToInventory(new Item("Bread", "Food", "health+10", false));
     }
