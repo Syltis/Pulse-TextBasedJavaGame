@@ -49,9 +49,6 @@ public final class JSONParsing {
         BufferedReader read = new BufferedReader(new InputStreamReader(inputS));
         Gson gson = new GsonBuilder().create();
         scenarios = gson.fromJson(read, scenarioType);
-        if (!scenarios.isEmpty()) {
-            return scenarios;
-        }
         return scenarios;
     }
 
@@ -79,9 +76,6 @@ public final class JSONParsing {
         BufferedReader read = new BufferedReader(new InputStreamReader(inputS));
         Gson gson = new GsonBuilder().create();
         items = gson.fromJson(read, itemType);
-        if (!items.isEmpty()) {
-            return items;
-        }
         return items;
     }
 
