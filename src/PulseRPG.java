@@ -1,4 +1,4 @@
-import GUI.MainMenu;
+import gui.MainMenu;
 import javax.swing.*;
 
 class PulseRPG {
