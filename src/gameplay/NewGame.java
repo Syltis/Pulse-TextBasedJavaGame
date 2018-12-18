@@ -8,7 +8,7 @@ import models.Scenario;
 
 /*
 Class for running a new game.
-- Holds the activescenario which accessed through the INewGame-interface in CommandControl
+- Holds the activescenario which accessed through the INewGame-interface in CommandControlHub
  */
 
 public class NewGame implements INewGame {

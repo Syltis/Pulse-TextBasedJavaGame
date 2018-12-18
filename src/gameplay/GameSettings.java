@@ -40,7 +40,7 @@ public class GameSettings {
         return instance;
     }
 
-    // Lists which keeps all the available commands and items. The list is used for reference, as in CommandControl
+    // Lists which keeps all the available commands and items. The list is used for reference, as in CommandControlHub
     public List<MovementCommand> getMovementCommandBank() { return movementCommandBank; }
 
     public List<ActionCommand> getActionCommandBank() { return actionCommandBank; }

@@ -14,7 +14,7 @@ the activeScenario and from gameSettings to confirm the commands and get the res
 
 */
 
-public class CommandControl {
+public class CommandControlHub {
 
     private final IGameWindowPrint IGameWindowPrint;
     private final INewGame INewGame;
@@ -30,7 +30,7 @@ public class CommandControl {
         NOMATCH
     }
 
-    public CommandControl(
+    public CommandControlHub(
             Scenario activeScenario, String playerCommand,
             IGameWindowPrint IGameWindowPrint, INewGame INewGame,
             IPlayer IPlayer
@@ -50,7 +50,7 @@ public class CommandControl {
         switch (commandType) {
             // Check the playercommand with the activeScenario-object, and compare their result's to get the matching object
             case MOVEMENTCOMMAND:
-                ICommandController movementCommandCtrl = new MovementCommandCtrl();
+                ICommandController movementCommandCtrl = new MovementCommandControl();
                 movementCommandCtrl.ControlCommand(
                         activeScenario, playerCommand,
                         gameSettings, INewGame,
@@ -59,7 +59,7 @@ public class CommandControl {
                 break;
 
             case ACTIONCOMMAND:
-                ICommandController actionCommandCtrl = new ActionCommandCtrl();
+                ICommandController actionCommandCtrl = new ActionCommandControl();
                 actionCommandCtrl.ControlCommand(
                         activeScenario, playerCommand,
                         gameSettings, INewGame,
@@ -68,7 +68,7 @@ public class CommandControl {
                 break;
 
             case ITEMCOMMAND:
-                ICommandController itemCommandCtrl = new ItemCommandCtrl();
+                ICommandController itemCommandCtrl = new ItemCommandControl();
                 itemCommandCtrl.ControlCommand(
                         activeScenario, playerCommand,
                         gameSettings, INewGame,
@@ -77,7 +77,7 @@ public class CommandControl {
                 break;
 
             case COMBATCOMMAND:
-                ICommandController combatCommandCtrl = new CombatCommandCtlr();
+                ICommandController combatCommandCtrl = new CombatCommandControl();
                 combatCommandCtrl.ControlCommand(
                         activeScenario, playerCommand,
                         gameSettings, INewGame,

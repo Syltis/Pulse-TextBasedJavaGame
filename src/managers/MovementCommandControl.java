@@ -8,7 +8,7 @@ import interfaces.IPlayer;
 import models.MovementCommand;
 import models.Scenario;
 
-public class MovementCommandCtrl implements ICommandController {
+public class MovementCommandControl implements ICommandController {
 
 	public void ControlCommand(Scenario activeScenario, String playerCommand, GameSettings gameSettings, INewGame INewGame, IGameWindowPrint IGameWindowPrint, IPlayer IPlayer) {
 		String result = null;

@@ -9,7 +9,7 @@ import models.Item;
 import models.ItemCommand;
 import models.Scenario;
 
-public class ItemCommandCtrl implements ICommandController {
+public class ItemCommandControl implements ICommandController {
 
 	public void ControlCommand(Scenario activeScenario, String playerCommand, GameSettings gameSettings, INewGame INewGame, IGameWindowPrint IGameWindowPrint, IPlayer IPlayer) {
 		Item item = null;

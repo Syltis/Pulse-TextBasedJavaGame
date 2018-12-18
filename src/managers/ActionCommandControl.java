@@ -8,7 +8,7 @@ import interfaces.IPlayer;
 import models.ActionCommand;
 import models.Scenario;
 
-public class ActionCommandCtrl implements ICommandController {
+public class ActionCommandControl implements ICommandController {
 
 	public void ControlCommand(Scenario activeScenario, String playerCommand, GameSettings gameSettings, INewGame INewGame, IGameWindowPrint IGameWindowPrint, IPlayer IPlayer) {
 		// Check if player asks for inventory

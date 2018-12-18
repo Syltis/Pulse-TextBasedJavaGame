@@ -3,7 +3,7 @@ package gui;
 import interfaces.INewGame;
 import interfaces.IPlayer;
 import interfaces.IGameWindowPrint;
-import managers.CommandControl;
+import managers.CommandControlHub;
 import managers.StringUtilities;
 
 import java.awt.event.ActionEvent;
@@ -11,16 +11,16 @@ import java.awt.event.ActionListener;
 
 /*
 Listener for the GameWindow/inputAreaTextField().
-- Clean the user input and sends it to the CommandControl-class
+- Clean the user input and sends it to the CommandControlHub-class
  */
-class CommandListener implements ActionListener {
+class InputListener implements ActionListener {
 
     private final IGameWindowPrint IGameWindowPrint;
     private final INewGame INewGame;
     private final IPlayer IPlayer;
     private int blankCounter;
 
-    CommandListener(IGameWindowPrint IGameWindowPrint, INewGame INewGame, IPlayer IPlayer)
+    InputListener(IGameWindowPrint IGameWindowPrint, INewGame INewGame, IPlayer IPlayer)
     {
         this.IGameWindowPrint = IGameWindowPrint;
         this.INewGame = INewGame;
@@ -36,7 +36,7 @@ class CommandListener implements ActionListener {
                 // Clean the string
                 input = StringUtilities.cleanString(input);
                 // Pass to commandControl together with the relevant interfaces.
-                new CommandControl(INewGame.getActiveScenario(), input, IGameWindowPrint, INewGame, IPlayer);
+                new CommandControlHub(INewGame.getActiveScenario(), input, IGameWindowPrint, INewGame, IPlayer);
                 IGameWindowPrint.setInputAreaTextField("");
                 blankCounter = 0;
             }

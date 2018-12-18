@@ -9,7 +9,7 @@ import models.CombatCommand;
 import models.Enemy;
 import models.Scenario;
 
-public class CombatCommandCtlr implements ICommandController {
+public class CombatCommandControl implements ICommandController {
 
 	public void ControlCommand(Scenario activeScenario, String playerCommand, GameSettings gameSettings, INewGame INewGame, IGameWindowPrint IGameWindowPrint, IPlayer IPLayer) {
 		String combatResult = null;

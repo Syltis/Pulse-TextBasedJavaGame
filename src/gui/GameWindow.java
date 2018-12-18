@@ -129,8 +129,8 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
 
 // LISTENERS
         // Listeners for sending of a command.
-        inputAreaTextField.addActionListener(new CommandListener(GameWindow.this, INewGame, IPlayer));
-        sendCommandButton.addActionListener(new CommandListener(GameWindow.this, INewGame, IPlayer));
+        inputAreaTextField.addActionListener(new InputListener(GameWindow.this, INewGame, IPlayer));
+        sendCommandButton.addActionListener(new InputListener(GameWindow.this, INewGame, IPlayer));
 
         // Method for the placeholder text.
         inputAreaTextField.addFocusListener(new FocusAdapter() {
@@ -186,7 +186,7 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
         panel.add(comp, c);
     }
 
-    // Returns a button and a set actionListener. Cant be used with the 'Send'-button, as it uses the CommandListener
+    // Returns a button and a set actionListener. Cant be used with the 'Send'-button, as it uses the InputListener
     private JButton gameWindowButton(String buttonName) {
          JButton returnedButton = new JButton(buttonName);
          returnedButton.addActionListener(e -> {
