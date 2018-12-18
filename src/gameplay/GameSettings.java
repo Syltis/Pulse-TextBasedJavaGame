@@ -61,6 +61,9 @@ public class GameSettings {
         for (Scenario aScenario:JSONParsing.getScenarioListFromJson()) {
             actionCommandBank.addAll(Arrays.asList(aScenario.getAvailableActionCommands()));
         }
+        actionCommandBank.add(new ActionCommand("use", "use"));
+        actionCommandBank.add(new ActionCommand("inventory", "inventory"));
+
         itemCommandBank = new ArrayList<>();
         for (Scenario aScenario:JSONParsing.getScenarioListFromJson()) {
             itemCommandBank.addAll(Arrays.asList(aScenario.getAvailableItemCommands()));

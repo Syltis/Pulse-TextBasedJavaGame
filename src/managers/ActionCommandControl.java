@@ -6,6 +6,7 @@ import interfaces.IGameWindowPrint;
 import interfaces.INewGame;
 import interfaces.IPlayer;
 import models.ActionCommand;
+import models.Item;
 import models.Scenario;
 
 public class ActionCommandControl implements ICommandController {
@@ -18,6 +19,18 @@ public class ActionCommandControl implements ICommandController {
 			IGameWindowPrint.printInventoryToGameArea(IPlayer.getInventory());
 			return;
 		}
+		// Checks if player has tried to use an item
+		if (StringUtilities.commandIsUse(playerCommand)) {
+			System.out.println("is Use");
+			String [] lineSplit = playerCommand.split("\\s+");
+			for (Item aItem: gameSettings.getItemBank()) {
+				if (aItem.getItemName().equalsIgnoreCase(lineSplit[1])) {
+
+					// TODO check towards players inventory
+					System.out.println(aItem.getItemName());
+				}
+			}
+		}
 		for (ActionCommand aActionCommand: activeScenario.getAvailableActionCommands()) {
 			if (aActionCommand.getCommand().equals(playerCommand)) {
 				for (ActionCommand anotherActionCommand:gameSettings.getActionCommandBank()) {
@@ -28,7 +41,7 @@ public class ActionCommandControl implements ICommandController {
 			}
 		}
 		if (actionResult == null) {
-			IGameWindowPrint.printResponseToLog("What does '" + playerCommand + "' even mean?");
+			IGameWindowPrint.printResponseToLog("What does actionCommand:'" + playerCommand + "' even mean?");
 			return;
 		}
 		IGameWindowPrint.printResponseToLog("The actionCommand worked, but we have yet to develop that part of the game.");

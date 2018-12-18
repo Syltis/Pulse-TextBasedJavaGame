@@ -36,6 +36,15 @@ public final class StringUtilities {
 		return string;
 	}
 
+	// Checks if string starts with 'use', which means the player wantes to make use of an item
+	static boolean commandIsUse(String playerCommand) {
+		boolean isUse = false;
+		if (playerCommand.substring(0, 2).equalsIgnoreCase("use")) {
+			isUse = true;
+		}
+		return isUse;
+	}
+
 	// Builds an anemy from a string
 	// Here the string 'rat211', will result in a 'Rat' enemy with the stats STR-2, CON-1, LCK-1
 	public static Enemy generateEnemyFromCombatResult(String combatResult) {
