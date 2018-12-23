@@ -20,8 +20,8 @@ public class ActionCommandControl implements ICommandController {
 			return;
 		}
 		// Checks if player has tried to use an item
+		// problem is, the commandhub doesnt fint 'use ****' in its listt and immediately reports a NOMATCH
 		if (StringUtilities.commandIsUse(playerCommand)) {
-			System.out.println("is Use");
 			String [] lineSplit = playerCommand.split("\\s+");
 			for (Item aItem: gameSettings.getItemBank()) {
 				if (aItem.getItemName().equalsIgnoreCase(lineSplit[1])) {

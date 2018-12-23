@@ -27,7 +27,7 @@ public class ItemCommandControl implements ICommandController {
 			}
 		}
 		if (item == null) {
-			IGameWindowPrint.printResponseToLog("Hm, what does '" + playerCommand + "' even mean?");
+			IGameWindowPrint.printResponseToLog("What does itemCommand '" + playerCommand + "' even mean?");
 			return;
 		}
 		// Check if item is marked an unique and if layer already has one

@@ -34,28 +34,12 @@ public class Being {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public int getHealth() {
 		return health;
 	}
 
 	public void setHealth(int health) {
 		this.health = health;
-	}
-
-	public int[] getSkills() {
-		return skills;
-	}
-
-	public void setSkills(int[] skills) {
-		this.skills = skills;
 	}
 
 	public int getStat(String stat) {
@@ -73,10 +57,6 @@ public class Being {
 
 	public int getMoney() {
 		return money;
-	}
-
-	public void setMoney(int money) {
-		this.money = money;
 	}
 
 	public List<Item> getInventory() {

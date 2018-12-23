@@ -24,7 +24,7 @@ public class CombatCommandControl implements ICommandController {
 			}
 		}
 		if (combatResult == null) {
-			IGameWindowPrint.printResponseToLog("What does '" + playerCommand + "' even mean?");
+			IGameWindowPrint.printResponseToLog("What does combatCommand: '" + playerCommand + "' even mean?");
 			return;
 		}
 		// TODO Instantiate battle, e.g. new Battle(Player, Enemy);

@@ -22,7 +22,7 @@ public class MovementCommandControl implements ICommandController {
 			}
 		}
 		if (result == null) {
-			IGameWindowPrint.printResponseToLog("What does '" + playerCommand + "' even mean?");
+			IGameWindowPrint.printResponseToLog("What does movementCommand '" + playerCommand + "' even mean?");
 			return;
 		}
 		// Print command to GameArea

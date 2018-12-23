@@ -40,8 +40,9 @@ public final class StringUtilities {
 	static boolean commandIsUse(String playerCommand) {
 		boolean isUse = false;
 		if (playerCommand.substring(0, 2).equalsIgnoreCase("use")) {
+			System.out.println("is Use");
 			isUse = true;
-		}
+		} else System.out.println("not use");
 		return isUse;
 	}
 
