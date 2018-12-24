@@ -15,4 +15,8 @@ public interface IPlayer {
 	void addToInventory(Item item);
 
 	Player getPlayerCharacter();
+
+	Item getEquippedItem();
+
+	void setEquippedItem(Item equippedItem);
 }

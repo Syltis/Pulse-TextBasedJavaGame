@@ -45,6 +45,31 @@ public class CommandControlHub {
         controlCommand(findPlayerCommandType());
     }
 
+    // Decide what type of command the player has entered, using the different lists from GameSettings
+    private CommandTypeEnum findPlayerCommandType() {
+        // Check if the command exists in gameSettings and in the activechoice
+        for (MovementCommand aMovementCommand: gameSettings.getMovementCommandBank()) {
+            if (aMovementCommand.getCommand().equals(playerCommand))
+                return CommandTypeEnum.MOVEMENTCOMMAND;
+        }
+        if (StringUtilities.commandIsUse(playerCommand)) {
+            return CommandTypeEnum.ACTIONCOMMAND;
+        }
+        for (ActionCommand aActionCommand: gameSettings.getActionCommandBank()) {
+            if (aActionCommand.getCommand().equals(playerCommand))
+                return CommandTypeEnum.ACTIONCOMMAND;
+        }
+        for (ItemCommand aItemCommand: gameSettings.getItemCommandBank()) {
+            if (aItemCommand.getCommand().equals(playerCommand))
+                return CommandTypeEnum.ITEMCOMMAND;
+        }
+        for (CombatCommand aCombatCommand: gameSettings.getCombatCommandBank()) {
+            if (aCombatCommand.getCommand().equals(playerCommand))
+                return CommandTypeEnum.COMBATCOMMAND;
+        }
+        return CommandTypeEnum.NOMATCH;
+    }
+
     // TODO Move these pieces of logic to their own class/method
     private void controlCommand(CommandTypeEnum commandType) {
         switch (commandType) {
@@ -89,27 +114,5 @@ public class CommandControlHub {
                 IGameWindowPrint.printResponseToLog("What does '" + playerCommand + "' even mean?");
                 break;
         }
-    }
-
-    // Decide what type of command the player has entered, using the different lists from GameSettings
-    private CommandTypeEnum findPlayerCommandType() {
-        // Check if the command exists in gameSettings and in the activechoice
-        for (MovementCommand aMovementCommand: gameSettings.getMovementCommandBank()) {
-            if (aMovementCommand.getCommand().equals(playerCommand))
-                return CommandTypeEnum.MOVEMENTCOMMAND;
-        }
-        for (ActionCommand aActionCommand: gameSettings.getActionCommandBank()) {
-            if (aActionCommand.getCommand().equals(playerCommand))
-                return CommandTypeEnum.ACTIONCOMMAND;
-        }
-        for (ItemCommand aItemCommand: gameSettings.getItemCommandBank()) {
-            if (aItemCommand.getCommand().equals(playerCommand))
-                return CommandTypeEnum.ITEMCOMMAND;
-        }
-        for (CombatCommand aCombatCommand: gameSettings.getCombatCommandBank()) {
-            if (aCombatCommand.getCommand().equals(playerCommand))
-                return CommandTypeEnum.COMBATCOMMAND;
-        }
-        return CommandTypeEnum.NOMATCH;
     }
 }

@@ -25,13 +25,19 @@ public class Player extends Being implements IPlayer {
 
         );
         addToInventory(new Item("Bread", "Food", "health+10", false));
+        addToInventory((new Item("9mm Pistol", "weapon", "STR+2", true)));
     }
 
     public Player getPlayerCharacter() {
         return Player.this;
     }
 
-    public Item getEquippedItem() { return equippedItem; }
+    public Item getEquippedItem() {
+        return equippedItem;
+    }
 
-    public void setEquippedItem(Item equippedItem) { this.equippedItem = equippedItem; }
+    public void setEquippedItem(Item equippedItem) {
+        this.equippedItem = equippedItem;
+    }
+
 }

@@ -6,13 +6,13 @@
     "isUnique": true
   },
   {
-    "itemName": "Space9mm Pistol",
+    "itemName": "9mm Pistol",
     "itemType": "weapon",
     "effect": "STR+2",
     "isUnique": true
   },
   {
-    "itemName": "Space Bread",
+    "itemName": "Bread",
     "itemType": "food",
     "effect": "health+10",
     "isUnique": false
@@ -66,7 +66,7 @@
     "isUnique": true
   },
   {
-    "itemName": " SpaceCheese",
+    "itemName": "SpaceCheese",
     "itemType": "food",
     "effect": "health+5",
     "isUnique": false

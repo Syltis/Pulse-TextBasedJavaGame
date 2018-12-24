@@ -8,10 +8,20 @@ import interfaces.IPlayer;
 import models.ActionCommand;
 import models.Item;
 import models.Scenario;
+import org.apache.commons.lang3.text.WordUtils;
 
 public class ActionCommandControl implements ICommandController {
 
+	private INewGame INewGame;
+	private IPlayer IPlayer;
+	private IGameWindowPrint IGameWindowPrint;
+
 	public void ControlCommand(Scenario activeScenario, String playerCommand, GameSettings gameSettings, INewGame INewGame, IGameWindowPrint IGameWindowPrint, IPlayer IPlayer) {
+
+		this.INewGame = INewGame;
+		this.IGameWindowPrint = IGameWindowPrint;
+		this.IPlayer = IPlayer;
+
 		// Check if player asks for inventory
 		String actionResult = null;
 		if (playerCommand.equals("inventory") || playerCommand.equals("i")) {
@@ -20,16 +30,22 @@ public class ActionCommandControl implements ICommandController {
 			return;
 		}
 		// Checks if player has tried to use an item
-		// problem is, the commandhub doesnt fint 'use ****' in its listt and immediately reports a NOMATCH
+		// TODO problem is, the commandhub doesnt fint 'use ****' in its listt and immediately reports a NOMATCH
 		if (StringUtilities.commandIsUse(playerCommand)) {
-			String [] lineSplit = playerCommand.split("\\s+");
-			for (Item aItem: gameSettings.getItemBank()) {
-				if (aItem.getItemName().equalsIgnoreCase(lineSplit[1])) {
+			String itemName = playerCommand.substring(playerCommand.indexOf(' ') + 1);
+			itemName = WordUtils.capitalizeFully(itemName);
 
-					// TODO check towards players inventory
-					System.out.println(aItem.getItemName());
+			System.out.println(itemName);
+				for (Item aItem: IPlayer.getInventory()) {
+					if (aItem.getItemName().equals(itemName)) {
+						if (aItem.getItemType().equals("weapon")) {
+
+						}
+						IGameWindowPrint.printResponseToLog("Effect to apply: " + aItem.getEffect());
+						return;
+					}
 				}
-			}
+				// TODO check towards players inventory
 		}
 		for (ActionCommand aActionCommand: activeScenario.getAvailableActionCommands()) {
 			if (aActionCommand.getCommand().equals(playerCommand)) {
@@ -45,5 +61,22 @@ public class ActionCommandControl implements ICommandController {
 			return;
 		}
 		IGameWindowPrint.printResponseToLog("The actionCommand worked, but we have yet to develop that part of the game.");
+	}
+
+	private void equipWeapon(Item item) {
+		int statChange;
+		String stat = item.getEffect().substring(0,3);
+		String statChangeString = item.getEffect().substring(4,5);
+		try{
+				statChange = Integer.parseInt(statChangeString);
+				IPlayer.setEquippedItem(item);
+
+		}
+		catch (NumberFormatException nfe) {
+			nfe.printStackTrace();
+			return;
+		}
+
+
 	}
 }
