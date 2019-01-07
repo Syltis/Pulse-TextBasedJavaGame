@@ -36,7 +36,7 @@ public class GameSettings {
         if (instance == null) {
             instance = new GameSettings();
         }
-        readListsFromJson();
+        buildListsFromJson();
         return instance;
     }
 
@@ -52,7 +52,7 @@ public class GameSettings {
     public List<Item> getItemBank() { return itemBank; }
 
     // Method for adding all the available commands to the lists, from json
-    private static void readListsFromJson() {
+    private static void buildListsFromJson() {
         movementCommandBank = new ArrayList<>();
         for (Scenario aScenario:JSONParsing.getScenarioListFromJson()) {
             movementCommandBank.addAll(Arrays.asList(aScenario.getAvailableMovementCommands()));
