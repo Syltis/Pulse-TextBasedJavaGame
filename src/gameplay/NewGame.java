@@ -26,7 +26,12 @@ public class NewGame implements INewGame {
 
     // Displays the first scenario
     private void startFirstScenario() {
-        this.activeScenario = JSONParsing.getScenarioFromJson("Intro_Room");
+        try {
+            this.activeScenario = JSONParsing.getScenarioFromJson("intro_Room");
+        }
+        catch(NullPointerException nPE) {
+            System.out.println("Scenario not Found");
+        }
         gameWindow.printScenarioToGameArea(this.activeScenario.getTitle(), this.activeScenario.getDescription());
         gameWindow.feedSideBar(this.activeScenario);
     }

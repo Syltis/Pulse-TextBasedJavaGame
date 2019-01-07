@@ -151,7 +151,7 @@ public class GameWindow implements IGameWindowPrint, IGameWindowDispose {
 // ASSEMBLY
         // Set vertical splitpane.
         JSplitPane vertSplitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, gameAreaPanel, sideBarPanel);
-        vertSplitPane.setDividerLocation(670);
+        vertSplitPane.setDividerLocation(660);
         vertSplitPane.setDividerSize(15);
         vertSplitPane.setOneTouchExpandable(true);
         vertSplitPane.setResizeWeight(1.0);

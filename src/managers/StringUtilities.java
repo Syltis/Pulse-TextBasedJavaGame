@@ -39,7 +39,9 @@ public final class StringUtilities {
 	// Checks if string starts with 'use', which means the player wantes to make use of an item
 	static boolean commandIsUse(String playerCommand) {
 		boolean isUse = false;
-		if (playerCommand.substring(0, 3).equalsIgnoreCase("use")) isUse = true;
+		if(playerCommand.length() > 2) {
+			if(playerCommand.substring(0, 3).equalsIgnoreCase("use")) isUse = true;
+		}
 		return isUse;
 	}
 

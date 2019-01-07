@@ -1,0 +1,72 @@
+[
+  {
+    "id": "intro_Room",
+    "title": "Awaken",
+    "description": "You're in a dark room. There is a lightly lit door in front of you.",
+    "availableMovementCommands": [
+      {
+        "command": "open door",
+        "result": "intro_room2"
+      }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "intro_room2",
+    "title": "Lit Room",
+    "description": "You're in a room, there is a button on the wall that says 'DONT PRESS'. On the floor lies a black cardboard box.",
+    "availableMovementCommands": [
+      {
+        "command": "press button",
+        "result": "darkness"
+      },
+      {
+        "command": "go back",
+        "result": "intro_Room"
+      }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+      {
+        "command": "open box",
+        "result": "Pocketknife"
+      }
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
+    "id": "darkness",
+    "title": "Darkness",
+    "description": "Your life has ended",
+    "availableMovementCommands": [
+
+    ],
+    "availableActionCommands": [
+
+    ],
+    "availableItemCommands": [
+
+    ],
+    "availableCombatCommands": [
+
+    ]
+  }
+]

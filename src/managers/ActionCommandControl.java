@@ -29,8 +29,8 @@ public class ActionCommandControl implements ICommandController {
 			IGameWindowPrint.printInventoryToGameArea(IPlayer.getInventory());
 			return;
 		}
-		// Checks if player has tried to use an item
-		// TODO problem is, the commandhub doesnt fint 'use ****' in its listt and immediately reports a NOMATCH
+
+		// TODO move 'use'-commands to its own class
 		if (StringUtilities.commandIsUse(playerCommand)) {
 			String itemName = playerCommand.substring(playerCommand.indexOf(' ') + 1);
 			itemName = WordUtils.capitalizeFully(itemName);

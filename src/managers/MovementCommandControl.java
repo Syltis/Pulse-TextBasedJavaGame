@@ -32,6 +32,5 @@ public class MovementCommandControl implements ICommandController {
 		IGameWindowPrint.clearSideBarArea();
 		// nextScenario() takes the new Scenario ID and displays the new Scenario
 		INewGame.nextScenario(result);
-
 	}
 }

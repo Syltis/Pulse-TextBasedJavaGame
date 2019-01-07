@@ -33,6 +33,10 @@
       {
         "command": "go north",
         "result": "cant_go_that_way"
+      },
+      {
+        "command": "go back",
+        "result": "Intro_Room"
       }
     ],
     "availableActionCommands": [
@@ -60,6 +64,10 @@
       {
         "command": "go west",
         "result": "bigBangBallistics"
+      },
+      {
+        "command": "go back",
+        "result": "ballsy"
       }
     ],
     "availableActionCommands": [

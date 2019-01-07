@@ -100,5 +100,11 @@
     "itemType": "food",
     "effect": "health+10",
     "isUnique": false
+  },
+  {
+    "itemName": "Pocketknife",
+    "itemType": "weapon",
+    "effect": "STR+1",
+    "isUnique": false
   }
 ]

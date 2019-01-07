@@ -17,7 +17,7 @@ Parses Json with the Google.gson-library. Parses the Json-objects to java-object
 
 public final class JSONParsing {
 
-    private final static String jsonScenarioPath = "/json/Scenario.json";
+    private final static String jsonScenarioPath = "/json/ScenarioTesting.json";
     private final static String jsonItemPath = "/json/Item.json";
 
     // Private constructor as it is a static class

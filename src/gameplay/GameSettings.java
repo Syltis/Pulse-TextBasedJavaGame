@@ -63,6 +63,7 @@ public class GameSettings {
         }
         actionCommandBank.add(new ActionCommand("use", "use"));
         actionCommandBank.add(new ActionCommand("inventory", "inventory"));
+        actionCommandBank.add(new ActionCommand("i", "inventory"));
 
         itemCommandBank = new ArrayList<>();
         for (Scenario aScenario:JSONParsing.getScenarioListFromJson()) {

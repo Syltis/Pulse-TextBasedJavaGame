@@ -7,7 +7,7 @@ See superclass 'Being' for details
  */
 public class Player extends Being implements IPlayer {
 
-    private Item equippedItem;
+    private Item equippedItem = null;
 
     public Player(String name, String description, int health, int[] skills, int money)
     {
