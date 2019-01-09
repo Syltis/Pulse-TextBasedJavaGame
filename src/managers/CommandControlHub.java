@@ -1,7 +1,7 @@
 package managers;
 
 import gameplay.GameSettings;
-import interfaces.ICommandController;
+import interfaces.ICommandControl;
 import interfaces.INewGame;
 import interfaces.IPlayer;
 import interfaces.IGameWindowPrint;
@@ -31,8 +31,10 @@ public class CommandControlHub {
     }
 
     public CommandControlHub(
-            Scenario activeScenario, String playerCommand,
-            IGameWindowPrint IGameWindowPrint, INewGame INewGame,
+            Scenario activeScenario,
+            String playerCommand,
+            IGameWindowPrint IGameWindowPrint,
+            INewGame INewGame,
             IPlayer IPlayer
     )
     {
@@ -75,7 +77,7 @@ public class CommandControlHub {
         switch (commandType) {
             // Check the playercommand with the activeScenario-object, and compare their result's to get the matching object
             case MOVEMENTCOMMAND:
-                ICommandController movementCommandCtrl = new MovementCommandControl();
+                ICommandControl movementCommandCtrl = new MovementCommandControl();
                 movementCommandCtrl.ControlCommand(
                         activeScenario, playerCommand,
                         gameSettings, INewGame,
@@ -84,7 +86,7 @@ public class CommandControlHub {
                 break;
 
             case ACTIONCOMMAND:
-                ICommandController actionCommandCtrl = new ActionCommandControl();
+                ICommandControl actionCommandCtrl = new ActionCommandControl();
                 actionCommandCtrl.ControlCommand(
                         activeScenario, playerCommand,
                         gameSettings, INewGame,
@@ -93,7 +95,7 @@ public class CommandControlHub {
                 break;
 
             case ITEMCOMMAND:
-                ICommandController itemCommandCtrl = new ItemCommandControl();
+                ICommandControl itemCommandCtrl = new ItemCommandControl();
                 itemCommandCtrl.ControlCommand(
                         activeScenario, playerCommand,
                         gameSettings, INewGame,
@@ -102,7 +104,7 @@ public class CommandControlHub {
                 break;
 
             case COMBATCOMMAND:
-                ICommandController combatCommandCtrl = new CombatCommandControl();
+                ICommandControl combatCommandCtrl = new CombatCommandControl();
                 combatCommandCtrl.ControlCommand(
                         activeScenario, playerCommand,
                         gameSettings, INewGame,

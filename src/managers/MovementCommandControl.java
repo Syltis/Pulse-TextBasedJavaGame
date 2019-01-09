@@ -1,14 +1,14 @@
 package managers;
 
 import gameplay.GameSettings;
-import interfaces.ICommandController;
+import interfaces.ICommandControl;
 import interfaces.IGameWindowPrint;
 import interfaces.INewGame;
 import interfaces.IPlayer;
 import models.MovementCommand;
 import models.Scenario;
 
-public class MovementCommandControl implements ICommandController {
+public class MovementCommandControl implements ICommandControl {
 
 	// TODO Add fucntionality for needing certain items for movement. Have the item needen in the json-object?,
 	// 		empty line would mean no item needed.

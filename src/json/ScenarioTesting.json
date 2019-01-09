@@ -1,6 +1,6 @@
 [
   {
-    "id": "intro_Room",
+    "id": "intro_room",
     "title": "Awaken",
     "description": "You're in a dark room. There is a lightly lit door in front of you.",
     "availableMovementCommands": [

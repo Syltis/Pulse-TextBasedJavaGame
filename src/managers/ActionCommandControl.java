@@ -1,7 +1,7 @@
 package managers;
 
 import gameplay.GameSettings;
-import interfaces.ICommandController;
+import interfaces.ICommandControl;
 import interfaces.IGameWindowPrint;
 import interfaces.INewGame;
 import interfaces.IPlayer;
@@ -10,7 +10,7 @@ import models.Item;
 import models.Scenario;
 import org.apache.commons.lang3.text.WordUtils;
 
-public class ActionCommandControl implements ICommandController {
+public class ActionCommandControl implements ICommandControl {
 
 	private INewGame INewGame;
 	private IPlayer IPlayer;
@@ -61,6 +61,7 @@ public class ActionCommandControl implements ICommandController {
 		IGameWindowPrint.printResponseToLog("The actionCommand worked, but we have yet to develop that part of the game.");
 	}
 
+	// TODO Finish this logic
 	private void equipWeapon(Item item) {
 		int statChange;
 		String stat = item.getEffect().substring(0,3);

@@ -27,7 +27,7 @@ public class NewGame implements INewGame {
     // Displays the first scenario
     private void startFirstScenario() {
         try {
-            this.activeScenario = JSONParsing.getScenarioFromJson("intro_Room");
+            this.activeScenario = JSONParsing.getScenarioFromJson("intro_room");
         }
         catch(NullPointerException nPE) {
             System.out.println("Scenario not Found");
@@ -39,6 +39,7 @@ public class NewGame implements INewGame {
 
     // Receives the ID of the next scenario to be displayed, ups the turnCount,
     //     displays the scenario, sets activeScenario to the new one and updates the sidebar.
+
     public void nextScenario(String result) {
         Scenario newActiveScenario = JSONParsing.getScenarioFromJson(result);
         gameSettings.upTurnCount();

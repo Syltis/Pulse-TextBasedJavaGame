@@ -3,7 +3,7 @@ package interfaces;
 import gameplay.GameSettings;
 import models.Scenario;
 
-public interface ICommandController {
+public interface ICommandControl {
 
 	void ControlCommand(
 					Scenario activeScenario,

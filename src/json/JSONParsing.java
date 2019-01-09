@@ -44,12 +44,11 @@ public final class JSONParsing {
     }
 
     public static Collection<Scenario> getScenarioListFromJson() {
-        Collection<Scenario> scenarios;
         Type scenarioType = new TypeToken<Collection<Scenario>>(){}.getType();
         InputStream inputS = JSONParsing.class.getResourceAsStream(jsonScenarioPath);
         BufferedReader read = new BufferedReader(new InputStreamReader(inputS));
         Gson gson = new GsonBuilder().create();
-        scenarios = gson.fromJson(read, scenarioType);
+        Collection<Scenario> scenarios = gson.fromJson(read, scenarioType);
         return scenarios;
     }
 

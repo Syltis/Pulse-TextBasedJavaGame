@@ -11,13 +11,7 @@ public class Player extends Being implements IPlayer {
 
     public Player()
     {
-        super("Unnamed",
-                "No description",
-                100,
-                new int[] {3,3,3},
-                50
-
-        );
+        super("Unnamed", "No description", 100, new int[] {3,3,3}, 50);
 
         // Test item
         addToInventory(new Item("Bread", "Food", "health+10", false));
