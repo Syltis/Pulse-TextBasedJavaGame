@@ -9,12 +9,6 @@ public class Player extends Being implements IPlayer {
 
     private Item equippedItem = null;
 
-    public Player(String name, String description, int health, int[] skills, int money)
-    {
-        super(name, description, health, skills, money);
-        addToInventory(new Item("Bread", "food", "health+10", false));
-    }
-    
     public Player()
     {
         super("Unnamed",
@@ -24,8 +18,9 @@ public class Player extends Being implements IPlayer {
                 50
 
         );
+
+        // Test item
         addToInventory(new Item("Bread", "Food", "health+10", false));
-        addToInventory((new Item("9mm Pistol", "weapon", "STR+2", true)));
     }
 
     public Player getPlayerCharacter() {

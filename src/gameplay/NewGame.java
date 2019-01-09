@@ -31,13 +31,14 @@ public class NewGame implements INewGame {
         }
         catch(NullPointerException nPE) {
             System.out.println("Scenario not Found");
+            nPE.printStackTrace();
         }
         gameWindow.printScenarioToGameArea(this.activeScenario.getTitle(), this.activeScenario.getDescription());
         gameWindow.feedSideBar(this.activeScenario);
     }
 
-    //      Receives the ID of the next scenario to be displayed, ups the turnCount,
-    // displays the scenario, sets activeScenario to the new one and updates the sidebar.
+    // Receives the ID of the next scenario to be displayed, ups the turnCount,
+    //     displays the scenario, sets activeScenario to the new one and updates the sidebar.
     public void nextScenario(String result) {
         Scenario newActiveScenario = JSONParsing.getScenarioFromJson(result);
         gameSettings.upTurnCount();

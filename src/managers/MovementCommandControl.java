@@ -10,6 +10,9 @@ import models.Scenario;
 
 public class MovementCommandControl implements ICommandController {
 
+	// TODO Add fucntionality for needing certain items for movement. Have the item needen in the json-object?,
+	// 		empty line would mean no item needed.
+
 	public void ControlCommand(Scenario activeScenario, String playerCommand, GameSettings gameSettings, INewGame INewGame, IGameWindowPrint IGameWindowPrint, IPlayer IPlayer) {
 		String result = null;
 		for (MovementCommand aMovementCommand: activeScenario.getAvailableMovementCommands()) {

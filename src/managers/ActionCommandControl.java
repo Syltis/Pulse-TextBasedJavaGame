@@ -34,14 +34,12 @@ public class ActionCommandControl implements ICommandController {
 		if (StringUtilities.commandIsUse(playerCommand)) {
 			String itemName = playerCommand.substring(playerCommand.indexOf(' ') + 1);
 			itemName = WordUtils.capitalizeFully(itemName);
-
-			System.out.println(itemName);
 				for (Item aItem: IPlayer.getInventory()) {
 					if (aItem.getItemName().equals(itemName)) {
 						if (aItem.getItemType().equals("weapon")) {
 
 						}
-						IGameWindowPrint.printResponseToLog("Effect to apply: " + aItem.getEffect());
+						IGameWindowPrint.printToGameArea("Effect to apply: " + aItem.getEffect(), false);
 						return;
 					}
 				}

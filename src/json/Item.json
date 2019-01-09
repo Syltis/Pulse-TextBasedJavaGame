@@ -105,6 +105,6 @@
     "itemName": "Pocketknife",
     "itemType": "weapon",
     "effect": "STR+1",
-    "isUnique": false
+    "isUnique": true
   }
 ]

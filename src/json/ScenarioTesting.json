@@ -25,11 +25,15 @@
   {
     "id": "intro_room2",
     "title": "Lit Room",
-    "description": "You're in a room, there is a button on the wall that says 'DONT PRESS'. On the floor lies a black cardboard box.",
+    "description": "You're in a room, there is a button on the wall that says 'DONT PRESS'. To the left is a dark hallway. On the floor lies a black cardboard box.",
     "availableMovementCommands": [
       {
         "command": "press button",
         "result": "darkness"
+      },
+      {
+        "command": "go left",
+        "result": "intro_room3"
       },
       {
         "command": "go back",
@@ -53,9 +57,36 @@
     ]
   },
   {
+    "id": "intro_room3",
+    "title": "Dark Hallway",
+    "description": "Your standing in a dark hallway and you can only see a few meters in front of you. Your hear a heavy breathing sound coming from the darkness.",
+    "availableMovementCommands": [
+      {
+        "command": "go forward",
+        "result": "darkness"
+      },
+      {
+        "command": "go back",
+        "result": "intro_room2"
+      }
+    ],
+    "availableActionCommands": [
+      {
+        "command": "inventory",
+        "result": "inventory"
+      }
+    ],
+    "availableItemCommands": [
+
+    ],
+    "availableCombatCommands": [
+
+    ]
+  },
+  {
     "id": "darkness",
-    "title": "Darkness",
-    "description": "Your life has ended",
+    "title": "Death",
+    "description": "Your life has ended horribly.",
     "availableMovementCommands": [
 
     ],
